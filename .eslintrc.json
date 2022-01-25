@@ -13,5 +13,6 @@
     ],
     "@typescript-eslint/no-namespace": "off",
     "prettier/prettier": "error"
-  }
+  },
+  "ignorePatterns": "**/*.js"
 }

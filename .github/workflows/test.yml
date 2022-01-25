@@ -1,0 +1,40 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PSYCHEDELIC_ORG_NPM_PKG_TOKEN: ${{ secrets.PSYCHEDELIC_ORG_NPM_PKG_TOKEN }}
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Grant packages read
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=$PSYCHEDELIC_ORG_NPM_PKG_TOKEN" >> .npmrc
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Audit
+        run: yarn audit
+
+      - name: Run Tests
+        run: yarn test:ci
