@@ -1,0 +1,9 @@
+{
+  "name": "sonic-js",
+  "version": "0.0.1",
+  "description": "Sonic-js is a library that holds an API for interacting with Swap Canister",
+  "main": "index.js",
+  "repository": "https://github.com/Psychedelic/sonic-js.git",
+  "author": "Psychedelic Team",
+  "license": "MIT"
+}
