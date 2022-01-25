@@ -23,5 +23,8 @@
     "build": "tsc --project .",
     "test": "jest --watch",
     "test:ci": "jest --silent"
+  },
+  "dependencies": {
+    "bignumber.js": "^9.0.2"
   }
 }
