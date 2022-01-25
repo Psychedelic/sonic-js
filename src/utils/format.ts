@@ -1,8 +1,8 @@
 import { Types } from '@/declarations';
 import BigNumber from 'bignumber.js';
 
-export const toBigNumber = (num: Types.Number): BigNumber => {
-  return new BigNumber(Number(num));
+export const toBigNumber = (num?: Types.Number): BigNumber => {
+  return new BigNumber(Number(num || 0));
 };
 
 export const exponential = (decimals: Types.Number): BigNumber => {
