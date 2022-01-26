@@ -22,7 +22,7 @@ export const applyDecimals = (
   num: Types.Number,
   decimals: Types.Decimals
 ): BigNumber => {
-  return toBigNumber(num).dividedBy(exponential(decimals));
+  return toBigNumber(num).dividedBy(exponential(decimals)).dp(decimals);
 };
 
 /**
@@ -32,7 +32,7 @@ export const removeDecimals = (
   num: Types.Number,
   decimals: Types.Decimals
 ): BigNumber => {
-  return toBigNumber(num).multipliedBy(exponential(decimals));
+  return toBigNumber(num).dp(decimals).multipliedBy(exponential(decimals));
 };
 
 const fixStringEnding = (str: string): string => {
