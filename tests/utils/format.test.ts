@@ -1,5 +1,11 @@
 import BigNumber from 'bignumber.js';
-import { applyDecimals, exponential, removeDecimals, toBigNumber } from 'utils';
+import {
+  applyDecimals,
+  exponential,
+  formatAmount,
+  removeDecimals,
+  toBigNumber,
+} from 'utils';
 
 describe('toBigNumber', () => {
   test('should parse bigint', () => {
@@ -62,5 +68,25 @@ describe('removeDecimals', () => {
 
   test('should remove 8 decimals', () => {
     expect(removeDecimals(0.00000123, 8)).toEqual(new BigNumber(123));
+  });
+});
+
+describe('formatAmount', () => {
+  test.each`
+    input           | expected
+    ${'0.0001'}     | ${'< 0.01'}
+    ${'0.00999'}    | ${'< 0.01'}
+    ${'1'}          | ${'1'}
+    ${'100'}        | ${'100'}
+    ${'999'}        | ${'999'}
+    ${'9999'}       | ${'9.99k'}
+    ${'99999'}      | ${'99.99k'}
+    ${'999999'}     | ${'999.99k'}
+    ${'9999999'}    | ${'9.99M'}
+    ${'99999999'}   | ${'99.99M'}
+    ${'999999999'}  | ${'999.99M'}
+    ${'9999999999'} | ${'> 999M'}
+  `('should format $input to $expected', ({ input, expected }) => {
+    expect(formatAmount(input)).toEqual(expected);
   });
 });
