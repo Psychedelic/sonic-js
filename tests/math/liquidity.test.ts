@@ -2,7 +2,7 @@ import {
   getLPAmount,
   getPairDecimals,
   getAddLPPercentageString,
-  getLP,
+  getLiquidityPosition,
 } from '@/math';
 import BigNumber from 'bignumber.js';
 
@@ -21,9 +21,9 @@ describe('getPairDecimals', () => {
   );
 });
 
-describe('getLP', () => {
+describe('getLiquidityPosition', () => {
   test('should return the correct LP amount', () => {
-    const result = getLP({
+    const result = getLiquidityPosition({
       token0Amount: '0.00004466',
       token0Decimals: 8,
       token1Amount: '0.000719793445',
@@ -37,7 +37,7 @@ describe('getLP', () => {
   });
 
   test('should return the correct LP amount for empty reserves', () => {
-    const result = getLP({
+    const result = getLiquidityPosition({
       token0Amount: '2',
       token0Decimals: 4,
       token1Amount: '2',

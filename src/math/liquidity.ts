@@ -35,9 +35,9 @@ export interface GetLPParams {
 }
 
 /**
- * Calculate the LP for given amounts of a pair of tokens
+ * Calculate the Liquidity Position for given amounts of a pair of tokens
  */
-export const getLP = (params: GetLPParams): BigNumber => {
+export const getLiquidityPosition = (params: GetLPParams): BigNumber => {
   const amount0Desired = removeDecimals(
     params.token0Amount,
     params.token0Decimals
@@ -89,10 +89,10 @@ export const getLP = (params: GetLPParams): BigNumber => {
 export type GetLPAmountParams = GetLPParams;
 
 /**
- * Calculate the LP amount for given amounts of a pair of tokens
+ * Calculate the Liquidity Position amount for given amounts of a pair of tokens
  */
 export const getLPAmount = (params: GetLPAmountParams): Types.Amount => {
-  const lp = getLP(params);
+  const lp = getLiquidityPosition(params);
 
   const pairDecimals = getPairDecimals(
     params.token0Decimals,
@@ -105,7 +105,7 @@ export const getLPAmount = (params: GetLPAmountParams): Types.Amount => {
 export type GetLPPercentageStringParams = GetLPAmountParams;
 
 /**
- * Calculate the LP percentage for given amounts of a pair of tokens
+ * Calculate the Liquidity Position percentage for given amounts of a pair of tokens
  */
 export const getAddLPPercentageString = (
   params: GetLPPercentageStringParams
@@ -116,7 +116,7 @@ export const getAddLPPercentageString = (
     return '100%';
   }
 
-  const lp = getLP(params);
+  const lp = getLiquidityPosition(params);
   const percentage = lp.dividedBy(lp.plus(totalSupply)).multipliedBy(100);
 
   return formatAmount(percentage.toString()) + '%';
