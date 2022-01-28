@@ -1,7 +1,6 @@
 import {
-  getAddLPAmount,
   getPairDecimals,
-  getAddLPPercentageString,
+  getAddLPPercentage,
   getAddLiquidityPosition,
 } from '@/math';
 import BigNumber from 'bignumber.js';
@@ -51,39 +50,9 @@ describe('getAddLiquidityPosition', () => {
   });
 });
 
-describe('getAddLPAmount', () => {
-  test('should return the correct LP amount', () => {
-    const result = getAddLPAmount({
-      token0Amount: '0.00004466',
-      token0Decimals: 8,
-      token1Amount: '0.000719793445',
-      token1Decimals: 12,
-      reserve0: '1463673195459',
-      reserve1: '235806336613029018',
-      totalSupply: '571854896330929',
-    });
-
-    expect(result).toEqual('0.0001744859');
-  });
-
-  test('should return the correct LP amount for empty reserves', () => {
-    const result = getAddLPAmount({
-      token0Amount: '2',
-      token0Decimals: 4,
-      token1Amount: '2',
-      token1Decimals: 5,
-      reserve0: '0',
-      reserve1: '0',
-      totalSupply: '0',
-    });
-
-    expect(result).toEqual('6.2246');
-  });
-});
-
 describe('getAddLPPercentageString', () => {
   test('should return the correct LP percentage (case 1)', () => {
-    const result = getAddLPPercentageString({
+    const result = getAddLPPercentage({
       token0Amount: '0.00004466',
       token0Decimals: 8,
       token1Amount: '0.000719793445',
@@ -93,11 +62,11 @@ describe('getAddLPPercentageString', () => {
       totalSupply: '571854896330929',
     });
 
-    expect(result).toEqual('< 0.01%');
+    expect(result).toEqual(new BigNumber('0.00000000305122681623'));
   });
 
   test('should return the correct LP percentage (case 2)', () => {
-    const result = getAddLPPercentageString({
+    const result = getAddLPPercentage({
       token0Amount: '2',
       token0Decimals: 8,
       token1Amount: '2',
@@ -107,11 +76,11 @@ describe('getAddLPPercentageString', () => {
       totalSupply: '62246',
     });
 
-    expect(result).toEqual('50%');
+    expect(result).toEqual(new BigNumber('0.5'));
   });
 
   test('should return the correct LP percentage for empty reserves', () => {
-    const result = getAddLPPercentageString({
+    const result = getAddLPPercentage({
       token0Amount: '2',
       token0Decimals: 4,
       token1Amount: '2',
@@ -121,6 +90,6 @@ describe('getAddLPPercentageString', () => {
       totalSupply: '0',
     });
 
-    expect(result).toEqual('100%');
+    expect(result).toEqual(new BigNumber('1'));
   });
 });

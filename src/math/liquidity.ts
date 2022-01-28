@@ -1,12 +1,6 @@
+import { Pair } from '@/declarations/pair';
 import BigNumber from 'bignumber.js';
-import {
-  applyDecimals,
-  exponential,
-  formatAmount,
-  removeDecimals,
-  toBigNumber,
-  Types,
-} from '..';
+import { exponential, removeDecimals, toBigNumber, Types } from '..';
 
 export const MINIMUM_LIQUIDITY = exponential(3);
 
@@ -24,7 +18,7 @@ export const getPairDecimals = (
     .toNumber();
 };
 
-export interface GetLPParams {
+export interface GetLiquidityPositionParams {
   token0Amount: Types.Amount;
   token1Amount: Types.Amount;
   token0Decimals: Types.Decimals;
@@ -37,7 +31,9 @@ export interface GetLPParams {
 /**
  * Calculate the Liquidity Position for given amounts of a pair of tokens
  */
-export const getAddLiquidityPosition = (params: GetLPParams): BigNumber => {
+export const getAddLiquidityPosition = (
+  params: GetLiquidityPositionParams
+): BigNumber => {
   const amount0Desired = removeDecimals(
     params.token0Amount,
     params.token0Decimals
@@ -86,38 +82,32 @@ export const getAddLiquidityPosition = (params: GetLPParams): BigNumber => {
   return lp.dp(0);
 };
 
-export type GetLPAmountParams = GetLPParams;
-
-/**
- * Calculate the Liquidity Position amount for given amounts of a pair of tokens
- */
-export const getAddLPAmount = (params: GetLPAmountParams): Types.Amount => {
-  const lp = getAddLiquidityPosition(params);
-
-  const pairDecimals = getPairDecimals(
-    params.token0Decimals,
-    params.token1Decimals
-  );
-
-  return applyDecimals(lp, pairDecimals).toString();
-};
-
-export type GetLPPercentageStringParams = GetLPAmountParams;
+export type GetLPPercentageStringParams = GetLiquidityPositionParams;
 
 /**
  * Calculate the Liquidity Position percentage for given amounts of a pair of tokens
  */
-export const getAddLPPercentageString = (
+export const getAddLPPercentage = (
   params: GetLPPercentageStringParams
-): string => {
+): BigNumber => {
   const totalSupply = toBigNumber(params.totalSupply);
 
   if (totalSupply.isZero()) {
-    return '100%';
+    return new BigNumber(1);
   }
 
   const lp = getAddLiquidityPosition(params);
-  const percentage = lp.dividedBy(lp.plus(totalSupply)).multipliedBy(100);
+  const percentage = lp.dividedBy(lp.plus(totalSupply));
 
-  return formatAmount(percentage.toString()) + '%';
+  return percentage;
 };
+
+export interface GetLPTokenBalancesParams {
+  pair: Pair.Model;
+  lpBalance: Pair.Balance;
+}
+
+export interface GetLPTokenBalancesResult {
+  token0: BigNumber;
+  token1: BigNumber;
+}
