@@ -119,12 +119,16 @@ export const getLPTokenBalances = ({
   pair,
   lpBalance,
 }: GetLPTokenBalancesParams): GetLPTokenBalancesResult => {
-  const userPercentage = toBigNumber(lpBalance).dividedBy(
+  const balancePercentage = toBigNumber(lpBalance).dividedBy(
     toBigNumber(pair.totalSupply)
   );
 
-  const token0Balance = toBigNumber(pair.reserve0).multipliedBy(userPercentage);
-  const token1Balance = toBigNumber(pair.reserve1).multipliedBy(userPercentage);
+  const token0Balance = toBigNumber(pair.reserve0)
+    .multipliedBy(balancePercentage)
+    .dp(0);
+  const token1Balance = toBigNumber(pair.reserve1)
+    .multipliedBy(balancePercentage)
+    .dp(0);
 
   return {
     token0: token0Balance,

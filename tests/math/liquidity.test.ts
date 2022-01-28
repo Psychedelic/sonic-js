@@ -2,8 +2,10 @@ import {
   getPairDecimals,
   getAddLPPercentage,
   getAddLiquidityPosition,
+  getLPTokenBalances,
 } from '@/math';
 import BigNumber from 'bignumber.js';
+import { mockPair } from '../mocks/pair';
 
 describe('getPairDecimals', () => {
   test.each`
@@ -46,7 +48,7 @@ describe('getAddLiquidityPosition', () => {
       totalSupply: '0',
     });
 
-    expect(result).toEqual(new BigNumber('62246'));
+    expect(result).toEqual(new BigNumber('62245'));
   });
 });
 
@@ -62,7 +64,7 @@ describe('getAddLPPercentageString', () => {
       totalSupply: '571854896330929',
     });
 
-    expect(result).toEqual(new BigNumber('0.00000000305122681623'));
+    expect(result).toEqual(new BigNumber('0.00000000305122681622'));
   });
 
   test('should return the correct LP percentage (case 2)', () => {
@@ -91,5 +93,35 @@ describe('getAddLPPercentageString', () => {
     });
 
     expect(result).toEqual(new BigNumber('1'));
+  });
+});
+
+describe('getLPTokenBalances', () => {
+  test('should return the correct token balances (case 1)', () => {
+    const pair = mockPair({
+      reserve0: BigInt('10000'),
+      reserve1: BigInt('30000'),
+      totalSupply: BigInt('40000'),
+    });
+    const result = getLPTokenBalances({ pair, lpBalance: 20000 });
+
+    expect(result).toEqual({
+      token0: new BigNumber('5000'),
+      token1: new BigNumber('15000'),
+    });
+  });
+
+  test('should return the correct token balances (case 2)', () => {
+    const pair = mockPair({
+      reserve0: BigInt('10000'),
+      reserve1: BigInt('30000'),
+      totalSupply: BigInt('17921'),
+    });
+    const result = getLPTokenBalances({ pair, lpBalance: 8961 });
+
+    expect(result).toEqual({
+      token0: new BigNumber('5000'),
+      token1: new BigNumber('15000'),
+    });
   });
 });
