@@ -1,9 +1,4 @@
-import {
-  getPairDecimals,
-  getAddLPPercentage,
-  getAddLiquidityPosition,
-  getLPTokenBalances,
-} from '@/math';
+import { Liquidity } from '@/math';
 import BigNumber from 'bignumber.js';
 import { mockPair } from '../mocks/pair';
 
@@ -17,14 +12,16 @@ describe('getPairDecimals', () => {
   `(
     'should be $expected for pair with $input decimals ',
     ({ input: [token0Decimals, token1Decimals], expected }) => {
-      expect(getPairDecimals(token0Decimals, token1Decimals)).toEqual(expected);
+      expect(Liquidity.getPairDecimals(token0Decimals, token1Decimals)).toEqual(
+        expected
+      );
     }
   );
 });
 
 describe('getAddLiquidityPosition', () => {
-  test('should return the correct LP amount', () => {
-    const result = getAddLiquidityPosition({
+  test('should return the correct Liquidity Position amount', () => {
+    const result = Liquidity.getAddPosition({
       token0Amount: '0.00004466',
       token0Decimals: 8,
       token1Amount: '0.000719793445',
@@ -37,8 +34,8 @@ describe('getAddLiquidityPosition', () => {
     expect(result).toEqual(new BigNumber('1744859'));
   });
 
-  test('should return the correct LP amount for empty reserves', () => {
-    const result = getAddLiquidityPosition({
+  test('should return the correct Liquidity Position amount for empty reserves', () => {
+    const result = Liquidity.getAddPosition({
       token0Amount: '2',
       token0Decimals: 4,
       token1Amount: '2',
@@ -52,9 +49,9 @@ describe('getAddLiquidityPosition', () => {
   });
 });
 
-describe('getAddLPPercentageString', () => {
-  test('should return the correct LP percentage (case 1)', () => {
-    const result = getAddLPPercentage({
+describe('getAddPercentageString', () => {
+  test('should return the correct Liquidity Position percentage (case 1)', () => {
+    const result = Liquidity.getAddPercentage({
       token0Amount: '0.00004466',
       token0Decimals: 8,
       token1Amount: '0.000719793445',
@@ -67,8 +64,8 @@ describe('getAddLPPercentageString', () => {
     expect(result).toEqual(new BigNumber('0.00000000305122681622'));
   });
 
-  test('should return the correct LP percentage (case 2)', () => {
-    const result = getAddLPPercentage({
+  test('should return the correct Liquidity Position percentage (case 2)', () => {
+    const result = Liquidity.getAddPercentage({
       token0Amount: '2',
       token0Decimals: 8,
       token1Amount: '2',
@@ -81,8 +78,8 @@ describe('getAddLPPercentageString', () => {
     expect(result).toEqual(new BigNumber('0.5'));
   });
 
-  test('should return the correct LP percentage for empty reserves', () => {
-    const result = getAddLPPercentage({
+  test('should return the correct Liquidity Position percentage for empty reserves', () => {
+    const result = Liquidity.getAddPercentage({
       token0Amount: '2',
       token0Decimals: 4,
       token1Amount: '2',
@@ -96,14 +93,14 @@ describe('getAddLPPercentageString', () => {
   });
 });
 
-describe('getLPTokenBalances', () => {
+describe('getTokenBalances', () => {
   test('should return the correct token balances (case 1)', () => {
     const pair = mockPair({
       reserve0: BigInt('10000'),
       reserve1: BigInt('30000'),
       totalSupply: BigInt('40000'),
     });
-    const result = getLPTokenBalances({ pair, lpBalance: 20000 });
+    const result = Liquidity.getTokenBalances({ pair, lpBalance: 20000 });
 
     expect(result).toEqual({
       token0: new BigNumber('5000'),
@@ -117,7 +114,7 @@ describe('getLPTokenBalances', () => {
       reserve1: BigInt('30000'),
       totalSupply: BigInt('17921'),
     });
-    const result = getLPTokenBalances({ pair, lpBalance: 8961 });
+    const result = Liquidity.getTokenBalances({ pair, lpBalance: 8961 });
 
     expect(result).toEqual({
       token0: new BigNumber('5000'),
