@@ -37,7 +37,7 @@ export interface GetLPParams {
 /**
  * Calculate the Liquidity Position for given amounts of a pair of tokens
  */
-export const getLiquidityPosition = (params: GetLPParams): BigNumber => {
+export const getAddLiquidityPosition = (params: GetLPParams): BigNumber => {
   const amount0Desired = removeDecimals(
     params.token0Amount,
     params.token0Decimals
@@ -91,8 +91,8 @@ export type GetLPAmountParams = GetLPParams;
 /**
  * Calculate the Liquidity Position amount for given amounts of a pair of tokens
  */
-export const getLPAmount = (params: GetLPAmountParams): Types.Amount => {
-  const lp = getLiquidityPosition(params);
+export const getAddLPAmount = (params: GetLPAmountParams): Types.Amount => {
+  const lp = getAddLiquidityPosition(params);
 
   const pairDecimals = getPairDecimals(
     params.token0Decimals,
@@ -116,7 +116,7 @@ export const getAddLPPercentageString = (
     return '100%';
   }
 
-  const lp = getLiquidityPosition(params);
+  const lp = getAddLiquidityPosition(params);
   const percentage = lp.dividedBy(lp.plus(totalSupply)).multipliedBy(100);
 
   return formatAmount(percentage.toString()) + '%';
