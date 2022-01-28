@@ -293,6 +293,16 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@dfinity/candid@^0.10.2":
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/@dfinity/candid/-/candid-0.10.2.tgz#545692c4f9a954b2133436049a707434d5c6c7c9"
+  integrity sha512-vHRw6G5N6Nj8PlGl+Dx8pRGNCA/OQJ5v5ktj+t4ZL/4UIaebDZYzRZyrtBC0Vs1iG9BA5l48b7ByMH26UKLC6w==
+
+"@dfinity/principal@^0.10.2":
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/@dfinity/principal/-/principal-0.10.2.tgz#26123490bac2de6987d20715eda5efb8812a68d5"
+  integrity sha512-CueU9ByIG2ifGDN8YnTPKbLJ6+ZDkoOLVmelaIcueTwqvHMIIvWNme76GwjbcbZ6/XgFd+I7cIKPMX0qQgbGCw==
+
 "@eslint/eslintrc@^1.0.5":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-1.0.5.tgz#33f1b838dbf1f923bfa517e008362b78ddbbf318"
@@ -2199,6 +2209,11 @@ jest@^27.4.7:
     "@jest/core" "^27.4.7"
     import-local "^3.0.2"
     jest-cli "^27.4.7"
+
+js-sha256@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/js-sha256/-/js-sha256-0.9.0.tgz#0b89ac166583e91ef9123644bd3c5334ce9d0966"
+  integrity sha512-sga3MHh9sgQN2+pJ9VYZ+1LPwXOxuBJBA5nrR5/ofPfuiJBE2hnjsaN8se8JznOmGLN2p49Pe5U/ttafcs/apA==
 
 js-tokens@^4.0.0:
   version "4.0.0"
