@@ -46,3 +46,43 @@ describe('getAmountOut', () => {
     expect(result).toEqual(new BigNumber(0.01988023035));
   });
 });
+
+describe('getPriceImpact', () => {
+  test.each`
+    amountIn | amountOut | priceIn | priceOut
+    ${1}     | ${1}      | ${1}    | ${0}
+    ${1}     | ${1}      | ${0}    | ${1}
+    ${1}     | ${0}      | ${1}    | ${1}
+    ${0}     | ${1}      | ${1}    | ${1}
+  `(
+    'should return 0 when any param is 0',
+    ({ amountIn, amountOut, priceIn, priceOut }) => {
+      const result = Swap.getPriceImpact({
+        amountIn,
+        amountOut,
+        priceIn,
+        priceOut,
+      });
+      expect(result).toEqual(new BigNumber(0));
+    }
+  );
+
+  test.each`
+    amountIn | amountOut | priceIn | priceOut | expected
+    ${10}    | ${10}     | ${1}    | ${1}     | ${0}
+    ${10}    | ${5}      | ${1}    | ${2}     | ${0}
+    ${1}     | ${1}      | ${5}    | ${1}     | ${-80}
+    ${1}     | ${1.1}    | ${1}    | ${1}     | ${10}
+  `(
+    'should return $expected when amountIn: $amountIn, amountOut: $amountOut, priceIn: $priceIn, priceOut: $priceOut',
+    ({ amountIn, amountOut, priceIn, priceOut, expected }) => {
+      const result = Swap.getPriceImpact({
+        amountIn,
+        amountOut,
+        priceIn,
+        priceOut,
+      });
+      expect(result).toEqual(new BigNumber(expected));
+    }
+  );
+});
