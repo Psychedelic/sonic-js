@@ -60,11 +60,11 @@ export namespace Swap {
     )
       return toBigNumber(0);
 
-    const _amountOut = Price.getPriceByAmount({
+    const _amountOut = Price.getByAmount({
       amount: amountOut.toString(),
       price: priceOut,
     });
-    const _amountIn = Price.getPriceByAmount({
+    const _amountIn = Price.getByAmount({
       amount: amountIn.toString(),
       price: priceIn,
     });

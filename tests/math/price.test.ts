@@ -1,7 +1,7 @@
 import { Price } from '@/math';
 import BigNumber from 'bignumber.js';
 
-describe('getPriceByAmount', () => {
+describe('getByAmount', () => {
   test.each`
     amount       | price
     ${undefined} | ${undefined}
@@ -13,7 +13,7 @@ describe('getPriceByAmount', () => {
   `(
     'should return 0 for amount $amount and price $price',
     ({ amount, price }) => {
-      const result = Price.getPriceByAmount({ amount, price });
+      const result = Price.getByAmount({ amount, price });
       expect(result).toEqual(new BigNumber(0));
     }
   );
@@ -26,7 +26,7 @@ describe('getPriceByAmount', () => {
   `(
     'should return $expected for amount $amount and price $price',
     ({ amount, price, expected }) => {
-      const result = Price.getPriceByAmount({ amount, price });
+      const result = Price.getByAmount({ amount, price });
       expect(result).toEqual(new BigNumber(expected));
     }
   );

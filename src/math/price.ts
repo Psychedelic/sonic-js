@@ -7,9 +7,10 @@ export namespace Price {
     price?: Types.Number;
   };
 
-  export const getPriceByAmount = (
-    params: GetPriceByAmountParams
-  ): BigNumber => {
+  /**
+   * Calculate the total amount price by a given amount
+   */
+  export const getByAmount = (params: GetPriceByAmountParams): BigNumber => {
     if (!params.amount && !params.price) return toBigNumber(0);
 
     const amount = toBigNumber(params.amount);
