@@ -68,11 +68,16 @@ describe('getPriceImpact', () => {
   );
 
   test.each`
-    amountIn | amountOut | priceIn | priceOut | expected
-    ${10}    | ${10}     | ${1}    | ${1}     | ${0}
-    ${10}    | ${5}      | ${1}    | ${2}     | ${0}
-    ${1}     | ${1}      | ${5}    | ${1}     | ${-80}
-    ${1}     | ${1.1}    | ${1}    | ${1}     | ${10}
+    amountIn | amountOut       | priceIn | priceOut        | expected
+    ${10}    | ${10}           | ${1}    | ${1}            | ${0}
+    ${10}    | ${5}            | ${1}    | ${2}            | ${0}
+    ${1}     | ${1}            | ${5}    | ${1}            | ${-80}
+    ${1}     | ${1}            | ${5}    | ${4.905}        | ${-1.9}
+    ${1}     | ${1.1}          | ${1}    | ${1}            | ${10}
+    ${1}     | ${1.001}        | ${1}    | ${1}            | ${0.1}
+    ${1}     | ${10000}        | ${1}    | ${100}          | ${99999900}
+    ${1}     | ${0.0000000001} | ${1}    | ${1}            | ${-99.99999999}
+    ${1}     | ${0.0000000001} | ${1}    | ${0.0000000001} | ${'-99.999999999999999999'}
   `(
     'should return $expected when amountIn: $amountIn, amountOut: $amountOut, priceIn: $priceIn, priceOut: $priceOut',
     ({ amountIn, amountOut, priceIn, priceOut, expected }) => {
