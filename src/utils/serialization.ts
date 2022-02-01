@@ -1,3 +1,7 @@
+/**
+ * Parses a json string into an object.
+ * This is required for parsing objects that have BigInt values.
+ */
 export const deserialize = <T = any>(jsonString: string): T | undefined => {
   try {
     return JSON.parse(jsonString, (key, value) => {
@@ -11,6 +15,10 @@ export const deserialize = <T = any>(jsonString: string): T | undefined => {
   }
 };
 
+/**
+ * Parses a json object into a string.
+ * This is required for parsing objects that have BigInt values.
+ */
 export const serialize = <T>(data: T): string => {
   try {
     return JSON.stringify(data, (key, value) =>

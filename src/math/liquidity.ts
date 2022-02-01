@@ -33,7 +33,7 @@ export namespace Liquidity {
   }
 
   /**
-   * Calculate the Liquidity Position for given amounts of a pair of tokens
+   * Calculate the Liquidity Position for given amounts of a pair of tokens that is going to be added
    */
   export const getAddPosition = (params: GetPositionParams): BigNumber => {
     const amount0Desired = removeDecimals(
@@ -87,7 +87,7 @@ export namespace Liquidity {
   export type GetPercentageStringParams = GetPositionParams;
 
   /**
-   * Calculate the Liquidity Position percentage for given amounts of a pair of tokens
+   * Calculate the Liquidity Position percentage that is going to be received for adding an amount of pair of tokens
    */
   export const getAddPercentage = (
     params: GetPercentageStringParams
