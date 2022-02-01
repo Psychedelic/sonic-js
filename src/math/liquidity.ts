@@ -2,40 +2,30 @@ import { Pair } from '@/declarations/pair';
 import BigNumber from 'bignumber.js';
 import { exponential, removeDecimals, toBigNumber, Types } from '..';
 
-export namespace Liquidity {
+export class Liquidity {
   /**
    * Constant from Swap Canister
    */
-  export const MINIMUM_LIQUIDITY = exponential(3);
+  static readonly MINIMUM_LIQUIDITY = exponential(3);
 
   /**
    * Calculate the pair decimals for given tokens decimals
    */
-  export const getPairDecimals = (
+  static getPairDecimals(
     token0Decimals: Types.Decimals,
     token1Decimals: Types.Decimals
-  ): Types.Decimals => {
+  ): Types.Decimals {
     return toBigNumber(token0Decimals)
       .plus(token1Decimals)
       .dividedBy(2)
       .dp(0, BigNumber.ROUND_FLOOR)
       .toNumber();
-  };
-
-  export interface GetPositionParams {
-    token0Amount: Types.Amount;
-    token1Amount: Types.Amount;
-    token0Decimals: Types.Decimals;
-    token1Decimals: Types.Decimals;
-    reserve0: Types.Number;
-    reserve1: Types.Number;
-    totalSupply: Types.Number;
   }
 
   /**
    * Calculate the Liquidity Position for given amounts of a pair of tokens that is going to be added
    */
-  export const getAddPosition = (params: GetPositionParams): BigNumber => {
+  static getAddPosition(params: Liquidity.GetAddPositionParams): BigNumber {
     const amount0Desired = removeDecimals(
       params.token0Amount,
       params.token0Decimals
@@ -73,7 +63,7 @@ export namespace Liquidity {
     let lp: BigNumber;
 
     if (totalSupply.isZero()) {
-      lp = amount0.multipliedBy(amount1).sqrt().minus(MINIMUM_LIQUIDITY);
+      lp = amount0.multipliedBy(amount1).sqrt().minus(this.MINIMUM_LIQUIDITY);
     } else {
       const one = amount0.times(totalSupply).div(reserve0);
       const two = amount1.times(totalSupply).div(reserve1);
@@ -82,45 +72,31 @@ export namespace Liquidity {
     }
 
     return lp.dp(0);
-  };
-
-  export type GetPercentageStringParams = GetPositionParams;
+  }
 
   /**
    * Calculate the Liquidity Position percentage that is going to be received for adding an amount of pair of tokens
    */
-  export const getAddPercentage = (
-    params: GetPercentageStringParams
-  ): BigNumber => {
+  static getAddPercentage(params: Liquidity.GetPercentageParams): BigNumber {
     const totalSupply = toBigNumber(params.totalSupply);
 
     if (totalSupply.isZero()) {
       return new BigNumber(1);
     }
 
-    const lp = getAddPosition(params);
+    const lp = this.getAddPosition(params);
     const percentage = lp.dividedBy(lp.plus(totalSupply));
 
     return percentage;
-  };
-
-  export interface GetTokenBalancesParams {
-    pair: Pair.Model;
-    lpBalance: Pair.Balance;
-  }
-
-  export interface GetTokenBalancesResult {
-    token0: BigNumber;
-    token1: BigNumber;
   }
 
   /**
    * Calculate the token balances for given pair Liquidity Position
    */
-  export const getTokenBalances = ({
+  static getTokenBalances({
     pair,
     lpBalance,
-  }: GetTokenBalancesParams): GetTokenBalancesResult => {
+  }: Liquidity.GetTokenBalancesParams): Liquidity.GetTokenBalancesResult {
     const balancePercentage = toBigNumber(lpBalance).dividedBy(
       toBigNumber(pair.totalSupply)
     );
@@ -136,5 +112,28 @@ export namespace Liquidity {
       token0: token0Balance,
       token1: token1Balance,
     };
-  };
+  }
+}
+
+export namespace Liquidity {
+  export interface GetAddPositionParams {
+    token0Amount: Types.Amount;
+    token1Amount: Types.Amount;
+    token0Decimals: Types.Decimals;
+    token1Decimals: Types.Decimals;
+    reserve0: Types.Number;
+    reserve1: Types.Number;
+    totalSupply: Types.Number;
+  }
+
+  export type GetPercentageParams = GetAddPositionParams;
+  export interface GetTokenBalancesParams {
+    pair: Pair.Model;
+    lpBalance: Pair.Balance;
+  }
+
+  export interface GetTokenBalancesResult {
+    token0: BigNumber;
+    token1: BigNumber;
+  }
 }
