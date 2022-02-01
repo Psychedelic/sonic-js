@@ -2,6 +2,10 @@ import { Default } from '@/declarations';
 import { Actor, ActorSubclass, Agent, HttpAgent } from '@dfinity/agent';
 import { IDL } from '@dfinity/candid';
 
+/**
+ * Adapter responsible for creating actors.
+ * It can receive a provider to identify the actor like a wallet provider (e.g. Plug).
+ */
 export class ActorAdapter implements ActorAdapter.Repository {
   constructor(
     private provider?: ActorAdapter.Provider,
@@ -11,6 +15,9 @@ export class ActorAdapter implements ActorAdapter.Repository {
     }
   ) {}
 
+  /**
+   * Creates a new actor or use from memory if is already created.
+   */
   async createActor<T>(
     canisterId: string,
     interfaceFactory: IDL.InterfaceFactory
@@ -19,7 +26,7 @@ export class ActorAdapter implements ActorAdapter.Repository {
       return ActorAdapter.Actors[canisterId];
     }
 
-    let actor;
+    let actor: ActorSubclass<T>;
 
     if (!this.provider) {
       const agent = new HttpAgent({ host: this.options.host });
@@ -40,6 +47,9 @@ export class ActorAdapter implements ActorAdapter.Repository {
     return actor;
   }
 
+  /**
+   * Creates the agent from provider.
+   */
   private async createAgent(): Promise<void> {
     if (this.provider && !this.provider?.agent) {
       await this.provider.createAgent({
