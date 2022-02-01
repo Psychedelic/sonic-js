@@ -58,11 +58,11 @@ Calculate the pair decimals for given tokens decimals
 
 #### `Liquidity.getAddPosition(params: GetPositionParams): BigNumber`
 
-Calculate the Liquidity Position for given amounts of a pair of tokens
+Calculate the Liquidity Position for given amounts of a pair of tokens that's going to be added
 
 #### `Liquidity.getAddPercentage(params: GetPercentageStringParams): BigNumber`
 
-Calculate the Liquidity Position percentage for given amounts of a pair of tokens
+Calculate the Liquidity Position percentage that is going to be received for adding an amount of pair of tokens
 
 #### `Liquidity.getTokenBalances(params: GetTokenBalancesParams): GetTokenBalancesResult`
 
