@@ -8,6 +8,8 @@ import fetch from 'cross-fetch';
  * It can receive a provider to identify the actor like a wallet provider (e.g. Plug).
  */
 export class ActorAdapter implements ActorAdapter.Repository {
+  static readonly actors: Record<string, ActorSubclass<any>> = {};
+
   constructor(
     private provider?: ActorAdapter.Provider,
     private options: ActorAdapter.Options = {
@@ -23,8 +25,8 @@ export class ActorAdapter implements ActorAdapter.Repository {
     canisterId: string,
     interfaceFactory: IDL.InterfaceFactory
   ): Promise<ActorSubclass<T>> {
-    if (ActorAdapter.Actors[canisterId]) {
-      return ActorAdapter.Actors[canisterId];
+    if (ActorAdapter.actors[canisterId]) {
+      return ActorAdapter.actors[canisterId];
     }
 
     let actor: ActorSubclass<T>;
@@ -44,7 +46,7 @@ export class ActorAdapter implements ActorAdapter.Repository {
       });
     }
 
-    ActorAdapter.Actors[canisterId] = actor;
+    ActorAdapter.actors[canisterId] = actor;
     return actor;
   }
 
@@ -62,8 +64,6 @@ export class ActorAdapter implements ActorAdapter.Repository {
 }
 
 export namespace ActorAdapter {
-  export const Actors: Record<string, ActorSubclass<any>> = {};
-
   export type Provider = {
     agent: Agent | null;
     createActor<T>(params: CreateActor<T>): Promise<ActorSubclass<T>>;
