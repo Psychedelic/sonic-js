@@ -26,6 +26,7 @@
     "test:ci": "jest --silent"
   },
   "dependencies": {
+    "@dfinity/agent": "^0.10.2",
     "@dfinity/candid": "^0.10.2",
     "@dfinity/principal": "^0.10.2",
     "bignumber.js": "^9.0.2"
