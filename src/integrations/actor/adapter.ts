@@ -1,3 +1,4 @@
+import { Default } from '@/declarations';
 import { Actor, ActorSubclass, Agent, HttpAgent } from '@dfinity/agent';
 import { IDL } from '@dfinity/candid';
 
@@ -5,8 +6,8 @@ export class ActorAdapter implements ActorAdapter.Repository {
   constructor(
     private provider?: ActorAdapter.Provider,
     private options: ActorAdapter.Options = {
-      host: 'https://boundary.ic0.app/',
-      whitelist: ['3xwpq-ziaaa-aaaah-qcn4a-cai'],
+      host: Default.IC_HOST,
+      whitelist: [Default.SWAP_CANISTER_ID],
     }
   ) {}
 
