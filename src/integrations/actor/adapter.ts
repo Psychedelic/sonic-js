@@ -1,6 +1,7 @@
 import { Default } from '@/declarations';
 import { Actor, ActorSubclass, Agent, HttpAgent } from '@dfinity/agent';
 import { IDL } from '@dfinity/candid';
+import fetch from 'cross-fetch';
 
 /**
  * Adapter responsible for creating actors.
@@ -29,7 +30,7 @@ export class ActorAdapter implements ActorAdapter.Repository {
     let actor: ActorSubclass<T>;
 
     if (!this.provider) {
-      const agent = new HttpAgent({ host: this.options.host });
+      const agent = new HttpAgent({ host: this.options.host, fetch });
 
       actor = Actor.createActor<T>(interfaceFactory, {
         agent,
