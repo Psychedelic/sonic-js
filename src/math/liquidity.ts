@@ -127,6 +127,7 @@ export namespace Liquidity {
   }
 
   export type GetPercentageParams = GetAddPositionParams;
+
   export interface GetTokenBalancesParams {
     pair: Pair.Model;
     lpBalance: Pair.Balance;
