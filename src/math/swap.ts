@@ -2,26 +2,20 @@ import BigNumber from 'bignumber.js';
 import { Price } from '.';
 import { applyDecimals, removeDecimals, toBigNumber, Types } from '..';
 
-export namespace Swap {
-  export const DEFAULT_FEE = 0.003;
-
-  export interface GetAmountOutParams {
-    amountIn: Types.Amount;
-    decimalsIn: Types.Decimals;
-    decimalsOut: Types.Decimals;
-    reserveIn: Types.Number;
-    reserveOut: Types.Number;
-    fee?: Types.Number;
-  }
+export class Swap {
+  /**
+   * Default fee for swap (0.3%)
+   */
+  static readonly DEFAULT_FEE = 0.003;
 
   /**
    * Calculate the resultant amount of a swap
    */
-  export const getAmountOut = (params: GetAmountOutParams): BigNumber => {
+  static getAmountOut(params: Swap.GetAmountOutParams): BigNumber {
     const amountIn = removeDecimals(params.amountIn, params.decimalsIn);
     const reserveIn = toBigNumber(params.reserveIn);
     const reserveOut = toBigNumber(params.reserveOut);
-    const fee = toBigNumber(params.fee || DEFAULT_FEE);
+    const fee = toBigNumber(params.fee || this.DEFAULT_FEE);
 
     if (amountIn.isZero()) return toBigNumber(0);
 
@@ -31,19 +25,12 @@ export namespace Swap {
     const denominator = reserveIn.plus(amountInWithFee);
 
     return applyDecimals(numerator.dividedBy(denominator), params.decimalsOut);
-  };
-
-  export interface GetPriceImpactParams {
-    amountIn: Types.Amount;
-    amountOut: Types.Amount;
-    priceIn: Types.Number;
-    priceOut: Types.Number;
   }
 
   /**
    * Calculate the price impact based on given amounts and prices
    */
-  export const getPriceImpact = (params: GetPriceImpactParams): BigNumber => {
+  static getPriceImpact(params: Swap.GetPriceImpactParams): BigNumber {
     const amountIn = toBigNumber(params.amountIn);
     const amountOut = toBigNumber(params.amountOut);
     const priceIn = toBigNumber(params.priceIn);
@@ -75,5 +62,23 @@ export namespace Swap {
       .negated();
 
     return priceImpact;
-  };
+  }
+}
+
+export namespace Swap {
+  export interface GetAmountOutParams {
+    amountIn: Types.Amount;
+    decimalsIn: Types.Decimals;
+    decimalsOut: Types.Decimals;
+    reserveIn: Types.Number;
+    reserveOut: Types.Number;
+    fee?: Types.Number;
+  }
+
+  export interface GetPriceImpactParams {
+    amountIn: Types.Amount;
+    amountOut: Types.Amount;
+    priceIn: Types.Number;
+    priceOut: Types.Number;
+  }
 }
