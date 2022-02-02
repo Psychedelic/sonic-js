@@ -15,3 +15,22 @@ export const mockToken = ({
   symbol: symbol || 'XTC',
   totalSupply: totalSupply || BigInt('568886793566866910'),
 });
+
+export const mockSupportedTokenListResponse = (): SwapIDL.TokenInfoExt[] => [
+  {
+    id: 'aanaa-xaaaa-aaaah-aaeiq-cai',
+    fee: BigInt('2000000000'),
+    decimals: 12,
+    name: 'Cycles',
+    totalSupply: BigInt('568951992843769366'),
+    symbol: 'XTC',
+  },
+  {
+    id: 'utozz-siaaa-aaaam-qaaxq-cai',
+    fee: BigInt('0'),
+    decimals: 8,
+    name: 'WICP',
+    totalSupply: BigInt('3851094737272'),
+    symbol: 'WICP',
+  },
+];
