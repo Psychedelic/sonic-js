@@ -1,3 +1,4 @@
+import BigNumber from 'bignumber.js';
 import { SwapIDL } from './did';
 
 export namespace Token {
@@ -14,4 +15,8 @@ export namespace Token {
     metadata?: M;
     amount: string;
   }
+
+  export type BalanceList = {
+    [canisterId: string]: BigNumber;
+  };
 }
