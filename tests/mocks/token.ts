@@ -1,4 +1,5 @@
-import { SwapIDL } from '@/declarations';
+import { SwapIDL, Token } from '@/declarations';
+import { parseSupportedTokenList } from 'integrations';
 
 export const mockToken = ({
   decimals,
@@ -34,3 +35,6 @@ export const mockSupportedTokenListResponse = (): SwapIDL.TokenInfoExt[] => [
     symbol: 'WICP',
   },
 ];
+
+export const mockTokenList = (): Token.MetadataList =>
+  parseSupportedTokenList(mockSupportedTokenListResponse());

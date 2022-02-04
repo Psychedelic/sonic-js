@@ -1,5 +1,5 @@
 import { Pair, Token } from '@/declarations';
-import { removeDecimals } from '@/utils';
+import { applyDecimals } from '@/utils';
 import { Principal } from '@dfinity/principal';
 import { createTokenActor, SwapActor } from '..';
 import { parseSupportedTokenList, parseAllPairs } from './utils';
@@ -35,13 +35,11 @@ export class SwapCanisterController {
           tokenActor.balanceOf(Principal.fromText(principalId))
         )
         .then((balance) => ({
-          [token.id]: removeDecimals(balance, token.decimals),
+          [token.id]: applyDecimals(balance, token.decimals),
         }))
     );
 
-    const promiseResults = await Promise.all<Token.BalanceList>(
-      tokenBalancePromises
-    );
+    const promiseResults = await Promise.all(tokenBalancePromises);
 
     const balanceList = promiseResults.reduce(
       (acc, result) => ({ ...acc, ...result }),

@@ -1,7 +1,21 @@
-import { SwapCanisterController } from 'integrations';
-import { mockSwapActor } from '../../mocks/actor';
+import { SwapCanisterController } from '@/integrations';
+import { createTokenActor } from '@/integrations/actor';
+import BigNumber from 'bignumber.js';
+import { Token } from 'declarations';
+import { applyDecimals } from 'utils';
+import { mockSwapActor, mockTokenActor } from '../../mocks/actor';
 import { mockAllPairsResponse } from '../../mocks/pair';
-import { mockSupportedTokenListResponse } from '../../mocks/token';
+import { mockPrincipalId } from '../../mocks/principal';
+import {
+  mockSupportedTokenListResponse,
+  mockTokenList,
+} from '../../mocks/token';
+
+jest.mock('@/integrations/actor');
+
+(createTokenActor as jest.Mock).mockImplementation(async () =>
+  mockTokenActor()
+);
 
 describe('SwapCanisterController', () => {
   let sut: SwapCanisterController;
@@ -60,6 +74,47 @@ describe('SwapCanisterController', () => {
           reserve0: mock.reserve1,
           reserve1: mock.reserve0,
         });
+      });
+    });
+  });
+
+  describe('.getTokenBalances', () => {
+    beforeEach(() => {
+      sut.tokenList = mockTokenList();
+    });
+
+    test('should fetch token list if is not present', async () => {
+      const spy = jest.spyOn(sut, 'getTokenList');
+      sut.tokenList = null;
+
+      await sut.getTokenBalances(mockPrincipalId());
+
+      expect(spy).toHaveBeenCalled();
+      expect(createTokenActor).toHaveBeenCalled();
+    });
+
+    test('should not fetch token list if is present', async () => {
+      const spy = jest.spyOn(sut, 'getTokenList');
+      await sut.getTokenBalances(mockPrincipalId());
+
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    test('should return a list of token balances', async () => {
+      const response = await sut.getTokenBalances(mockPrincipalId());
+
+      Object.keys(sut.tokenList as Token.MetadataList).forEach((tokenId) => {
+        expect(response[tokenId]).toBeInstanceOf(BigNumber);
+      });
+    });
+
+    test('should return a list of token balances with correct values', async () => {
+      const response = await sut.getTokenBalances(mockPrincipalId());
+
+      Object.values(sut.tokenList as Token.MetadataList).forEach((token) => {
+        expect(response[token.id].toNumber()).toEqual(
+          applyDecimals('1', token.decimals).toNumber()
+        );
       });
     });
   });
