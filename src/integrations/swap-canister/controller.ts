@@ -1,5 +1,6 @@
-import { Pair, Token } from '@/declarations';
-import { applyDecimals } from '@/utils';
+import { Pair, Token, Types } from '@/declarations';
+import { applyDecimals, removeDecimals } from '@/utils';
+import { Actor } from '@dfinity/agent';
 import { Principal } from '@dfinity/principal';
 import { createTokenActor, SwapActor } from '..';
 import { parseSupportedTokenList, parseAllPairs } from './utils';
@@ -50,4 +51,41 @@ export class SwapCanisterController {
 
     return balanceList;
   }
+
+  async getAgentPrincipal(): Promise<Principal | undefined> {
+    const agent = Actor.agentOf(this.swapActor);
+    if (!agent) return;
+
+    return agent.getPrincipal();
+  }
+
+  async approve({
+    tokenId,
+    amount,
+  }: SwapCanisterController.ApproveParams): Promise<void> {
+    const principal = await this.getAgentPrincipal();
+    if (!principal) throw new Error('Agent principal not found');
+
+    if (!this.tokenList) await this.getTokenList();
+
+    const tokenActor = await createTokenActor({ canisterId: tokenId });
+    const result = await tokenActor.approve(
+      principal,
+      BigInt(
+        removeDecimals(
+          amount,
+          (this.tokenList as Token.MetadataList)[tokenId].decimals
+        ).toString()
+      )
+    );
+
+    if ('Err' in result) throw new Error(JSON.stringify(result.Err));
+  }
+}
+
+export namespace SwapCanisterController {
+  export type ApproveParams = {
+    amount: Types.Amount;
+    tokenId: string;
+  };
 }
