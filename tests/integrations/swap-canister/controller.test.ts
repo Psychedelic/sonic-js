@@ -9,6 +9,7 @@ import { mockAllPairsResponse } from '../../mocks/pair';
 import { mockPrincipal, mockPrincipalId } from '../../mocks/principal';
 import {
   mockSupportedTokenListResponse,
+  mockTokenId,
   mockTokenList,
 } from '../../mocks/token';
 
@@ -128,6 +129,73 @@ describe('SwapCanisterController', () => {
     test('should return the principal', async () => {
       const response = await sut.getAgentPrincipal();
       expect(response).toEqual(mockPrincipal());
+    });
+  });
+
+  describe('.approve', () => {
+    const params = { tokenId: mockTokenId(), amount: '10' };
+
+    beforeEach(() => {
+      sut.tokenList = mockTokenList();
+    });
+
+    test('should fetch token list if is not present', async () => {
+      const spy = jest.spyOn(sut, 'getTokenList');
+      sut.tokenList = null;
+
+      await sut.approve(params);
+
+      expect(spy).toHaveBeenCalled();
+      expect(createTokenActor).toHaveBeenCalled();
+    });
+
+    test('should not fetch token list if is present', async () => {
+      const spy = jest.spyOn(sut, 'getTokenList');
+      await sut.approve(params);
+
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    test('should create a token actor', async () => {
+      await sut.approve(params);
+      expect(createTokenActor).toHaveBeenCalled();
+    });
+
+    test('should call approve on token actor', async () => {
+      const spy = jest.fn().mockResolvedValue({ Ok: BigInt(1) });
+
+      (createTokenActor as jest.Mock).mockImplementationOnce(async () => {
+        return {
+          approve: spy,
+        };
+      });
+
+      await sut.approve(params);
+
+      expect(spy).toHaveBeenCalled();
+    });
+
+    test('should throw for error response', async () => {
+      const spy = jest.fn().mockResolvedValue({ Err: { Other: null } });
+
+      (createTokenActor as jest.Mock).mockImplementationOnce(async () => {
+        return {
+          approve: spy,
+        };
+      });
+
+      const promise = sut.approve(params);
+
+      await expect(promise).rejects.toThrowError(
+        JSON.stringify({ Other: null })
+      );
+    });
+
+    test('should throw if there is no agent principal', async () => {
+      (Actor.agentOf as jest.Mock).mockImplementationOnce(() => undefined);
+
+      const promise = sut.approve(params);
+      await expect(promise).rejects.toThrow();
     });
   });
 });

@@ -38,3 +38,5 @@ export const mockSupportedTokenListResponse = (): SwapIDL.TokenInfoExt[] => [
 
 export const mockTokenList = (): Token.MetadataList =>
   parseSupportedTokenList(mockSupportedTokenListResponse());
+
+export const mockTokenId = (): string => 'aanaa-xaaaa-aaaah-aaeiq-cai';
