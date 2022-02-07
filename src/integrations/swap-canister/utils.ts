@@ -1,5 +1,8 @@
 import { Pair, SwapIDL, Token } from '@/declarations';
 
+/**
+ * Parses a list of supported tokens from swap canister request
+ */
 export const parseSupportedTokenList = (
   response: SwapIDL.TokenInfoExt[]
 ): Token.MetadataList => {
@@ -11,6 +14,9 @@ export const parseSupportedTokenList = (
   }, {});
 };
 
+/**
+ * Parses a list of pairs from swap canister request
+ */
 export const parseAllPairs = (response: SwapIDL.PairInfoExt[]): Pair.List => {
   return response.reduce((list, pair) => {
     const { token0, token1, reserve0, reserve1 } = pair;

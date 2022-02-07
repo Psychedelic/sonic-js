@@ -5,13 +5,24 @@ import { Principal } from '@dfinity/principal';
 import { createTokenActor, SwapActor } from '..';
 import { parseSupportedTokenList, parseAllPairs } from './utils';
 
+/**
+ * Swap Canister Controller
+ * This class is responsible for handling all the requests related to the swap canister
+ */
 export class SwapCanisterController {
   tokenList: Token.MetadataList | null = null;
   pairList: Pair.List | null = null;
   balanceList: Token.BalanceList | null = null;
 
+  /**
+   * Create an instance that communicates with swap canister
+   * Some of the functions uses the actor agent identity to identify the user that is interacting
+   */
   constructor(private swapActor: SwapActor) {}
 
+  /**
+   * Get the list of supported tokens from swap canister
+   */
   async getTokenList(): Promise<Token.MetadataList> {
     const response = await this.swapActor.getSupportedTokenList();
     const parsedResponse = parseSupportedTokenList(response);
@@ -19,6 +30,9 @@ export class SwapCanisterController {
     return parsedResponse;
   }
 
+  /**
+   * Get the list of pairs present in swap canister
+   */
   async getPairList(): Promise<Pair.List> {
     const response = await this.swapActor.getAllPairs();
     const parsedResponse = parseAllPairs(response);
@@ -26,6 +40,10 @@ export class SwapCanisterController {
     return parsedResponse;
   }
 
+  /**
+   * Get the balance of all supported tokens for a given principal id
+   * This function get balances that's not present on swap canister
+   */
   async getTokenBalances(principalId: string): Promise<Token.BalanceList> {
     if (!this.tokenList) await this.getTokenList();
 
@@ -52,6 +70,9 @@ export class SwapCanisterController {
     return balanceList;
   }
 
+  /**
+   * Get the principal of the agent
+   */
   async getAgentPrincipal(): Promise<Principal | undefined> {
     const agent = Actor.agentOf(this.swapActor);
     if (!agent) return;
@@ -59,6 +80,11 @@ export class SwapCanisterController {
     return agent.getPrincipal();
   }
 
+  /**
+   * Approve transfers from token to swap canister
+   * This function uses the actor agent identity
+   * This function needs to be called before depositing into swap canister
+   */
   async approve({
     tokenId,
     amount,
@@ -90,6 +116,10 @@ export class SwapCanisterController {
     if ('Err' in result) throw new Error(JSON.stringify(result.Err));
   }
 
+  /**
+   * Deposit tokens into swap canister
+   * This function uses the actor agent identity
+   */
   async deposit({
     tokenId,
     amount,
@@ -109,6 +139,10 @@ export class SwapCanisterController {
     if ('err' in result) throw new Error(JSON.stringify(result.err));
   }
 
+  /**
+   * Withdraw tokens from swap canister
+   * This function uses the actor agent identity
+   */
   async withdraw({
     amount,
     tokenId,
