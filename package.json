@@ -23,7 +23,8 @@
   "scripts": {
     "build": "tsc --project .",
     "test": "jest --watch",
-    "test:ci": "jest --silent"
+    "test:ci": "jest --silent",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@dfinity/agent": "^0.10.2",

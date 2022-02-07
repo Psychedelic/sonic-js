@@ -1,4 +1,4 @@
-import { Pair } from '@/declarations';
+import { Pair, SwapIDL } from '@/declarations';
 import { Principal } from '@dfinity/principal';
 
 export const mockPair = ({
@@ -38,3 +38,24 @@ export const mockPair = ({
     blockTimestampLast: blockTimestampLast || BigInt('1643382877493031694'),
   };
 };
+
+export const mockAllPairsResponse = (): SwapIDL.PairInfoExt[] => [
+  {
+    id: 'aanaa-xaaaa-aaaah-aaeiq-cai:utozz-siaaa-aaaam-qaaxq-cai',
+    price0CumulativeLast: BigInt('109155824020700857063784541336863933'),
+    creator: Principal.fromText(
+      '4qehi-lqyo6-afz4c-hwqwo-lubfi-4evgk-5vrn5-rldx2-lheha-xs7a4-gae'
+    ),
+    reserve0: BigInt('565778441300902550'),
+    reserve1: BigInt('3628629825164'),
+    lptoken: 'aanaa-xaaaa-aaaah-aaeiq-cai:utozz-siaaa-aaaam-qaaxq-cai',
+    totalSupply: BigInt('1390958371708314'),
+    token0: 'aanaa-xaaaa-aaaah-aaeiq-cai',
+    token1: 'utozz-siaaa-aaaam-qaaxq-cai',
+    price1CumulativeLast: BigInt(
+      '2653715557084971846979439344462581521897640242'
+    ),
+    kLast: BigInt('0'),
+    blockTimestampLast: BigInt('1643812963540835297'),
+  },
+];
