@@ -170,25 +170,34 @@ describe('SwapCanisterController', () => {
     test('should call approve on token actor', async () => {
       const spy = jest.fn().mockResolvedValue({ Ok: BigInt(1) });
 
-      (createTokenActor as jest.Mock).mockImplementationOnce(async () => {
-        return {
-          approve: spy,
-        };
-      });
+      (createTokenActor as jest.Mock).mockImplementationOnce(async () =>
+        mockTokenActor({ approve: spy })
+      );
 
       await sut.approve(params);
 
       expect(spy).toHaveBeenCalled();
     });
 
+    test('should not call approve if already exists allowance', async () => {
+      const spy = jest.fn().mockResolvedValue({ Ok: BigInt(1) });
+      const allowance = jest.fn().mockResolvedValue(BigInt('10000000000000'));
+
+      (createTokenActor as jest.Mock).mockImplementationOnce(async () =>
+        mockTokenActor({ approve: spy, allowance })
+      );
+
+      await sut.approve(params);
+
+      expect(spy).not.toHaveBeenCalled();
+    });
+
     test('should throw for error response', async () => {
       const spy = jest.fn().mockResolvedValue({ Err: { Other: null } });
 
-      (createTokenActor as jest.Mock).mockImplementationOnce(async () => {
-        return {
-          approve: spy,
-        };
-      });
+      (createTokenActor as jest.Mock).mockImplementationOnce(async () =>
+        mockTokenActor({ approve: spy })
+      );
 
       const promise = sut.approve(params);
 
@@ -202,6 +211,14 @@ describe('SwapCanisterController', () => {
 
       const promise = sut.approve(params);
       await expect(promise).rejects.toThrow();
+    });
+  });
+
+  describe('.deposit', () => {
+    const params = { tokenId: mockTokenId(), amount: '10' };
+
+    test('should call deposit', async () => {
+      await sut.deposit(params);
     });
   });
 });
