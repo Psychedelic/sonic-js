@@ -108,6 +108,26 @@ export class SwapCanisterController {
 
     if ('err' in result) throw new Error(JSON.stringify(result.err));
   }
+
+  async withdraw({
+    amount,
+    tokenId,
+  }: SwapCanisterController.WithdrawParams): Promise<void> {
+    const principal = await this.getAgentPrincipal();
+    if (!principal) throw new Error('Agent principal not found');
+
+    const parsedAmount = removeDecimals(
+      amount,
+      (this.tokenList as Token.MetadataList)[tokenId].decimals
+    );
+
+    const result = await this.swapActor.withdraw(
+      Principal.fromText(tokenId),
+      BigInt(parsedAmount.toString())
+    );
+
+    if ('err' in result) throw new Error(JSON.stringify(result.err));
+  }
 }
 
 export namespace SwapCanisterController {
@@ -117,6 +137,11 @@ export namespace SwapCanisterController {
   };
 
   export type DepositParams = {
+    amount: Types.Amount;
+    tokenId: string;
+  };
+
+  export type WithdrawParams = {
     amount: Types.Amount;
     tokenId: string;
   };
