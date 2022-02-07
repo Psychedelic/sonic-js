@@ -1,4 +1,4 @@
-import { Pair, Token, Types } from '@/declarations';
+import { Default, Pair, Token, Types } from '@/declarations';
 import { applyDecimals, removeDecimals } from '@/utils';
 import { Actor } from '@dfinity/agent';
 import { Principal } from '@dfinity/principal';
@@ -70,7 +70,7 @@ export class SwapCanisterController {
 
     const tokenActor = await createTokenActor({ canisterId: tokenId });
     const result = await tokenActor.approve(
-      principal,
+      Principal.fromText(Default.SWAP_CANISTER_ID),
       BigInt(
         removeDecimals(
           amount,

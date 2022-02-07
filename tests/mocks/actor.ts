@@ -1,5 +1,7 @@
 import { SwapActor, TokenActor } from '@/integrations';
+import { Agent } from '@dfinity/agent';
 import { mockAllPairsResponse } from './pair';
+import { mockPrincipal } from './principal';
 import { mockSupportedTokenListResponse } from './token';
 
 export const mockSwapActor = (): SwapActor =>
@@ -12,3 +14,8 @@ export const mockTokenActor = (): TokenActor =>
   ({
     balanceOf: async () => BigInt('1'),
   } as unknown as TokenActor);
+
+export const mockAgent = (): Agent =>
+  ({
+    getPrincipal: async () => mockPrincipal(),
+  } as unknown as Agent);

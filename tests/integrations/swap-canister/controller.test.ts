@@ -1,11 +1,12 @@
 import { SwapCanisterController } from '@/integrations';
 import { createTokenActor } from '@/integrations/actor';
+import { Actor } from '@dfinity/agent';
 import BigNumber from 'bignumber.js';
 import { Token } from 'declarations';
 import { applyDecimals } from 'utils';
-import { mockSwapActor, mockTokenActor } from '../../mocks/actor';
+import { mockAgent, mockSwapActor, mockTokenActor } from '../../mocks/actor';
 import { mockAllPairsResponse } from '../../mocks/pair';
-import { mockPrincipalId } from '../../mocks/principal';
+import { mockPrincipal, mockPrincipalId } from '../../mocks/principal';
 import {
   mockSupportedTokenListResponse,
   mockTokenList,
@@ -16,6 +17,10 @@ jest.mock('@/integrations/actor');
 (createTokenActor as jest.Mock).mockImplementation(async () =>
   mockTokenActor()
 );
+
+jest.mock('@dfinity/agent');
+
+(Actor.agentOf as jest.Mock).mockImplementation(() => mockAgent());
 
 describe('SwapCanisterController', () => {
   let sut: SwapCanisterController;
@@ -116,6 +121,13 @@ describe('SwapCanisterController', () => {
           applyDecimals('1', token.decimals).toNumber()
         );
       });
+    });
+  });
+
+  describe('.getAgentPrincipal', () => {
+    test('should return the principal', async () => {
+      const response = await sut.getAgentPrincipal();
+      expect(response).toEqual(mockPrincipal());
     });
   });
 });
