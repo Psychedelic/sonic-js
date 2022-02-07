@@ -238,4 +238,48 @@ describe('SwapCanisterController', () => {
       );
     });
   });
+
+  describe('.withdraw', () => {
+    const params = { tokenId: mockTokenId(), amount: '10' };
+
+    beforeEach(() => {
+      sut.tokenList = mockTokenList();
+    });
+
+    test('should fetch token list if is not present', async () => {
+      const spy = jest.spyOn(sut, 'getTokenList');
+      sut.tokenList = null;
+
+      await sut.withdraw(params);
+
+      expect(spy).toHaveBeenCalled();
+      expect(createTokenActor).toHaveBeenCalled();
+    });
+
+    test('should not fetch token list if is present', async () => {
+      const spy = jest.spyOn(sut, 'getTokenList');
+      await sut.withdraw(params);
+
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    test('should call withdraw', async () => {
+      const spy = jest.spyOn(swapActor, 'withdraw');
+      await sut.withdraw(params);
+
+      expect(spy).toHaveBeenCalled();
+    });
+
+    test('should throw on withdraw error response', async () => {
+      jest
+        .spyOn(swapActor, 'withdraw')
+        .mockResolvedValueOnce({ err: 'error_message' });
+
+      const promise = sut.withdraw(params);
+
+      await expect(promise).rejects.toThrowError(
+        JSON.stringify('error_message')
+      );
+    });
+  });
 });

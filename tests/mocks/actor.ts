@@ -9,7 +9,8 @@ export const mockSwapActor = (params: Partial<SwapIDL.Swap> = {}): SwapActor =>
   ({
     getSupportedTokenList: async () => mockSupportedTokenListResponse(),
     getAllPairs: async () => mockAllPairsResponse(),
-    deposit: async () => ({ Ok: BigInt(1) }),
+    deposit: async () => ({ ok: BigInt(1) }),
+    withdraw: async () => ({ ok: BigInt(1) }),
     ...params,
   } as unknown as SwapActor);
 

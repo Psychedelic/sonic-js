@@ -116,6 +116,8 @@ export class SwapCanisterController {
     const principal = await this.getAgentPrincipal();
     if (!principal) throw new Error('Agent principal not found');
 
+    if (!this.tokenList) await this.getTokenList();
+
     const parsedAmount = removeDecimals(
       amount,
       (this.tokenList as Token.MetadataList)[tokenId].decimals
