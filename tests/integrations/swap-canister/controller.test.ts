@@ -1,4 +1,4 @@
-import { SwapCanisterController } from '@/integrations';
+import { SwapCanisterController, SwapActor } from '@/integrations';
 import { createTokenActor } from '@/integrations/actor';
 import { Actor } from '@dfinity/agent';
 import BigNumber from 'bignumber.js';
@@ -24,12 +24,14 @@ jest.mock('@dfinity/agent');
 (Actor.agentOf as jest.Mock).mockImplementation(() => mockAgent());
 
 describe('SwapCanisterController', () => {
+  let swapActor: SwapActor;
   let sut: SwapCanisterController;
   const supportedTokenListResponseMock = mockSupportedTokenListResponse();
   const allPairsResponseMock = mockAllPairsResponse();
 
   beforeEach(() => {
-    sut = new SwapCanisterController(mockSwapActor());
+    swapActor = mockSwapActor();
+    sut = new SwapCanisterController(swapActor);
   });
 
   describe('.getTokenList', () => {
@@ -218,7 +220,22 @@ describe('SwapCanisterController', () => {
     const params = { tokenId: mockTokenId(), amount: '10' };
 
     test('should call deposit', async () => {
+      const spy = jest.spyOn(swapActor, 'deposit');
       await sut.deposit(params);
+
+      expect(spy).toHaveBeenCalled();
+    });
+
+    test('should throw on deposit error response', async () => {
+      jest
+        .spyOn(swapActor, 'deposit')
+        .mockResolvedValueOnce({ err: 'error_message' });
+
+      const promise = sut.deposit(params);
+
+      await expect(promise).rejects.toThrowError(
+        JSON.stringify('error_message')
+      );
     });
   });
 });
