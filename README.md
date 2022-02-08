@@ -45,10 +45,10 @@ The library is separated in modules to organize and have ease in use:
 The Math module holds the functions used in calculations to get correct values to be displayed or sent in requests.
 
 ```ts
-Swap.getAmountOut(params: Swap.GetAmountOutParams): BigNumber
+Swap.getAmount(params: Swap.GetAmountOutParams): BigNumber
 ```
 
-Calculate the resultant amount of a swap
+Calculate the needed or resultant amount of a swap
 
 ```ts
 Swap.getPriceImpact(params: Swap.GetPriceImpactParams): BigNumber
