@@ -45,13 +45,13 @@ The library is separated in modules to organize and have ease in use:
 The Math module holds the functions used in calculations to get correct values to be displayed or sent in requests.
 
 ```ts
-Swap.getAmountOut(params: GetAmountOutParams): BigNumber
+Swap.getAmountOut(params: Swap.GetAmountOutParams): BigNumber
 ```
 
 Calculate the resultant amount of a swap
 
 ```ts
-Swap.getPriceImpact(params: GetPriceImpactParams): BigNumber
+Swap.getPriceImpact(params: Swap.GetPriceImpactParams): BigNumber
 ```
 
 Calculate the price impact based on given amounts and prices
@@ -69,25 +69,25 @@ Liquidity.getPairDecimals(token0Decimals: Types.Decimals, token1Decimals: Types.
 Calculate the pair decimals for given tokens decimals
 
 ```ts
-Liquidity.getAddPosition(params: GetPositionParams): BigNumber
+Liquidity.getAddPosition(params: Liquidity.GetPositionParams): BigNumber
 ```
 
 Calculate the Liquidity Position for given amounts of a pair of tokens that's going to be added
 
 ```ts
-Liquidity.getAddPercentage(params: GetPercentageStringParams): BigNumber
+Liquidity.getAddPercentage(params: Liquidity.GetPercentageStringParams): BigNumber
 ```
 
 Calculate the Liquidity Position percentage that is going to be received for adding an amount of pair of tokens
 
 ```ts
-Liquidity.getTokenBalances(params: GetTokenBalancesParams): GetTokenBalancesResult
+Liquidity.getTokenBalances(params: Liquidity.GetTokenBalancesParams): Liquidity.GetTokenBalancesResult
 ```
 
 Calculate the token balances for given pair Liquidity Position
 
 ```ts
-Price.getByAmount(params: GetPriceByAmountParams): BigNumber
+Price.getByAmount(params: Price.GetPriceByAmountParams): BigNumber
 ```
 
 Calculate the total amount price by a given amount
