@@ -72,6 +72,9 @@ export class Swap {
     return priceImpact;
   }
 
+  /**
+   * Calculate the best token path to realize the swap and the output amount
+   */
   static getTokenPaths({
     pairList,
     tokenList,
