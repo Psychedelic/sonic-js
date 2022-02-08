@@ -1,6 +1,14 @@
+import { findMaximalPaths, MaximalPaths } from '@/utils/maximal-paths';
 import BigNumber from 'bignumber.js';
 import { Price } from '.';
-import { applyDecimals, removeDecimals, toBigNumber, Types } from '..';
+import {
+  applyDecimals,
+  Pair,
+  removeDecimals,
+  toBigNumber,
+  Token,
+  Types,
+} from '..';
 
 export class Swap {
   /**
@@ -63,6 +71,36 @@ export class Swap {
 
     return priceImpact;
   }
+
+  static getTokenPaths({
+    pairList,
+    tokenList,
+    tokenId,
+    amount = '1',
+  }: Swap.GetTokenPathsParams): Swap.GetTokenPathsResult {
+    if (!pairList[tokenId]) return {};
+
+    const graphNodes = findMaximalPaths(
+      pairList,
+      tokenList,
+      tokenId,
+      toBigNumber(amount)
+    );
+
+    return Object.values(graphNodes).reduce<MaximalPaths.PathList>(
+      (acc, node) => {
+        if (node.path.size < 2) return acc;
+        return {
+          ...acc,
+          [node.id]: {
+            path: Array.from(node.path),
+            amountOut: node.amountOut,
+          },
+        };
+      },
+      {}
+    );
+  }
 }
 
 export namespace Swap {
@@ -81,4 +119,13 @@ export namespace Swap {
     priceIn: Types.Number;
     priceOut: Types.Number;
   }
+
+  export type GetTokenPathsParams = {
+    pairList: Pair.List;
+    tokenList: Token.MetadataList;
+    tokenId: string;
+    amount: Types.Amount;
+  };
+
+  export type GetTokenPathsResult = MaximalPaths.PathList;
 }
