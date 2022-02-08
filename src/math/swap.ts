@@ -124,7 +124,7 @@ export namespace Swap {
     pairList: Pair.List;
     tokenList: Token.MetadataList;
     tokenId: string;
-    amount: Types.Amount;
+    amount?: Types.Amount;
   };
 
   export type GetTokenPathsResult = MaximalPaths.PathList;

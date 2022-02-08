@@ -1,5 +1,7 @@
 import { Swap } from '@/math';
 import BigNumber from 'bignumber.js';
+import { mockPairList } from '../mocks/pair';
+import { mockTokenList } from '../mocks/token';
 
 describe('Swap', () => {
   describe('.getAmountOut', () => {
@@ -91,5 +93,77 @@ describe('Swap', () => {
         expect(result).toEqual(new BigNumber(expected));
       }
     );
+  });
+
+  describe('.getTokenPaths', () => {
+    const pairList = mockPairList();
+    const tokenList = mockTokenList();
+
+    test('should return the correct path (case 1)', () => {
+      const paths = Swap.getTokenPaths({
+        pairList,
+        tokenList,
+        tokenId: Object.keys(tokenList)[0],
+      });
+      expect(paths).toEqual({
+        'utozz-siaaa-aaaam-qaaxq-cai': {
+          path: ['aanaa-xaaaa-aaaah-aaeiq-cai', 'utozz-siaaa-aaaam-qaaxq-cai'],
+          amountOut: new BigNumber('0.06394265'),
+        },
+      });
+    });
+
+    test('should return the correct path (case 2)', () => {
+      const paths = Swap.getTokenPaths({
+        pairList,
+        tokenList,
+        tokenId: 'oexpe-biaaa-aaaah-qcf6q-cai',
+      });
+      expect(paths).toEqual({
+        'onuey-xaaaa-aaaah-qcf7a-cai': {
+          path: ['oexpe-biaaa-aaaah-qcf6q-cai', 'onuey-xaaaa-aaaah-qcf7a-cai'],
+          amountOut: new BigNumber('0.99698012'),
+        },
+        'gagfc-iqaaa-aaaah-qcdvq-cai': {
+          path: ['oexpe-biaaa-aaaah-qcf6q-cai', 'gagfc-iqaaa-aaaah-qcdvq-cai'],
+          amountOut: new BigNumber('0.99698012'),
+        },
+        'gvbup-jyaaa-aaaah-qcdwa-cai': {
+          path: [
+            'oexpe-biaaa-aaaah-qcf6q-cai',
+            'gagfc-iqaaa-aaaah-qcdvq-cai',
+            'gvbup-jyaaa-aaaah-qcdwa-cai',
+          ],
+          amountOut: new BigNumber('1.01443836'),
+        },
+      });
+    });
+
+    test('should return the correct path (case 3)', () => {
+      const paths = Swap.getTokenPaths({
+        pairList,
+        tokenList,
+        tokenId: 'a7saq-3aaaa-aaaai-qbcdq-cai',
+      });
+      expect(paths).toEqual({
+        'wjsrf-myaaa-aaaam-qaayq-cai': {
+          path: ['a7saq-3aaaa-aaaai-qbcdq-cai', 'wjsrf-myaaa-aaaam-qaayq-cai'],
+          amountOut: new BigNumber('0.42662751'),
+        },
+        'cfoim-fqaaa-aaaai-qbcmq-cai': {
+          path: ['a7saq-3aaaa-aaaai-qbcdq-cai', 'cfoim-fqaaa-aaaai-qbcmq-cai'],
+          amountOut: new BigNumber('1.50360675'),
+        },
+      });
+    });
+
+    test('should return the correct path (case 4)', () => {
+      const paths = Swap.getTokenPaths({
+        pairList,
+        tokenList,
+        tokenId: 'kftk5-4qaaa-aaaah-aa5lq-cai',
+      });
+      expect(paths).toEqual({});
+    });
   });
 });

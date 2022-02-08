@@ -3,7 +3,7 @@ import { createTokenActor } from '@/integrations/actor';
 import { Actor } from '@dfinity/agent';
 import BigNumber from 'bignumber.js';
 import { Token } from 'declarations';
-import { applyDecimals } from 'utils';
+import { applyDecimals, serialize } from 'utils';
 import { mockAgent, mockSwapActor, mockTokenActor } from '../../mocks/actor';
 import { mockAllPairsResponse } from '../../mocks/pair';
 import { mockPrincipal, mockPrincipalId } from '../../mocks/principal';
@@ -58,14 +58,21 @@ describe('SwapCanisterController', () => {
       const response = await sut.getPairList();
 
       allPairsResponseMock.forEach((mock) => {
-        expect(response[mock.token0][mock.token1]).toEqual(mock);
-        expect(response[mock.token1][mock.token0]).toEqual({
-          ...mock,
-          token0: mock.token1,
-          token1: mock.token0,
-          reserve0: mock.reserve1,
-          reserve1: mock.reserve0,
-        });
+        if (Number(mock.reserve0) === 0 && Number(mock.reserve1) === 0) {
+          return;
+        }
+        expect(serialize(response[mock.token0][mock.token1])).toEqual(
+          serialize(mock)
+        );
+        expect(serialize(response[mock.token1][mock.token0])).toEqual(
+          serialize({
+            ...mock,
+            token0: mock.token1,
+            token1: mock.token0,
+            reserve0: mock.reserve1,
+            reserve1: mock.reserve0,
+          })
+        );
       });
     });
 
@@ -74,14 +81,21 @@ describe('SwapCanisterController', () => {
 
       expect(sut.pairList).toBeDefined();
       allPairsResponseMock.forEach((mock) => {
-        expect(sut.pairList?.[mock.token0][mock.token1]).toEqual(mock);
-        expect(sut.pairList?.[mock.token1][mock.token0]).toEqual({
-          ...mock,
-          token0: mock.token1,
-          token1: mock.token0,
-          reserve0: mock.reserve1,
-          reserve1: mock.reserve0,
-        });
+        if (Number(mock.reserve0) === 0 && Number(mock.reserve1) === 0) {
+          return;
+        }
+        expect(serialize(sut.pairList?.[mock.token0][mock.token1])).toEqual(
+          serialize(mock)
+        );
+        expect(serialize(sut.pairList?.[mock.token1][mock.token0])).toEqual(
+          serialize({
+            ...mock,
+            token0: mock.token1,
+            token1: mock.token0,
+            reserve0: mock.reserve1,
+            reserve1: mock.reserve0,
+          })
+        );
       });
     });
   });
