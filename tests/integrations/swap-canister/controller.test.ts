@@ -295,5 +295,12 @@ describe('SwapCanisterController', () => {
         JSON.stringify('error_message')
       );
     });
+
+    test('should throw if there is no agent principal', async () => {
+      (Actor.agentOf as jest.Mock).mockImplementationOnce(() => undefined);
+
+      const promise = sut.withdraw(params);
+      await expect(promise).rejects.toThrow();
+    });
   });
 });
