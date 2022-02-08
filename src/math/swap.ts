@@ -1,6 +1,14 @@
+import { findMaximalPaths, MaximalPaths } from '@/utils/maximal-paths';
 import BigNumber from 'bignumber.js';
 import { Price } from '.';
-import { applyDecimals, removeDecimals, toBigNumber, Types } from '..';
+import {
+  applyDecimals,
+  Pair,
+  removeDecimals,
+  toBigNumber,
+  Token,
+  Types,
+} from '..';
 
 export class Swap {
   /**
@@ -11,15 +19,18 @@ export class Swap {
   /**
    * Calculate the resultant amount of a swap
    */
-  static getAmountOut(params: Swap.GetAmountOutParams): BigNumber {
+  static getAmount(params: Swap.GetAmountParams): BigNumber {
     const amountIn = removeDecimals(params.amountIn, params.decimalsIn);
     const reserveIn = toBigNumber(params.reserveIn);
     const reserveOut = toBigNumber(params.reserveOut);
     const fee = toBigNumber(params.fee || this.DEFAULT_FEE);
+    const dataKey = params.dataKey || 'from';
 
     if (amountIn.isZero()) return toBigNumber(0);
 
-    const amountInWithFee = amountIn.multipliedBy(toBigNumber(1).minus(fee));
+    const feeCoefficient =
+      dataKey === 'from' ? toBigNumber(1).minus(fee) : toBigNumber(1).plus(fee);
+    const amountInWithFee = amountIn.multipliedBy(feeCoefficient);
 
     const numerator = amountInWithFee.multipliedBy(reserveOut);
     const denominator = reserveIn.plus(amountInWithFee);
@@ -63,16 +74,54 @@ export class Swap {
 
     return priceImpact;
   }
+
+  /**
+   * Calculate the best token path to realize the swap and the output amount
+   */
+  static getTokenPaths({
+    pairList,
+    tokenList,
+    tokenId,
+    amount = '1',
+    dataKey = 'from',
+  }: Swap.GetTokenPathsParams): Swap.GetTokenPathsResult {
+    if (!pairList[tokenId]) return {};
+
+    const graphNodes = findMaximalPaths(
+      pairList,
+      tokenList,
+      tokenId,
+      toBigNumber(amount),
+      dataKey
+    );
+
+    return Object.values(graphNodes).reduce<MaximalPaths.PathList>(
+      (acc, node) => {
+        if (node.path.size < 2) return acc;
+        return {
+          ...acc,
+          [node.id]: {
+            path: Array.from(node.path),
+            amountOut: node.amountOut,
+          },
+        };
+      },
+      {}
+    );
+  }
 }
 
 export namespace Swap {
-  export interface GetAmountOutParams {
+  export type DataKey = 'from' | 'to';
+
+  export interface GetAmountParams {
     amountIn: Types.Amount;
     decimalsIn: Types.Decimals;
     decimalsOut: Types.Decimals;
     reserveIn: Types.Number;
     reserveOut: Types.Number;
     fee?: Types.Number;
+    dataKey?: DataKey;
   }
 
   export interface GetPriceImpactParams {
@@ -81,4 +130,14 @@ export namespace Swap {
     priceIn: Types.Number;
     priceOut: Types.Number;
   }
+
+  export type GetTokenPathsParams = {
+    pairList: Pair.List;
+    tokenList: Token.MetadataList;
+    tokenId: string;
+    amount?: Types.Amount;
+    dataKey?: DataKey;
+  };
+
+  export type GetTokenPathsResult = MaximalPaths.PathList;
 }
