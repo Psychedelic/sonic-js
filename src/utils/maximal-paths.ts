@@ -7,7 +7,8 @@ export const findMaximalPaths = (
   pairList: Pair.List,
   tokenList: Token.MetadataList,
   source: string,
-  initialAmount: BigNumber
+  initialAmount: BigNumber,
+  dataKey: Swap.DataKey = 'from'
 ): MaximalPaths.NodeList => {
   const nodes = Object.keys(pairList).reduce((_nodes, tokenId) => {
     return {
@@ -28,12 +29,13 @@ export const findMaximalPaths = (
 
     return neighborsIds.reduce<MaximalPaths.WeightList>(
       (weightItems, neighborId) => {
-        const weight = Swap.getAmountOut({
+        const weight = Swap.getAmount({
           amountIn: pathDistance.toString(),
           decimalsIn: tokenList[node.id].decimals,
           decimalsOut: tokenList[neighborId].decimals,
           reserveIn: pairList[node.id][neighborId].reserve0,
           reserveOut: pairList[node.id][neighborId].reserve1,
+          dataKey,
         });
 
         return {
