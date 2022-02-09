@@ -152,10 +152,10 @@ describe('SwapCanisterController', () => {
       expect(response).toEqual(mockPrincipal());
     });
 
-    test('should return undefined', async () => {
+    test('should throw if could not find agent', async () => {
       (Actor.agentOf as jest.Mock).mockImplementationOnce(() => undefined);
-      const response = await sut.getAgentPrincipal();
-      expect(response).toBeUndefined();
+      const promise = sut.getAgentPrincipal();
+      await expect(promise).rejects.toThrow();
     });
   });
 

@@ -1,7 +1,9 @@
 import { Default, Pair, Token, Types } from '@/declarations';
+import { Swap } from '@/math';
 import { applyDecimals, removeDecimals, toBigNumber } from '@/utils';
 import { Actor } from '@dfinity/agent';
 import { Principal } from '@dfinity/principal';
+import { getDeadline } from '.';
 import { createTokenActor, SwapActor } from '..';
 import { parseSupportedTokenList, parseAllPairs } from './utils';
 
@@ -87,11 +89,41 @@ export class SwapCanisterController {
   }
 
   /**
+   * Get one token balance for a given principal id
+   */
+  async getTokenBalance({
+    principalId,
+    tokenId,
+  }: SwapCanisterController.GetTokenBalanceParams): Promise<Token.Balance> {
+    const principal = Principal.fromText(principalId);
+    const tokenActor = await createTokenActor({ canisterId: tokenId });
+    const tokenDecimals = await tokenActor.decimals();
+
+    const tokenBalance = applyDecimals(
+      await tokenActor.balanceOf(principal),
+      tokenDecimals
+    );
+
+    const sonicBalance = applyDecimals(
+      (await this.swapActor.getUserBalances(principal)).find(
+        ([id]) => id === tokenId
+      )?.[1] || 0,
+      tokenDecimals
+    );
+
+    return {
+      token: tokenBalance,
+      sonic: sonicBalance,
+      total: tokenBalance.plus(sonicBalance),
+    };
+  }
+
+  /**
    * Get the principal of the agent
    */
-  async getAgentPrincipal(): Promise<Principal | undefined> {
+  async getAgentPrincipal(): Promise<Principal> {
     const agent = Actor.agentOf(this.swapActor);
-    if (!agent) return;
+    if (!agent) throw new Error('Agent principal not found');
 
     return agent.getPrincipal();
   }
@@ -106,7 +138,6 @@ export class SwapCanisterController {
     amount,
   }: SwapCanisterController.ApproveParams): Promise<void> {
     const principal = await this.getAgentPrincipal();
-    if (!principal) throw new Error('Agent principal not found');
 
     if (!this.tokenList) await this.getTokenList();
 
@@ -126,7 +157,7 @@ export class SwapCanisterController {
 
     const result = await tokenActor.approve(
       swapPrincipal,
-      BigInt(parsedAmount.toString())
+      parsedAmount.toBigInt()
     );
 
     if ('Err' in result) throw new Error(JSON.stringify(result.Err));
@@ -149,7 +180,7 @@ export class SwapCanisterController {
 
     const result = await this.swapActor.deposit(
       Principal.fromText(tokenId),
-      BigInt(parsedAmount.toString())
+      parsedAmount.toBigInt()
     );
 
     if ('err' in result) throw new Error(JSON.stringify(result.err));
@@ -163,8 +194,7 @@ export class SwapCanisterController {
     amount,
     tokenId,
   }: SwapCanisterController.WithdrawParams): Promise<void> {
-    const principal = await this.getAgentPrincipal();
-    if (!principal) throw new Error('Agent principal not found');
+    await this.getAgentPrincipal();
 
     if (!this.tokenList) await this.getTokenList();
 
@@ -175,10 +205,66 @@ export class SwapCanisterController {
 
     const result = await this.swapActor.withdraw(
       Principal.fromText(tokenId),
-      BigInt(parsedAmount.toString())
+      parsedAmount.toBigInt()
     );
 
     if ('err' in result) throw new Error(JSON.stringify(result.err));
+  }
+
+  async swap({
+    amountIn,
+    tokenIn,
+    tokenOut,
+  }: SwapCanisterController.SwapParams): Promise<void> {
+    const principal = await this.getAgentPrincipal();
+    await this.getTokenList();
+
+    if (!this.tokenList) await this.getTokenList();
+    if (!this.pairList) await this.getPairList();
+    if (!this.pairList || !this.tokenList) throw new Error();
+
+    const tokenPath = Swap.getTokenPaths({
+      pairList: this.pairList,
+      tokenList: this.tokenList,
+      amount: amountIn,
+      tokenId: tokenIn,
+    })[tokenOut];
+
+    if (!tokenPath) throw new Error('No token path to swap');
+
+    const balance = await this.getTokenBalance({
+      principalId: principal.toString(),
+      tokenId: tokenIn,
+    });
+
+    if (!balance.sonic.gt(amountIn)) {
+      const toDeposit = toBigNumber(amountIn).minus(balance.sonic);
+      if (!balance.token.gte(toDeposit)) {
+        throw new Error(`Not enough ${tokenIn} to swap`);
+      }
+      await this.deposit({ tokenId: tokenIn, amount: toDeposit.toString() });
+    }
+
+    const _amountIn = removeDecimals(
+      amountIn,
+      this.tokenList[tokenIn].decimals
+    ).toBigInt();
+
+    const amountOutMin = removeDecimals(
+      tokenPath.amountOut,
+      this.tokenList[tokenOut].decimals
+    ).toBigInt();
+
+    const swapResult = await this.swapActor.swapExactTokensForTokens(
+      _amountIn,
+      amountOutMin,
+      tokenPath.path,
+      principal,
+      getDeadline()
+    );
+
+    if ('err' in swapResult) throw new Error(JSON.stringify(swapResult.err));
+    return;
   }
 }
 
@@ -196,5 +282,16 @@ export namespace SwapCanisterController {
   export type WithdrawParams = {
     amount: Types.Amount;
     tokenId: string;
+  };
+
+  export type SwapParams = {
+    tokenIn: string;
+    tokenOut: string;
+    amountIn: Types.Amount;
+  };
+
+  export type GetTokenBalanceParams = {
+    tokenId: string;
+    principalId: string;
   };
 }
