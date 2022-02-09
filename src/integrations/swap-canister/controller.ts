@@ -42,7 +42,7 @@ export class SwapCanisterController {
 
   /**
    * Get the balance of all supported tokens for a given principal id
-   * This function get balances that's not present on swap canister
+   * This function get balances from token and swap canisters
    */
   async getTokenBalances(principalId: string): Promise<Token.BalanceList> {
     if (!this.tokenList) await this.getTokenList();
