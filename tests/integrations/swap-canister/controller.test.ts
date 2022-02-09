@@ -308,4 +308,29 @@ describe('SwapCanisterController', () => {
       await expect(promise).rejects.toThrow();
     });
   });
+
+  describe('.getTokenBalance', () => {
+    const params = {
+      tokenId: mockTokenId(),
+      principalId: mockPrincipalId(),
+    };
+    test('should return the selected token balance', async () => {
+      const result = await sut.getTokenBalance(params);
+      expect(result).toEqual({
+        sonic: new BigNumber(1),
+        token: new BigNumber(0.000000000001),
+        total: new BigNumber(1.000000000001),
+      });
+    });
+
+    test('should return sonic balance equals to 0', async () => {
+      jest.spyOn(swapActor, 'getUserBalances').mockResolvedValueOnce([]);
+      const result = await sut.getTokenBalance(params);
+      expect(result).toEqual({
+        sonic: new BigNumber(0),
+        token: new BigNumber(0.000000000001),
+        total: new BigNumber(0.000000000001),
+      });
+    });
+  });
 });

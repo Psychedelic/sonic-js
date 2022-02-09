@@ -36,6 +36,7 @@ export const mockTokenActor = (
     balanceOf: async () => BigInt('1'),
     approve: async () => ({ Ok: BigInt(1) }),
     allowance: async () => BigInt(0),
+    decimals: async () => 12,
     ...params,
   } as unknown as TokenActor);
 
