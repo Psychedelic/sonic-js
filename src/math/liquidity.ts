@@ -1,6 +1,6 @@
 import { Pair } from '@/declarations/pair';
 import BigNumber from 'bignumber.js';
-import { exponential, removeDecimals, toBigNumber, Types } from '..';
+import { exponential, toBigNumber, Types } from '..';
 
 export class Liquidity {
   /**
@@ -26,12 +26,10 @@ export class Liquidity {
    * Calculate the Liquidity Position for given amounts of a pair of tokens that is going to be added
    */
   static getAddPosition(params: Liquidity.GetAddPositionParams): BigNumber {
-    const amount0Desired = removeDecimals(
-      params.token0Amount,
+    const amount0Desired = toBigNumber(params.token0Amount).removeDecimals(
       params.token0Decimals
     );
-    const amount1Desired = removeDecimals(
-      params.token1Amount,
+    const amount1Desired = toBigNumber(params.token1Amount).removeDecimals(
       params.token1Decimals
     );
     const reserve0 = toBigNumber(params.reserve0);

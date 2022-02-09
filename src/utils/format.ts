@@ -15,26 +15,6 @@ export const exponential = (decimals: Types.Number): BigNumber => {
   return new BigNumber(10).pow(toBigNumber(decimals));
 };
 
-/**
- * Apply decimals to a number
- */
-export const applyDecimals = (
-  num: Types.Number,
-  decimals: Types.Decimals
-): BigNumber => {
-  return toBigNumber(num).dividedBy(exponential(decimals)).dp(decimals);
-};
-
-/**
- * Removes decimals from a number
- */
-export const removeDecimals = (
-  num: Types.Number,
-  decimals: Types.Decimals
-): BigNumber => {
-  return toBigNumber(num).dp(decimals).multipliedBy(exponential(decimals));
-};
-
 const fixStringEnding = (str: string): string => {
   return str.replace(/0+$/, '').replace(/\.$/, '');
 };

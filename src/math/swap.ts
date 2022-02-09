@@ -1,14 +1,7 @@
 import { findMaximalPaths, MaximalPaths } from '@/utils/maximal-paths';
 import BigNumber from 'bignumber.js';
 import { Price } from '.';
-import {
-  applyDecimals,
-  Pair,
-  removeDecimals,
-  toBigNumber,
-  Token,
-  Types,
-} from '..';
+import { Pair, toBigNumber, Token, Types } from '..';
 
 export class Swap {
   /**
@@ -20,7 +13,9 @@ export class Swap {
    * Calculate the resultant amount of a swap
    */
   static getAmount(params: Swap.GetAmountParams): BigNumber {
-    const amountIn = removeDecimals(params.amountIn, params.decimalsIn);
+    const amountIn = toBigNumber(params.amountIn).removeDecimals(
+      params.decimalsIn
+    );
     const reserveIn = toBigNumber(params.reserveIn);
     const reserveOut = toBigNumber(params.reserveOut);
     const fee = toBigNumber(params.fee || this.DEFAULT_FEE);
@@ -35,7 +30,7 @@ export class Swap {
     const numerator = amountInWithFee.multipliedBy(reserveOut);
     const denominator = reserveIn.plus(amountInWithFee);
 
-    return applyDecimals(numerator.dividedBy(denominator), params.decimalsOut);
+    return numerator.dividedBy(denominator).applyDecimals(params.decimalsOut);
   }
 
   /**

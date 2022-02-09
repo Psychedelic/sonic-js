@@ -1,6 +1,6 @@
 import { Default, Pair, Token, Types } from '@/declarations';
 import { Swap } from '@/math';
-import { applyDecimals, removeDecimals, toBigNumber } from '@/utils';
+import { toBigNumber } from '@/utils';
 import { Actor } from '@dfinity/agent';
 import { Principal } from '@dfinity/principal';
 import { getDeadline } from '.';
@@ -57,9 +57,9 @@ export class SwapCanisterController {
         .then((tokenActor) => tokenActor.balanceOf(principal))
         .then((balance) => ({
           [token.id]: {
-            token: applyDecimals(balance, token.decimals),
+            token: toBigNumber(balance).applyDecimals(token.decimals),
             sonic: toBigNumber(0),
-            total: applyDecimals(balance, token.decimals),
+            total: toBigNumber(balance).applyDecimals(token.decimals),
           },
         }))
     );
@@ -74,8 +74,7 @@ export class SwapCanisterController {
     const sonicBalances = await this.swapActor.getUserBalances(principal);
 
     sonicBalances.forEach(([tokenId, balance]) => {
-      const _balance = applyDecimals(
-        balance,
+      const _balance = toBigNumber(balance).applyDecimals(
         (this.tokenList as Token.MetadataList)[tokenId].decimals
       );
 
@@ -99,17 +98,15 @@ export class SwapCanisterController {
     const tokenActor = await createTokenActor({ canisterId: tokenId });
     const tokenDecimals = await tokenActor.decimals();
 
-    const tokenBalance = applyDecimals(
-      await tokenActor.balanceOf(principal),
-      tokenDecimals
-    );
+    const tokenBalance = toBigNumber(
+      await tokenActor.balanceOf(principal)
+    ).applyDecimals(tokenDecimals);
 
-    const sonicBalance = applyDecimals(
+    const sonicBalance = toBigNumber(
       (await this.swapActor.getUserBalances(principal)).find(
         ([id]) => id === tokenId
-      )?.[1] || 0,
-      tokenDecimals
-    );
+      )?.[1]
+    ).applyDecimals(tokenDecimals);
 
     return {
       token: tokenBalance,
@@ -144,8 +141,7 @@ export class SwapCanisterController {
     const tokenActor = await createTokenActor({ canisterId: tokenId });
 
     const swapPrincipal = Principal.fromText(Default.SWAP_CANISTER_ID);
-    const parsedAmount = removeDecimals(
-      amount,
+    const parsedAmount = toBigNumber(amount).removeDecimals(
       (this.tokenList as Token.MetadataList)[tokenId].decimals
     );
 
@@ -173,8 +169,7 @@ export class SwapCanisterController {
   }: SwapCanisterController.DepositParams): Promise<void> {
     await this.approve({ tokenId, amount });
 
-    const parsedAmount = removeDecimals(
-      amount,
+    const parsedAmount = toBigNumber(amount).removeDecimals(
       (this.tokenList as Token.MetadataList)[tokenId].decimals
     );
 
@@ -198,8 +193,7 @@ export class SwapCanisterController {
 
     if (!this.tokenList) await this.getTokenList();
 
-    const parsedAmount = removeDecimals(
-      amount,
+    const parsedAmount = toBigNumber(amount).removeDecimals(
       (this.tokenList as Token.MetadataList)[tokenId].decimals
     );
 
@@ -245,15 +239,13 @@ export class SwapCanisterController {
       await this.deposit({ tokenId: tokenIn, amount: toDeposit.toString() });
     }
 
-    const _amountIn = removeDecimals(
-      amountIn,
-      this.tokenList[tokenIn].decimals
-    ).toBigInt();
+    const _amountIn = toBigNumber(amountIn)
+      .removeDecimals(this.tokenList[tokenIn].decimals)
+      .toBigInt();
 
-    const amountOutMin = removeDecimals(
-      tokenPath.amountOut,
-      this.tokenList[tokenOut].decimals
-    ).toBigInt();
+    const amountOutMin = tokenPath.amountOut
+      .removeDecimals(this.tokenList[tokenOut].decimals)
+      .toBigInt();
 
     const swapResult = await this.swapActor.swapExactTokensForTokens(
       _amountIn,

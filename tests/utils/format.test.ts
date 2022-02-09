@@ -1,11 +1,5 @@
 import BigNumber from 'bignumber.js';
-import {
-  applyDecimals,
-  exponential,
-  formatAmount,
-  removeDecimals,
-  toBigNumber,
-} from 'utils';
+import { exponential, formatAmount, toBigNumber } from 'utils';
 
 describe('toBigNumber', () => {
   test('should parse bigint', () => {
@@ -48,26 +42,6 @@ describe('exponential', () => {
 
   test('should return 100000', () => {
     expect(exponential(5)).toEqual(new BigNumber(100000));
-  });
-});
-
-describe('applyDecimals', () => {
-  test('should apply 3 decimals', () => {
-    expect(applyDecimals(100, 3)).toEqual(new BigNumber(0.1));
-  });
-
-  test('should apply 8 decimals', () => {
-    expect(applyDecimals(123, 8)).toEqual(new BigNumber(0.00000123));
-  });
-});
-
-describe('removeDecimals', () => {
-  test('should remove 3 decimals', () => {
-    expect(removeDecimals(0.1, 3)).toEqual(new BigNumber(100));
-  });
-
-  test('should remove 8 decimals', () => {
-    expect(removeDecimals(0.00000123, 8)).toEqual(new BigNumber(123));
   });
 });
 
