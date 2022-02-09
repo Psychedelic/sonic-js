@@ -11,6 +11,21 @@ export const mockSwapActor = (params: Partial<SwapIDL.Swap> = {}): SwapActor =>
     getAllPairs: async () => mockAllPairsResponse(),
     deposit: async () => ({ ok: BigInt(1) }),
     withdraw: async () => ({ ok: BigInt(1) }),
+    getUserBalances: async () => [
+      ['aanaa-xaaaa-aaaah-aaeiq-cai', BigInt(1000000000000)],
+      ['utozz-siaaa-aaaam-qaaxq-cai', BigInt(100000000)],
+      ['onuey-xaaaa-aaaah-qcf7a-cai', BigInt(100000000)],
+      ['oexpe-biaaa-aaaah-qcf6q-cai', BigInt(100000000)],
+      ['a7saq-3aaaa-aaaai-qbcdq-cai', BigInt(100000000)],
+      ['kftk5-4qaaa-aaaah-aa5lq-cai', BigInt(100000000)],
+      ['li5ot-tyaaa-aaaah-aa5ma-cai', BigInt(100000000)],
+      ['gagfc-iqaaa-aaaah-qcdvq-cai', BigInt(100000000)],
+      ['u2nsf-eaaaa-aaaam-qaawa-cai', BigInt(100000000)],
+      ['gvbup-jyaaa-aaaah-qcdwa-cai', BigInt(100000000)],
+      ['xe4vl-dqaaa-aaaam-qaa7a-cai', BigInt(100000000)],
+      ['cfoim-fqaaa-aaaai-qbcmq-cai', BigInt(100000000)],
+      ['wjsrf-myaaa-aaaam-qaayq-cai', BigInt(100000000)],
+    ],
     ...params,
   } as unknown as SwapActor);
 

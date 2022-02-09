@@ -16,7 +16,13 @@ export namespace Token {
     amount: string;
   }
 
+  export type Balance = {
+    sonic: BigNumber;
+    token: BigNumber;
+    total: BigNumber;
+  };
+
   export type BalanceList = {
-    [canisterId: string]: BigNumber;
+    [canisterId: string]: Balance;
   };
 }

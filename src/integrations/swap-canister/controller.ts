@@ -47,14 +47,18 @@ export class SwapCanisterController {
   async getTokenBalances(principalId: string): Promise<Token.BalanceList> {
     if (!this.tokenList) await this.getTokenList();
 
+    const principal = Principal.fromText(principalId);
+
     const tokens = Object.values(this.tokenList as Token.MetadataList);
     const tokenBalancePromises = tokens.map((token) =>
       createTokenActor({ canisterId: token.id })
-        .then((tokenActor) =>
-          tokenActor.balanceOf(Principal.fromText(principalId))
-        )
+        .then((tokenActor) => tokenActor.balanceOf(principal))
         .then((balance) => ({
-          [token.id]: applyDecimals(balance, token.decimals),
+          [token.id]: {
+            token: applyDecimals(balance, token.decimals),
+            sonic: toBigNumber(0),
+            total: applyDecimals(balance, token.decimals),
+          },
         }))
     );
 
@@ -64,6 +68,18 @@ export class SwapCanisterController {
       (acc, result) => ({ ...acc, ...result }),
       {}
     );
+
+    const sonicBalances = await this.swapActor.getUserBalances(principal);
+
+    sonicBalances.forEach(([tokenId, balance]) => {
+      const _balance = applyDecimals(
+        balance,
+        (this.tokenList as Token.MetadataList)[tokenId].decimals
+      );
+
+      balanceList[tokenId].sonic = _balance;
+      balanceList[tokenId].total = balanceList[tokenId].token.plus(_balance);
+    });
 
     this.balanceList = balanceList;
 

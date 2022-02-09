@@ -3,7 +3,7 @@ import { createTokenActor } from '@/integrations/actor';
 import { Actor } from '@dfinity/agent';
 import BigNumber from 'bignumber.js';
 import { Token } from 'declarations';
-import { applyDecimals, serialize } from 'utils';
+import { applyDecimals, serialize, toBigNumber } from 'utils';
 import { mockAgent, mockSwapActor, mockTokenActor } from '../../mocks/actor';
 import { mockAllPairsResponse } from '../../mocks/pair';
 import { mockPrincipal, mockPrincipalId } from '../../mocks/principal';
@@ -126,7 +126,9 @@ describe('SwapCanisterController', () => {
       const response = await sut.getTokenBalances(mockPrincipalId());
 
       Object.keys(sut.tokenList as Token.MetadataList).forEach((tokenId) => {
-        expect(response[tokenId]).toBeInstanceOf(BigNumber);
+        expect(response[tokenId].token).toBeInstanceOf(BigNumber);
+        expect(response[tokenId].sonic).toBeInstanceOf(BigNumber);
+        expect(response[tokenId].total).toBeInstanceOf(BigNumber);
       });
     });
 
@@ -134,8 +136,11 @@ describe('SwapCanisterController', () => {
       const response = await sut.getTokenBalances(mockPrincipalId());
 
       Object.values(sut.tokenList as Token.MetadataList).forEach((token) => {
-        expect(response[token.id].toNumber()).toEqual(
-          applyDecimals('1', token.decimals).toNumber()
+        const tokenBalance = applyDecimals('1', token.decimals);
+        expect(response[token.id].token).toEqual(tokenBalance);
+        expect(response[token.id].sonic).toEqual(toBigNumber(1));
+        expect(response[token.id].total).toEqual(
+          toBigNumber(1).plus(tokenBalance)
         );
       });
     });
