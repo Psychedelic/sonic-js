@@ -41,22 +41,11 @@ export class Swap {
   static getAmountMin = (params: Swap.GetAmountMinParams): BigNumber => {
     const amount = toBigNumber(params.amount);
     const slippage = toBigNumber(params.slippage);
-    const decimals = Number(params.decimals);
+    const decimals = toBigNumber(params.decimals);
 
-    if (
-      amount.isNegative() ||
-      amount.isZero() ||
-      amount.isNaN() ||
-      slippage.isNegative() ||
-      slippage.isZero() ||
-      slippage.isNaN() ||
-      new BigNumber(decimals).isNegative() ||
-      new BigNumber(decimals).isZero() ||
-      new BigNumber(decimals).isNaN()
-    )
-      return toBigNumber(0);
-
-    return amount.applyTolerance(slippage.toNumber()).dp(decimals);
+    return amount
+      .applyTolerance(slippage.dividedBy(100).toNumber())
+      .dp(decimals.toNumber());
   };
 
   /**
@@ -67,17 +56,6 @@ export class Swap {
     const amountOut = toBigNumber(params.amountOut);
     const priceIn = toBigNumber(params.priceIn);
     const priceOut = toBigNumber(params.priceOut);
-    if (
-      amountIn.isZero() ||
-      amountIn.isNaN() ||
-      amountOut.isZero() ||
-      amountOut.isNaN() ||
-      priceIn.isZero() ||
-      priceIn.isNaN() ||
-      priceOut.isZero() ||
-      priceOut.isNaN()
-    )
-      return toBigNumber(0);
 
     const _amountOut = Price.getByAmount({
       amount: amountOut.toString(),
