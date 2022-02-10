@@ -1,7 +1,7 @@
 import { findMaximalPaths, MaximalPaths } from '@/utils/maximal-paths';
 import BigNumber from 'bignumber.js';
 import { Price } from '.';
-import { Pair, toBigNumber, Token, Types } from '..';
+import { checkIfObject, Pair, toBigNumber, Token, Types } from '..';
 
 export class Swap {
   /**
@@ -43,6 +43,16 @@ export class Swap {
     const slippage = toBigNumber(params.slippage);
     const decimals = toBigNumber(params.decimals);
 
+    const object = { amount, slippage, decimals };
+
+    if (checkIfObject(object, { isNotANumber: true, isZero: true })) {
+      return toBigNumber(0);
+    }
+
+    if (checkIfObject(object, { isNegative: true })) {
+      throw new Error('Negative amount, slippage or decimals are not allowed');
+    }
+
     return amount
       .applyTolerance(slippage.dividedBy(100).toNumber())
       .dp(decimals.toNumber());
@@ -56,6 +66,18 @@ export class Swap {
     const amountOut = toBigNumber(params.amountOut);
     const priceIn = toBigNumber(params.priceIn);
     const priceOut = toBigNumber(params.priceOut);
+
+    const object = { amountIn, amountOut, priceIn, priceOut };
+
+    if (checkIfObject(object, { isNotANumber: true, isZero: true })) {
+      return toBigNumber(0);
+    }
+
+    if (checkIfObject(object, { isNegative: true })) {
+      throw new Error(
+        'Negative amountIn, amountOut, priceIn or priceOut are not allowed'
+      );
+    }
 
     const _amountOut = Price.getByAmount({
       amount: amountOut.toString(),

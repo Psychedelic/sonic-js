@@ -1,36 +1,11 @@
 import { Types } from '@/declarations';
 import BigNumber from 'bignumber.js';
 
-interface ToBigNumberOptions {
-  validate?: {
-    isNaN?: boolean;
-    isEmpty?: boolean;
-    isNegative?: boolean;
-  };
-}
-
 /**
  * Converts a value to a BigNumber
  */
-export const toBigNumber = (
-  num?: Types.Number,
-  options?: ToBigNumberOptions
-): BigNumber => {
-  const value = new BigNumber(Number(num || 0));
-
-  const {
-    isEmpty = true,
-    isNaN = true,
-    isNegative = false,
-  } = options?.validate || {};
-
-  const zero = new BigNumber(0);
-
-  if (isEmpty && value.isZero()) return zero;
-  if (isNegative && value.isNegative()) return zero;
-  if (isNaN && value.isNaN()) return zero;
-
-  return value;
+export const toBigNumber = (num?: Types.Number): BigNumber => {
+  return new BigNumber(Number(num || 0));
 };
 
 /**
@@ -67,3 +42,33 @@ export const formatAmount = (amount: Types.Amount): string => {
     return `${isNegative ? '< -' : '> '}999M`;
   }
 };
+
+export type CheckIfOptions = {
+  isZero?: boolean;
+  isNotANumber?: boolean;
+  isNegative?: boolean;
+};
+
+export function checkIfObject(
+  object: {
+    [key: string]: BigNumber;
+  },
+  options: CheckIfOptions
+): boolean {
+  let isMatch = false;
+  const values = Object.values(object);
+
+  for (const value of values) {
+    if (options.isZero && value.isZero()) {
+      isMatch = true;
+    }
+    if (options.isNotANumber && value.isNaN()) {
+      isMatch = true;
+    }
+    if (options.isNegative && value.isNegative()) {
+      isMatch = true;
+    }
+  }
+
+  return isMatch;
+}

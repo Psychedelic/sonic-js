@@ -99,18 +99,15 @@ describe('Swap', () => {
     });
 
     test.each`
-      amount  | decimals | slippage
-      ${-100} | ${8}     | ${10}
-      ${100}  | ${-8}    | ${10}
-      ${100}  | ${8}     | ${-10}
-      ${0}    | ${8}     | ${10}
-      ${100}  | ${0}     | ${10}
-      ${100}  | ${8}     | ${0}
-      ${NaN}  | ${8}     | ${10}
-      ${100}  | ${NaN}   | ${10}
-      ${100}  | ${8}     | ${NaN}
+      amount | decimals | slippage
+      ${0}   | ${8}     | ${10}
+      ${100} | ${0}     | ${10}
+      ${100} | ${8}     | ${0}
+      ${NaN} | ${8}     | ${10}
+      ${100} | ${NaN}   | ${10}
+      ${100} | ${8}     | ${NaN}
     `(
-      'should return 0 when any param is 0, NaN or negative',
+      'should return 0 when any param is 0, NaN',
       ({ amount, decimals, slippage }) => {
         const result = Swap.getAmountMin({
           amount,
@@ -118,6 +115,28 @@ describe('Swap', () => {
           slippage,
         });
         expect(result).toEqual(new BigNumber(0));
+      }
+    );
+
+    test.each`
+      amount  | decimals | slippage
+      ${-100} | ${8}     | ${10}
+      ${100}  | ${-8}    | ${10}
+      ${100}  | ${8}     | ${-10}
+    `(
+      'should throw an error when any param is negative',
+      ({ amount, decimals, slippage }) => {
+        const fn = (): BigNumber =>
+          Swap.getAmountMin({
+            amount,
+            decimals,
+            slippage,
+          });
+
+        expect(fn).toThrow(Error);
+        expect(fn).toThrow(
+          'Negative amount, slippage or decimals are not allowed'
+        );
       }
     );
   });
