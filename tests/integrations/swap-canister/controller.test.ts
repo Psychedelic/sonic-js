@@ -5,7 +5,7 @@ import BigNumber from 'bignumber.js';
 import { Token } from 'declarations';
 import { serialize, toBigNumber } from 'utils';
 import { mockAgent, mockSwapActor, mockTokenActor } from '../../mocks/actor';
-import { mockAllPairsResponse } from '../../mocks/pair';
+import { mockAllPairsResponse, mockPairList } from '../../mocks/pair';
 import { mockPrincipal, mockPrincipalId } from '../../mocks/principal';
 import {
   mockSupportedTokenListResponse,
@@ -382,6 +382,56 @@ describe('SwapCanisterController', () => {
         tokenId: 'aanaa-xaaaa-aaaah-aaeiq-cai',
         amount: '0.5',
       });
+    });
+
+    test('should call the actor with right params', async () => {
+      jest.useFakeTimers();
+      jest.setSystemTime(1);
+      const spy = jest.spyOn(swapActor, 'swapExactTokensForTokens');
+
+      await sut.swap(params);
+
+      return expect(spy).toHaveBeenCalledWith(
+        BigInt('500000000000'),
+        BigInt('3181149'),
+        ['aanaa-xaaaa-aaaah-aaeiq-cai', 'utozz-siaaa-aaaam-qaaxq-cai'],
+        mockPrincipal(),
+        BigInt(3000010000000)
+      );
+    });
+
+    test('should throw if there is an error on response', async () => {
+      jest
+        .spyOn(swapActor, 'swapExactTokensForTokens')
+        .mockResolvedValueOnce({ err: 'error_message' });
+
+      const promise = sut.swap(params);
+
+      await expect(promise).rejects.toThrowError(
+        JSON.stringify('error_message')
+      );
+    });
+
+    test('should get token list and pair list if they are not present', async () => {
+      const tokenSpy = jest.spyOn(sut, 'getTokenList');
+      const pairSpy = jest.spyOn(sut, 'getPairList');
+
+      await sut.swap(params);
+
+      expect(tokenSpy).toHaveBeenCalled();
+      expect(pairSpy).toHaveBeenCalled();
+    });
+
+    test('should not get token list and pair list if they are present', async () => {
+      const tokenSpy = jest.spyOn(sut, 'getTokenList');
+      const pairSpy = jest.spyOn(sut, 'getPairList');
+
+      sut.pairList = mockPairList();
+      sut.tokenList = mockTokenList();
+      await sut.swap(params);
+
+      expect(tokenSpy).not.toHaveBeenCalled();
+      expect(pairSpy).not.toHaveBeenCalled();
     });
   });
 });

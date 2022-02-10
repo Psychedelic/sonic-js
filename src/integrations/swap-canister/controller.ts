@@ -209,9 +209,9 @@ export class SwapCanisterController {
     amountIn,
     tokenIn,
     tokenOut,
+    slippage = Default.SLIPPAGE,
   }: SwapCanisterController.SwapParams): Promise<void> {
     const principal = await this.getAgentPrincipal();
-    await this.getTokenList();
 
     if (!this.tokenList) await this.getTokenList();
     if (!this.pairList) await this.getPairList();
@@ -244,6 +244,7 @@ export class SwapCanisterController {
       .toBigInt();
 
     const amountOutMin = tokenPath.amountOut
+      .applyTolerance(toBigNumber(slippage).toNumber())
       .removeDecimals(this.tokenList[tokenOut].decimals)
       .toBigInt();
 
@@ -280,6 +281,7 @@ export namespace SwapCanisterController {
     tokenIn: string;
     tokenOut: string;
     amountIn: Types.Amount;
+    slippage?: Types.Number;
   };
 
   export type GetTokenBalanceParams = {
