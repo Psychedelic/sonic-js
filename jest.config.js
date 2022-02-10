@@ -8,4 +8,5 @@ module.exports = {
     '@tests/(.*)': '<rootDir>/tests/$1',
   },
   modulePaths: ['<rootDir>/src'],
+  coveragePathIgnorePatterns: ['mocks'],
 };

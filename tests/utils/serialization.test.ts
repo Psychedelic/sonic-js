@@ -17,6 +17,15 @@ describe('deserialize', () => {
 
     expect(deserialize(input)).toEqual(output);
   });
+
+  test('should return undefined if an error happen', () => {
+    const input = '{"a": "1n", "b": 2, "c": "some_string"';
+    jest.spyOn(JSON, 'parse').mockImplementationOnce(() => {
+      throw Error();
+    });
+
+    expect(deserialize(input)).toBeUndefined();
+  });
 });
 
 describe('serialize', () => {
@@ -35,5 +44,14 @@ describe('serialize', () => {
     const output = '{"a":"1n","b":2,"c":"some_string"}';
 
     expect(serialize(input)).toEqual(output);
+  });
+
+  test('should return an empty string if an error happen', () => {
+    const input = { a: BigInt(1) };
+    jest.spyOn(JSON, 'stringify').mockImplementationOnce(() => {
+      throw Error();
+    });
+
+    expect(serialize(input)).toEqual('');
   });
 });
