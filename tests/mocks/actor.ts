@@ -1,4 +1,4 @@
-import { SwapActor, TokenActor } from '@/integrations';
+import { SwapActor, TokenActor, ActorAdapter } from '@/integrations';
 import { Agent } from '@dfinity/agent';
 import { SwapIDL, TokenIDL } from 'declarations';
 import { mockAllPairsResponse } from './pair';
@@ -46,3 +46,12 @@ export const mockAgent = (params: Partial<Agent> = {}): Agent =>
     getPrincipal: async () => mockPrincipal(),
     ...params,
   } as unknown as Agent);
+
+export const mockActorProvider = (
+  params: Partial<ActorAdapter.Provider> = {}
+): ActorAdapter.Provider => ({
+  createActor: async () => ({} as any),
+  agent: mockAgent(),
+  createAgent: async () => mockAgent(),
+  ...params,
+});

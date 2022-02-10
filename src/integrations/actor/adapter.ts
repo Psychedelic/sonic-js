@@ -54,9 +54,9 @@ export class ActorAdapter implements ActorAdapter.Repository {
    * Creates the agent from provider.
    */
   private async createAgent(): Promise<void> {
-    if (this.provider && !this.provider?.agent) {
+    if (this.provider && !this.provider.agent) {
       await this.provider.createAgent({
-        whitelist: this.options?.whitelist,
+        whitelist: this.options.whitelist,
         host: this.options.host,
       });
     }
