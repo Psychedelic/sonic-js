@@ -3,9 +3,9 @@ import { createTokenActor } from '@/integrations/actor';
 import { Actor } from '@dfinity/agent';
 import BigNumber from 'bignumber.js';
 import { Token } from 'declarations';
-import { applyDecimals, serialize, toBigNumber } from 'utils';
+import { serialize, toBigNumber } from 'utils';
 import { mockAgent, mockSwapActor, mockTokenActor } from '../../mocks/actor';
-import { mockAllPairsResponse } from '../../mocks/pair';
+import { mockAllPairsResponse, mockPairList } from '../../mocks/pair';
 import { mockPrincipal, mockPrincipalId } from '../../mocks/principal';
 import {
   mockSupportedTokenListResponse,
@@ -136,7 +136,7 @@ describe('SwapCanisterController', () => {
       const response = await sut.getTokenBalances(mockPrincipalId());
 
       Object.values(sut.tokenList as Token.MetadataList).forEach((token) => {
-        const tokenBalance = applyDecimals('1', token.decimals);
+        const tokenBalance = toBigNumber('1').applyDecimals(token.decimals);
         expect(response[token.id].token).toEqual(tokenBalance);
         expect(response[token.id].sonic).toEqual(toBigNumber(1));
         expect(response[token.id].total).toEqual(
@@ -152,10 +152,10 @@ describe('SwapCanisterController', () => {
       expect(response).toEqual(mockPrincipal());
     });
 
-    test('should return undefined', async () => {
+    test('should throw if could not find agent', async () => {
       (Actor.agentOf as jest.Mock).mockImplementationOnce(() => undefined);
-      const response = await sut.getAgentPrincipal();
-      expect(response).toBeUndefined();
+      const promise = sut.getAgentPrincipal();
+      await expect(promise).rejects.toThrow();
     });
   });
 
@@ -306,6 +306,132 @@ describe('SwapCanisterController', () => {
 
       const promise = sut.withdraw(params);
       await expect(promise).rejects.toThrow();
+    });
+  });
+
+  describe('.getTokenBalance', () => {
+    const params = {
+      tokenId: mockTokenId(),
+      principalId: mockPrincipalId(),
+    };
+    test('should return the selected token balance', async () => {
+      const result = await sut.getTokenBalance(params);
+      expect(result).toEqual({
+        sonic: new BigNumber(1),
+        token: new BigNumber(0.000000000001),
+        total: new BigNumber(1.000000000001),
+      });
+    });
+
+    test('should return sonic balance equals to 0', async () => {
+      jest.spyOn(swapActor, 'getUserBalances').mockResolvedValueOnce([]);
+      const result = await sut.getTokenBalance(params);
+      expect(result).toEqual({
+        sonic: new BigNumber(0),
+        token: new BigNumber(0.000000000001),
+        total: new BigNumber(0.000000000001),
+      });
+    });
+  });
+
+  describe('.swap', () => {
+    const params = {
+      amountIn: '0.5',
+      tokenIn: 'aanaa-xaaaa-aaaah-aaeiq-cai',
+      tokenOut: 'utozz-siaaa-aaaam-qaaxq-cai',
+    };
+
+    test('should do a swap', async () => {
+      await sut.swap(params);
+    });
+
+    test('should throw if not exists token path', () => {
+      const promise = sut.swap({
+        ...params,
+        tokenIn: 'aanaa-xaaaa-aaaah-aaeiq-cai',
+        tokenOut: 'onuey-xaaaa-aaaah-qcf7a-cai',
+      });
+
+      return expect(promise).rejects.toThrowError('No token path to swap');
+    });
+
+    test('should throw if there is not enough token balance', () => {
+      const promise = sut.swap({
+        ...params,
+        amountIn: '1.5',
+      });
+
+      return expect(promise).rejects.toThrowError(
+        'Not enough aanaa-xaaaa-aaaah-aaeiq-cai to swap'
+      );
+    });
+
+    test('should call deposit if there not enough deposited balance', async () => {
+      (createTokenActor as jest.Mock).mockImplementationOnce(async () =>
+        mockTokenActor({ balanceOf: async () => BigInt('1500000000000') })
+      );
+
+      const spy = jest.spyOn(sut, 'deposit');
+
+      await sut.swap({
+        ...params,
+        amountIn: '1.5',
+      });
+
+      return expect(spy).toHaveBeenCalledWith({
+        tokenId: 'aanaa-xaaaa-aaaah-aaeiq-cai',
+        amount: '0.5',
+      });
+    });
+
+    test('should call the actor with right params', async () => {
+      jest.useFakeTimers();
+      jest.setSystemTime(1);
+      const spy = jest.spyOn(swapActor, 'swapExactTokensForTokens');
+
+      await sut.swap(params);
+
+      return expect(spy).toHaveBeenCalledWith(
+        BigInt('500000000000'),
+        BigInt('3181149'),
+        ['aanaa-xaaaa-aaaah-aaeiq-cai', 'utozz-siaaa-aaaam-qaaxq-cai'],
+        mockPrincipal(),
+        BigInt(3000010000000)
+      );
+    });
+
+    test('should throw if there is an error on response', async () => {
+      jest
+        .spyOn(swapActor, 'swapExactTokensForTokens')
+        .mockResolvedValueOnce({ err: 'error_message' });
+
+      const promise = sut.swap(params);
+
+      await expect(promise).rejects.toThrowError(
+        JSON.stringify('error_message')
+      );
+    });
+
+    test('should get token list and pair list if they are not present', async () => {
+      const tokenSpy = jest.spyOn(sut, 'getTokenList');
+      const pairSpy = jest.spyOn(sut, 'getPairList');
+
+      await sut.swap(params);
+
+      expect(tokenSpy).toHaveBeenCalled();
+      expect(pairSpy).toHaveBeenCalled();
+    });
+
+    test('should not get token list and pair list if they are present', async () => {
+      const tokenSpy = jest.spyOn(sut, 'getTokenList');
+      const pairSpy = jest.spyOn(sut, 'getPairList');
+
+      sut.pairList = mockPairList();
+      sut.tokenList = mockTokenList();
+      await sut.swap(params);
+
+      expect(tokenSpy).not.toHaveBeenCalled();
+      expect(pairSpy).not.toHaveBeenCalled();
     });
   });
 });
