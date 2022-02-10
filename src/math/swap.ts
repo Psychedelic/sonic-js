@@ -34,6 +34,36 @@ export class Swap {
   }
 
   /**
+   * Calculate minimal amount of a swap
+   * @param params Swap.GetAmountMinParams
+   * @returns BigNumber
+   */
+  static getAmountMin = (params: Swap.GetAmountMinParams): BigNumber => {
+    const fractionNumber = toBigNumber(1);
+    const amount = toBigNumber(params.amount);
+    const tolerance = toBigNumber(params.tolerance);
+    const decimals = Number(params.decimals);
+
+    if (
+      amount.isNegative() ||
+      amount.isZero() ||
+      amount.isNaN() ||
+      tolerance.isNegative() ||
+      tolerance.isZero() ||
+      tolerance.isNaN() ||
+      new BigNumber(decimals).isNegative() ||
+      new BigNumber(decimals).isZero() ||
+      new BigNumber(decimals).isNaN()
+    )
+      return toBigNumber(0);
+
+    return fractionNumber
+      .minus(tolerance.dividedBy(100))
+      .multipliedBy(amount)
+      .dp(Number(decimals));
+  };
+
+  /**
    * Calculate the price impact based on given amounts and prices
    */
   static getPriceImpact(params: Swap.GetPriceImpactParams): BigNumber {
@@ -117,6 +147,12 @@ export namespace Swap {
     reserveOut: Types.Number;
     fee?: Types.Number;
     dataKey?: DataKey;
+  }
+
+  export interface GetAmountMinParams {
+    amount: number | string;
+    tolerance: number | string;
+    decimals: number | string;
   }
 
   export interface GetPriceImpactParams {
