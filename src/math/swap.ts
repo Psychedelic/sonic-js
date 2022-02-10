@@ -39,7 +39,6 @@ export class Swap {
    * @returns BigNumber
    */
   static getAmountMin = (params: Swap.GetAmountMinParams): BigNumber => {
-    const fractionNumber = toBigNumber(1);
     const amount = toBigNumber(params.amount);
     const slippage = toBigNumber(params.slippage);
     const decimals = Number(params.decimals);
@@ -57,10 +56,7 @@ export class Swap {
     )
       return toBigNumber(0);
 
-    return fractionNumber
-      .minus(slippage.dividedBy(100))
-      .multipliedBy(amount)
-      .dp(Number(decimals));
+    return amount.applyTolerance(slippage.toNumber()).dp(decimals);
   };
 
   /**
