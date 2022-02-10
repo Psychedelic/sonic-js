@@ -41,16 +41,16 @@ export class Swap {
   static getAmountMin = (params: Swap.GetAmountMinParams): BigNumber => {
     const fractionNumber = toBigNumber(1);
     const amount = toBigNumber(params.amount);
-    const tolerance = toBigNumber(params.tolerance);
+    const slippage = toBigNumber(params.slippage);
     const decimals = Number(params.decimals);
 
     if (
       amount.isNegative() ||
       amount.isZero() ||
       amount.isNaN() ||
-      tolerance.isNegative() ||
-      tolerance.isZero() ||
-      tolerance.isNaN() ||
+      slippage.isNegative() ||
+      slippage.isZero() ||
+      slippage.isNaN() ||
       new BigNumber(decimals).isNegative() ||
       new BigNumber(decimals).isZero() ||
       new BigNumber(decimals).isNaN()
@@ -58,7 +58,7 @@ export class Swap {
       return toBigNumber(0);
 
     return fractionNumber
-      .minus(tolerance.dividedBy(100))
+      .minus(slippage.dividedBy(100))
       .multipliedBy(amount)
       .dp(Number(decimals));
   };
@@ -150,9 +150,9 @@ export namespace Swap {
   }
 
   export interface GetAmountMinParams {
-    amount: number | string;
-    tolerance: number | string;
-    decimals: number | string;
+    amount: Types.Amount;
+    slippage: Types.Number;
+    decimals: Types.Decimals;
   }
 
   export interface GetPriceImpactParams {

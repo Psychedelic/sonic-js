@@ -85,24 +85,21 @@ describe('Swap', () => {
 
   describe('.getAmountMin', () => {
     test.each`
-      amount  | decimals | tolerance | expected
-      ${10}   | ${8}     | ${10}     | ${new BigNumber(9)}
-      ${100}  | ${8}     | ${20}     | ${new BigNumber(80)}
-      ${1000} | ${8}     | ${30}     | ${new BigNumber(700)}
-    `(
-      'should return $expected',
-      ({ amount, decimals, tolerance, expected }) => {
-        const result = Swap.getAmountMin({
-          amount,
-          decimals,
-          tolerance,
-        });
-        expect(result).toEqual(expected);
-      }
-    );
+      amount  | decimals | slippage | expected
+      ${10}   | ${8}     | ${10}    | ${new BigNumber(9)}
+      ${100}  | ${8}     | ${20}    | ${new BigNumber(80)}
+      ${1000} | ${8}     | ${30}    | ${new BigNumber(700)}
+    `('should return $expected', ({ amount, decimals, slippage, expected }) => {
+      const result = Swap.getAmountMin({
+        amount,
+        decimals,
+        slippage,
+      });
+      expect(result).toEqual(expected);
+    });
 
     test.each`
-      amount  | decimals | tolerance
+      amount  | decimals | slippage
       ${-100} | ${8}     | ${10}
       ${100}  | ${-8}    | ${10}
       ${100}  | ${8}     | ${-10}
@@ -114,11 +111,11 @@ describe('Swap', () => {
       ${100}  | ${8}     | ${NaN}
     `(
       'should return 0 when any param is 0, NaN or negative',
-      ({ amount, decimals, tolerance }) => {
+      ({ amount, decimals, slippage }) => {
         const result = Swap.getAmountMin({
           amount,
           decimals,
-          tolerance,
+          slippage,
         });
         expect(result).toEqual(new BigNumber(0));
       }
