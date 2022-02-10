@@ -231,9 +231,9 @@ export class SwapCanisterController {
       tokenId: tokenIn,
     });
 
-    if (!balance.sonic.gt(amountIn)) {
+    if (balance.sonic.lt(amountIn)) {
       const toDeposit = toBigNumber(amountIn).minus(balance.sonic);
-      if (!balance.token.gte(toDeposit)) {
+      if (balance.token.lt(toDeposit)) {
         throw new Error(`Not enough ${tokenIn} to swap`);
       }
       await this.deposit({ tokenId: tokenIn, amount: toDeposit.toString() });

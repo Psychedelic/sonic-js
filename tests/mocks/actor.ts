@@ -26,6 +26,7 @@ export const mockSwapActor = (params: Partial<SwapIDL.Swap> = {}): SwapActor =>
       ['cfoim-fqaaa-aaaai-qbcmq-cai', BigInt(100000000)],
       ['wjsrf-myaaa-aaaam-qaayq-cai', BigInt(100000000)],
     ],
+    swapExactTokensForTokens: async () => ({ ok: BigInt(1) }),
     ...params,
   } as unknown as SwapActor);
 

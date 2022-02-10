@@ -333,4 +333,55 @@ describe('SwapCanisterController', () => {
       });
     });
   });
+
+  describe('.swap', () => {
+    const params = {
+      amountIn: '0.5',
+      tokenIn: 'aanaa-xaaaa-aaaah-aaeiq-cai',
+      tokenOut: 'utozz-siaaa-aaaam-qaaxq-cai',
+    };
+
+    test('should do a swap', async () => {
+      await sut.swap(params);
+    });
+
+    test('should throw if not exists token path', () => {
+      const promise = sut.swap({
+        ...params,
+        tokenIn: 'aanaa-xaaaa-aaaah-aaeiq-cai',
+        tokenOut: 'onuey-xaaaa-aaaah-qcf7a-cai',
+      });
+
+      return expect(promise).rejects.toThrowError('No token path to swap');
+    });
+
+    test('should throw if there is not enough token balance', () => {
+      const promise = sut.swap({
+        ...params,
+        amountIn: '1.5',
+      });
+
+      return expect(promise).rejects.toThrowError(
+        'Not enough aanaa-xaaaa-aaaah-aaeiq-cai to swap'
+      );
+    });
+
+    test('should call deposit if there not enough deposited balance', async () => {
+      (createTokenActor as jest.Mock).mockImplementationOnce(async () =>
+        mockTokenActor({ balanceOf: async () => BigInt('1500000000000') })
+      );
+
+      const spy = jest.spyOn(sut, 'deposit');
+
+      await sut.swap({
+        ...params,
+        amountIn: '1.5',
+      });
+
+      return expect(spy).toHaveBeenCalledWith({
+        tokenId: 'aanaa-xaaaa-aaaah-aaeiq-cai',
+        amount: '0.5',
+      });
+    });
+  });
 });
