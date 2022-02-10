@@ -1,6 +1,7 @@
 import { SwapCanisterController, SwapActor } from '@/integrations';
 import { createTokenActor } from '@/integrations/actor';
 import { Actor } from '@dfinity/agent';
+import { Principal } from '@dfinity/principal';
 import BigNumber from 'bignumber.js';
 import { Token } from 'declarations';
 import { serialize, toBigNumber } from 'utils';
@@ -51,6 +52,13 @@ describe('SwapCanisterController', () => {
         expect(sut.tokenList?.[mock.id]).toEqual(mock);
       });
     });
+
+    test('should call swapActor getSupportedTokenList', async () => {
+      const spy = jest.spyOn(swapActor, 'getSupportedTokenList');
+      await sut.getTokenList();
+
+      expect(spy).toHaveBeenCalled();
+    });
   });
 
   describe('.getPairsList', () => {
@@ -98,6 +106,13 @@ describe('SwapCanisterController', () => {
         );
       });
     });
+
+    test('should call swapActor getAllPairs', async () => {
+      const spy = jest.spyOn(swapActor, 'getAllPairs');
+      await sut.getPairList();
+
+      expect(spy).toHaveBeenCalled();
+    });
   });
 
   describe('.getTokenBalances', () => {
@@ -143,6 +158,13 @@ describe('SwapCanisterController', () => {
           toBigNumber(1).plus(tokenBalance)
         );
       });
+    });
+
+    test('should call swapActor getUserBalances', async () => {
+      const spy = jest.spyOn(swapActor, 'getUserBalances');
+      await sut.getTokenBalances(mockPrincipalId());
+
+      expect(spy).toHaveBeenCalledWith(mockPrincipal());
     });
   });
 
@@ -256,6 +278,16 @@ describe('SwapCanisterController', () => {
         JSON.stringify('error_message')
       );
     });
+
+    test('should call swapActor deposit', async () => {
+      const spy = jest.spyOn(swapActor, 'deposit');
+      await sut.deposit(params);
+
+      expect(spy).toHaveBeenCalledWith(
+        Principal.from(params.tokenId),
+        BigInt(10000000000000)
+      );
+    });
   });
 
   describe('.withdraw', () => {
@@ -306,6 +338,16 @@ describe('SwapCanisterController', () => {
 
       const promise = sut.withdraw(params);
       await expect(promise).rejects.toThrow();
+    });
+
+    test('should call swapActor withdraw', async () => {
+      const spy = jest.spyOn(swapActor, 'withdraw');
+      await sut.withdraw(params);
+
+      expect(spy).toHaveBeenCalledWith(
+        Principal.from(params.tokenId),
+        BigInt(10000000000000)
+      );
     });
   });
 
