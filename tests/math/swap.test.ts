@@ -102,12 +102,18 @@ describe('Swap', () => {
     );
 
     test.each`
-      amount | decimals | tolerance
-      ${-1}  | ${8}     | ${10}
-      ${10}  | ${-8}    | ${20}
-      ${100} | ${8}     | ${-30}
+      amount  | decimals | tolerance
+      ${-100} | ${8}     | ${10}
+      ${100}  | ${-8}    | ${10}
+      ${100}  | ${8}     | ${-10}
+      ${0}    | ${8}     | ${10}
+      ${100}  | ${0}     | ${10}
+      ${100}  | ${8}     | ${0}
+      ${NaN}  | ${8}     | ${10}
+      ${100}  | ${NaN}   | ${10}
+      ${100}  | ${8}     | ${NaN}
     `(
-      'should return 0 when any param is 0 or negative',
+      'should return 0 when any param is 0, NaN or negative',
       ({ amount, decimals, tolerance }) => {
         const result = Swap.getAmountMin({
           amount,
