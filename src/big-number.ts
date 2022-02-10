@@ -8,6 +8,7 @@ declare module 'bignumber.js' {
     toBigInt(): bigint;
     applyDecimals(decimals: number): BigNumber;
     removeDecimals(decimals: number): BigNumber;
+    applyTolerance(percentage: number, type?: 'min' | 'max'): BigNumber;
   }
 }
 
@@ -30,4 +31,17 @@ BigNumber.prototype.applyDecimals = function (decimals: number): BigNumber {
  */
 BigNumber.prototype.removeDecimals = function (decimals: number): BigNumber {
   return this.dp(decimals).multipliedBy(exponential(decimals));
+};
+
+/**
+ * Returns the number for a given maximal/minimal tolerance
+ */
+BigNumber.prototype.applyTolerance = function (
+  percentage: number,
+  type = 'min'
+): BigNumber {
+  const toleranceCoefficient = new BigNumber(1).plus(
+    percentage * (type === 'max' ? 1 : -1)
+  );
+  return this.multipliedBy(toleranceCoefficient);
 };

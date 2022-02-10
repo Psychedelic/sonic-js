@@ -34,3 +34,15 @@ describe('toBigInt', () => {
     expect(new BigNumber(5).toBigInt()).toEqual(BigInt(5));
   });
 });
+
+describe('applyTolerance', () => {
+  test('should return the value with minimal tolerance', () => {
+    expect(new BigNumber(5).applyTolerance(0.1)).toEqual(new BigNumber(4.5));
+  });
+
+  test('should return the value with maximal tolerance', () => {
+    expect(new BigNumber(5).applyTolerance(0.1, 'max')).toEqual(
+      new BigNumber(5.5)
+    );
+  });
+});
