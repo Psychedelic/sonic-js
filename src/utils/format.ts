@@ -76,33 +76,3 @@ export const formatAmount = (amount: Types.Amount): string => {
     return `${isNegative ? '< -' : '> '}999M`;
   }
 };
-
-export type CheckIfOptions = {
-  isZero?: boolean;
-  isNotANumber?: boolean;
-  isNegative?: boolean;
-};
-
-export function checkIfObject(
-  object: {
-    [key: string]: BigNumber;
-  },
-  options: CheckIfOptions
-): boolean {
-  let isMatch = false;
-  const values = Object.values(object);
-
-  for (const value of values) {
-    if (options.isZero && value.isZero()) {
-      isMatch = true;
-    }
-    if (options.isNotANumber && value.isNaN()) {
-      isMatch = true;
-    }
-    if (options.isNegative && value.isNegative()) {
-      isMatch = true;
-    }
-  }
-
-  return isMatch;
-}
