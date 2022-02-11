@@ -40,6 +40,67 @@ This library holds a set of functions and interfaces that helps in the developme
 
 The library is separated in modules to organize and have ease in use:
 
+### Integration
+
+On integration module is provided functions that helps to interact with IC world.
+
+#### Agent and Actor
+
+First of all to talk with IC we need to create `actors` that communicate with canisters. But to create the `actors` we need to first setup an `agent` that indicates who and how the communication is going to be realized. This library provides some functions that helps in this process to reach the communication with Swap Canister and DIP20 token canisters.
+
+##### Actor Adapter
+
+The class `ActorAdapter` provides an abstraction of [@dfinity/agent](https://www.npmjs.com/package/@dfinity/agent) that helps to instantiate new actors and reuse them.
+
+The class constructor has params that turn able to configure how you want to use the adapter:
+
+- `provider`: This param receives an object that is used to create `agent` and `actors`. The object needs to follow the interface `ActorAdapter.Provider`. Is high recommended if you want to instantiate actors linked with wallets to use [@fleekhq/plug-inpage-provider](https://www.npmjs.com/package/@fleekhq/plug-inpage-provider):
+
+```ts
+const adapter = new ActorAdapter(window.plug);
+```
+
+- `options`: This param is used for selecting some settings of network host and whitelisting canister ids. It follows the interface `ActorAdapter.Options`:
+
+```ts
+const adapter = new ActorAdapter(window.plug, {
+  host: 'https://boundary.ic0.app/',
+  whitelist: ['3xwpq-ziaaa-aaaah-qcn4a-cai'],
+});
+```
+
+You can also use default parameters and no provider:
+
+```ts
+const adapter = new ActorAdapter();
+```
+
+##### Actor Factories
+
+To make ease on use for actors, the library provides two functions that directly create actors for Swap and DIP20 canisters:
+
+```ts
+createSwapActor(options?: CreateSwapActorOptions): Promise<SwapActor>
+```
+
+This one can be called without options and a actor is going to be created using default options.
+
+```ts
+createTokenActor(options: CreateTokenActorOptions): Promise<TokenActor>
+```
+
+This one has the canister id required to be created.
+
+Both functions can receive an `ActorAdapter` or they are going to use the default one.
+
+##### IDLs
+
+All actors that communicate with IC needs to have an IDL to indicate which functions are callable on the canister. The library already provide this IDLs for Swap and DIP20 canisters and they can be found [here](src/declarations/did).
+
+#### Swap Canister Controller
+
+...
+
 ### Math
 
 The Math module holds the functions used in calculations to get correct values to be displayed or sent in requests.
