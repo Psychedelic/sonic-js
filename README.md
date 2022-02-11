@@ -17,6 +17,13 @@ The Sonic-js library is utilized to integrate UIs/FEs/Apps to Swap Canister to *
   - [Install](#install)
   - [BigNumber](#bignumber)
 - [Usage](#usage)
+  - [Integration](#integration)
+    - [Agent and Actor](#agent-and-actor)
+      - [Actor Adapter](#actor-adapter)
+      - [Actor Factories](#actor-factories)
+      - [IDLs](#idls)
+    - [Swap Canister Controller](#swap-canister-controller)
+      - [Class Functions](#class-functions)
   - [Math](#math)
   - [Utils](#utils)
 
@@ -140,7 +147,7 @@ pairList: Pair.List;
 balanceList: Token.BalanceList;
 ```
 
-Class functions:
+##### Class Functions
 
 ```ts
 getTokenList(): Promise<Token.MetadataList>
