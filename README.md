@@ -26,6 +26,11 @@ The Sonic-js library is utilized to integrate UIs/FEs/Apps to Swap Canister to *
       - [Class Functions](#class-functions)
   - [Math](#math)
   - [Utils](#utils)
+  - [Declarations](#declarations)
+    - [Types](#types)
+    - [Token](#token)
+    - [Pair](#pair)
+    - [Default](#default)
 
 ## Getting Started
 
@@ -296,3 +301,53 @@ serialize<T>(data: T): string
 Parses a json object into a string
 
 This is required for parsing objects that have BigInt values
+
+### Declarations
+
+The declarations module provides the default constants used and typescript interfaces to help consuming the library.
+
+#### Types
+
+There are some declared types that we use in overall of our application to keep standardization of our params:
+
+- `Types.Number`: It receives all possible representations of a number. (e.g. integer, float, percentage, bigint)
+
+- `Types.Amount`: It is a string that represents the number that is shown on user interfaces. (e.g. token amount, money amount)
+
+- `Types.Decimals`: It is always a integer that represents the decimals allowed on a DIP20 token.
+
+#### Token
+
+There are some declared types that we use to represent tokens and it's related stuff:
+
+- `Token.Metadata`: It is an object containing information about a DIP20 token.
+
+- `Token.MetadataList`: It is key-object that maps a list of `Token.Metadata`.
+
+- `Token.Data`: It is an object containing the metadata and an amount of a token. It is used for turn easier pass data on operations.
+
+- `Token.Balance`: It is an object that contains balances of certain token. The balances contained are `sonic`, `token` and `total` that represents balances from sonic, from wallet and the sum of both for a given principal id.
+
+- `Token.BalanceList`: It is key-object that maps a list of `Token.Balance`.
+
+#### Pair
+
+There are some declared types that we use to represent Sonic swap pairs and it's related stuff.
+
+- `Pair.Model`: It is an object containing information about the pair.
+
+- `Pair.List`: It is key-object that maps a list of `Pair.Model`.
+
+- `Pair.Balance`: It is a `Types.Number` that represents the Liquidity Position for a pair.
+
+- `Pair.Balances`: It is key-object that maps a list of `Pair.Balance`.
+
+#### Default
+
+Default is an object that stores the default values used inside the library.
+
+- `Default.IC_HOST`: The url to communicate with IC.
+
+- `Default.SWAP_CANISTER_ID`: The Swap Canister id.
+
+- `SLIPPAGE`: The default value used for calculations that has slippage as param.
