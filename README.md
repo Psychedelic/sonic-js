@@ -54,7 +54,7 @@ The class `ActorAdapter` provides an abstraction of [@dfinity/agent](https://www
 
 The class constructor has params that turn able to configure how you want to use the adapter:
 
-- `provider`: This param receives an object that is used to create `agent` and `actors`. The object needs to follow the interface `ActorAdapter.Provider`. Is high recommended if you want to instantiate actors linked with wallets to use [@fleekhq/plug-inpage-provider](https://www.npmjs.com/package/@fleekhq/plug-inpage-provider):
+- `provider`: This param receives an object that is used to create `agent` and `actors`. The object needs to follow the interface `ActorAdapter.Provider`. Is high recommended if you want to instantiate actors linked with wallets to use [@psychedelic/plug-inpage-provider](https://github.com/Psychedelic/plug-inpage-provider/packages/884575):
 
 ```ts
 const adapter = new ActorAdapter(window.plug);
@@ -99,7 +99,80 @@ All actors that communicate with IC needs to have an IDL to indicate which funct
 
 #### Swap Canister Controller
 
-...
+The class `SwapCanisterController` provides functions that abstracts the main functionalities of Swap Canister. Instantiating it requires a Swap Actor mentioned above.
+
+```ts
+const swapActor = await createSwapActor();
+const swapCanisterController = new SwapCanisterController(swapActor);
+```
+
+Some of the functions will keep the responses stored on class variables to optimize subsequent requests. The variables are:
+
+```ts
+tokenList: Token.MetadataList;
+pairList: Pair.List;
+balanceList: Token.BalanceList;
+```
+
+Class functions:
+
+```ts
+getTokenList(): Promise<Token.MetadataList>
+```
+
+Get the list of supported tokens from swap canister
+
+```ts
+getPairList(): Promise<Pair.List>
+```
+
+Get the list of pairs present in swap canister
+
+```ts
+getTokenBalances(principalId: string): Promise<Token.BalanceList>
+```
+
+Get the balance of all supported tokens for a given principal id
+
+This function get balances from token and swap canisters
+
+```ts
+getTokenBalance(params: SwapCanisterController.GetTokenBalanceParams): Promise<Token.Balance>
+```
+
+Get one token balance for a given principal id
+
+```ts
+getAgentPrincipal(): Promise<Principal>
+```
+
+Get the principal of the agent
+
+```ts
+approve(params: SwapCanisterController.ApproveParams): Promise<void>
+```
+
+Approve transfers from token to swap canister
+
+This function uses the actor agent identity
+
+```ts
+deposit(params: SwapCanisterController.DepositParams): Promise<void>
+```
+
+Approve transfers from token to swap canister
+
+```ts
+withdraw(params: SwapCanisterController.WithdrawParams): Promise<void>
+```
+
+Approve transfers from token to swap canister
+
+```ts
+swap(params: SwapCanisterController.SwapParams): Promise<void>
+```
+
+Swaps an amount of tokenIn for tokenOut allowing given slippage
 
 ### Math
 
