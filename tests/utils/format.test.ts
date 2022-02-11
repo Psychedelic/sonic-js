@@ -22,12 +22,20 @@ describe('toBigNumber', () => {
     expect(toBigNumber(undefined)).toEqual(new BigNumber(0));
   });
 
+  test('should parse object', () => {
+    expect(toBigNumber({} as any)).toEqual(new BigNumber(0));
+  });
+
+  test('should parse null', () => {
+    expect(toBigNumber(null as any)).toEqual(new BigNumber(0));
+  });
+
   test('should parse empty string', () => {
     expect(toBigNumber('')).toEqual(new BigNumber(0));
   });
 
   test('should', () => {
-    expect(toBigNumber('asd')).toEqual(new BigNumber(NaN));
+    expect(toBigNumber('asd')).toEqual(new BigNumber(0));
   });
 });
 
