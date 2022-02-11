@@ -34,6 +34,32 @@ This library relies on [BigNumber.js](https://www.npmjs.com/package/big-number) 
 
 To better deal and present inside your application you can use the cast functions like `toString` and `toNumber`.
 
+Some functions were added to `BigNumber` class prototype because of the high number of utilization inside other of the functions inside the library:
+
+```ts
+toBigInt(): bigint;
+```
+
+Returns a bigint from a BigNumber
+
+```ts
+applyDecimals(decimals: number): BigNumber;
+```
+
+Returns a bigint from a BigNumber
+
+```ts
+removeDecimals(decimals: number): BigNumber;
+```
+
+Removes decimals from a number
+
+```ts
+applyTolerance(percentage: number, type?: 'min' | 'max'): BigNumber;
+```
+
+Returns the number for a given maximal/minimal tolerance
+
 ## Usage
 
 This library holds a set of functions and interfaces that helps in the development of applications that interacts with Sonic canisters.
@@ -241,18 +267,6 @@ exponential(decimals: Types.Number): BigNumber
 ```
 
 Create a exponential notation by given decimals
-
-```ts
-applyDecimals(num: Types.Number, decimals: Types.Decimals): BigNumber
-```
-
-Apply decimals to a number
-
-```ts
-removeDecimals(num: Types.Number, decimals: Types.Decimals): BigNumber
-```
-
-Removes decimals from a number
 
 ```ts
 formatAmount(amount: Types.Amount): string
