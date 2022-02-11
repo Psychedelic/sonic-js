@@ -1,11 +1,45 @@
 import { Types } from '@/declarations';
 import BigNumber from 'bignumber.js';
 
+interface ToBigNumberOptions {
+  validate?: {
+    isNotANumber?: boolean;
+    isEmpty?: boolean;
+    isNegative?: boolean;
+  };
+}
+
 /**
  * Converts a value to a BigNumber
  */
-export const toBigNumber = (num?: Types.Number): BigNumber => {
-  return new BigNumber(Number(num || 0));
+export const toBigNumber = (
+  num?: Types.Number,
+  options?: ToBigNumberOptions
+): BigNumber => {
+  const value = new BigNumber(Number(num || 0));
+
+  const { validate } = options || {};
+
+  const zero = new BigNumber(0);
+
+  if (value.isZero()) {
+    if (validate?.isEmpty) {
+      throw new Error('Value cannot be empty');
+    } else {
+      return zero;
+    }
+  }
+  if (value.isNaN()) {
+    if (validate?.isNotANumber) {
+      throw new Error('Value cannot be NaN');
+    } else {
+      return zero;
+    }
+  }
+  if (validate?.isNegative && value.isNegative())
+    throw new Error('Value cannot be negative');
+
+  return value;
 };
 
 /**
