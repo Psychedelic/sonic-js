@@ -243,8 +243,11 @@ export class SwapCanisterController {
       .removeDecimals(this.tokenList[tokenIn].decimals)
       .toBigInt();
 
-    const amountOutMin = tokenPath.amountOut
-      .applyTolerance(toBigNumber(slippage).toNumber())
+    const amountOutMin = Swap.getAmountMin({
+      amount: tokenPath.amountOut.toString(),
+      decimals: this.tokenList[tokenOut].decimals,
+      slippage,
+    })
       .removeDecimals(this.tokenList[tokenOut].decimals)
       .toBigInt();
 
