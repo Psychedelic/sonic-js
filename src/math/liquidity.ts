@@ -1,7 +1,9 @@
-import { Pair } from '@/declarations/pair';
 import BigNumber from 'bignumber.js';
+
+import { Pair } from '@/declarations/pair';
+
 import { toExponential, toBigNumber } from '../utils';
-import { Types } from '../';
+import { Types, checkIfObject } from '../';
 
 export class Liquidity {
   /**
@@ -11,6 +13,7 @@ export class Liquidity {
 
   /**
    * Calculate the pair decimals for given tokens decimals
+   * @param params Liquidity.GetPairDecimalsParams
    */
   static getPairDecimals(
     token0Decimals: Types.Decimals,
@@ -24,17 +27,42 @@ export class Liquidity {
   }
 
   /**
+   * Calculate the opposite token value for given pair in Liquidity Position
+   * @param params Liquidity.GetOppositeAmount
+   * @returns BigNumber
+   */
+  static getOppositeAmount(params: Liquidity.GetOppositeAmount): BigNumber {
+    const amountIn = toBigNumber(params.amountIn);
+    const reserveIn = toBigNumber(params.reserveIn);
+    const reserveOut = toBigNumber(params.reserveOut);
+
+    if (
+      checkIfObject(
+        { amountIn, reserveIn, reserveOut },
+        { isNotANumber: true, isZero: true }
+      )
+    ) {
+      return toBigNumber(0);
+    }
+
+    return amountIn
+      .multipliedBy(reserveOut.dividedBy(toExponential(params.decimalsOut)))
+      .dividedBy(reserveIn.dividedBy(toExponential(params.decimalsIn)))
+      .dp(params.decimalsOut);
+  }
+
+  /**
    * Calculate the Liquidity Position for given amounts of a pair of tokens that is going to be added
    */
   static getPosition(params: Liquidity.GetPositionParams): BigNumber {
-    const amount0Desired = toBigNumber(params.token0Amount).removeDecimals(
-      params.token0Decimals
+    const amount0Desired = toBigNumber(params.amountIn).removeDecimals(
+      params.decimalsIn
     );
-    const amount1Desired = toBigNumber(params.token1Amount).removeDecimals(
-      params.token1Decimals
+    const amount1Desired = toBigNumber(params.amountOut).removeDecimals(
+      params.decimalsOut
     );
-    const reserve0 = toBigNumber(params.reserve0);
-    const reserve1 = toBigNumber(params.reserve1);
+    const reserve0 = toBigNumber(params.reserveIn);
+    const reserve1 = toBigNumber(params.reserveOut);
     const totalSupply = toBigNumber(params.totalSupply);
 
     let amount0: BigNumber;
@@ -115,13 +143,21 @@ export class Liquidity {
 }
 
 export namespace Liquidity {
+  export interface GetOppositeAmount {
+    amountIn: Types.Amount;
+    reserveIn: Types.Number;
+    reserveOut: Types.Number;
+    decimalsIn: Types.Decimals;
+    decimalsOut: Types.Decimals;
+  }
+
   export interface GetPositionParams {
-    token0Amount: Types.Amount;
-    token1Amount: Types.Amount;
-    token0Decimals: Types.Decimals;
-    token1Decimals: Types.Decimals;
-    reserve0: Types.Number;
-    reserve1: Types.Number;
+    amountIn: Types.Amount;
+    amountOut: Types.Amount;
+    decimalsIn: Types.Decimals;
+    decimalsOut: Types.Decimals;
+    reserveIn: Types.Number;
+    reserveOut: Types.Number;
     totalSupply: Types.Number;
   }
 
