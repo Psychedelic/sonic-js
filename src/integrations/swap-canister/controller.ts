@@ -205,6 +205,9 @@ export class SwapCanisterController {
     if ('err' in result) throw new Error(JSON.stringify(result.err));
   }
 
+  /**
+   * Swaps an amount of tokenIn for tokenOut allowing given slippage
+   */
   async swap({
     amountIn,
     tokenIn,
