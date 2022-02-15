@@ -1,12 +1,13 @@
 import { Pair } from '@/declarations/pair';
 import BigNumber from 'bignumber.js';
-import { exponential, toBigNumber, Types } from '..';
+import { toExponential, toBigNumber } from '../utils';
+import { Types } from '../';
 
 export class Liquidity {
   /**
    * Constant from Swap Canister
    */
-  static readonly MINIMUM_LIQUIDITY = exponential(3);
+  static readonly MINIMUM_LIQUIDITY = toExponential(3);
 
   /**
    * Calculate the pair decimals for given tokens decimals

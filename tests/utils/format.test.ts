@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js';
-import { exponential, formatAmount, toBigNumber } from 'utils';
+import { toExponential, formatAmount, toBigNumber } from 'utils';
 
 describe('toBigNumber', () => {
   test('should parse bigint', () => {
@@ -39,17 +39,17 @@ describe('toBigNumber', () => {
   });
 });
 
-describe('exponential', () => {
+describe('toExponential', () => {
   test('should return 1', () => {
-    expect(exponential('0')).toEqual(new BigNumber(1));
+    expect(toExponential('0')).toEqual(new BigNumber(1));
   });
 
   test('should return 100', () => {
-    expect(exponential(BigInt(2))).toEqual(new BigNumber(100));
+    expect(toExponential(BigInt(2))).toEqual(new BigNumber(100));
   });
 
   test('should return 100000', () => {
-    expect(exponential(5)).toEqual(new BigNumber(100000));
+    expect(toExponential(5)).toEqual(new BigNumber(100000));
   });
 });
 

@@ -43,9 +43,9 @@ export const toBigNumber = (
 };
 
 /**
- * Create a exponential notation by given decimals
+ * Create an exponential notation by given decimals
  */
-export const exponential = (decimals: Types.Number): BigNumber => {
+export const toExponential = (decimals: Types.Number): BigNumber => {
   return new BigNumber(10).pow(toBigNumber(decimals));
 };
 

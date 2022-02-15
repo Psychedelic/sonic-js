@@ -103,10 +103,10 @@ toBigNumber(num?: Types.Number): BigNumber
 Converts a value to a BigNumber
 
 ```ts
-exponential(decimals: Types.Number): BigNumber
+toExponential(decimals: Types.Number): BigNumber
 ```
 
-Create a exponential notation by given decimals
+Create a toExponential notation by given decimals
 
 ```ts
 applyDecimals(num: Types.Number, decimals: Types.Decimals): BigNumber
