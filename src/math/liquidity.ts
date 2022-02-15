@@ -74,9 +74,9 @@ export class Liquidity {
   }
 
   /**
-   * Calculate the Liquidity Position percentage that is going to be received for adding an amount of pair of tokens
+   * Calculate Share of a pool of the position based on total supply
    */
-  static getAddPercentage(params: Liquidity.GetPercentageParams): BigNumber {
+  static getShareOfPool(params: Liquidity.GetShareOfPool): BigNumber {
     const totalSupply = toBigNumber(params.totalSupply);
 
     if (totalSupply.isZero()) {
@@ -125,7 +125,7 @@ export namespace Liquidity {
     totalSupply: Types.Number;
   }
 
-  export type GetPercentageParams = GetAddPositionParams;
+  export type GetShareOfPool = GetAddPositionParams;
 
   export interface GetTokenBalancesParams {
     pair: Pair.Model;

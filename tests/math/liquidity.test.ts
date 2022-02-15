@@ -50,9 +50,9 @@ describe('Liquidity', () => {
     });
   });
 
-  describe('.getAddPercentageString', () => {
-    test('should return the correct Liquidity Position percentage (case 1)', () => {
-      const result = Liquidity.getAddPercentage({
+  describe('.getShareOfPool', () => {
+    test('should return the correct Liquidity Position share of a pool (case 1)', () => {
+      const result = Liquidity.getShareOfPool({
         token0Amount: '0.00004466',
         token0Decimals: 8,
         token1Amount: '0.000719793445',
@@ -65,8 +65,8 @@ describe('Liquidity', () => {
       expect(result).toEqual(new BigNumber('0.00000000305122681622'));
     });
 
-    test('should return the correct Liquidity Position percentage (case 2)', () => {
-      const result = Liquidity.getAddPercentage({
+    test('should return the correct Liquidity Position share of a pool (case 2)', () => {
+      const result = Liquidity.getShareOfPool({
         token0Amount: '2',
         token0Decimals: 8,
         token1Amount: '2',
@@ -79,8 +79,8 @@ describe('Liquidity', () => {
       expect(result).toEqual(new BigNumber('0.5'));
     });
 
-    test('should return the correct Liquidity Position percentage for empty reserves', () => {
-      const result = Liquidity.getAddPercentage({
+    test('should return the correct Liquidity Position share of a pool for empty reserves', () => {
+      const result = Liquidity.getShareOfPool({
         token0Amount: '2',
         token0Decimals: 4,
         token1Amount: '2',

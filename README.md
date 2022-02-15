@@ -75,10 +75,10 @@ Liquidity.getAddPosition(params: Liquidity.GetPositionParams): BigNumber
 Calculate the Liquidity Position for given amounts of a pair of tokens that's going to be added
 
 ```ts
-Liquidity.getAddPercentage(params: Liquidity.GetPercentageStringParams): BigNumber
+Liquidity.getShareOfPool(params: Liquidity.GetShareOfPoolParams): BigNumber
 ```
 
-Calculate the Liquidity Position percentage that is going to be received for adding an amount of pair of tokens
+Calculate Share of a pool of the position based on total supply
 
 ```ts
 Liquidity.getTokenBalances(params: Liquidity.GetTokenBalancesParams): Liquidity.GetTokenBalancesResult
