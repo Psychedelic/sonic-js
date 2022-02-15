@@ -20,9 +20,9 @@ describe('Liquidity', () => {
     );
   });
 
-  describe('.getAddLiquidityPosition', () => {
+  describe('.getPosition', () => {
     test('should return the correct Liquidity Position amount', () => {
-      const result = Liquidity.getAddPosition({
+      const result = Liquidity.getPosition({
         token0Amount: '0.00004466',
         token0Decimals: 8,
         token1Amount: '0.000719793445',
@@ -36,7 +36,7 @@ describe('Liquidity', () => {
     });
 
     test('should return the correct Liquidity Position amount for empty reserves', () => {
-      const result = Liquidity.getAddPosition({
+      const result = Liquidity.getPosition({
         token0Amount: '2',
         token0Decimals: 4,
         token1Amount: '2',

@@ -26,7 +26,7 @@ export class Liquidity {
   /**
    * Calculate the Liquidity Position for given amounts of a pair of tokens that is going to be added
    */
-  static getAddPosition(params: Liquidity.GetAddPositionParams): BigNumber {
+  static getPosition(params: Liquidity.GetPositionParams): BigNumber {
     const amount0Desired = toBigNumber(params.token0Amount).removeDecimals(
       params.token0Decimals
     );
@@ -83,7 +83,7 @@ export class Liquidity {
       return new BigNumber(1);
     }
 
-    const lp = this.getAddPosition(params);
+    const lp = this.getPosition(params);
     const percentage = lp.dividedBy(lp.plus(totalSupply));
 
     return percentage;
@@ -115,7 +115,7 @@ export class Liquidity {
 }
 
 export namespace Liquidity {
-  export interface GetAddPositionParams {
+  export interface GetPositionParams {
     token0Amount: Types.Amount;
     token1Amount: Types.Amount;
     token0Decimals: Types.Decimals;
@@ -125,7 +125,7 @@ export namespace Liquidity {
     totalSupply: Types.Number;
   }
 
-  export type GetShareOfPool = GetAddPositionParams;
+  export type GetShareOfPool = GetPositionParams;
 
   export interface GetTokenBalancesParams {
     pair: Pair.Model;

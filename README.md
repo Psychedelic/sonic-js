@@ -69,7 +69,7 @@ Liquidity.getPairDecimals(token0Decimals: Types.Decimals, token1Decimals: Types.
 Calculate the pair decimals for given tokens decimals
 
 ```ts
-Liquidity.getAddPosition(params: Liquidity.GetPositionParams): BigNumber
+Liquidity.getPosition(params: Liquidity.GetPositionParams): BigNumber
 ```
 
 Calculate the Liquidity Position for given amounts of a pair of tokens that's going to be added
