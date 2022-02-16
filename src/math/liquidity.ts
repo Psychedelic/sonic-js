@@ -151,10 +151,10 @@ export class Liquidity {
     }
 
     const token0Price = price0.multipliedBy(
-      toBigNumber(reserve0).applyDecimals(params.decimals0)
+      reserve0.applyDecimals(params.decimals0)
     );
     const token1Price = price1.multipliedBy(
-      toBigNumber(reserve1).applyDecimals(params.decimals1)
+      reserve1.applyDecimals(params.decimals1)
     );
     const priceByLP = token0Price.plus(token1Price).dividedBy(totalShares);
 
@@ -188,16 +188,14 @@ export class Liquidity {
       };
     }
 
-    const balancePercentage = toBigNumber(lpBalance).dividedBy(
-      toBigNumber(totalSupply)
-    );
+    const balancePercentage = lpBalance.dividedBy(totalSupply);
 
-    const balance0 = toBigNumber(reserve0)
+    const balance0 = reserve0
       .multipliedBy(balancePercentage)
       .applyDecimals(params.decimals0)
       .dp(params.decimals0);
 
-    const balance1 = toBigNumber(reserve1)
+    const balance1 = reserve1
       .multipliedBy(balancePercentage)
       .applyDecimals(params.decimals1)
       .dp(params.decimals1);
