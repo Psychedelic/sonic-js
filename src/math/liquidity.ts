@@ -1,6 +1,7 @@
 import { Pair } from '@/declarations/pair';
 import BigNumber from 'bignumber.js';
-import { exponential, toBigNumber, Types } from '..';
+import { exponential, toBigNumber } from '@/utils';
+import { Types } from '@/declarations';
 
 export class Liquidity {
   /**
