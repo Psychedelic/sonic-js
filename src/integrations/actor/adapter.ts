@@ -26,7 +26,18 @@ export class ActorAdapter implements ActorAdapter.Repository {
     interfaceFactory: IDL.InterfaceFactory
   ): Promise<ActorSubclass<T>> {
     if (ActorAdapter.actors[canisterId]) {
-      return ActorAdapter.actors[canisterId];
+      if (this.provider) {
+        const currentPrincipal = await Actor.agentOf(
+          ActorAdapter.actors[canisterId]
+        )?.getPrincipal();
+        const providerPrincipal = await this.provider?.agent?.getPrincipal();
+
+        if (currentPrincipal?.toString() === providerPrincipal?.toString()) {
+          return ActorAdapter.actors[canisterId];
+        }
+      } else {
+        return ActorAdapter.actors[canisterId];
+      }
     }
 
     let actor: ActorSubclass<T>;

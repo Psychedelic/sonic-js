@@ -46,10 +46,12 @@ export class SwapCanisterController {
    * Get the balance of all supported tokens for a given principal id
    * This function get balances from token and swap canisters
    */
-  async getTokenBalances(principalId: string): Promise<Token.BalanceList> {
+  async getTokenBalances(principalId?: string): Promise<Token.BalanceList> {
     if (!this.tokenList) await this.getTokenList();
 
-    const principal = Principal.fromText(principalId);
+    const principal = principalId
+      ? Principal.fromText(principalId)
+      : await this.getAgentPrincipal();
 
     const tokens = Object.values(this.tokenList as Token.MetadataList);
     const tokenBalancePromises = tokens.map((token) =>
@@ -246,8 +248,11 @@ export class SwapCanisterController {
       .removeDecimals(this.tokenList[tokenIn].decimals)
       .toBigInt();
 
-    const amountOutMin = tokenPath.amountOut
-      .applyTolerance(toBigNumber(slippage).toNumber())
+    const amountOutMin = Swap.getAmountMin({
+      amount: tokenPath.amountOut.toString(),
+      decimals: this.tokenList[tokenOut].decimals,
+      slippage,
+    })
       .removeDecimals(this.tokenList[tokenOut].decimals)
       .toBigInt();
 

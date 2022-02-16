@@ -166,6 +166,13 @@ describe('SwapCanisterController', () => {
 
       expect(spy).toHaveBeenCalledWith(mockPrincipal());
     });
+
+    test('should use the agent principal if no one is provided', async () => {
+      const spy = jest.spyOn(swapActor, 'getUserBalances');
+      await sut.getTokenBalances();
+
+      expect(spy).toHaveBeenCalledWith(mockPrincipal());
+    });
   });
 
   describe('.getAgentPrincipal', () => {

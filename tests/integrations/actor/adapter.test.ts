@@ -1,6 +1,18 @@
 import { ActorAdapter } from '@/integrations';
 import { Default, SwapIDL } from '@/declarations';
-import { mockActorProvider, mockTokenActor } from '../../mocks/actor';
+import {
+  mockActorProvider,
+  mockAgent,
+  mockSwapActor,
+  mockTokenActor,
+} from '../../mocks/actor';
+import { Actor } from '@dfinity/agent';
+import { Principal } from '@dfinity/principal';
+
+jest.mock('@dfinity/agent');
+
+(Actor.agentOf as jest.Mock).mockImplementation(() => mockAgent());
+(Actor.createActor as jest.Mock).mockImplementation(() => mockSwapActor());
 
 describe('ActorAdapter', () => {
   let sut: ActorAdapter;
@@ -59,6 +71,38 @@ describe('ActorAdapter', () => {
       await sut.createActor(Default.SWAP_CANISTER_ID, SwapIDL.factory);
 
       expect(createAgentSpy).not.toHaveBeenCalled();
+    });
+
+    test('should return the already created actor with provider', async () => {
+      const actorMock = mockSwapActor();
+      ActorAdapter.actors[Default.SWAP_CANISTER_ID] = actorMock;
+
+      const actorProviderMock = mockActorProvider();
+      const createActorSpy = jest.spyOn(actorProviderMock, 'createActor');
+
+      sut = new ActorAdapter(actorProviderMock);
+      await sut.createActor(Default.SWAP_CANISTER_ID, SwapIDL.factory);
+
+      expect(createActorSpy).not.toHaveBeenCalled();
+    });
+
+    test('should create new actor with provider', async () => {
+      (Actor.agentOf as jest.Mock).mockImplementation(() =>
+        mockAgent({
+          getPrincipal: () => Promise.resolve(Principal.anonymous()),
+        })
+      );
+
+      const actorMock = mockSwapActor();
+      ActorAdapter.actors[Default.SWAP_CANISTER_ID] = actorMock;
+
+      const actorProviderMock = mockActorProvider();
+      const createActorSpy = jest.spyOn(actorProviderMock, 'createActor');
+
+      sut = new ActorAdapter(actorProviderMock);
+      await sut.createActor(Default.SWAP_CANISTER_ID, SwapIDL.factory);
+
+      expect(createActorSpy).toHaveBeenCalled();
     });
   });
 });
