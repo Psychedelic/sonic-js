@@ -173,29 +173,33 @@ describe('Liquidity', () => {
   describe('.getTokenBalances', () => {
     test('should return the correct token balances (case 1)', () => {
       const result = Liquidity.getTokenBalances({
-        reserve0: BigInt('10000'),
-        reserve1: BigInt('30000'),
+        decimals0: 8,
+        decimals1: 8,
+        reserve0: BigInt('1000000000'),
+        reserve1: BigInt('3000000000'),
         totalSupply: BigInt('40000'),
         lpBalance: 20000,
       });
 
       expect(result).toEqual({
-        balance0: new BigNumber('5000'),
-        balance1: new BigNumber('15000'),
+        balance0: new BigNumber('5'),
+        balance1: new BigNumber('15'),
       });
     });
 
     test('should return the correct token balances (case 2)', () => {
       const result = Liquidity.getTokenBalances({
-        reserve0: BigInt('10000'),
-        reserve1: BigInt('30000'),
+        decimals0: 8,
+        decimals1: 8,
+        reserve0: BigInt('1000000000'),
+        reserve1: BigInt('3000000000'),
         totalSupply: BigInt('17921'),
         lpBalance: 8961,
       });
 
       expect(result).toEqual({
-        balance0: new BigNumber('5000'),
-        balance1: new BigNumber('15000'),
+        balance0: new BigNumber('5.000279'),
+        balance1: new BigNumber('15.000837'),
       });
     });
   });
