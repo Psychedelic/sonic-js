@@ -14,6 +14,7 @@ export class Liquidity {
   /**
    * Calculate the pair decimals for given tokens decimals
    * @param params Liquidity.GetPairDecimalsParams
+   * @returns Types.Decimals
    */
   static getPairDecimals(
     token0Decimals: Types.Decimals,
@@ -53,16 +54,18 @@ export class Liquidity {
 
   /**
    * Calculate the Liquidity Position for given amounts of a pair of tokens that is going to be added
+   * @param params Liquidity.GetPositionParams
+   * @returns BigNumber
    */
   static getPosition(params: Liquidity.GetPositionParams): BigNumber {
-    const amount0Desired = toBigNumber(params.amountIn).removeDecimals(
-      params.decimalsIn
+    const amount0Desired = toBigNumber(params.amount0).removeDecimals(
+      params.decimals0
     );
-    const amount1Desired = toBigNumber(params.amountOut).removeDecimals(
-      params.decimalsOut
+    const amount1Desired = toBigNumber(params.amount1).removeDecimals(
+      params.decimals1
     );
-    const reserve0 = toBigNumber(params.reserveIn);
-    const reserve1 = toBigNumber(params.reserveOut);
+    const reserve0 = toBigNumber(params.reserve0);
+    const reserve1 = toBigNumber(params.reserve1);
     const totalSupply = toBigNumber(params.totalSupply);
 
     let amount0: BigNumber;
@@ -103,6 +106,8 @@ export class Liquidity {
 
   /**
    * Calculate Share of a pool of the position based on total supply
+   * @param params Liquidity.GetShareOfPool
+   * @returns BigNumber
    */
   static getShareOfPool(params: Liquidity.GetShareOfPool): BigNumber {
     const totalSupply = toBigNumber(params.totalSupply);
@@ -118,27 +123,72 @@ export class Liquidity {
   }
 
   /**
+   * Calculate the amount of a token in a position based on total supply
+   * @param params Liquidity.GetUserPositionValue
+   * @returns BigNumber
+   **/
+  static getUserPositionValue(
+    params: Liquidity.GetUserPositionValue
+  ): BigNumber {
+    const price0 = toBigNumber(params.price0);
+    const price1 = toBigNumber(params.price1);
+    const reserve0 = toBigNumber(params.reserve0);
+    const reserve1 = toBigNumber(params.reserve1);
+    const userShares = toBigNumber(params.userShares);
+    const totalShares = toBigNumber(params.totalShares);
+
+    const object = {
+      price0,
+      price1,
+      reserve0,
+      reserve1,
+      userShares,
+      totalShares,
+    };
+
+    if (checkIfObject(object, { isNotANumber: true, isZero: true })) {
+      return toBigNumber(0);
+    }
+
+    const token0Price = price0.multipliedBy(
+      toBigNumber(reserve0).applyDecimals(params.decimals0)
+    );
+    const token1Price = price1.multipliedBy(
+      toBigNumber(reserve1).applyDecimals(params.decimals1)
+    );
+    const priceByLP = token0Price.plus(token1Price).dividedBy(totalShares);
+
+    const decimals = Liquidity.getPairDecimals(
+      params.decimals0,
+      params.decimals1
+    );
+
+    return userShares.multipliedBy(priceByLP).dp(decimals);
+  }
+
+  /**
    * Calculate the token balances for given pair Liquidity Position
+   * @param params Liquidity.GetTokenBalancesParams
+   * @returns Liquidity.GetTokenBalancesResult
    */
   static getTokenBalances({
-    pair,
+    reserve0,
+    reserve1,
+    totalSupply,
     lpBalance,
   }: Liquidity.GetTokenBalancesParams): Liquidity.GetTokenBalancesResult {
     const balancePercentage = toBigNumber(lpBalance).dividedBy(
-      toBigNumber(pair.totalSupply)
+      toBigNumber(totalSupply)
     );
 
-    const token0Balance = toBigNumber(pair.reserve0)
+    const balance0 = toBigNumber(reserve0)
       .multipliedBy(balancePercentage)
       .dp(0);
-    const token1Balance = toBigNumber(pair.reserve1)
+    const balance1 = toBigNumber(reserve1)
       .multipliedBy(balancePercentage)
       .dp(0);
 
-    return {
-      token0: token0Balance,
-      token1: token1Balance,
-    };
+    return { balance0, balance1 };
   }
 }
 
@@ -152,24 +202,37 @@ export namespace Liquidity {
   }
 
   export interface GetPositionParams {
-    amountIn: Types.Amount;
-    amountOut: Types.Amount;
-    decimalsIn: Types.Decimals;
-    decimalsOut: Types.Decimals;
-    reserveIn: Types.Number;
-    reserveOut: Types.Number;
+    amount0: Types.Amount;
+    amount1: Types.Amount;
+    decimals0: Types.Decimals;
+    decimals1: Types.Decimals;
+    reserve0: Types.Number;
+    reserve1: Types.Number;
     totalSupply: Types.Number;
   }
 
   export type GetShareOfPool = GetPositionParams;
 
+  export interface GetUserPositionValue {
+    price0: Types.Amount;
+    price1: Types.Amount;
+    reserve0: Types.Number;
+    reserve1: Types.Number;
+    decimals0: Types.Decimals;
+    decimals1: Types.Decimals;
+    totalShares: Types.Amount;
+    userShares: Types.Amount;
+  }
+
   export interface GetTokenBalancesParams {
-    pair: Pair.Model;
+    reserve0: Types.Number;
+    reserve1: Types.Number;
+    totalSupply: Types.Number;
     lpBalance: Pair.Balance;
   }
 
   export interface GetTokenBalancesResult {
-    token0: BigNumber;
-    token1: BigNumber;
+    balance0: BigNumber;
+    balance1: BigNumber;
   }
 }

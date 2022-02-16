@@ -1,6 +1,5 @@
 import { Liquidity } from '@/math';
 import BigNumber from 'bignumber.js';
-import { mockPair } from '../mocks/pair';
 
 describe('Liquidity', () => {
   describe('.getOppositeAmount', () => {
@@ -83,12 +82,12 @@ describe('Liquidity', () => {
   describe('.getPosition', () => {
     test('should return the correct Liquidity Position amount', () => {
       const result = Liquidity.getPosition({
-        amountIn: '0.00004466',
-        decimalsIn: 8,
-        amountOut: '0.000719793445',
-        decimalsOut: 12,
-        reserveIn: '1463673195459',
-        reserveOut: '235806336613029018',
+        amount0: '0.00004466',
+        decimals0: 8,
+        amount1: '0.000719793445',
+        decimals1: 12,
+        reserve0: '1463673195459',
+        reserve1: '235806336613029018',
         totalSupply: '571854896330929',
       });
 
@@ -97,12 +96,12 @@ describe('Liquidity', () => {
 
     test('should return the correct Liquidity Position amount for empty reserves', () => {
       const result = Liquidity.getPosition({
-        amountIn: '2',
-        decimalsIn: 4,
-        amountOut: '2',
-        decimalsOut: 5,
-        reserveIn: '0',
-        reserveOut: '0',
+        amount0: '2',
+        decimals0: 4,
+        amount1: '2',
+        decimals1: 5,
+        reserve0: '0',
+        reserve1: '0',
         totalSupply: '0',
       });
 
@@ -113,12 +112,12 @@ describe('Liquidity', () => {
   describe('.getShareOfPool', () => {
     test('should return the correct Liquidity Position share of a pool (case 1)', () => {
       const result = Liquidity.getShareOfPool({
-        amountIn: '0.00004466',
-        decimalsIn: 8,
-        amountOut: '0.000719793445',
-        decimalsOut: 12,
-        reserveIn: '1463673195459',
-        reserveOut: '235806336613029018',
+        amount0: '0.00004466',
+        decimals0: 8,
+        amount1: '0.000719793445',
+        decimals1: 12,
+        reserve0: '1463673195459',
+        reserve1: '235806336613029018',
         totalSupply: '571854896330929',
       });
 
@@ -127,12 +126,12 @@ describe('Liquidity', () => {
 
     test('should return the correct Liquidity Position share of a pool (case 2)', () => {
       const result = Liquidity.getShareOfPool({
-        amountIn: '2',
-        decimalsIn: 8,
-        amountOut: '2',
-        decimalsOut: 8,
-        reserveIn: '200000000',
-        reserveOut: '200000000',
+        amount0: '2',
+        decimals0: 8,
+        amount1: '2',
+        decimals1: 8,
+        reserve0: '200000000',
+        reserve1: '200000000',
         totalSupply: '62246',
       });
 
@@ -141,12 +140,12 @@ describe('Liquidity', () => {
 
     test('should return the correct Liquidity Position share of a pool for empty reserves', () => {
       const result = Liquidity.getShareOfPool({
-        amountIn: '2',
-        decimalsIn: 4,
-        amountOut: '2',
-        decimalsOut: 5,
-        reserveIn: '0',
-        reserveOut: '0',
+        amount0: '2',
+        decimals0: 4,
+        amount1: '2',
+        decimals1: 5,
+        reserve0: '0',
+        reserve1: '0',
         totalSupply: '0',
       });
 
@@ -154,32 +153,49 @@ describe('Liquidity', () => {
     });
   });
 
+  describe('.getUserPositionValue', () => {
+    test('should return correct user position value', () => {
+      const result = Liquidity.getUserPositionValue({
+        price0: '1',
+        price1: '1',
+        decimals0: 8,
+        decimals1: 8,
+        reserve0: 100,
+        reserve1: 100,
+        totalShares: '200',
+        userShares: '500',
+      });
+
+      expect(result).toEqual(new BigNumber('0.000005'));
+    });
+  });
+
   describe('.getTokenBalances', () => {
     test('should return the correct token balances (case 1)', () => {
-      const pair = mockPair({
+      const result = Liquidity.getTokenBalances({
         reserve0: BigInt('10000'),
         reserve1: BigInt('30000'),
         totalSupply: BigInt('40000'),
+        lpBalance: 20000,
       });
-      const result = Liquidity.getTokenBalances({ pair, lpBalance: 20000 });
 
       expect(result).toEqual({
-        token0: new BigNumber('5000'),
-        token1: new BigNumber('15000'),
+        balance0: new BigNumber('5000'),
+        balance1: new BigNumber('15000'),
       });
     });
 
     test('should return the correct token balances (case 2)', () => {
-      const pair = mockPair({
+      const result = Liquidity.getTokenBalances({
         reserve0: BigInt('10000'),
         reserve1: BigInt('30000'),
         totalSupply: BigInt('17921'),
+        lpBalance: 8961,
       });
-      const result = Liquidity.getTokenBalances({ pair, lpBalance: 8961 });
 
       expect(result).toEqual({
-        token0: new BigNumber('5000'),
-        token1: new BigNumber('15000'),
+        balance0: new BigNumber('5000'),
+        balance1: new BigNumber('15000'),
       });
     });
   });
