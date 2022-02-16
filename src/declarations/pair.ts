@@ -1,4 +1,5 @@
 import { SwapIDL } from '@/declarations';
+import { Types } from '..';
 
 export namespace Pair {
   export type Model = SwapIDL.PairInfoExt;
@@ -9,7 +10,7 @@ export namespace Pair {
     };
   };
 
-  export type Balance = number;
+  export type Balance = Types.Number;
 
   export type Balances = {
     [canisterId: string]: {
