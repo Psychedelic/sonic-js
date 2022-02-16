@@ -241,16 +241,16 @@ Liquidity.getPairDecimals(token0Decimals: Types.Decimals, token1Decimals: Types.
 Calculate the pair decimals for given tokens decimals
 
 ```ts
-Liquidity.getAddPosition(params: Liquidity.GetPositionParams): BigNumber
+Liquidity.getPosition(params: Liquidity.GetPositionParams): BigNumber
 ```
 
 Calculate the Liquidity Position for given amounts of a pair of tokens that's going to be added
 
 ```ts
-Liquidity.getAddPercentage(params: Liquidity.GetPercentageStringParams): BigNumber
+Liquidity.getShareOfPool(params: Liquidity.GetShareOfPoolParams): BigNumber
 ```
 
-Calculate the Liquidity Position percentage that is going to be received for adding an amount of pair of tokens
+Calculate Share of a pool of the position based on total supply
 
 ```ts
 Liquidity.getTokenBalances(params: Liquidity.GetTokenBalancesParams): Liquidity.GetTokenBalancesResult
@@ -275,10 +275,10 @@ toBigNumber(num?: Types.Number): BigNumber
 Converts a value to a BigNumber
 
 ```ts
-exponential(decimals: Types.Number): BigNumber
+toExponential(decimals: Types.Number): BigNumber
 ```
 
-Create a exponential notation by given decimals
+Create a toExponential notation by given decimals
 
 ```ts
 formatAmount(amount: Types.Amount): string

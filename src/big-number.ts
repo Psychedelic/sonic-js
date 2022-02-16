@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js';
-import { exponential } from '@/utils';
+import { toExponential } from '@/utils';
 
 BigNumber.config({ EXPONENTIAL_AT: 99, ROUNDING_MODE: BigNumber.ROUND_FLOOR });
 
@@ -23,14 +23,14 @@ BigNumber.prototype.toBigInt = function (): bigint {
  * Apply decimals to a number
  */
 BigNumber.prototype.applyDecimals = function (decimals: number): BigNumber {
-  return this.dividedBy(exponential(decimals)).dp(decimals);
+  return this.dividedBy(toExponential(decimals)).dp(decimals);
 };
 
 /**
  * Removes decimals from a number
  */
 BigNumber.prototype.removeDecimals = function (decimals: number): BigNumber {
-  return this.dp(decimals).multipliedBy(exponential(decimals));
+  return this.dp(decimals).multipliedBy(toExponential(decimals));
 };
 
 /**

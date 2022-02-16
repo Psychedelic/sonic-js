@@ -11,6 +11,7 @@ export class Swap {
 
   /**
    * Calculate the resultant amount of a swap
+   * @returns BigNumber
    */
   static getAmount(params: Swap.GetAmountParams): BigNumber {
     const amountIn = toBigNumber(params.amountIn).removeDecimals(
@@ -60,6 +61,7 @@ export class Swap {
 
   /**
    * Calculate the price impact based on given amounts and prices
+   * @returns BigNumber
    */
   static getPriceImpact(params: Swap.GetPriceImpactParams): BigNumber {
     const amountIn = toBigNumber(params.amountIn);
