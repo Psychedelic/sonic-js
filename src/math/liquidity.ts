@@ -171,22 +171,36 @@ export class Liquidity {
    * @param params Liquidity.GetTokenBalancesParams
    * @returns Liquidity.GetTokenBalancesResult
    */
-  static getTokenBalances({
-    reserve0,
-    reserve1,
-    totalSupply,
-    lpBalance,
-  }: Liquidity.GetTokenBalancesParams): Liquidity.GetTokenBalancesResult {
+  static getTokenBalances(
+    params: Liquidity.GetTokenBalancesParams
+  ): Liquidity.GetTokenBalancesResult {
+    const reserve0 = toBigNumber(params.reserve0);
+    const reserve1 = toBigNumber(params.reserve1);
+    const totalSupply = toBigNumber(params.totalSupply);
+    const lpBalance = toBigNumber(params.lpBalance);
+
+    const object = { reserve0, reserve1, totalSupply, lpBalance };
+
+    if (checkIfObject(object, { isNotANumber: true, isZero: true })) {
+      return {
+        balance0: toBigNumber(0),
+        balance1: toBigNumber(0),
+      };
+    }
+
     const balancePercentage = toBigNumber(lpBalance).dividedBy(
       toBigNumber(totalSupply)
     );
 
     const balance0 = toBigNumber(reserve0)
       .multipliedBy(balancePercentage)
-      .dp(0);
+      .applyDecimals(params.decimals0)
+      .dp(params.decimals0);
+
     const balance1 = toBigNumber(reserve1)
       .multipliedBy(balancePercentage)
-      .dp(0);
+      .applyDecimals(params.decimals1)
+      .dp(params.decimals1);
 
     return { balance0, balance1 };
   }
@@ -214,17 +228,19 @@ export namespace Liquidity {
   export type GetShareOfPool = GetPositionParams;
 
   export interface GetUserPositionValue {
+    decimals0: Types.Decimals;
+    decimals1: Types.Decimals;
     price0: Types.Amount;
     price1: Types.Amount;
     reserve0: Types.Number;
     reserve1: Types.Number;
-    decimals0: Types.Decimals;
-    decimals1: Types.Decimals;
     totalShares: Types.Amount;
     userShares: Types.Amount;
   }
 
   export interface GetTokenBalancesParams {
+    decimals0: Types.Decimals;
+    decimals1: Types.Decimals;
     reserve0: Types.Number;
     reserve1: Types.Number;
     totalSupply: Types.Number;
