@@ -44,3 +44,10 @@ export const parseAllPairs = (response: SwapIDL.PairInfoExt[]): Pair.List => {
     };
   }, {} as Pair.List);
 };
+
+/**
+ * Get deadline for swap canister requests
+ */
+export const getDeadline = (): bigint => {
+  return BigInt((new Date().getTime() + 5 * 60 * 1000) * 10000000);
+};

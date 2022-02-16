@@ -1,4 +1,8 @@
-import { parseSupportedTokenList, parseAllPairs } from '@/integrations';
+import {
+  parseSupportedTokenList,
+  parseAllPairs,
+  getDeadline,
+} from '@/integrations';
 import { mockAllPairsResponse } from '../../mocks/pair';
 import { mockSupportedTokenListResponse } from '../../mocks/token';
 
@@ -37,5 +41,15 @@ describe('parseAllPairs', () => {
       reserve0: responseMock[0].reserve1,
       reserve1: responseMock[0].reserve0,
     });
+  });
+});
+
+describe('getDeadline', () => {
+  test('should return a deadline', () => {
+    jest.useFakeTimers();
+    jest.setSystemTime(1);
+
+    const deadline = getDeadline();
+    expect(deadline).toEqual(BigInt(3000010000000));
   });
 });

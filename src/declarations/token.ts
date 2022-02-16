@@ -1,10 +1,11 @@
 import BigNumber from 'bignumber.js';
+import { Types } from '.';
 import { SwapIDL } from './did';
 
 export namespace Token {
   export type Metadata = SwapIDL.TokenInfoExt & {
     logo: string;
-    price?: string;
+    price?: Types.Amount;
   };
 
   export type MetadataList = {
@@ -13,10 +14,16 @@ export namespace Token {
 
   export interface Data<M = Metadata> {
     metadata?: M;
-    amount: string;
+    amount: Types.Amount;
   }
 
+  export type Balance = {
+    sonic: BigNumber;
+    token: BigNumber;
+    total: BigNumber;
+  };
+
   export type BalanceList = {
-    [canisterId: string]: BigNumber;
+    [canisterId: string]: Balance;
   };
 }
