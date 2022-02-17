@@ -35,6 +35,10 @@ describe('SwapCanisterController', () => {
     sut = new SwapCanisterController(swapActor);
   });
 
+  test('should instantiate without actor param', () => {
+    expect(() => new SwapCanisterController()).not.toThrow();
+  });
+
   describe('.getTokenList', () => {
     test('should return a parsed list of tokens', async () => {
       const response = await sut.getTokenList();

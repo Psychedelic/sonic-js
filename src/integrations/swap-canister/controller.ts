@@ -1,10 +1,10 @@
-import { Default, Pair, Token, Types } from '@/declarations';
+import { Default, Pair, Token, Types, SwapIDL } from '@/declarations';
 import { Assets, Swap } from '@/math';
 import { toBigNumber } from '@/utils';
 import { Actor } from '@dfinity/agent';
 import { Principal } from '@dfinity/principal';
 import { getDeadline } from '.';
-import { createTokenActor, SwapActor } from '..';
+import { ActorAdapter, createTokenActor, SwapActor } from '..';
 import { parseSupportedTokenList, parseAllPairs } from './utils';
 
 /**
@@ -20,7 +20,12 @@ export class SwapCanisterController {
    * Create an instance that communicates with swap canister
    * Some of the functions uses the actor agent identity to identify the user that is interacting
    */
-  constructor(private swapActor: SwapActor) {}
+  constructor(
+    private swapActor: SwapActor = ActorAdapter.createAnonymousActor<SwapIDL.Swap>(
+      Default.IC_HOST,
+      SwapIDL.factory
+    )
+  ) {}
 
   /**
    * Get the list of supported tokens from swap canister
@@ -97,7 +102,10 @@ export class SwapCanisterController {
     tokenId,
   }: SwapCanisterController.GetTokenBalanceParams): Promise<Token.Balance> {
     const principal = Principal.fromText(principalId);
-    const tokenActor = await createTokenActor({ canisterId: tokenId });
+    const tokenActor = await createTokenActor({
+      canisterId: tokenId,
+      actorAdapter: ActorAdapter.adapterOf(this.swapActor),
+    });
     const tokenDecimals = await tokenActor.decimals();
 
     const tokenBalance = toBigNumber(
@@ -140,7 +148,10 @@ export class SwapCanisterController {
 
     if (!this.tokenList) await this.getTokenList();
 
-    const tokenActor = await createTokenActor({ canisterId: tokenId });
+    const tokenActor = await createTokenActor({
+      canisterId: tokenId,
+      actorAdapter: ActorAdapter.adapterOf(this.swapActor),
+    });
 
     const swapPrincipal = Principal.fromText(Default.SWAP_CANISTER_ID);
     const parsedAmount = toBigNumber(amount).removeDecimals(
