@@ -1,5 +1,5 @@
 import { Default, Pair, Token, Types } from '@/declarations';
-import { Swap } from '@/math';
+import { Assets, Swap } from '@/math';
 import { toBigNumber } from '@/utils';
 import { Actor } from '@dfinity/agent';
 import { Principal } from '@dfinity/principal';
@@ -237,8 +237,12 @@ export class SwapCanisterController {
     });
 
     if (balance.sonic.lt(amountIn)) {
+      const maxDepositAmount = Assets.getMaxDepositAmount({
+        token: this.tokenList[tokenIn],
+        balance: balance.token,
+      });
       const toDeposit = toBigNumber(amountIn).minus(balance.sonic);
-      if (balance.token.lt(toDeposit)) {
+      if (maxDepositAmount.lt(toDeposit)) {
         throw new Error(`Not enough ${tokenIn} to swap`);
       }
       await this.deposit({ tokenId: tokenIn, amount: toDeposit.toString() });

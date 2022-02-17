@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js';
-import { toBigNumber, Token } from '..';
+import { toBigNumber, Token, Types } from '..';
 
 export class Assets {
   /**
@@ -16,7 +16,7 @@ export class Assets {
   }: Assets.GetMaxDepositAmountParams): BigNumber {
     const fee = toBigNumber(token.fee).applyDecimals(token.decimals);
 
-    const maxAmount = balance.token.minus(fee.multipliedBy(2));
+    const maxAmount = balance.minus(fee.multipliedBy(2));
 
     if (maxAmount.lte(0)) return toBigNumber(0);
     return maxAmount;
@@ -29,27 +29,25 @@ export class Assets {
    * @param params Assets.GetMaxWithdrawAmountParams
    * @returns BigNumber
    */
-  static getWithdrawAmount({
-    token,
-    balance,
-  }: Assets.GetWithdrawAmountParams): BigNumber {
-    const fee = toBigNumber(token.fee).applyDecimals(token.decimals);
+  static getWithdrawAmount(params: Assets.GetWithdrawAmountParams): BigNumber {
+    const fee = toBigNumber(params.token.fee).applyDecimals(
+      params.token.decimals
+    );
+    const amount = toBigNumber(params.amount).minus(fee);
 
-    const maxAmount = balance.sonic.minus(fee);
-
-    if (maxAmount.lte(0)) return toBigNumber(0);
-    return maxAmount;
+    if (amount.lte(0)) return toBigNumber(0);
+    return amount;
   }
 }
 
 export namespace Assets {
   export interface GetMaxDepositAmountParams {
     token: Token.Metadata;
-    balance: Token.Balance;
+    balance: Token.Balance['token'];
   }
 
   export interface GetWithdrawAmountParams {
     token: Token.Metadata;
-    balance: Token.Balance;
+    amount: Types.Amount;
   }
 }
