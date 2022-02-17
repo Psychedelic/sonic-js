@@ -2,6 +2,11 @@ import BigNumber from 'bignumber.js';
 import { toBigNumber, Token } from '..';
 
 export class Assets {
+  /**
+   * Calculates the maximal amount of tokens that can be deposited from given token balance
+   * @param params Assets.GetMaxDepositAmountParams
+   * @returns BigNumber
+   */
   static getMaxDepositAmount({
     token,
     balance,
@@ -14,6 +19,11 @@ export class Assets {
     return maxAmount;
   }
 
+  /**
+   * Calculates the maximal amount of tokens that can be withdrawn from given sonic balance
+   * @param params Assets.GetMaxWithdrawAmountParams
+   * @returns BigNumber
+   */
   static getMaxWithdrawAmount({
     token,
     balance,
