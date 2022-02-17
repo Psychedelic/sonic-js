@@ -3,7 +3,10 @@ import { toBigNumber, Token } from '..';
 
 export class Assets {
   /**
-   * Calculates the maximal amount of tokens that can be deposited from given token balance
+   * Calculates the maximal amount of tokens that can be deposited from given token balance.
+   * The calculation applies the token fee twice.
+   * Fee paid for approval and fee paid for deposit.
+   *
    * @param params Assets.GetMaxDepositAmountParams
    * @returns BigNumber
    */
@@ -20,14 +23,16 @@ export class Assets {
   }
 
   /**
-   * Calculates the maximal amount of tokens that can be withdrawn from given sonic balance
+   * Calculates the resultant amount of tokens after sonic withdraw.
+   * The calculation applies the token fee.
+   *
    * @param params Assets.GetMaxWithdrawAmountParams
    * @returns BigNumber
    */
-  static getMaxWithdrawAmount({
+  static getWithdrawAmount({
     token,
     balance,
-  }: Assets.GetMaxWithdrawAmountParams): BigNumber {
+  }: Assets.GetWithdrawAmountParams): BigNumber {
     const fee = toBigNumber(token.fee).applyDecimals(token.decimals);
 
     const maxAmount = balance.sonic.minus(fee);
@@ -43,7 +48,7 @@ export namespace Assets {
     balance: Token.Balance;
   }
 
-  export interface GetMaxWithdrawAmountParams {
+  export interface GetWithdrawAmountParams {
     token: Token.Metadata;
     balance: Token.Balance;
   }

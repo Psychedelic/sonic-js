@@ -23,7 +23,7 @@ describe('Assets', () => {
     );
   });
 
-  describe('.getMaxWithdrawAmount', () => {
+  describe('.getWithdrawAmount', () => {
     test.each`
       token                                                 | balance                                           | expected
       ${mockToken()}                                        | ${mockBalance({ sonic: toBigNumber(0) })}         | ${0}
@@ -36,7 +36,7 @@ describe('Assets', () => {
     `(
       'should return the expected BigNumber',
       ({ token, balance, expected }) => {
-        expect(Assets.getMaxWithdrawAmount({ token, balance })).toEqual(
+        expect(Assets.getWithdrawAmount({ token, balance })).toEqual(
           toBigNumber(expected)
         );
       }
