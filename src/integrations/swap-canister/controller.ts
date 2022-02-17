@@ -126,11 +126,17 @@ export class SwapCanisterController {
   }
 
   /**
-   * Get the principal of the agent
+   * Get the principal of the agent.
+   * It is going to throw if the principal is anonymous
    */
   async getAgentPrincipal(): Promise<Principal> {
     const agent = Actor.agentOf(this.swapActor);
     if (!agent) throw new Error('Agent principal not found');
+
+    const principal = await agent.getPrincipal();
+
+    if (principal.toString() === Principal.anonymous().toString())
+      throw new Error('Agent principal is anonymous');
 
     return agent.getPrincipal();
   }

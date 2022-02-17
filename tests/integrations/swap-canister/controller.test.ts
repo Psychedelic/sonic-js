@@ -190,6 +190,21 @@ describe('SwapCanisterController', () => {
       const promise = sut.getAgentPrincipal();
       await expect(promise).rejects.toThrow();
     });
+
+    test('should throw if the principal is anonymous', async () => {
+      sut = new SwapCanisterController();
+
+      (Actor.agentOf as jest.Mock).mockImplementationOnce(() =>
+        mockAgent({
+          getPrincipal: () => Promise.resolve(Principal.anonymous()),
+        })
+      );
+      const promise = sut.getAgentPrincipal();
+
+      await expect(promise).rejects.toThrowError(
+        'Agent principal is anonymous'
+      );
+    });
   });
 
   describe('.approve', () => {
