@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[integrations/actor/factory.ts:6](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/factory.ts#L6)
+[integrations/actor/factory.ts:6](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/actor/factory.ts#L6)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[integrations/actor/factory.ts:5](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/factory.ts#L5)
+[integrations/actor/factory.ts:5](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/actor/factory.ts#L5)

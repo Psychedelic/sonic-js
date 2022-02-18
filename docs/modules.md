@@ -76,7 +76,7 @@
 
 #### Defined in
 
-[utils/object.ts:3](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/utils/object.ts#L3)
+[utils/object.ts:3](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/utils/object.ts#L3)
 
 ___
 
@@ -86,7 +86,7 @@ ___
 
 #### Defined in
 
-[integrations/actor/factory.ts:9](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/factory.ts#L9)
+[integrations/actor/factory.ts:9](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/actor/factory.ts#L9)
 
 ___
 
@@ -96,7 +96,7 @@ ___
 
 #### Defined in
 
-[integrations/actor/factory.ts:27](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/factory.ts#L27)
+[integrations/actor/factory.ts:27](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/actor/factory.ts#L27)
 
 ## Variables
 
@@ -114,7 +114,7 @@ ___
 
 #### Defined in
 
-[declarations/default.ts:1](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/default.ts#L1)
+[declarations/default.ts:1](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/declarations/default.ts#L1)
 
 ## Functions
 
@@ -137,7 +137,7 @@ Checking if all values in object are valid
 
 #### Defined in
 
-[utils/object.ts:13](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/utils/object.ts#L13)
+[utils/object.ts:13](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/utils/object.ts#L13)
 
 ___
 
@@ -160,7 +160,7 @@ If no option is provided, the actor will be created using the default canister o
 
 #### Defined in
 
-[integrations/actor/factory.ts:15](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/factory.ts#L15)
+[integrations/actor/factory.ts:15](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/actor/factory.ts#L15)
 
 ___
 
@@ -183,7 +183,7 @@ If no option is provided, the actor will be created using the default canister o
 
 #### Defined in
 
-[integrations/actor/factory.ts:33](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/factory.ts#L33)
+[integrations/actor/factory.ts:33](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/actor/factory.ts#L33)
 
 ___
 
@@ -212,7 +212,7 @@ This is required for parsing objects that have BigInt values.
 
 #### Defined in
 
-[utils/serialization.ts:5](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/utils/serialization.ts#L5)
+[utils/serialization.ts:5](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/utils/serialization.ts#L5)
 
 ___
 
@@ -236,7 +236,7 @@ ___
 
 #### Defined in
 
-[utils/maximal-paths.ts:6](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/utils/maximal-paths.ts#L6)
+[utils/maximal-paths.ts:6](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/utils/maximal-paths.ts#L6)
 
 ___
 
@@ -258,7 +258,7 @@ Formats an amount to a small string with scientific notation
 
 #### Defined in
 
-[utils/format.ts:59](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/utils/format.ts#L59)
+[utils/format.ts:59](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/utils/format.ts#L59)
 
 ___
 
@@ -274,7 +274,7 @@ Get deadline for swap canister requests
 
 #### Defined in
 
-[integrations/swap-canister/utils.ts:51](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/swap-canister/utils.ts#L51)
+[integrations/swap-canister/utils.ts:51](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/swap-canister/utils.ts#L51)
 
 ___
 
@@ -296,7 +296,7 @@ Parses a list of pairs from swap canister request
 
 #### Defined in
 
-[integrations/swap-canister/utils.ts:20](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/swap-canister/utils.ts#L20)
+[integrations/swap-canister/utils.ts:20](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/swap-canister/utils.ts#L20)
 
 ___
 
@@ -318,7 +318,7 @@ Parses a list of supported tokens from swap canister request
 
 #### Defined in
 
-[integrations/swap-canister/utils.ts:6](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/swap-canister/utils.ts#L6)
+[integrations/swap-canister/utils.ts:6](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/swap-canister/utils.ts#L6)
 
 ___
 
@@ -347,7 +347,7 @@ This is required for parsing objects that have BigInt values.
 
 #### Defined in
 
-[utils/serialization.ts:22](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/utils/serialization.ts#L22)
+[utils/serialization.ts:22](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/utils/serialization.ts#L22)
 
 ___
 
@@ -370,7 +370,7 @@ Converts a value to a BigNumber
 
 #### Defined in
 
-[utils/format.ts:15](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/utils/format.ts#L15)
+[utils/format.ts:15](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/utils/format.ts#L15)
 
 ___
 
@@ -392,4 +392,4 @@ Create an exponential notation by given decimals
 
 #### Defined in
 
-[utils/format.ts:48](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/utils/format.ts#L48)
+[utils/format.ts:48](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/utils/format.ts#L48)

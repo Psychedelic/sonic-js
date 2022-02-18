@@ -35,7 +35,7 @@ Default fee for swap (0.3%)
 
 #### Defined in
 
-[math/swap.ts:10](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L10)
+[math/swap.ts:10](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/swap.ts#L10)
 
 ## Methods
 
@@ -59,7 +59,7 @@ BigNumber
 
 #### Defined in
 
-[math/swap.ts:16](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L16)
+[math/swap.ts:16](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/swap.ts#L16)
 
 ___
 
@@ -83,7 +83,7 @@ BigNumber
 
 #### Defined in
 
-[math/swap.ts:42](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L42)
+[math/swap.ts:42](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/swap.ts#L42)
 
 ___
 
@@ -107,7 +107,7 @@ BigNumber
 
 #### Defined in
 
-[math/swap.ts:66](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L66)
+[math/swap.ts:66](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/swap.ts#L66)
 
 ___
 
@@ -129,4 +129,4 @@ Calculate the best token path to realize the swap and the output amount
 
 #### Defined in
 
-[math/swap.ts:104](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L104)
+[math/swap.ts:104](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/swap.ts#L104)

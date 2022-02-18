@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[math/assets.ts:53](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/assets.ts#L53)
+[math/assets.ts:53](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/assets.ts#L53)
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-[math/assets.ts:52](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/assets.ts#L52)
+[math/assets.ts:52](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/assets.ts#L52)

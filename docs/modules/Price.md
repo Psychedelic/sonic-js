@@ -23,4 +23,4 @@
 
 #### Defined in
 
-[math/price.ts:21](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/price.ts#L21)
+[math/price.ts:21](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/price.ts#L21)

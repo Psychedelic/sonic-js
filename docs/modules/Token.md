@@ -31,7 +31,7 @@
 
 #### Defined in
 
-[declarations/token.ts:20](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/token.ts#L20)
+[declarations/token.ts:20](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/declarations/token.ts#L20)
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 #### Defined in
 
-[declarations/token.ts:26](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/token.ts#L26)
+[declarations/token.ts:26](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/declarations/token.ts#L26)
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 #### Defined in
 
-[declarations/token.ts:6](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/token.ts#L6)
+[declarations/token.ts:6](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/declarations/token.ts#L6)
 
 ___
 
@@ -69,4 +69,4 @@ ___
 
 #### Defined in
 
-[declarations/token.ts:11](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/token.ts#L11)
+[declarations/token.ts:11](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/declarations/token.ts#L11)

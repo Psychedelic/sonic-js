@@ -21,7 +21,7 @@
 
 #### Defined in
 
-[math/swap.ts:157](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L157)
+[math/swap.ts:157](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/swap.ts#L157)
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 #### Defined in
 
-[math/swap.ts:158](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L158)
+[math/swap.ts:158](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/swap.ts#L158)
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 #### Defined in
 
-[math/swap.ts:159](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L159)
+[math/swap.ts:159](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/swap.ts#L159)
 
 ___
 
@@ -51,4 +51,4 @@ ___
 
 #### Defined in
 
-[math/swap.ts:160](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L160)
+[math/swap.ts:160](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/swap.ts#L160)

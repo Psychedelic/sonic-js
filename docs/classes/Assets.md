@@ -43,7 +43,7 @@ BigNumber
 
 #### Defined in
 
-[math/assets.ts:13](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/assets.ts#L13)
+[math/assets.ts:13](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/assets.ts#L13)
 
 ___
 
@@ -68,4 +68,4 @@ BigNumber
 
 #### Defined in
 
-[math/assets.ts:32](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/assets.ts#L32)
+[math/assets.ts:32](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/assets.ts#L32)

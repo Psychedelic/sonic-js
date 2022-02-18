@@ -41,7 +41,7 @@ It can receive a provider to identify the actor like a wallet provider (e.g. Plu
 
 #### Defined in
 
-[integrations/actor/adapter.ts:13](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L13)
+[integrations/actor/adapter.ts:13](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/actor/adapter.ts#L13)
 
 ## Properties
 
@@ -51,7 +51,7 @@ It can receive a provider to identify the actor like a wallet provider (e.g. Plu
 
 #### Defined in
 
-[integrations/actor/adapter.ts:11](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L11)
+[integrations/actor/adapter.ts:11](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/actor/adapter.ts#L11)
 
 ## Methods
 
@@ -84,7 +84,7 @@ Creates a new actor or use from memory if is already created.
 
 #### Defined in
 
-[integrations/actor/adapter.ts:24](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L24)
+[integrations/actor/adapter.ts:24](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/actor/adapter.ts#L24)
 
 ___
 
@@ -106,7 +106,7 @@ Creates the agent from provider.
 
 #### Defined in
 
-[integrations/actor/adapter.ts:66](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L66)
+[integrations/actor/adapter.ts:66](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/actor/adapter.ts#L66)
 
 ___
 
@@ -128,7 +128,7 @@ Gets the adapter from an actor
 
 #### Defined in
 
-[integrations/actor/adapter.ts:78](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L78)
+[integrations/actor/adapter.ts:78](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/actor/adapter.ts#L78)
 
 ___
 
@@ -158,4 +158,4 @@ Create an anonymous actor
 
 #### Defined in
 
-[integrations/actor/adapter.ts:88](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L88)
+[integrations/actor/adapter.ts:88](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/actor/adapter.ts#L88)

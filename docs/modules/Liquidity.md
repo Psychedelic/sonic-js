@@ -24,4 +24,4 @@
 
 #### Defined in
 
-[math/liquidity.ts:226](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L226)
+[math/liquidity.ts:226](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/liquidity.ts#L226)

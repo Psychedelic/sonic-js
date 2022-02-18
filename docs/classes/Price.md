@@ -38,4 +38,4 @@ Calculate the total amount price by a given amount
 
 #### Defined in
 
-[math/price.ts:8](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/price.ts#L8)
+[math/price.ts:8](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/price.ts#L8)

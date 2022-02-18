@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[declarations/pair.ts:13](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/pair.ts#L13)
+[declarations/pair.ts:13](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/declarations/pair.ts#L13)
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 #### Defined in
 
-[declarations/pair.ts:15](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/pair.ts#L15)
+[declarations/pair.ts:15](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/declarations/pair.ts#L15)
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 #### Defined in
 
-[declarations/pair.ts:7](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/pair.ts#L7)
+[declarations/pair.ts:7](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/declarations/pair.ts#L7)
 
 ___
 
@@ -57,4 +57,4 @@ ___
 
 #### Defined in
 
-[declarations/pair.ts:5](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/pair.ts#L5)
+[declarations/pair.ts:5](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/declarations/pair.ts#L5)

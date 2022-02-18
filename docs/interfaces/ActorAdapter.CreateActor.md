@@ -27,7 +27,7 @@
 
 #### Defined in
 
-[integrations/actor/adapter.ts:123](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L123)
+[integrations/actor/adapter.ts:123](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/actor/adapter.ts#L123)
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 #### Defined in
 
-[integrations/actor/adapter.ts:122](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L122)
+[integrations/actor/adapter.ts:122](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/actor/adapter.ts#L122)
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 #### Defined in
 
-[integrations/actor/adapter.ts:124](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L124)
+[integrations/actor/adapter.ts:124](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/actor/adapter.ts#L124)
 
 ___
 
@@ -57,4 +57,4 @@ ___
 
 #### Defined in
 
-[integrations/actor/adapter.ts:125](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L125)
+[integrations/actor/adapter.ts:125](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/actor/adapter.ts#L125)

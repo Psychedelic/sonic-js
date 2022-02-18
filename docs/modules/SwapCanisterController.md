@@ -27,7 +27,7 @@
 
 #### Defined in
 
-[integrations/swap-canister/controller.ts:294](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/swap-canister/controller.ts#L294)
+[integrations/swap-canister/controller.ts:294](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/swap-canister/controller.ts#L294)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[integrations/swap-canister/controller.ts:299](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/swap-canister/controller.ts#L299)
+[integrations/swap-canister/controller.ts:299](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/swap-canister/controller.ts#L299)
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 #### Defined in
 
-[integrations/swap-canister/controller.ts:316](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/swap-canister/controller.ts#L316)
+[integrations/swap-canister/controller.ts:316](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/swap-canister/controller.ts#L316)
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 #### Defined in
 
-[integrations/swap-canister/controller.ts:309](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/swap-canister/controller.ts#L309)
+[integrations/swap-canister/controller.ts:309](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/swap-canister/controller.ts#L309)
 
 ___
 
@@ -97,4 +97,4 @@ ___
 
 #### Defined in
 
-[integrations/swap-canister/controller.ts:304](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/swap-canister/controller.ts#L304)
+[integrations/swap-canister/controller.ts:304](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/swap-canister/controller.ts#L304)

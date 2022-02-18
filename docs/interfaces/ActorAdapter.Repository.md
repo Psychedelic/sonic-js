@@ -39,4 +39,4 @@
 
 #### Defined in
 
-[integrations/actor/adapter.ts:115](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L115)
+[integrations/actor/adapter.ts:115](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/integrations/actor/adapter.ts#L115)

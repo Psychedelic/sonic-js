@@ -37,7 +37,7 @@ Constant from Swap Canister
 
 #### Defined in
 
-[math/liquidity.ts:12](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L12)
+[math/liquidity.ts:12](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/liquidity.ts#L12)
 
 ## Methods
 
@@ -61,7 +61,7 @@ BigNumber
 
 #### Defined in
 
-[math/liquidity.ts:35](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L35)
+[math/liquidity.ts:35](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/liquidity.ts#L35)
 
 ___
 
@@ -86,7 +86,7 @@ Types.Decimals
 
 #### Defined in
 
-[math/liquidity.ts:19](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L19)
+[math/liquidity.ts:19](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/liquidity.ts#L19)
 
 ___
 
@@ -110,7 +110,7 @@ BigNumber
 
 #### Defined in
 
-[math/liquidity.ts:60](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L60)
+[math/liquidity.ts:60](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/liquidity.ts#L60)
 
 ___
 
@@ -134,7 +134,7 @@ BigNumber
 
 #### Defined in
 
-[math/liquidity.ts:112](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L112)
+[math/liquidity.ts:112](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/liquidity.ts#L112)
 
 ___
 
@@ -158,7 +158,7 @@ Liquidity.GetTokenBalancesResult
 
 #### Defined in
 
-[math/liquidity.ts:174](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L174)
+[math/liquidity.ts:174](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/liquidity.ts#L174)
 
 ___
 
@@ -182,4 +182,4 @@ BigNumber
 
 #### Defined in
 
-[math/liquidity.ts:130](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L130)
+[math/liquidity.ts:130](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/liquidity.ts#L130)

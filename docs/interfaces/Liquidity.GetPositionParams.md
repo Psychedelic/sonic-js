@@ -24,7 +24,7 @@
 
 #### Defined in
 
-[math/liquidity.ts:217](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L217)
+[math/liquidity.ts:217](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/liquidity.ts#L217)
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-[math/liquidity.ts:218](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L218)
+[math/liquidity.ts:218](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/liquidity.ts#L218)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[math/liquidity.ts:219](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L219)
+[math/liquidity.ts:219](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/liquidity.ts#L219)
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 #### Defined in
 
-[math/liquidity.ts:220](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L220)
+[math/liquidity.ts:220](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/liquidity.ts#L220)
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 #### Defined in
 
-[math/liquidity.ts:221](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L221)
+[math/liquidity.ts:221](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/liquidity.ts#L221)
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 #### Defined in
 
-[math/liquidity.ts:222](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L222)
+[math/liquidity.ts:222](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/liquidity.ts#L222)
 
 ___
 
@@ -84,4 +84,4 @@ ___
 
 #### Defined in
 
-[math/liquidity.ts:223](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L223)
+[math/liquidity.ts:223](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/math/liquidity.ts#L223)

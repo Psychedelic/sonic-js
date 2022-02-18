@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[utils/maximal-paths.ts:89](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/utils/maximal-paths.ts#L89)
+[utils/maximal-paths.ts:89](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/utils/maximal-paths.ts#L89)
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 #### Defined in
 
-[utils/maximal-paths.ts:95](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/utils/maximal-paths.ts#L95)
+[utils/maximal-paths.ts:95](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/utils/maximal-paths.ts#L95)
 
 ___
 
@@ -59,7 +59,7 @@ ___
 
 #### Defined in
 
-[utils/maximal-paths.ts:99](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/utils/maximal-paths.ts#L99)
+[utils/maximal-paths.ts:99](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/utils/maximal-paths.ts#L99)
 
 ___
 
@@ -73,7 +73,7 @@ ___
 
 #### Defined in
 
-[utils/maximal-paths.ts:104](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/utils/maximal-paths.ts#L104)
+[utils/maximal-paths.ts:104](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/utils/maximal-paths.ts#L104)
 
 ___
 
@@ -87,4 +87,4 @@ ___
 
 #### Defined in
 
-[utils/maximal-paths.ts:85](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/utils/maximal-paths.ts#L85)
+[utils/maximal-paths.ts:85](https://github.com/Psychedelic/sonic-js/blob/cfc7f22/src/utils/maximal-paths.ts#L85)
