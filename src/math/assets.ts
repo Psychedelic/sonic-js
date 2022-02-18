@@ -10,16 +10,16 @@ export class Assets {
    * @param params Assets.GetMaxDepositAmountParams
    * @returns BigNumber
    */
-  static getMaxDepositAmount({
-    token,
-    balance,
-  }: Assets.GetMaxDepositAmountParams): BigNumber {
-    const fee = toBigNumber(token.fee).applyDecimals(token.decimals);
+  static getDepositAmount(params: Assets.GetMaxDepositAmountParams): BigNumber {
+    const fee = toBigNumber(params.token.fee).applyDecimals(
+      params.token.decimals
+    );
+    const amount = toBigNumber(params.amount, {
+      validate: { isNegative: true },
+    }).plus(fee.multipliedBy(2));
 
-    const maxAmount = balance.minus(fee.multipliedBy(2));
-
-    if (maxAmount.lte(0)) return toBigNumber(0);
-    return maxAmount;
+    if (amount.lte(0)) return toBigNumber(0);
+    return amount;
   }
 
   /**
@@ -33,7 +33,9 @@ export class Assets {
     const fee = toBigNumber(params.token.fee).applyDecimals(
       params.token.decimals
     );
-    const amount = toBigNumber(params.amount).minus(fee);
+    const amount = toBigNumber(params.amount, {
+      validate: { isNegative: true },
+    }).minus(fee);
 
     if (amount.lte(0)) return toBigNumber(0);
     return amount;
@@ -43,7 +45,7 @@ export class Assets {
 export namespace Assets {
   export interface GetMaxDepositAmountParams {
     token: Token.Metadata;
-    balance: Token.Balance['token'];
+    amount: Types.Amount;
   }
 
   export interface GetWithdrawAmountParams {

@@ -1,26 +1,33 @@
 import { Assets } from '@/math';
 import { toBigNumber } from '@/utils';
-import { mockBalance, mockToken } from '../mocks/token';
+import { Token } from 'index';
+import { mockToken } from '../mocks/token';
 
 describe('Assets', () => {
   describe('.getMaxDepositAmount', () => {
     test.each`
-      token                                                 | balance                                           | expected
-      ${mockToken()}                                        | ${mockBalance({ token: toBigNumber(0) })}         | ${0}
-      ${mockToken({ decimals: 8, fee: BigInt(200000000) })} | ${mockBalance({ token: toBigNumber(4) })}         | ${0}
-      ${mockToken({ decimals: 8, fee: BigInt(200000000) })} | ${mockBalance({ token: toBigNumber(6) })}         | ${2}
-      ${mockToken({ decimals: 8, fee: BigInt(200000000) })} | ${mockBalance({ token: toBigNumber(1) })}         | ${0}
-      ${mockToken({ decimals: 8, fee: BigInt(2000000) })}   | ${mockBalance({ token: toBigNumber(1) })}         | ${0.96}
-      ${mockToken({ decimals: 0, fee: BigInt(20) })}        | ${mockBalance({ token: toBigNumber(41) })}        | ${1}
-      ${mockToken({ decimals: 0, fee: BigInt(20) })}        | ${mockBalance({ token: toBigNumber(39.999999) })} | ${0}
-    `(
-      'should return the expected BigNumber',
-      ({ token, balance, expected }) => {
-        expect(
-          Assets.getMaxDepositAmount({ token, balance: balance.token })
-        ).toEqual(toBigNumber(expected));
-      }
-    );
+      token                                                 | amount         | expected
+      ${mockToken()}                                        | ${'0'}         | ${0.004}
+      ${mockToken({ decimals: 8, fee: BigInt(200000000) })} | ${'4'}         | ${8}
+      ${mockToken({ decimals: 8, fee: BigInt(200000000) })} | ${'6'}         | ${10}
+      ${mockToken({ decimals: 8, fee: BigInt(200000000) })} | ${'1'}         | ${5}
+      ${mockToken({ decimals: 8, fee: BigInt(2000000) })}   | ${'1'}         | ${1.04}
+      ${mockToken({ decimals: 0, fee: BigInt(20) })}        | ${'41'}        | ${81}
+      ${mockToken({ decimals: 0, fee: BigInt(20) })}        | ${'39.999999'} | ${79.999999}
+    `('should return the expected BigNumber', ({ token, amount, expected }) => {
+      expect(Assets.getDepositAmount({ token, amount })).toEqual(
+        toBigNumber(expected)
+      );
+    });
+
+    test('should throw for negative values', () => {
+      expect(() =>
+        Assets.getDepositAmount({
+          token: mockToken() as Token.Metadata,
+          amount: '-10.00',
+        })
+      ).toThrow();
+    });
   });
 
   describe('.getWithdrawAmount', () => {
@@ -37,6 +44,15 @@ describe('Assets', () => {
       expect(Assets.getWithdrawAmount({ token, amount })).toEqual(
         toBigNumber(expected)
       );
+    });
+
+    test('should throw for negative values', () => {
+      expect(() =>
+        Assets.getWithdrawAmount({
+          token: mockToken() as Token.Metadata,
+          amount: '-10.00',
+        })
+      ).toThrow();
     });
   });
 });
