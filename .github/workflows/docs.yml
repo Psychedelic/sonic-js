@@ -15,7 +15,8 @@ jobs:
           node-version: '14'
           registry-url: https://npm.pkg.github.com/
           scope: '@psychedelic'
-      - run: | 
+      - name: Build Docs
+        run: | 
           npm install
           npm run prepare
           npm run docs
@@ -24,7 +25,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           branch: docs
-          path: docs
+          add-paths: docs
           commit-message: 'chore: update docs'
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
