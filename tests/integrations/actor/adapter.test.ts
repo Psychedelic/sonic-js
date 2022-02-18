@@ -36,7 +36,10 @@ describe('ActorAdapter', () => {
 
     test('should return an already existent actor', async () => {
       const actorMock = mockTokenActor();
-      ActorAdapter.actors[Default.SWAP_CANISTER_ID] = actorMock;
+      ActorAdapter.actors[Default.SWAP_CANISTER_ID] = {
+        actor: actorMock,
+        adapter: new ActorAdapter(),
+      };
 
       const actor = await sut.createActor(
         Default.SWAP_CANISTER_ID,
@@ -75,7 +78,10 @@ describe('ActorAdapter', () => {
 
     test('should return the already created actor with provider', async () => {
       const actorMock = mockSwapActor();
-      ActorAdapter.actors[Default.SWAP_CANISTER_ID] = actorMock;
+      ActorAdapter.actors[Default.SWAP_CANISTER_ID] = {
+        actor: actorMock,
+        adapter: new ActorAdapter(),
+      };
 
       const actorProviderMock = mockActorProvider();
       const createActorSpy = jest.spyOn(actorProviderMock, 'createActor');
@@ -94,7 +100,10 @@ describe('ActorAdapter', () => {
       );
 
       const actorMock = mockSwapActor();
-      ActorAdapter.actors[Default.SWAP_CANISTER_ID] = actorMock;
+      ActorAdapter.actors[Default.SWAP_CANISTER_ID] = {
+        actor: actorMock,
+        adapter: new ActorAdapter(),
+      };
 
       const actorProviderMock = mockActorProvider();
       const createActorSpy = jest.spyOn(actorProviderMock, 'createActor');
