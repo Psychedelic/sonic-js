@@ -22,7 +22,7 @@ export class SwapCanisterController {
    */
   constructor(
     private swapActor: SwapActor = ActorAdapter.createAnonymousActor<SwapIDL.Swap>(
-      Default.IC_HOST,
+      Default.SWAP_CANISTER_ID,
       SwapIDL.factory
     )
   ) {}
