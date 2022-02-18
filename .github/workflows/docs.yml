@@ -6,7 +6,7 @@ on:
       - develop
 
 jobs:
-  publish-gpr:
+  build-docs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,12 +15,19 @@ jobs:
           node-version: '14'
           registry-url: https://npm.pkg.github.com/
           scope: '@psychedelic'
-      - run: npm install
-      - run: npm run prepare
-      - run: npm run docs
-      - run: |
-            git config --global user.name "${{ secrets.GH_USER }}"
-            git config --global user.email "${{ secrets.GH_MAIL }}"
+      - run: | 
+          npm install
+          npm run prepare
+          npm run docs
 
-            git add docs git commit -m "chore: update docs"
-            git push
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add docs && git commit -m "chore: update docs"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
