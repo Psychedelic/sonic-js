@@ -15,7 +15,7 @@ export const mockPair = ({
   token0,
   token1,
   totalSupply,
-}: Partial<Pair.Model> = {}): Pair.Model => {
+}: Partial<Pair.Metadata> = {}): Pair.Metadata => {
   return {
     id: id || 'token0:token1',
     price0CumulativeLast:
