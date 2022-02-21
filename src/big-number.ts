@@ -14,7 +14,7 @@ declare module 'bignumber.js' {
 
 /**
  * Returns a bigint from a BigNumber.
- * @returns bigint
+ * @returns {bigint}
  */
 BigNumber.prototype.toBigInt = function (): bigint {
   return BigInt(this.toString());
@@ -22,8 +22,8 @@ BigNumber.prototype.toBigInt = function (): bigint {
 
 /**
  * Apply decimals to a number.
- * @param decimals Decimals to apply
- * @returns BigNumber
+ * @param {number} decimals Decimals to apply
+ * @returns {BigNumber}
  */
 BigNumber.prototype.applyDecimals = function (decimals: number): BigNumber {
   return this.dividedBy(toExponential(decimals)).dp(decimals);
@@ -31,8 +31,8 @@ BigNumber.prototype.applyDecimals = function (decimals: number): BigNumber {
 
 /**
  * Removes decimals from a number.
- * @param decimals Decimals to remove
- * @returns BigNumber
+ * @param {number} decimals Decimals to remove
+ * @returns {BigNumber}
  */
 BigNumber.prototype.removeDecimals = function (decimals: number): BigNumber {
   return this.dp(decimals).multipliedBy(toExponential(decimals));
@@ -40,9 +40,9 @@ BigNumber.prototype.removeDecimals = function (decimals: number): BigNumber {
 
 /**
  * Returns the number for a given maximal/minimal tolerance.
- * @param percentage Tolerance percentage
- * @param type 'min' or 'max'
- * @returns BigNumber
+ * @param {number} percentage Tolerance percentage
+ * @param {'min' | 'max'='max'} type Tolerance under or above
+ * @returns {BigNumber}
  */
 BigNumber.prototype.applyTolerance = function (
   percentage: number,

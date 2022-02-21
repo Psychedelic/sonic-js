@@ -14,8 +14,8 @@ export class Swap {
 
   /**
    * Calculate the resultant amount of a swap.
-   * @params params Swap.GetAmountParams
-   * @returns BigNumber
+   * @param {Swap.GetAmountParams} params
+   * @returns {BigNumber}
    */
   static getAmount(params: Swap.GetAmountParams): BigNumber {
     const amountIn = toBigNumber(params.amountIn).removeDecimals(
@@ -40,8 +40,8 @@ export class Swap {
 
   /**
    * Calculate minimal amount of a swap.
-   * @param params Swap.GetAmountMinParams
-   * @returns BigNumber
+   * @param {Swap.GetAmountMinParams} params
+   * @returns {BigNumber}
    */
   static getAmountMin = (params: Swap.GetAmountMinParams): BigNumber => {
     const amount = toBigNumber(params.amount);
@@ -65,8 +65,8 @@ export class Swap {
 
   /**
    * Calculate the price impact based on given amounts and prices.
-   * @param params Swap.GetPriceImpactParams
-   * @returns BigNumber
+   * @param {Swap.GetPriceImpactParams} params
+   * @returns {BigNumber}
    */
   static getPriceImpact(params: Swap.GetPriceImpactParams): BigNumber {
     const amountIn = toBigNumber(params.amountIn);
@@ -105,8 +105,8 @@ export class Swap {
 
   /**
    * Calculate the best token path to realize the swap and the output amount.
-   * @param params Swap.GetPathsParams
-   * @returns MaximalPaths.PathList
+   * @param {Swap.GetPathsParams} params
+   * @returns {MaximalPaths.PathList}
    */
   static getTokenPaths({
     pairList,
@@ -152,6 +152,13 @@ export namespace Swap {
 
   /**
    * Type definition for getAmount function params.
+   * @param {Types.Amount} amountIn Amount of token in to swap
+   * @param {Types.Decimals} decimalsIn Decimals of token in
+   * @param {Types.Decimals} decimalsOut Decimals of token out
+   * @param {Types.Number} reserveIn Amount of token in on swap canister reserve
+   * @param {Types.Number} reserveOut Amount of token out on swap canister reserve
+   * @param {Types.Number} fee Amount of token out on swap canister reserve
+   * @param {Types.Number} dataKey Calculate amount for "token from" or "token to"
    */
   export interface GetAmountParams {
     amountIn: Types.Amount;
@@ -165,6 +172,9 @@ export namespace Swap {
 
   /**
    * Type definition for getAmountMin function params.
+   * @param {Types.Amount} amount Amount of token in to swap
+   * @param {Types.Decimals} decimals Decimals of token in
+   * @param {Types.Number} slippage Allowed slippage percentage
    */
   export interface GetAmountMinParams {
     amount: Types.Amount;
@@ -174,16 +184,25 @@ export namespace Swap {
 
   /**
    * Type definition for getPriceImpact function params.
+   * @param {Types.Amount} amountIn Amount of token in of swap
+   * @param {Types.Amount} amountOut Amount of token out of swap
+   * @param {Types.Amount} priceIn Price of single token in of swap
+   * @param {Types.Amount} priceOut Price of single token out of swap
    */
   export interface GetPriceImpactParams {
     amountIn: Types.Amount;
     amountOut: Types.Amount;
-    priceIn: Types.Number;
-    priceOut: Types.Number;
+    priceIn: Types.Amount;
+    priceOut: Types.Amount;
   }
 
   /**
    * Type definition for getTokenPaths function params.
+   * @param {Pair.List} pairList List of pairs from swap canister
+   * @param {Token.List} tokenList List of tokens from swap canister
+   * @param {string} tokenId Token id
+   * @param {Types.Amount} amount Amount of token in to swap
+   * @param {DataKey} dataKey Calculate amount for "token from" or "token to"
    */
   export type GetTokenPathsParams = {
     pairList: Pair.List;

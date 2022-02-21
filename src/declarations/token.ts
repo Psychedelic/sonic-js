@@ -6,10 +6,7 @@ export namespace Token {
   /**
    * Type definition for a token.
    */
-  export type Metadata = SwapIDL.TokenInfoExt & {
-    logo: string;
-    price?: Types.Amount;
-  };
+  export type Metadata = SwapIDL.TokenInfoExt;
 
   /**
    * Type definition for a list of tokens.

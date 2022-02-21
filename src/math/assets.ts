@@ -9,8 +9,8 @@ export class Assets {
    * Calculates the maximal amount of tokens that can be deposited from given token balance.
    * The calculation applies the token fee twice.
    * Fee paid for approval and fee paid for deposit.
-   * @param params Assets.GetDepositAmountParams
-   * @returns BigNumber
+   * @param {Assets.GetDepositAmountParams} params
+   * @returns {BigNumber}
    */
   static getDepositAmount(params: Assets.GetDepositAmountParams): BigNumber {
     const fee = toBigNumber(params.token.fee).applyDecimals(
@@ -27,8 +27,8 @@ export class Assets {
   /**
    * Calculates the resultant amount of tokens after sonic withdraw.
    * The calculation applies the token fee.
-   * @param params Assets.GetWithdrawAmountParams
-   * @returns BigNumber
+   * @param {Assets.GetWithdrawAmountParams} params
+   * @returns {BigNumber}
    */
   static getWithdrawAmount(params: Assets.GetWithdrawAmountParams): BigNumber {
     const fee = toBigNumber(params.token.fee).applyDecimals(

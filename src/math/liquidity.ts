@@ -16,8 +16,8 @@ export class Liquidity {
 
   /**
    * Calculate the pair decimals for given tokens decimals.
-   * @param params Liquidity.GetPairDecimalsParams
-   * @returns Types.Decimals
+   * @param {Liquidity.GetPairDecimalsParams} params
+   * @returns {Types.Decimals}
    */
   static getPairDecimals(
     token0Decimals: Types.Decimals,
@@ -32,8 +32,8 @@ export class Liquidity {
 
   /**
    * Calculate the opposite token value for given pair in Liquidity Position.
-   * @param params Liquidity.GetOppositeAmountParams
-   * @returns BigNumber
+   * @param {Liquidity.GetOppositeAmountParams} params
+   * @returns {BigNumber}
    */
   static getOppositeAmount(
     params: Liquidity.GetOppositeAmountParams
@@ -59,8 +59,8 @@ export class Liquidity {
 
   /**
    * Calculate the Liquidity Position for given amounts of a pair of tokens that is going to be added.
-   * @param params Liquidity.GetPositionParams
-   * @returns BigNumber
+   * @param {Liquidity.GetPositionParams} params
+   * @returns {BigNumber}
    */
   static getPosition(params: Liquidity.GetPositionParams): BigNumber {
     const amount0Desired = toBigNumber(params.amount0).removeDecimals(
@@ -111,8 +111,8 @@ export class Liquidity {
 
   /**
    * Calculate Share of a pool of the position based on total supply.
-   * @param params Liquidity.GetShareOfPoolParams
-   * @returns BigNumber
+   * @param {Liquidity.GetShareOfPoolParams} params
+   * @returns {BigNumber}
    */
   static getShareOfPool(params: Liquidity.GetShareOfPoolParams): BigNumber {
     const totalSupply = toBigNumber(params.totalSupply);
@@ -129,8 +129,8 @@ export class Liquidity {
 
   /**
    * Calculate the amount of a token in a position based on total supply.
-   * @param params Liquidity.GetUserPositionValueParams
-   * @returns BigNumber
+   * @param {Liquidity.GetUserPositionValueParams} params
+   * @returns {BigNumber}
    **/
   static getUserPositionValue(
     params: Liquidity.GetUserPositionValueParams
@@ -173,8 +173,8 @@ export class Liquidity {
 
   /**
    * Calculate the token balances for given pair Liquidity Position.
-   * @param params Liquidity.GetTokenBalancesParams
-   * @returns Liquidity.GetTokenBalancesResult
+   * @param {Liquidity.GetTokenBalancesParams} params
+   * @returns {Liquidity.GetTokenBalancesResult}
    */
   static getTokenBalances(
     params: Liquidity.GetTokenBalancesParams
@@ -215,6 +215,11 @@ export class Liquidity {
 export namespace Liquidity {
   /**
    * Type definition for getOppositeAmount function params.
+   * @param {Types.Amount} amountIn Amount of a token in a position
+   * @param {Types.Number} reserveIn Amount of token in on swap canister reserve
+   * @param {Types.Number} reserveOut Amount of token out on swap canister reserve
+   * @param {Types.Decimals} decimalsIn Decimals of token in
+   * @param {Types.Decimals} decimalsIn Decimals of token out
    */
   export interface GetOppositeAmountParams {
     amountIn: Types.Amount;
@@ -226,6 +231,13 @@ export namespace Liquidity {
 
   /**
    * Type definition for getPosition function params.
+   * @param {Types.Amount} amount0 Amount of token 0
+   * @param {Types.Amount} amount1 Amount of token 1
+   * @param {Types.Decimals} decimals0 Decimals of token 0
+   * @param {Types.Decimals} decimals1 Decimals of token 1
+   * @param {Types.Number} reserve0 Amount of token 0 in swap canister reserve
+   * @param {Types.Number} reserve1 Amount of token 1 in swap canister reserve
+   * @param {Types.Number} totalSupply Total supply of the pair
    */
   export interface GetPositionParams {
     amount0: Types.Amount;
@@ -244,6 +256,14 @@ export namespace Liquidity {
 
   /**
    * Type definition for getUserPositionValue function params.
+   * @param {Types.Amount} price0 Price of token 0
+   * @param {Types.Amount} price1 Price of token 1
+   * @param {Types.Decimals} decimals0 Decimals of token 0
+   * @param {Types.Decimals} decimals1 Decimals of token 1
+   * @param {Types.Number} reserve0 Amount of token 0 in swap canister reserve
+   * @param {Types.Number} reserve1 Amount of token 1 in swap canister reserve
+   * @param {Types.Amount} totalShares Total supply of the pair
+   * @param {Types.Amount} userShare Liquidity Position of user
    */
   export interface GetUserPositionValueParams {
     decimals0: Types.Decimals;
@@ -258,6 +278,12 @@ export namespace Liquidity {
 
   /**
    * Type definition for getTokenBalances function params.
+   * @param {Types.Decimals} decimals0 Decimals of token 0
+   * @param {Types.Decimals} decimals1 Decimals of token 1
+   * @param {Types.Number} reserve0 Amount of token 0 in swap canister reserve
+   * @param {Types.Number} reserve1 Amount of token 1 in swap canister reserve
+   * @param {Types.Amount} totalSupply Total supply of the pair
+   * @param {Types.Amount} lpBalance Liquidity Position of user
    */
   export interface GetTokenBalancesParams {
     decimals0: Types.Decimals;
@@ -270,6 +296,8 @@ export namespace Liquidity {
 
   /**
    * Type definition for getTokenBalances return.
+   * @param {BigNumber} balance0 Amount of token 0
+   * @param {BigNumber} balance1 Amount of token 1
    */
   export interface GetTokenBalancesResult {
     balance0: BigNumber;
