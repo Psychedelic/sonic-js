@@ -105,7 +105,7 @@ export class Swap {
 
   /**
    * Calculate the best token path to realize the swap and the output amount.
-   * @param {Swap.GetPathsParams} params
+   * @param {Swap.GetTokenPathsParams} params
    * @returns {MaximalPaths.PathList}
    */
   static getTokenPaths({
