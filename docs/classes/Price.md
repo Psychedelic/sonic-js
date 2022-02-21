@@ -1,22 +1,16 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / Price
-
 # Class: Price
 
+Math calculations for Price functions.
+
 ## Table of contents
-
-### Constructors
-
-- [constructor](Price.md#constructor)
 
 ### Methods
 
 - [getByAmount](Price.md#getbyamount)
 
-## Constructors
+### Constructors
 
-### constructor
-
-• **new Price**()
+- [constructor](Price.md#constructor)
 
 ## Methods
 
@@ -36,6 +30,8 @@ Calculate the total amount price by a given amount
 
 `BigNumber`
 
-#### Defined in
+## Constructors
 
-[math/price.ts:8](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/price.ts#L8)
+### constructor
+
+• **new Price**()

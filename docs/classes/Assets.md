@@ -1,23 +1,17 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / Assets
-
 # Class: Assets
 
+Math calculations for Assets functions.
+
 ## Table of contents
-
-### Constructors
-
-- [constructor](Assets.md#constructor)
 
 ### Methods
 
 - [getDepositAmount](Assets.md#getdepositamount)
 - [getWithdrawAmount](Assets.md#getwithdrawamount)
 
-## Constructors
+### Constructors
 
-### constructor
-
-• **new Assets**()
+- [constructor](Assets.md#constructor)
 
 ## Methods
 
@@ -31,19 +25,13 @@ Fee paid for approval and fee paid for deposit.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `params` | [`GetMaxDepositAmountParams`](../interfaces/Assets.GetMaxDepositAmountParams.md) | Assets.GetMaxDepositAmountParams |
+| Name | Type |
+| :------ | :------ |
+| `params` | [`GetDepositAmountParams`](../interfaces/Assets.GetDepositAmountParams.md) |
 
 #### Returns
 
 `BigNumber`
-
-BigNumber
-
-#### Defined in
-
-[math/assets.ts:13](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/assets.ts#L13)
 
 ___
 
@@ -56,16 +44,16 @@ The calculation applies the token fee.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `params` | [`GetWithdrawAmountParams`](../interfaces/Assets.GetWithdrawAmountParams.md) | Assets.GetMaxWithdrawAmountParams |
+| Name | Type |
+| :------ | :------ |
+| `params` | [`GetWithdrawAmountParams`](../interfaces/Assets.GetWithdrawAmountParams.md) |
 
 #### Returns
 
 `BigNumber`
 
-BigNumber
+## Constructors
 
-#### Defined in
+### constructor
 
-[math/assets.ts:32](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/assets.ts#L32)
+• **new Assets**()

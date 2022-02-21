@@ -1,19 +1,9 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / ActorAdapter
-
 # Class: ActorAdapter
 
 Adapter responsible for creating actors.
 It can receive a provider to identify the actor like a wallet provider (e.g. Plug).
 
-## Implements
-
-- [`Repository`](../interfaces/ActorAdapter.Repository.md)
-
 ## Table of contents
-
-### Constructors
-
-- [constructor](ActorAdapter.md#constructor)
 
 ### Properties
 
@@ -21,27 +11,14 @@ It can receive a provider to identify the actor like a wallet provider (e.g. Plu
 
 ### Methods
 
-- [createActor](ActorAdapter.md#createactor)
-- [createAgent](ActorAdapter.md#createagent)
 - [adapterOf](ActorAdapter.md#adapterof)
 - [createAnonymousActor](ActorAdapter.md#createanonymousactor)
+- [createActor](ActorAdapter.md#createactor)
+- [createAgent](ActorAdapter.md#createagent)
 
-## Constructors
+### Constructors
 
-### constructor
-
-• **new ActorAdapter**(`provider?`, `options?`)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `provider?` | [`Provider`](../modules/ActorAdapter.md#provider) |
-| `options` | [`Options`](../modules/ActorAdapter.md#options) |
-
-#### Defined in
-
-[integrations/actor/adapter.ts:13](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L13)
+- [constructor](ActorAdapter.md#constructor)
 
 ## Properties
 
@@ -49,11 +26,55 @@ It can receive a provider to identify the actor like a wallet provider (e.g. Plu
 
 ▪ `Static` `Readonly` **actors**: [`Actors`](../modules/ActorAdapter.md#actors) = `{}`
 
-#### Defined in
-
-[integrations/actor/adapter.ts:11](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L11)
-
 ## Methods
+
+### adapterOf
+
+▸ `Static` **adapterOf**(`actor`): `undefined` \| [`ActorAdapter`](ActorAdapter.md)
+
+Gets the adapter from an actor.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `actor` | `Actor` | The actor |
+
+#### Returns
+
+`undefined` \| [`ActorAdapter`](ActorAdapter.md)
+
+The adapter or undefined if is not existent
+
+___
+
+### createAnonymousActor
+
+▸ `Static` **createAnonymousActor**<`T`\>(`canisterId`, `interfaceFactory`, `host?`): [`Actor`](../modules/ActorAdapter.md#actor)<`T`\>
+
+Create an anonymous actor.
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `canisterId` | `string` | `undefined` | The canister id of the actor |
+| `interfaceFactory` | `InterfaceFactory` | `undefined` | The interface factory of the actor |
+| `host` | `string` | `Default.IC_HOST` | The IC host to connect to |
+
+#### Returns
+
+[`Actor`](../modules/ActorAdapter.md#actor)<`T`\>
+
+The anonymous actor
+
+___
 
 ### createActor
 
@@ -69,22 +90,16 @@ Creates a new actor or use from memory if is already created.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `canisterId` | `string` |
-| `interfaceFactory` | `InterfaceFactory` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `canisterId` | `string` | The canister id of the actor |
+| `interfaceFactory` | `InterfaceFactory` | The interface factory of the actor |
 
 #### Returns
 
 `Promise`<[`Actor`](../modules/ActorAdapter.md#actor)<`T`\>\>
 
-#### Implementation of
-
-[Repository](../interfaces/ActorAdapter.Repository.md).[createActor](../interfaces/ActorAdapter.Repository.md#createactor)
-
-#### Defined in
-
-[integrations/actor/adapter.ts:24](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L24)
+The actor
 
 ___
 
@@ -96,66 +111,23 @@ Creates the agent from provider.
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `extraWhitelist` | `string`[] | `[]` |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `extraWhitelist` | `string`[] | `[]` | Extra whitelist to add to the default whitelist |
 
 #### Returns
 
 `Promise`<`void`\>
 
-#### Defined in
+## Constructors
 
-[integrations/actor/adapter.ts:66](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L66)
+### constructor
 
-___
-
-### adapterOf
-
-▸ `Static` **adapterOf**(`actor`): `undefined` \| [`ActorAdapter`](ActorAdapter.md)
-
-Gets the adapter from an actor
+• **new ActorAdapter**(`provider?`, `options?`)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `actor` | `Actor` |
-
-#### Returns
-
-`undefined` \| [`ActorAdapter`](ActorAdapter.md)
-
-#### Defined in
-
-[integrations/actor/adapter.ts:78](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L78)
-
-___
-
-### createAnonymousActor
-
-▸ `Static` **createAnonymousActor**<`T`\>(`canisterId`, `interfaceFactory`, `host?`): [`Actor`](../modules/ActorAdapter.md#actor)<`T`\>
-
-Create an anonymous actor
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `canisterId` | `string` | `undefined` |
-| `interfaceFactory` | `InterfaceFactory` | `undefined` |
-| `host` | `string` | `Default.IC_HOST` |
-
-#### Returns
-
-[`Actor`](../modules/ActorAdapter.md#actor)<`T`\>
-
-#### Defined in
-
-[integrations/actor/adapter.ts:88](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L88)
+| `provider?` | [`Provider`](../modules/ActorAdapter.md#provider) |
+| `options` | [`Options`](../modules/ActorAdapter.md#options) |

@@ -1,8 +1,8 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / [Assets](../modules/Assets.md) / GetWithdrawAmountParams
-
 # Interface: GetWithdrawAmountParams
 
 [Assets](../modules/Assets.md).GetWithdrawAmountParams
+
+Type definition for getWithdrawAmount function params.
 
 ## Table of contents
 
@@ -17,16 +17,8 @@
 
 • **amount**: `string`
 
-#### Defined in
-
-[math/assets.ts:53](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/assets.ts#L53)
-
 ___
 
 ### token
 
-• **token**: [`Metadata`](../modules/Token.md#metadata)
-
-#### Defined in
-
-[math/assets.ts:52](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/assets.ts#L52)
+• **token**: [`TokenInfoExt`](SwapIDL.TokenInfoExt.md)

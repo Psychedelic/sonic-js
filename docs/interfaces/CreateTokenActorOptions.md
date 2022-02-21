@@ -1,6 +1,10 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / CreateTokenActorOptions
-
 # Interface: CreateTokenActorOptions
+
+Options for creating an TokenActor.
+
+**`param`** The canister id to create the actor for
+
+**`param`** ActorAdapter instance with or without a provider, default is applied
 
 ## Table of contents
 
@@ -15,16 +19,8 @@
 
 • `Optional` **actorAdapter**: [`ActorAdapter`](../classes/ActorAdapter.md)
 
-#### Defined in
-
-[integrations/actor/factory.ts:24](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/factory.ts#L24)
-
 ___
 
 ### canisterId
 
 • **canisterId**: `string`
-
-#### Defined in
-
-[integrations/actor/factory.ts:23](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/factory.ts#L23)

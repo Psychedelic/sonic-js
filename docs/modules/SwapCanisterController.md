@@ -1,6 +1,6 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / SwapCanisterController
-
 # Namespace: SwapCanisterController
+
+Type definition for the SwapCanisterController.
 
 ## Table of contents
 
@@ -18,16 +18,18 @@
 
 Ƭ **ApproveParams**: `Object`
 
+Type definition for params of the approve function.
+
+**`param`**
+
+**`param`**
+
 #### Type declaration
 
 | Name | Type |
 | :------ | :------ |
 | `amount` | [`Amount`](Types.md#amount) |
 | `tokenId` | `string` |
-
-#### Defined in
-
-[integrations/swap-canister/controller.ts:294](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/swap-canister/controller.ts#L294)
 
 ___
 
@@ -35,6 +37,12 @@ ___
 
 Ƭ **DepositParams**: `Object`
 
+Type definition for params of the deposit function.
+
+**`param`**
+
+**`param`**
+
 #### Type declaration
 
 | Name | Type |
@@ -42,15 +50,17 @@ ___
 | `amount` | [`Amount`](Types.md#amount) |
 | `tokenId` | `string` |
 
-#### Defined in
-
-[integrations/swap-canister/controller.ts:299](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/swap-canister/controller.ts#L299)
-
 ___
 
 ### GetTokenBalanceParams
 
 Ƭ **GetTokenBalanceParams**: `Object`
+
+Type definition for params of the getTokenBalance function.
+
+**`param`** User's principal id
+
+**`param`** Token id to fetch balance for
 
 #### Type declaration
 
@@ -59,15 +69,21 @@ ___
 | `principalId` | `string` |
 | `tokenId` | `string` |
 
-#### Defined in
-
-[integrations/swap-canister/controller.ts:316](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/swap-canister/controller.ts#L316)
-
 ___
 
 ### SwapParams
 
 Ƭ **SwapParams**: `Object`
+
+Type definition for params of the swap function.
+
+**`param`** Amount of input token to swap
+
+**`param`** Input token id
+
+**`param`** Output token id
+
+**`param`** Percentage of slippage allowed
 
 #### Type declaration
 
@@ -78,15 +94,17 @@ ___
 | `tokenIn` | `string` |
 | `tokenOut` | `string` |
 
-#### Defined in
-
-[integrations/swap-canister/controller.ts:309](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/swap-canister/controller.ts#L309)
-
 ___
 
 ### WithdrawParams
 
 Ƭ **WithdrawParams**: `Object`
+
+Type definition for params of the withdraw function.
+
+**`param`**
+
+**`param`**
 
 #### Type declaration
 
@@ -94,7 +112,3 @@ ___
 | :------ | :------ |
 | `amount` | [`Amount`](Types.md#amount) |
 | `tokenId` | `string` |
-
-#### Defined in
-
-[integrations/swap-canister/controller.ts:304](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/swap-canister/controller.ts#L304)

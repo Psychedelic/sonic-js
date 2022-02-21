@@ -1,8 +1,22 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / [Swap](../modules/Swap.md) / GetAmountParams
-
 # Interface: GetAmountParams
 
 [Swap](../modules/Swap.md).GetAmountParams
+
+Type definition for getAmount function params.
+
+**`param`** Amount of token in to swap
+
+**`param`** Decimals of token in
+
+**`param`** Decimals of token out
+
+**`param`** Amount of token in on swap canister reserve
+
+**`param`** Amount of token out on swap canister reserve
+
+**`param`** Amount of token out on swap canister reserve
+
+**`param`** Calculate amount for "token from" or "token to"
 
 ## Table of contents
 
@@ -22,19 +36,11 @@
 
 • **amountIn**: `string`
 
-#### Defined in
-
-[math/swap.ts:141](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L141)
-
 ___
 
 ### dataKey
 
 • `Optional` **dataKey**: [`DataKey`](../modules/Swap.md#datakey)
-
-#### Defined in
-
-[math/swap.ts:147](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L147)
 
 ___
 
@@ -42,19 +48,11 @@ ___
 
 • **decimalsIn**: `number`
 
-#### Defined in
-
-[math/swap.ts:142](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L142)
-
 ___
 
 ### decimalsOut
 
 • **decimalsOut**: `number`
-
-#### Defined in
-
-[math/swap.ts:143](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L143)
 
 ___
 
@@ -62,26 +60,14 @@ ___
 
 • `Optional` **fee**: [`Number`](../modules/Types.md#number)
 
-#### Defined in
-
-[math/swap.ts:146](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L146)
-
 ___
 
 ### reserveIn
 
 • **reserveIn**: [`Number`](../modules/Types.md#number)
 
-#### Defined in
-
-[math/swap.ts:144](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L144)
-
 ___
 
 ### reserveOut
 
 • **reserveOut**: [`Number`](../modules/Types.md#number)
-
-#### Defined in
-
-[math/swap.ts:145](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L145)
