@@ -41,7 +41,7 @@ ___
 
 Ƭ **BalanceList**: `Object`
 
-Type definition for a token balance list.
+It is key-object that maps a list of `Token.Balance`
 
 #### Index signature
 
@@ -53,7 +53,7 @@ ___
 
 Ƭ **Metadata**: [`TokenInfoExt`](../interfaces/SwapIDL.TokenInfoExt.md)
 
-Type definition for a token.
+It is an object containing information about a DIP20 token.
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 Ƭ **MetadataList**: `Object`
 
-Type definition for a list of tokens.
+It is key-object that maps a list of `Token.Metadata`.
 
 #### Index signature
 
