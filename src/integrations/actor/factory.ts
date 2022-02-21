@@ -3,8 +3,8 @@ import { ActorAdapter } from './adapter';
 
 /**
  * Options for creating an SwapActor.
- * @param canisterId Swap canister ID, default is applied
- * @param actorAdapter ActorAdapter instance with or without a provider, default is applied
+ * @param {string} canisterId Swap canister ID, default is applied
+ * @param {ActorAdapter} actorAdapter ActorAdapter instance with or without a provider, default is applied
  */
 export interface CreateSwapActorOptions {
   canisterId?: string;
@@ -19,8 +19,8 @@ export type SwapActor = ActorAdapter.Actor<SwapIDL.Swap>;
 /**
  * Creates a Swap canister actor.
  * If no option is provided, the actor will be created using the default canister options.
- * @param options Options for creating the SwapActor
- * @returns SwapActor instance
+ * @param {CreateSwapActorOptions} options Options for creating the SwapActor
+ * @returns {SwapActor} actor instance
  */
 export const createSwapActor = ({
   canisterId = Default.SWAP_CANISTER_ID,
@@ -31,8 +31,8 @@ export const createSwapActor = ({
 
 /**
  * Options for creating an TokenActor.
- * @param canisterId The canister id to create the actor for
- * @param actorAdapter ActorAdapter instance with or without a provider, default is applied
+ * @param {string} canisterId The canister id to create the actor for
+ * @param {ActorAdapter} actorAdapter ActorAdapter instance with or without a provider, default is applied
  */
 export interface CreateTokenActorOptions {
   canisterId: string;
@@ -47,8 +47,8 @@ export type TokenActor = ActorAdapter.Actor<TokenIDL.Token>;
 /**
  * Creates a DIP20 Token canister actor.
  * If no option is provided, the actor will be created using the default canister options.
- * @param options Options for creating the TokenActor
- * @returns TokenActor instance
+ * @param {CreateTokenActorOptions} options Options for creating the TokenActor
+ * @returns {TokenActor} actor instance
  */
 export const createTokenActor = ({
   canisterId,

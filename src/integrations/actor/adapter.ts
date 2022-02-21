@@ -20,9 +20,9 @@ export class ActorAdapter {
 
   /**
    * Creates a new actor or use from memory if is already created.
-   * @param canisterId The canister id to create the actor for
-   * @param interfaceFactory The interface factory to create the actor
-   * @returns The actor
+   * @param {string} canisterId The canister id to create the actor for
+   * @param {IDL.InterfaceFactory} interfaceFactory The interface factory to create the actor
+   * @returns {Promise<ActorAdapter.Actor<T>>} The actor
    */
   async createActor<T>(
     canisterId: string,
@@ -65,7 +65,8 @@ export class ActorAdapter {
 
   /**
    * Creates the agent from provider.
-   * @param extraWhitelist Extra whitelist to add to the default whitelist
+   * @param {string[]} extraWhitelist Extra whitelist to add to the default whitelist
+   * @returns {Promise<void>}
    */
   private async createAgent(extraWhitelist: string[] = []): Promise<void> {
     if (this.provider) {
@@ -78,8 +79,8 @@ export class ActorAdapter {
 
   /**
    * Gets the adapter from an actor.
-   * @param actor The actor
-   * @returns The adapter or undefined if is not existent
+   * @param {Actor} actor The actor
+   * @returns {ActorAdapter | undefined} The adapter or undefined if is not existent
    */
   static adapterOf(actor: Actor): ActorAdapter | undefined {
     const canisterId = Actor.canisterIdOf(actor).toString();
@@ -90,9 +91,10 @@ export class ActorAdapter {
 
   /**
    * Create an anonymous actor.
-   * @param canisterId The canister id to create the actor for
-   * @param interfaceFactory The interface factory to create the actor
-   * @param host The IC host to connect to
+   * @param {string} canisterId The canister id to create the actor for
+   * @param {IDL.InterfaceFactory} interfaceFactory The interface factory to create the actor
+   * @param {string=Default.IC_HOST} host The IC host to connect to
+   * @returns {ActorAdapter.Actor<T>} The anonymous actor
    */
   static createAnonymousActor<T>(
     canisterId: string,
