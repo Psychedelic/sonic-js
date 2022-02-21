@@ -1,5 +1,8 @@
 import BigNumber from 'bignumber.js';
 
+/**
+ * Options for validation.
+ */
 export type CheckIfOptions = {
   isZero?: boolean;
   isNotANumber?: boolean;
@@ -8,8 +11,9 @@ export type CheckIfOptions = {
 
 /**
  * Checking if all values in object are valid
+ * @param obj Object with BigNumber to be validated
+ * @param options CheckIfOptions
  */
-
 export function checkIfObject(
   object: {
     [key: string]: BigNumber;
