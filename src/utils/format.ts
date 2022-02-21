@@ -14,9 +14,9 @@ interface ToBigNumberOptions {
 
 /**
  * Converts a value to a BigNumber.
- * @param num Types.Number
- * @param options ToBigNumberOptions
- * @returns BigNumber
+ * @param {Types.Number} num
+ * @param {ToBigNumberOptions} options
+ * @returns {BigNumber}
  */
 export const toBigNumber = (
   num?: Types.Number,
@@ -50,8 +50,8 @@ export const toBigNumber = (
 
 /**
  * Create an exponential notation by given decimals.
- * @param decimals Types.Number
- * @returns BigNumber
+ * @param {Types.Number} decimals
+ * @returns {BigNumber}
  */
 export const toExponential = (decimals: Types.Number): BigNumber => {
   return new BigNumber(10).pow(toBigNumber(decimals));
@@ -63,8 +63,8 @@ const fixStringEnding = (str: string): string => {
 
 /**
  * Formats an amount to a small string with scientific notation
- * @param amount Types.Amount
- * @returns string
+ * @param {Types.Amount} amount
+ * @returns {string}
  */
 export const formatAmount = (amount: Types.Amount): string => {
   const [nat = '0', decimals = '0'] = amount.replace(/^0+/, '').split('.');

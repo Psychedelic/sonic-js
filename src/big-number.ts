@@ -13,7 +13,7 @@ declare module 'bignumber.js' {
 }
 
 /**
- * Returns a bigint from a BigNumber.
+ * Transforms BigNumber into bigint.
  * @returns {bigint}
  */
 BigNumber.prototype.toBigInt = function (): bigint {

@@ -20,8 +20,8 @@ export class ActorAdapter {
 
   /**
    * Creates a new actor or use from memory if is already created.
-   * @param {string} canisterId The canister id to create the actor for
-   * @param {IDL.InterfaceFactory} interfaceFactory The interface factory to create the actor
+   * @param {string} canisterId The canister id of the actor
+   * @param {IDL.InterfaceFactory} interfaceFactory The interface factory of the actor
    * @returns {Promise<ActorAdapter.Actor<T>>} The actor
    */
   async createActor<T>(
@@ -91,8 +91,8 @@ export class ActorAdapter {
 
   /**
    * Create an anonymous actor.
-   * @param {string} canisterId The canister id to create the actor for
-   * @param {IDL.InterfaceFactory} interfaceFactory The interface factory to create the actor
+   * @param {string} canisterId The canister id of the actor
+   * @param {IDL.InterfaceFactory} interfaceFactory The interface factory of the actor
    * @param {string=Default.IC_HOST} host The IC host to connect to
    * @returns {ActorAdapter.Actor<T>} The anonymous actor
    */

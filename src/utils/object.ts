@@ -11,8 +11,8 @@ export type CheckIfOptions = {
 
 /**
  * Checking if all values in object are valid
- * @param obj Object with BigNumber to be validated
- * @param options CheckIfOptions
+ * @param {{[key: string]: BigNumber}} obj Object with BigNumber to be validated
+ * @param {CheckIfOptions} options
  */
 export function checkIfObject(
   object: {

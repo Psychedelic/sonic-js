@@ -5,12 +5,12 @@ import BigNumber from 'bignumber.js';
 
 /**
  * Maximal paths graph solver.
- * @param pairList Pair.List
- * @param tokenList Token.MetadataList
- * @param source Token.Metadata
- * @param initialAmount BigNumber
- * @param dataKey Swap.DataKey
- * @returns MaximalPaths.NodeList
+ * @param {Pair.List} pairList
+ * @param {Token.MetadataList} tokenList
+ * @param {Token.Metadata} source
+ * @param {BigNumber} initialAmount
+ * @param  {Swap.DataKey} dataKey
+ * @returns {MaximalPaths.NodeList}
  */
 export const findMaximalPaths = (
   pairList: Pair.List,

@@ -8,6 +8,6 @@ export const Default = {
   // Swap Canister Id
   SWAP_CANISTER_ID: '3xwpq-ziaaa-aaaah-qcn4a-cai',
 
-  // Slippage applied in transactions (0.5%)
+  // Slippage percentage applied in transactions (0.5%)
   SLIPPAGE: 0.5,
 };
