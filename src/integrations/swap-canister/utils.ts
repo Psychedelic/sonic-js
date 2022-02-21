@@ -1,7 +1,9 @@
 import { Pair, SwapIDL, Token } from '@/declarations';
 
 /**
- * Parses a list of supported tokens from swap canister request
+ * Parses a list of supported tokens from swap canister request.
+ * @param {SwapIDL.TokenInfoExt[]} response Response from swap canister
+ * @returns {Token.MetadataList}
  */
 export const parseSupportedTokenList = (
   response: SwapIDL.TokenInfoExt[]
@@ -15,7 +17,9 @@ export const parseSupportedTokenList = (
 };
 
 /**
- * Parses a list of pairs from swap canister request
+ * Parses a list of pairs from swap canister request.
+ * @param {SwapIDL.PairInfoExt[]} response Response from swap canister
+ * @returns {Pair.List}
  */
 export const parseAllPairs = (response: SwapIDL.PairInfoExt[]): Pair.List => {
   return response.reduce((list, pair) => {
@@ -46,7 +50,8 @@ export const parseAllPairs = (response: SwapIDL.PairInfoExt[]): Pair.List => {
 };
 
 /**
- * Get deadline for swap canister requests
+ * Get deadline for swap canister requests.
+ * @returns {bigint}
  */
 export const getDeadline = (): bigint => {
   return BigInt((new Date().getTime() + 5 * 60 * 1000) * 10000000);

@@ -3,6 +3,15 @@ import { Swap } from '@/math';
 import { toBigNumber } from '@/utils';
 import BigNumber from 'bignumber.js';
 
+/**
+ * Maximal paths graph solver.
+ * @param {Pair.List} pairList
+ * @param {Token.MetadataList} tokenList
+ * @param {Token.Metadata} source
+ * @param {BigNumber} initialAmount
+ * @param  {Swap.DataKey} dataKey
+ * @returns {MaximalPaths.NodeList}
+ */
 export const findMaximalPaths = (
   pairList: Pair.List,
   tokenList: Token.MetadataList,
@@ -81,26 +90,44 @@ export const findMaximalPaths = (
   return nodes;
 };
 
+/**
+ * Type definition for the maximal paths graph solver.
+ */
 export namespace MaximalPaths {
+  /**
+   * Weight list for graph nodes.
+   */
   export type WeightList = {
     [tokenId: string]: BigNumber;
   };
 
+  /**
+   * Type definition for Node object.
+   */
   export type Node = {
     id: string;
     amountOut: BigNumber;
     path: Set<string>;
   };
 
+  /**
+   * Type definition for NodeList object.
+   */
   export type NodeList = {
     [tokenId: string]: Node;
   };
 
+  /**
+   * Type definition for Path object.
+   */
   export type Path = {
     amountOut: BigNumber;
     path: string[];
   };
 
+  /**
+   * Type definition for PathList object.
+   */
   export type PathList = {
     [tokenId: string]: Path;
   };
