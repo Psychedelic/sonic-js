@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[declarations/did/swap.ts:368](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L368)
+[declarations/did/swap.ts:368](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/swap.ts#L368)
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-[declarations/did/swap.ts:367](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L367)
+[declarations/did/swap.ts:367](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/swap.ts#L367)

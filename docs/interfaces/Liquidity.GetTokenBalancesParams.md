@@ -4,6 +4,20 @@
 
 [Liquidity](../modules/Liquidity.md).GetTokenBalancesParams
 
+Type definition for getTokenBalances function params.
+
+**`param`** Decimals of token 0
+
+**`param`** Decimals of token 1
+
+**`param`** Amount of token 0 in swap canister reserve
+
+**`param`** Amount of token 1 in swap canister reserve
+
+**`param`** Total supply of the pair
+
+**`param`** Liquidity Position of user
+
 ## Table of contents
 
 ### Properties
@@ -23,7 +37,7 @@
 
 #### Defined in
 
-[math/liquidity.ts:240](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L240)
+[math/liquidity.ts:289](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L289)
 
 ___
 
@@ -33,7 +47,7 @@ ___
 
 #### Defined in
 
-[math/liquidity.ts:241](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L241)
+[math/liquidity.ts:290](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L290)
 
 ___
 
@@ -43,7 +57,7 @@ ___
 
 #### Defined in
 
-[math/liquidity.ts:245](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L245)
+[math/liquidity.ts:294](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L294)
 
 ___
 
@@ -53,7 +67,7 @@ ___
 
 #### Defined in
 
-[math/liquidity.ts:242](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L242)
+[math/liquidity.ts:291](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L291)
 
 ___
 
@@ -63,7 +77,7 @@ ___
 
 #### Defined in
 
-[math/liquidity.ts:243](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L243)
+[math/liquidity.ts:292](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L292)
 
 ___
 
@@ -73,4 +87,4 @@ ___
 
 #### Defined in
 
-[math/liquidity.ts:244](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L244)
+[math/liquidity.ts:293](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L293)

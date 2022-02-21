@@ -4,6 +4,9 @@
 
 [Token](../modules/Token.md).Data
 
+Type definition for a token data.
+It includes the amount for functions usage.
+
 ## Type parameters
 
 | Name | Type |
@@ -25,7 +28,7 @@
 
 #### Defined in
 
-[declarations/token.ts:17](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/token.ts#L17)
+[declarations/token.ts:24](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/token.ts#L24)
 
 ___
 
@@ -35,4 +38,4 @@ ___
 
 #### Defined in
 
-[declarations/token.ts:16](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/token.ts#L16)
+[declarations/token.ts:23](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/token.ts#L23)

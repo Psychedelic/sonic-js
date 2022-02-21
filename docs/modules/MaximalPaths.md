@@ -2,6 +2,8 @@
 
 # Namespace: MaximalPaths
 
+Type definition for the maximal paths graph solver.
+
 ## Table of contents
 
 ### Type aliases
@@ -18,6 +20,8 @@
 
 Ƭ **Node**: `Object`
 
+Type definition for Node object.
+
 #### Type declaration
 
 | Name | Type |
@@ -28,7 +32,7 @@
 
 #### Defined in
 
-[utils/maximal-paths.ts:89](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/utils/maximal-paths.ts#L89)
+[utils/maximal-paths.ts:107](https://github.com/Psychedelic/sonic-js/blob/1430250/src/utils/maximal-paths.ts#L107)
 
 ___
 
@@ -36,19 +40,23 @@ ___
 
 Ƭ **NodeList**: `Object`
 
+Type definition for NodeList object.
+
 #### Index signature
 
 ▪ [tokenId: `string`]: [`Node`](MaximalPaths.md#node)
 
 #### Defined in
 
-[utils/maximal-paths.ts:95](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/utils/maximal-paths.ts#L95)
+[utils/maximal-paths.ts:116](https://github.com/Psychedelic/sonic-js/blob/1430250/src/utils/maximal-paths.ts#L116)
 
 ___
 
 ### Path
 
 Ƭ **Path**: `Object`
+
+Type definition for Path object.
 
 #### Type declaration
 
@@ -59,7 +67,7 @@ ___
 
 #### Defined in
 
-[utils/maximal-paths.ts:99](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/utils/maximal-paths.ts#L99)
+[utils/maximal-paths.ts:123](https://github.com/Psychedelic/sonic-js/blob/1430250/src/utils/maximal-paths.ts#L123)
 
 ___
 
@@ -67,13 +75,15 @@ ___
 
 Ƭ **PathList**: `Object`
 
+Type definition for PathList object.
+
 #### Index signature
 
 ▪ [tokenId: `string`]: [`Path`](MaximalPaths.md#path)
 
 #### Defined in
 
-[utils/maximal-paths.ts:104](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/utils/maximal-paths.ts#L104)
+[utils/maximal-paths.ts:131](https://github.com/Psychedelic/sonic-js/blob/1430250/src/utils/maximal-paths.ts#L131)
 
 ___
 
@@ -81,10 +91,12 @@ ___
 
 Ƭ **WeightList**: `Object`
 
+Weight list for graph nodes.
+
 #### Index signature
 
 ▪ [tokenId: `string`]: `BigNumber`
 
 #### Defined in
 
-[utils/maximal-paths.ts:85](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/utils/maximal-paths.ts#L85)
+[utils/maximal-paths.ts:100](https://github.com/Psychedelic/sonic-js/blob/1430250/src/utils/maximal-paths.ts#L100)

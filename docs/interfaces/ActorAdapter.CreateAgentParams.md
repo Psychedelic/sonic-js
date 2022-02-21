@@ -4,6 +4,8 @@
 
 [ActorAdapter](../modules/ActorAdapter.md).CreateAgentParams
 
+Parameters for creating an agent using the provider.
+
 ## Table of contents
 
 ### Properties
@@ -19,7 +21,7 @@
 
 #### Defined in
 
-[integrations/actor/adapter.ts:130](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L130)
+[integrations/actor/adapter.ts:149](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/actor/adapter.ts#L149)
 
 ___
 
@@ -29,4 +31,4 @@ ___
 
 #### Defined in
 
-[integrations/actor/adapter.ts:129](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L129)
+[integrations/actor/adapter.ts:148](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/actor/adapter.ts#L148)

@@ -2,6 +2,8 @@
 
 # Class: Price
 
+Math calculations for Price functions.
+
 ## Table of contents
 
 ### Constructors
@@ -38,4 +40,4 @@ Calculate the total amount price by a given amount
 
 #### Defined in
 
-[math/price.ts:8](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/price.ts#L8)
+[math/price.ts:13](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/price.ts#L13)

@@ -2,18 +2,19 @@
 
 # Namespace: ActorAdapter
 
+Type definition for the ActorAdapter.
+
 ## Table of contents
 
 ### Interfaces
 
-- [CreateActor](../interfaces/ActorAdapter.CreateActor.md)
+- [CreateActorParams](../interfaces/ActorAdapter.CreateActorParams.md)
 - [CreateAgentParams](../interfaces/ActorAdapter.CreateAgentParams.md)
-- [Repository](../interfaces/ActorAdapter.Repository.md)
 
 ### Type aliases
 
 - [Actor](ActorAdapter.md#actor)
-- [ActorProps](ActorAdapter.md#actorprops)
+- [ActorParams](ActorAdapter.md#actorparams)
 - [Actors](ActorAdapter.md#actors)
 - [Options](ActorAdapter.md#options)
 - [Provider](ActorAdapter.md#provider)
@@ -24,6 +25,8 @@
 
 Ƭ **Actor**<`T`\>: `ActorSubclass`<`T`\>
 
+Return for the createActor function of the ActorAdapter.
+
 #### Type parameters
 
 | Name |
@@ -32,13 +35,15 @@
 
 #### Defined in
 
-[integrations/actor/adapter.ts:143](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L143)
+[integrations/actor/adapter.ts:171](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/actor/adapter.ts#L171)
 
 ___
 
-### ActorProps
+### ActorParams
 
-Ƭ **ActorProps**: `Object`
+Ƭ **ActorParams**: `Object`
+
+Parameters for creating an actor using the ActorAdapter.
 
 #### Type declaration
 
@@ -49,7 +54,7 @@ ___
 
 #### Defined in
 
-[integrations/actor/adapter.ts:133](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L133)
+[integrations/actor/adapter.ts:155](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/actor/adapter.ts#L155)
 
 ___
 
@@ -57,15 +62,19 @@ ___
 
 Ƭ **Actors**: `Record`<`string`, { `actor`: `ActorSubclass`<`any`\> ; `adapter`: [`ActorAdapter`](../classes/ActorAdapter.md)  }\>
 
+Interface for static stored actors.
+
 #### Defined in
 
-[integrations/actor/adapter.ts:138](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L138)
+[integrations/actor/adapter.ts:163](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/actor/adapter.ts#L163)
 
 ___
 
 ### Options
 
 Ƭ **Options**: `Object`
+
+Options for the ActorAdapter.
 
 #### Type declaration
 
@@ -76,7 +85,7 @@ ___
 
 #### Defined in
 
-[integrations/actor/adapter.ts:109](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L109)
+[integrations/actor/adapter.ts:129](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/actor/adapter.ts#L129)
 
 ___
 
@@ -84,14 +93,16 @@ ___
 
 Ƭ **Provider**: `Object`
 
+Agent provider interface.
+
 #### Type declaration
 
 | Name | Type |
 | :------ | :------ |
 | `agent` | `Agent` \| ``null`` |
-| `createActor` | <T\>(`params`: [`CreateActor`](../interfaces/ActorAdapter.CreateActor.md)<`T`\>) => `Promise`<`ActorSubclass`<`T`\>\> |
+| `createActor` | <T\>(`params`: [`CreateActorParams`](../interfaces/ActorAdapter.CreateActorParams.md)<`T`\>) => `Promise`<`ActorSubclass`<`T`\>\> |
 | `createAgent` | (`params`: [`CreateAgentParams`](../interfaces/ActorAdapter.CreateAgentParams.md)) => `Promise`<`Agent`\> |
 
 #### Defined in
 
-[integrations/actor/adapter.ts:103](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L103)
+[integrations/actor/adapter.ts:120](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/actor/adapter.ts#L120)

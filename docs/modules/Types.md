@@ -20,7 +20,7 @@ Numeric value with decimals applied
 
 #### Defined in
 
-[declarations/types.ts:12](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/types.ts#L12)
+[declarations/types.ts:12](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/types.ts#L12)
 
 ___
 
@@ -32,7 +32,7 @@ Decimals representation from Swap canister
 
 #### Defined in
 
-[declarations/types.ts:17](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/types.ts#L17)
+[declarations/types.ts:17](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/types.ts#L17)
 
 ___
 
@@ -44,4 +44,4 @@ Numeric value without decimals applied
 
 #### Defined in
 
-[declarations/types.ts:7](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/types.ts#L7)
+[declarations/types.ts:7](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/types.ts#L7)

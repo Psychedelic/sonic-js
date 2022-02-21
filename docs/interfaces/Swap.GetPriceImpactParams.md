@@ -4,6 +4,16 @@
 
 [Swap](../modules/Swap.md).GetPriceImpactParams
 
+Type definition for getPriceImpact function params.
+
+**`param`** Amount of token in of swap
+
+**`param`** Amount of token out of swap
+
+**`param`** Price of single token in of swap
+
+**`param`** Price of single token out of swap
+
 ## Table of contents
 
 ### Properties
@@ -21,7 +31,7 @@
 
 #### Defined in
 
-[math/swap.ts:157](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L157)
+[math/swap.ts:193](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L193)
 
 ___
 
@@ -31,24 +41,24 @@ ___
 
 #### Defined in
 
-[math/swap.ts:158](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L158)
+[math/swap.ts:194](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L194)
 
 ___
 
 ### priceIn
 
-• **priceIn**: [`Number`](../modules/Types.md#number)
+• **priceIn**: `string`
 
 #### Defined in
 
-[math/swap.ts:159](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L159)
+[math/swap.ts:195](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L195)
 
 ___
 
 ### priceOut
 
-• **priceOut**: [`Number`](../modules/Types.md#number)
+• **priceOut**: `string`
 
 #### Defined in
 
-[math/swap.ts:160](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L160)
+[math/swap.ts:196](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L196)

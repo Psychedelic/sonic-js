@@ -4,6 +4,22 @@
 
 [Liquidity](../modules/Liquidity.md).GetPositionParams
 
+Type definition for getPosition function params.
+
+**`param`** Amount of token 0
+
+**`param`** Amount of token 1
+
+**`param`** Decimals of token 0
+
+**`param`** Decimals of token 1
+
+**`param`** Amount of token 0 in swap canister reserve
+
+**`param`** Amount of token 1 in swap canister reserve
+
+**`param`** Total supply of the pair
+
 ## Table of contents
 
 ### Properties
@@ -24,7 +40,7 @@
 
 #### Defined in
 
-[math/liquidity.ts:217](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L217)
+[math/liquidity.ts:243](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L243)
 
 ___
 
@@ -34,7 +50,7 @@ ___
 
 #### Defined in
 
-[math/liquidity.ts:218](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L218)
+[math/liquidity.ts:244](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L244)
 
 ___
 
@@ -44,7 +60,7 @@ ___
 
 #### Defined in
 
-[math/liquidity.ts:219](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L219)
+[math/liquidity.ts:245](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L245)
 
 ___
 
@@ -54,7 +70,7 @@ ___
 
 #### Defined in
 
-[math/liquidity.ts:220](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L220)
+[math/liquidity.ts:246](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L246)
 
 ___
 
@@ -64,7 +80,7 @@ ___
 
 #### Defined in
 
-[math/liquidity.ts:221](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L221)
+[math/liquidity.ts:247](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L247)
 
 ___
 
@@ -74,7 +90,7 @@ ___
 
 #### Defined in
 
-[math/liquidity.ts:222](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L222)
+[math/liquidity.ts:248](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L248)
 
 ___
 
@@ -84,4 +100,4 @@ ___
 
 #### Defined in
 
-[math/liquidity.ts:223](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L223)
+[math/liquidity.ts:249](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L249)

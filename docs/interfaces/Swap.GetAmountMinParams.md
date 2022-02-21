@@ -4,6 +4,14 @@
 
 [Swap](../modules/Swap.md).GetAmountMinParams
 
+Type definition for getAmountMin function params.
+
+**`param`** Amount of token in to swap
+
+**`param`** Decimals of token in
+
+**`param`** Allowed slippage percentage
+
 ## Table of contents
 
 ### Properties
@@ -20,7 +28,7 @@
 
 #### Defined in
 
-[math/swap.ts:151](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L151)
+[math/swap.ts:180](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L180)
 
 ___
 
@@ -30,7 +38,7 @@ ___
 
 #### Defined in
 
-[math/swap.ts:153](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L153)
+[math/swap.ts:182](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L182)
 
 ___
 
@@ -40,4 +48,4 @@ ___
 
 #### Defined in
 
-[math/swap.ts:152](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L152)
+[math/swap.ts:181](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L181)

@@ -9,7 +9,7 @@
 - [Balance](Pair.md#balance)
 - [Balances](Pair.md#balances)
 - [List](Pair.md#list)
-- [Model](Pair.md#model)
+- [Metadata](Pair.md#metadata)
 
 ## Type aliases
 
@@ -17,9 +17,11 @@
 
 Ƭ **Balance**: [`Number`](Types.md#number)
 
+Type definition for a pair Liquidity Position balance.
+
 #### Defined in
 
-[declarations/pair.ts:13](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/pair.ts#L13)
+[declarations/pair.ts:24](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/pair.ts#L24)
 
 ___
 
@@ -27,13 +29,17 @@ ___
 
 Ƭ **Balances**: `Object`
 
+Type definition for a pair Liquidity Position balance.
+It is represented using nested object in the structure of:
+[canisterId][canisterId]: Balance
+
 #### Index signature
 
 ▪ [canisterId: `string`]: { `[canisterId: string]`: [`Balance`](Pair.md#balance);  }
 
 #### Defined in
 
-[declarations/pair.ts:15](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/pair.ts#L15)
+[declarations/pair.ts:31](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/pair.ts#L31)
 
 ___
 
@@ -41,20 +47,26 @@ ___
 
 Ƭ **List**: `Object`
 
+Type definition for a list of pairs.
+It is represented using nested object in the structure of:
+[canisterId][canisterId]: Metadata
+
 #### Index signature
 
-▪ [canisterId: `string`]: { `[canisterId: string]`: [`Model`](Pair.md#model);  }
+▪ [canisterId: `string`]: { `[canisterId: string]`: [`Metadata`](Pair.md#metadata);  }
 
 #### Defined in
 
-[declarations/pair.ts:7](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/pair.ts#L7)
+[declarations/pair.ts:15](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/pair.ts#L15)
 
 ___
 
-### Model
+### Metadata
 
-Ƭ **Model**: [`PairInfoExt`](../interfaces/SwapIDL.PairInfoExt.md)
+Ƭ **Metadata**: [`PairInfoExt`](../interfaces/SwapIDL.PairInfoExt.md)
+
+Type definition for a pair.
 
 #### Defined in
 
-[declarations/pair.ts:5](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/pair.ts#L5)
+[declarations/pair.ts:8](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/pair.ts#L8)

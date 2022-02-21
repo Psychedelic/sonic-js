@@ -2,26 +2,30 @@
 
 # Namespace: Liquidity
 
+Type definition for the Liquidity.
+
 ## Table of contents
 
 ### Interfaces
 
-- [GetOppositeAmount](../interfaces/Liquidity.GetOppositeAmount.md)
+- [GetOppositeAmountParams](../interfaces/Liquidity.GetOppositeAmountParams.md)
 - [GetPositionParams](../interfaces/Liquidity.GetPositionParams.md)
 - [GetTokenBalancesParams](../interfaces/Liquidity.GetTokenBalancesParams.md)
 - [GetTokenBalancesResult](../interfaces/Liquidity.GetTokenBalancesResult.md)
-- [GetUserPositionValue](../interfaces/Liquidity.GetUserPositionValue.md)
+- [GetUserPositionValueParams](../interfaces/Liquidity.GetUserPositionValueParams.md)
 
 ### Type aliases
 
-- [GetShareOfPool](Liquidity.md#getshareofpool)
+- [GetShareOfPoolParams](Liquidity.md#getshareofpoolparams)
 
 ## Type aliases
 
-### GetShareOfPool
+### GetShareOfPoolParams
 
-Ƭ **GetShareOfPool**: [`GetPositionParams`](../interfaces/Liquidity.GetPositionParams.md)
+Ƭ **GetShareOfPoolParams**: [`GetPositionParams`](../interfaces/Liquidity.GetPositionParams.md)
+
+Type definition for getShareOfPool function params.
 
 #### Defined in
 
-[math/liquidity.ts:226](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L226)
+[math/liquidity.ts:255](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L255)

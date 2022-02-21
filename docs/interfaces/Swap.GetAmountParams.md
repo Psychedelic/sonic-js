@@ -4,6 +4,22 @@
 
 [Swap](../modules/Swap.md).GetAmountParams
 
+Type definition for getAmount function params.
+
+**`param`** Amount of token in to swap
+
+**`param`** Decimals of token in
+
+**`param`** Decimals of token out
+
+**`param`** Amount of token in on swap canister reserve
+
+**`param`** Amount of token out on swap canister reserve
+
+**`param`** Amount of token out on swap canister reserve
+
+**`param`** Calculate amount for "token from" or "token to"
+
 ## Table of contents
 
 ### Properties
@@ -24,7 +40,7 @@
 
 #### Defined in
 
-[math/swap.ts:141](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L141)
+[math/swap.ts:164](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L164)
 
 ___
 
@@ -34,7 +50,7 @@ ___
 
 #### Defined in
 
-[math/swap.ts:147](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L147)
+[math/swap.ts:170](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L170)
 
 ___
 
@@ -44,7 +60,7 @@ ___
 
 #### Defined in
 
-[math/swap.ts:142](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L142)
+[math/swap.ts:165](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L165)
 
 ___
 
@@ -54,7 +70,7 @@ ___
 
 #### Defined in
 
-[math/swap.ts:143](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L143)
+[math/swap.ts:166](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L166)
 
 ___
 
@@ -64,7 +80,7 @@ ___
 
 #### Defined in
 
-[math/swap.ts:146](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L146)
+[math/swap.ts:169](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L169)
 
 ___
 
@@ -74,7 +90,7 @@ ___
 
 #### Defined in
 
-[math/swap.ts:144](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L144)
+[math/swap.ts:167](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L167)
 
 ___
 
@@ -84,4 +100,4 @@ ___
 
 #### Defined in
 
-[math/swap.ts:145](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L145)
+[math/swap.ts:168](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L168)

@@ -2,6 +2,8 @@
 
 # Class: Assets
 
+Math calculations for Assets functions.
+
 ## Table of contents
 
 ### Constructors
@@ -31,19 +33,17 @@ Fee paid for approval and fee paid for deposit.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `params` | [`GetMaxDepositAmountParams`](../interfaces/Assets.GetMaxDepositAmountParams.md) | Assets.GetMaxDepositAmountParams |
+| Name | Type |
+| :------ | :------ |
+| `params` | [`GetDepositAmountParams`](../interfaces/Assets.GetDepositAmountParams.md) |
 
 #### Returns
 
 `BigNumber`
 
-BigNumber
-
 #### Defined in
 
-[math/assets.ts:13](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/assets.ts#L13)
+[math/assets.ts:15](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/assets.ts#L15)
 
 ___
 
@@ -56,16 +56,14 @@ The calculation applies the token fee.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `params` | [`GetWithdrawAmountParams`](../interfaces/Assets.GetWithdrawAmountParams.md) | Assets.GetMaxWithdrawAmountParams |
+| Name | Type |
+| :------ | :------ |
+| `params` | [`GetWithdrawAmountParams`](../interfaces/Assets.GetWithdrawAmountParams.md) |
 
 #### Returns
 
 `BigNumber`
 
-BigNumber
-
 #### Defined in
 
-[math/assets.ts:32](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/assets.ts#L32)
+[math/assets.ts:33](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/assets.ts#L33)

@@ -5,10 +5,6 @@
 Adapter responsible for creating actors.
 It can receive a provider to identify the actor like a wallet provider (e.g. Plug).
 
-## Implements
-
-- [`Repository`](../interfaces/ActorAdapter.Repository.md)
-
 ## Table of contents
 
 ### Constructors
@@ -41,7 +37,7 @@ It can receive a provider to identify the actor like a wallet provider (e.g. Plu
 
 #### Defined in
 
-[integrations/actor/adapter.ts:13](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L13)
+[integrations/actor/adapter.ts:13](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/actor/adapter.ts#L13)
 
 ## Properties
 
@@ -51,7 +47,7 @@ It can receive a provider to identify the actor like a wallet provider (e.g. Plu
 
 #### Defined in
 
-[integrations/actor/adapter.ts:11](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L11)
+[integrations/actor/adapter.ts:11](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/actor/adapter.ts#L11)
 
 ## Methods
 
@@ -69,22 +65,20 @@ Creates a new actor or use from memory if is already created.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `canisterId` | `string` |
-| `interfaceFactory` | `InterfaceFactory` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `canisterId` | `string` | The canister id of the actor |
+| `interfaceFactory` | `InterfaceFactory` | The interface factory of the actor |
 
 #### Returns
 
 `Promise`<[`Actor`](../modules/ActorAdapter.md#actor)<`T`\>\>
 
-#### Implementation of
-
-[Repository](../interfaces/ActorAdapter.Repository.md).[createActor](../interfaces/ActorAdapter.Repository.md#createactor)
+The actor
 
 #### Defined in
 
-[integrations/actor/adapter.ts:24](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L24)
+[integrations/actor/adapter.ts:27](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/actor/adapter.ts#L27)
 
 ___
 
@@ -96,9 +90,9 @@ Creates the agent from provider.
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `extraWhitelist` | `string`[] | `[]` |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `extraWhitelist` | `string`[] | `[]` | Extra whitelist to add to the default whitelist |
 
 #### Returns
 
@@ -106,7 +100,7 @@ Creates the agent from provider.
 
 #### Defined in
 
-[integrations/actor/adapter.ts:66](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L66)
+[integrations/actor/adapter.ts:71](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/actor/adapter.ts#L71)
 
 ___
 
@@ -114,21 +108,23 @@ ___
 
 ▸ `Static` **adapterOf**(`actor`): `undefined` \| [`ActorAdapter`](ActorAdapter.md)
 
-Gets the adapter from an actor
+Gets the adapter from an actor.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `actor` | `Actor` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `actor` | `Actor` | The actor |
 
 #### Returns
 
 `undefined` \| [`ActorAdapter`](ActorAdapter.md)
 
+The adapter or undefined if is not existent
+
 #### Defined in
 
-[integrations/actor/adapter.ts:78](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L78)
+[integrations/actor/adapter.ts:85](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/actor/adapter.ts#L85)
 
 ___
 
@@ -136,7 +132,7 @@ ___
 
 ▸ `Static` **createAnonymousActor**<`T`\>(`canisterId`, `interfaceFactory`, `host?`): [`Actor`](../modules/ActorAdapter.md#actor)<`T`\>
 
-Create an anonymous actor
+Create an anonymous actor.
 
 #### Type parameters
 
@@ -146,16 +142,18 @@ Create an anonymous actor
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `canisterId` | `string` | `undefined` |
-| `interfaceFactory` | `InterfaceFactory` | `undefined` |
-| `host` | `string` | `Default.IC_HOST` |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `canisterId` | `string` | `undefined` | The canister id of the actor |
+| `interfaceFactory` | `InterfaceFactory` | `undefined` | The interface factory of the actor |
+| `host` | `string` | `Default.IC_HOST` | The IC host to connect to |
 
 #### Returns
 
 [`Actor`](../modules/ActorAdapter.md#actor)<`T`\>
 
+The anonymous actor
+
 #### Defined in
 
-[integrations/actor/adapter.ts:88](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L88)
+[integrations/actor/adapter.ts:99](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/actor/adapter.ts#L99)

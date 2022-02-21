@@ -4,6 +4,12 @@
 
 [Liquidity](../modules/Liquidity.md).GetTokenBalancesResult
 
+Type definition for getTokenBalances return.
+
+**`param`** Amount of token 0
+
+**`param`** Amount of token 1
+
 ## Table of contents
 
 ### Properties
@@ -19,7 +25,7 @@
 
 #### Defined in
 
-[math/liquidity.ts:249](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L249)
+[math/liquidity.ts:303](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L303)
 
 ___
 
@@ -29,4 +35,4 @@ ___
 
 #### Defined in
 
-[math/liquidity.ts:250](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L250)
+[math/liquidity.ts:304](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L304)

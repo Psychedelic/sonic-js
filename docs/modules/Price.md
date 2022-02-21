@@ -2,6 +2,8 @@
 
 # Namespace: Price
 
+Type definition for the Price.
+
 ## Table of contents
 
 ### Type aliases
@@ -14,6 +16,12 @@
 
 Ƭ **GetByAmountParams**: `Object`
 
+Type definition for getByAmount function params.
+
+**`param`** Amount of the token
+
+**`param`** Price of a single token
+
 #### Type declaration
 
 | Name | Type |
@@ -23,4 +31,4 @@
 
 #### Defined in
 
-[math/price.ts:21](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/price.ts#L21)
+[math/price.ts:34](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/price.ts#L34)

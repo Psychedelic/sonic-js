@@ -2,6 +2,8 @@
 
 # Namespace: Swap
 
+Type definition for the Swap.
+
 ## Table of contents
 
 ### Interfaces
@@ -14,7 +16,6 @@
 
 - [DataKey](Swap.md#datakey)
 - [GetTokenPathsParams](Swap.md#gettokenpathsparams)
-- [GetTokenPathsResult](Swap.md#gettokenpathsresult)
 
 ## Type aliases
 
@@ -22,15 +23,29 @@
 
 Ƭ **DataKey**: ``"from"`` \| ``"to"``
 
+Defines if function should be for "token from" or "token to".
+
 #### Defined in
 
-[math/swap.ts:138](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L138)
+[math/swap.ts:151](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L151)
 
 ___
 
 ### GetTokenPathsParams
 
 Ƭ **GetTokenPathsParams**: `Object`
+
+Type definition for getTokenPaths function params.
+
+**`param`** List of pairs from swap canister
+
+**`param`** List of tokens from swap canister
+
+**`param`** Token id
+
+**`param`** Amount of token in to swap
+
+**`param`** Calculate amount for "token from" or "token to"
 
 #### Type declaration
 
@@ -44,14 +59,4 @@ ___
 
 #### Defined in
 
-[math/swap.ts:163](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L163)
-
-___
-
-### GetTokenPathsResult
-
-Ƭ **GetTokenPathsResult**: [`PathList`](MaximalPaths.md#pathlist)
-
-#### Defined in
-
-[math/swap.ts:171](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/swap.ts#L171)
+[math/swap.ts:207](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L207)
