@@ -1,5 +1,3 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / Price
-
 # Namespace: Price
 
 Type definition for the Price.
@@ -28,7 +26,3 @@ Type definition for getByAmount function params.
 | :------ | :------ |
 | `amount?` | [`Amount`](Types.md#amount) |
 | `price?` | [`Number`](Types.md#number) |
-
-#### Defined in
-
-[math/price.ts:34](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/price.ts#L34)

@@ -1,5 +1,3 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / [Liquidity](../modules/Liquidity.md) / GetTokenBalancesResult
-
 # Interface: GetTokenBalancesResult
 
 [Liquidity](../modules/Liquidity.md).GetTokenBalancesResult
@@ -23,16 +21,8 @@ Type definition for getTokenBalances return.
 
 • **balance0**: `BigNumber`
 
-#### Defined in
-
-[math/liquidity.ts:303](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L303)
-
 ___
 
 ### balance1
 
 • **balance1**: `BigNumber`
-
-#### Defined in
-
-[math/liquidity.ts:304](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L304)

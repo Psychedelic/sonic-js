@@ -1,22 +1,14 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / SwapIDL
-
 # Class: SwapIDL
 
 ## Table of contents
-
-### Constructors
-
-- [constructor](SwapIDL.md#constructor)
 
 ### Properties
 
 - [factory](SwapIDL.md#factory)
 
-## Constructors
+### Constructors
 
-### constructor
-
-• **new SwapIDL**()
+- [constructor](SwapIDL.md#constructor)
 
 ## Properties
 
@@ -24,6 +16,8 @@
 
 ▪ `Static` `Readonly` **factory**: `InterfaceFactory`
 
-#### Defined in
+## Constructors
 
-[declarations/did/swap.ts:5](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/swap.ts#L5)
+### constructor
+
+• **new SwapIDL**()

@@ -1,5 +1,3 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / [Liquidity](../modules/Liquidity.md) / GetUserPositionValueParams
-
 # Interface: GetUserPositionValueParams
 
 [Liquidity](../modules/Liquidity.md).GetUserPositionValueParams
@@ -41,19 +39,11 @@ Type definition for getUserPositionValue function params.
 
 • **decimals0**: `number`
 
-#### Defined in
-
-[math/liquidity.ts:269](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L269)
-
 ___
 
 ### decimals1
 
 • **decimals1**: `number`
-
-#### Defined in
-
-[math/liquidity.ts:270](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L270)
 
 ___
 
@@ -61,19 +51,11 @@ ___
 
 • **price0**: `string`
 
-#### Defined in
-
-[math/liquidity.ts:271](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L271)
-
 ___
 
 ### price1
 
 • **price1**: `string`
-
-#### Defined in
-
-[math/liquidity.ts:272](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L272)
 
 ___
 
@@ -81,19 +63,11 @@ ___
 
 • **reserve0**: [`Number`](../modules/Types.md#number)
 
-#### Defined in
-
-[math/liquidity.ts:273](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L273)
-
 ___
 
 ### reserve1
 
 • **reserve1**: [`Number`](../modules/Types.md#number)
-
-#### Defined in
-
-[math/liquidity.ts:274](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L274)
 
 ___
 
@@ -101,16 +75,8 @@ ___
 
 • **totalShares**: `string`
 
-#### Defined in
-
-[math/liquidity.ts:275](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L275)
-
 ___
 
 ### userShares
 
 • **userShares**: `string`
-
-#### Defined in
-
-[math/liquidity.ts:276](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L276)

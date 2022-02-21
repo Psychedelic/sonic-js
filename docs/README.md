@@ -1,5 +1,3 @@
-@psychedelic/sonic-js / [Exports](modules.md)
-
 <h1 align="center">Sonic-js</h1>
 
 <h3 align="center">The client library for Sonic</h3>

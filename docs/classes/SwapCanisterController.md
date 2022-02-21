@@ -1,21 +1,9 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / SwapCanisterController
-
 # Class: SwapCanisterController
 
 Swap Canister Controller.
 This class is responsible for handling all the requests related to the swap canister.
 
 ## Table of contents
-
-### Constructors
-
-- [constructor](SwapCanisterController.md#constructor)
-
-### Properties
-
-- [balanceList](SwapCanisterController.md#balancelist)
-- [pairList](SwapCanisterController.md#pairlist)
-- [tokenList](SwapCanisterController.md#tokenlist)
 
 ### Methods
 
@@ -29,54 +17,15 @@ This class is responsible for handling all the requests related to the swap cani
 - [swap](SwapCanisterController.md#swap)
 - [withdraw](SwapCanisterController.md#withdraw)
 
-## Constructors
+### Properties
 
-### constructor
+- [balanceList](SwapCanisterController.md#balancelist)
+- [pairList](SwapCanisterController.md#pairlist)
+- [tokenList](SwapCanisterController.md#tokenlist)
 
-• **new SwapCanisterController**(`swapActor?`)
+### Constructors
 
-Create an instance that communicates with swap canister.
-Some of the functions uses the actor agent identity to identify the user that is interacting.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `swapActor` | [`SwapActor`](../modules.md#swapactor) | swap actor or an anonymous will be used |
-
-#### Defined in
-
-[integrations/swap-canister/controller.ts:24](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/controller.ts#L24)
-
-## Properties
-
-### balanceList
-
-• **balanceList**: ``null`` \| [`BalanceList`](../modules/Token.md#balancelist) = `null`
-
-#### Defined in
-
-[integrations/swap-canister/controller.ts:17](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/controller.ts#L17)
-
-___
-
-### pairList
-
-• **pairList**: ``null`` \| [`List`](../modules/Pair.md#list) = `null`
-
-#### Defined in
-
-[integrations/swap-canister/controller.ts:16](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/controller.ts#L16)
-
-___
-
-### tokenList
-
-• **tokenList**: ``null`` \| [`MetadataList`](../modules/Token.md#metadatalist) = `null`
-
-#### Defined in
-
-[integrations/swap-canister/controller.ts:15](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/controller.ts#L15)
+- [constructor](SwapCanisterController.md#constructor)
 
 ## Methods
 
@@ -98,10 +47,6 @@ This function needs to be called before depositing into swap canister.
 
 `Promise`<`void`\>
 
-#### Defined in
-
-[integrations/swap-canister/controller.ts:159](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/controller.ts#L159)
-
 ___
 
 ### deposit
@@ -121,10 +66,6 @@ This function uses the actor agent identity.
 
 `Promise`<`void`\>
 
-#### Defined in
-
-[integrations/swap-canister/controller.ts:197](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/controller.ts#L197)
-
 ___
 
 ### getAgentPrincipal
@@ -138,10 +79,6 @@ It is going to throw if the principal is anonymous.
 
 `Promise`<`Principal`\>
 
-#### Defined in
-
-[integrations/swap-canister/controller.ts:140](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/controller.ts#L140)
-
 ___
 
 ### getPairList
@@ -153,10 +90,6 @@ Get the list of pairs present in swap canister.
 #### Returns
 
 `Promise`<[`List`](../modules/Pair.md#list)\>
-
-#### Defined in
-
-[integrations/swap-canister/controller.ts:46](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/controller.ts#L46)
 
 ___
 
@@ -175,10 +108,6 @@ Get one token balance for a given principal id.
 #### Returns
 
 `Promise`<[`Balance`](../modules/Token.md#balance)\>
-
-#### Defined in
-
-[integrations/swap-canister/controller.ts:107](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/controller.ts#L107)
 
 ___
 
@@ -199,10 +128,6 @@ This function get balances from token and swap canisters.
 
 `Promise`<[`BalanceList`](../modules/Token.md#balancelist)\>
 
-#### Defined in
-
-[integrations/swap-canister/controller.ts:59](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/controller.ts#L59)
-
 ___
 
 ### getTokenList
@@ -214,10 +139,6 @@ Get the list of supported tokens from swap canister.
 #### Returns
 
 `Promise`<[`MetadataList`](../modules/Token.md#metadatalist)\>
-
-#### Defined in
-
-[integrations/swap-canister/controller.ts:35](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/controller.ts#L35)
 
 ___
 
@@ -236,10 +157,6 @@ Swaps an amount of tokenIn for tokenOut allowing given slippage.
 #### Returns
 
 `Promise`<`void`\>
-
-#### Defined in
-
-[integrations/swap-canister/controller.ts:246](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/controller.ts#L246)
 
 ___
 
@@ -260,6 +177,35 @@ This function uses the actor agent identity.
 
 `Promise`<`void`\>
 
-#### Defined in
+## Properties
 
-[integrations/swap-canister/controller.ts:221](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/controller.ts#L221)
+### balanceList
+
+• **balanceList**: ``null`` \| [`BalanceList`](../modules/Token.md#balancelist) = `null`
+
+___
+
+### pairList
+
+• **pairList**: ``null`` \| [`List`](../modules/Pair.md#list) = `null`
+
+___
+
+### tokenList
+
+• **tokenList**: ``null`` \| [`MetadataList`](../modules/Token.md#metadatalist) = `null`
+
+## Constructors
+
+### constructor
+
+• **new SwapCanisterController**(`swapActor?`)
+
+Create an instance that communicates with swap canister.
+Some of the functions uses the actor agent identity to identify the user that is interacting.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `swapActor` | [`SwapActor`](../modules.md#swapactor) | swap actor or an anonymous will be used |

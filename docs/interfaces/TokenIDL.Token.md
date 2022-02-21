@@ -1,5 +1,3 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / [TokenIDL](../modules/TokenIDL.md) / Token
-
 # Interface: Token
 
 [TokenIDL](../modules/TokenIDL.md).Token
@@ -53,10 +51,6 @@
 
 `Promise`<`bigint`\>
 
-#### Defined in
-
-[declarations/did/token.ts:109](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L109)
-
 ___
 
 ### approve
@@ -74,10 +68,6 @@ ___
 
 `Promise`<[`Result`](../modules/TokenIDL.md#result)\>
 
-#### Defined in
-
-[declarations/did/token.ts:110](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L110)
-
 ___
 
 ### balanceOf
@@ -94,10 +84,6 @@ ___
 
 `Promise`<`bigint`\>
 
-#### Defined in
-
-[declarations/did/token.ts:111](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L111)
-
 ___
 
 ### decimals
@@ -107,10 +93,6 @@ ___
 #### Returns
 
 `Promise`<`number`\>
-
-#### Defined in
-
-[declarations/did/token.ts:112](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L112)
 
 ___
 
@@ -122,10 +104,6 @@ ___
 
 `Promise`<`bigint`\>
 
-#### Defined in
-
-[declarations/did/token.ts:113](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L113)
-
 ___
 
 ### getBlockUsed
@@ -135,10 +113,6 @@ ___
 #### Returns
 
 `Promise`<`bigint`[]\>
-
-#### Defined in
-
-[declarations/did/token.ts:114](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L114)
 
 ___
 
@@ -157,10 +131,6 @@ ___
 
 `Promise`<[`Principal`, `bigint`][]\>
 
-#### Defined in
-
-[declarations/did/token.ts:115](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L115)
-
 ___
 
 ### getMetadata
@@ -171,10 +141,6 @@ ___
 
 `Promise`<[`Metadata`](TokenIDL.Metadata.md)\>
 
-#### Defined in
-
-[declarations/did/token.ts:120](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L120)
-
 ___
 
 ### getTokenInfo
@@ -184,10 +150,6 @@ ___
 #### Returns
 
 `Promise`<[`TokenInfo`](TokenIDL.TokenInfo.md)\>
-
-#### Defined in
-
-[declarations/did/token.ts:121](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L121)
 
 ___
 
@@ -205,10 +167,6 @@ ___
 
 `Promise`<[`Principal`, `bigint`][]\>
 
-#### Defined in
-
-[declarations/did/token.ts:122](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L122)
-
 ___
 
 ### historySize
@@ -218,10 +176,6 @@ ___
 #### Returns
 
 `Promise`<`bigint`\>
-
-#### Defined in
-
-[declarations/did/token.ts:123](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L123)
 
 ___
 
@@ -239,10 +193,6 @@ ___
 
 `Promise`<`boolean`\>
 
-#### Defined in
-
-[declarations/did/token.ts:124](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L124)
-
 ___
 
 ### logo
@@ -252,10 +202,6 @@ ___
 #### Returns
 
 `Promise`<`string`\>
-
-#### Defined in
-
-[declarations/did/token.ts:119](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L119)
 
 ___
 
@@ -274,10 +220,6 @@ ___
 
 `Promise`<[`Result`](../modules/TokenIDL.md#result)\>
 
-#### Defined in
-
-[declarations/did/token.ts:125](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L125)
-
 ___
 
 ### name
@@ -288,10 +230,6 @@ ___
 
 `Promise`<`string`\>
 
-#### Defined in
-
-[declarations/did/token.ts:126](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L126)
-
 ___
 
 ### owner
@@ -301,10 +239,6 @@ ___
 #### Returns
 
 `Promise`<`Principal`\>
-
-#### Defined in
-
-[declarations/did/token.ts:127](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L127)
 
 ___
 
@@ -322,10 +256,6 @@ ___
 
 `Promise`<`undefined`\>
 
-#### Defined in
-
-[declarations/did/token.ts:128](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L128)
-
 ___
 
 ### setFeeTo
@@ -342,10 +272,6 @@ ___
 
 `Promise`<`undefined`\>
 
-#### Defined in
-
-[declarations/did/token.ts:129](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L129)
-
 ___
 
 ### setGenesis
@@ -355,10 +281,6 @@ ___
 #### Returns
 
 `Promise`<[`Result`](../modules/TokenIDL.md#result)\>
-
-#### Defined in
-
-[declarations/did/token.ts:130](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L130)
 
 ___
 
@@ -376,10 +298,6 @@ ___
 
 `Promise`<`undefined`\>
 
-#### Defined in
-
-[declarations/did/token.ts:131](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L131)
-
 ___
 
 ### setName
@@ -395,10 +313,6 @@ ___
 #### Returns
 
 `Promise`<`undefined`\>
-
-#### Defined in
-
-[declarations/did/token.ts:132](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L132)
 
 ___
 
@@ -416,10 +330,6 @@ ___
 
 `Promise`<`undefined`\>
 
-#### Defined in
-
-[declarations/did/token.ts:133](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L133)
-
 ___
 
 ### symbol
@@ -430,10 +340,6 @@ ___
 
 `Promise`<`string`\>
 
-#### Defined in
-
-[declarations/did/token.ts:134](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L134)
-
 ___
 
 ### totalSupply
@@ -443,10 +349,6 @@ ___
 #### Returns
 
 `Promise`<`bigint`\>
-
-#### Defined in
-
-[declarations/did/token.ts:135](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L135)
 
 ___
 
@@ -464,10 +366,6 @@ ___
 #### Returns
 
 `Promise`<[`Result`](../modules/TokenIDL.md#result)\>
-
-#### Defined in
-
-[declarations/did/token.ts:136](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L136)
 
 ___
 
@@ -487,10 +385,6 @@ ___
 
 `Promise`<[`Result`](../modules/TokenIDL.md#result)\>
 
-#### Defined in
-
-[declarations/did/token.ts:137](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L137)
-
 ___
 
 ### withdraw
@@ -507,7 +401,3 @@ ___
 #### Returns
 
 `Promise`<[`Result`](../modules/TokenIDL.md#result)\>
-
-#### Defined in
-
-[declarations/did/token.ts:142](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L142)

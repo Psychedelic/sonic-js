@@ -1,12 +1,6 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / Token
-
 # Namespace: Token
 
 ## Table of contents
-
-### Interfaces
-
-- [Data](../interfaces/Token.Data.md)
 
 ### Type aliases
 
@@ -14,6 +8,10 @@
 - [BalanceList](Token.md#balancelist)
 - [Metadata](Token.md#metadata)
 - [MetadataList](Token.md#metadatalist)
+
+### Interfaces
+
+- [Data](../interfaces/Token.Data.md)
 
 ## Type aliases
 
@@ -37,10 +35,6 @@ Type definition for a token balance.
 | `token` | `BigNumber` |
 | `total` | `BigNumber` |
 
-#### Defined in
-
-[declarations/token.ts:33](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/token.ts#L33)
-
 ___
 
 ### BalanceList
@@ -53,10 +47,6 @@ Type definition for a token balance list.
 
 ▪ [canisterId: `string`]: [`Balance`](Token.md#balance)
 
-#### Defined in
-
-[declarations/token.ts:42](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/token.ts#L42)
-
 ___
 
 ### Metadata
@@ -64,10 +54,6 @@ ___
 Ƭ **Metadata**: [`TokenInfoExt`](../interfaces/SwapIDL.TokenInfoExt.md)
 
 Type definition for a token.
-
-#### Defined in
-
-[declarations/token.ts:9](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/token.ts#L9)
 
 ___
 
@@ -80,7 +66,3 @@ Type definition for a list of tokens.
 #### Index signature
 
 ▪ [canisterId: `string`]: [`Metadata`](Token.md#metadata)
-
-#### Defined in
-
-[declarations/token.ts:14](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/token.ts#L14)

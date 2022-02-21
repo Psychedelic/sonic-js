@@ -1,5 +1,3 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / [Swap](../modules/Swap.md) / GetPriceImpactParams
-
 # Interface: GetPriceImpactParams
 
 [Swap](../modules/Swap.md).GetPriceImpactParams
@@ -29,19 +27,11 @@ Type definition for getPriceImpact function params.
 
 • **amountIn**: `string`
 
-#### Defined in
-
-[math/swap.ts:193](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L193)
-
 ___
 
 ### amountOut
 
 • **amountOut**: `string`
-
-#### Defined in
-
-[math/swap.ts:194](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L194)
 
 ___
 
@@ -49,16 +39,8 @@ ___
 
 • **priceIn**: `string`
 
-#### Defined in
-
-[math/swap.ts:195](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L195)
-
 ___
 
 ### priceOut
 
 • **priceOut**: `string`
-
-#### Defined in
-
-[math/swap.ts:196](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L196)

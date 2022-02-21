@@ -1,5 +1,3 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / [TokenIDL](../modules/TokenIDL.md) / Metadata
-
 # Interface: Metadata
 
 [TokenIDL](../modules/TokenIDL.md).Metadata
@@ -22,19 +20,11 @@
 
 • **decimals**: `number`
 
-#### Defined in
-
-[declarations/did/token.ts:82](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L82)
-
 ___
 
 ### fee
 
 • **fee**: `bigint`
-
-#### Defined in
-
-[declarations/did/token.ts:81](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L81)
 
 ___
 
@@ -42,19 +32,11 @@ ___
 
 • **logo**: `string`
 
-#### Defined in
-
-[declarations/did/token.ts:84](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L84)
-
 ___
 
 ### name
 
 • **name**: `string`
-
-#### Defined in
-
-[declarations/did/token.ts:85](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L85)
 
 ___
 
@@ -62,26 +44,14 @@ ___
 
 • **owner**: `Principal`
 
-#### Defined in
-
-[declarations/did/token.ts:83](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L83)
-
 ___
 
 ### symbol
 
 • **symbol**: `string`
 
-#### Defined in
-
-[declarations/did/token.ts:87](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L87)
-
 ___
 
 ### totalSupply
 
 • **totalSupply**: `bigint`
-
-#### Defined in
-
-[declarations/did/token.ts:86](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L86)

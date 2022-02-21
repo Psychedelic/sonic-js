@@ -1,5 +1,3 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / MaximalPaths
-
 # Namespace: MaximalPaths
 
 Type definition for the maximal paths graph solver.
@@ -30,10 +28,6 @@ Type definition for Node object.
 | `id` | `string` |
 | `path` | `Set`<`string`\> |
 
-#### Defined in
-
-[utils/maximal-paths.ts:107](https://github.com/Psychedelic/sonic-js/blob/1430250/src/utils/maximal-paths.ts#L107)
-
 ___
 
 ### NodeList
@@ -45,10 +39,6 @@ Type definition for NodeList object.
 #### Index signature
 
 ▪ [tokenId: `string`]: [`Node`](MaximalPaths.md#node)
-
-#### Defined in
-
-[utils/maximal-paths.ts:116](https://github.com/Psychedelic/sonic-js/blob/1430250/src/utils/maximal-paths.ts#L116)
 
 ___
 
@@ -65,10 +55,6 @@ Type definition for Path object.
 | `amountOut` | `BigNumber` |
 | `path` | `string`[] |
 
-#### Defined in
-
-[utils/maximal-paths.ts:123](https://github.com/Psychedelic/sonic-js/blob/1430250/src/utils/maximal-paths.ts#L123)
-
 ___
 
 ### PathList
@@ -81,10 +67,6 @@ Type definition for PathList object.
 
 ▪ [tokenId: `string`]: [`Path`](MaximalPaths.md#path)
 
-#### Defined in
-
-[utils/maximal-paths.ts:131](https://github.com/Psychedelic/sonic-js/blob/1430250/src/utils/maximal-paths.ts#L131)
-
 ___
 
 ### WeightList
@@ -96,7 +78,3 @@ Weight list for graph nodes.
 #### Index signature
 
 ▪ [tokenId: `string`]: `BigNumber`
-
-#### Defined in
-
-[utils/maximal-paths.ts:100](https://github.com/Psychedelic/sonic-js/blob/1430250/src/utils/maximal-paths.ts#L100)

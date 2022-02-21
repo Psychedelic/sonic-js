@@ -1,14 +1,8 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / Liquidity
-
 # Class: Liquidity
 
 Math calculations for Liquidity functions.
 
 ## Table of contents
-
-### Constructors
-
-- [constructor](Liquidity.md#constructor)
 
 ### Properties
 
@@ -23,11 +17,9 @@ Math calculations for Liquidity functions.
 - [getTokenBalances](Liquidity.md#gettokenbalances)
 - [getUserPositionValue](Liquidity.md#getuserpositionvalue)
 
-## Constructors
+### Constructors
 
-### constructor
-
-• **new Liquidity**()
+- [constructor](Liquidity.md#constructor)
 
 ## Properties
 
@@ -36,10 +28,6 @@ Math calculations for Liquidity functions.
 ▪ `Static` `Readonly` **MINIMUM\_LIQUIDITY**: `BigNumber`
 
 Constant from Swap Canister.
-
-#### Defined in
-
-[math/liquidity.ts:15](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L15)
 
 ## Methods
 
@@ -58,10 +46,6 @@ Calculate the opposite token value for given pair in Liquidity Position.
 #### Returns
 
 `BigNumber`
-
-#### Defined in
-
-[math/liquidity.ts:38](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L38)
 
 ___
 
@@ -82,10 +66,6 @@ Calculate the pair decimals for given tokens decimals.
 
 `number`
 
-#### Defined in
-
-[math/liquidity.ts:22](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L22)
-
 ___
 
 ### getPosition
@@ -103,10 +83,6 @@ Calculate the Liquidity Position for given amounts of a pair of tokens that is g
 #### Returns
 
 `BigNumber`
-
-#### Defined in
-
-[math/liquidity.ts:65](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L65)
 
 ___
 
@@ -126,10 +102,6 @@ Calculate Share of a pool of the position based on total supply.
 
 `BigNumber`
 
-#### Defined in
-
-[math/liquidity.ts:117](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L117)
-
 ___
 
 ### getTokenBalances
@@ -147,10 +119,6 @@ Calculate the token balances for given pair Liquidity Position.
 #### Returns
 
 [`GetTokenBalancesResult`](../interfaces/Liquidity.GetTokenBalancesResult.md)
-
-#### Defined in
-
-[math/liquidity.ts:179](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L179)
 
 ___
 
@@ -170,6 +138,8 @@ Calculate the amount of a token in a position based on total supply.
 
 `BigNumber`
 
-#### Defined in
+## Constructors
 
-[math/liquidity.ts:135](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/liquidity.ts#L135)
+### constructor
+
+• **new Liquidity**()

@@ -1,14 +1,8 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / Swap
-
 # Class: Swap
 
 Math calculations for Swap functions.
 
 ## Table of contents
-
-### Constructors
-
-- [constructor](Swap.md#constructor)
 
 ### Properties
 
@@ -21,11 +15,9 @@ Math calculations for Swap functions.
 - [getPriceImpact](Swap.md#getpriceimpact)
 - [getTokenPaths](Swap.md#gettokenpaths)
 
-## Constructors
+### Constructors
 
-### constructor
-
-• **new Swap**()
+- [constructor](Swap.md#constructor)
 
 ## Properties
 
@@ -34,10 +26,6 @@ Math calculations for Swap functions.
 ▪ `Static` `Readonly` **DEFAULT\_FEE**: ``0.003``
 
 Default fee for swap (0.3%)
-
-#### Defined in
-
-[math/swap.ts:13](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L13)
 
 ## Methods
 
@@ -57,10 +45,6 @@ Calculate the resultant amount of a swap.
 
 `BigNumber`
 
-#### Defined in
-
-[math/swap.ts:20](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L20)
-
 ___
 
 ### getAmountMin
@@ -78,10 +62,6 @@ Calculate minimal amount of a swap.
 #### Returns
 
 `BigNumber`
-
-#### Defined in
-
-[math/swap.ts:46](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L46)
 
 ___
 
@@ -101,10 +81,6 @@ Calculate the price impact based on given amounts and prices.
 
 `BigNumber`
 
-#### Defined in
-
-[math/swap.ts:71](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L71)
-
 ___
 
 ### getTokenPaths
@@ -123,6 +99,8 @@ Calculate the best token path to realize the swap and the output amount.
 
 [`PathList`](../modules/MaximalPaths.md#pathlist)
 
-#### Defined in
+## Constructors
 
-[math/swap.ts:111](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L111)
+### constructor
+
+• **new Swap**()

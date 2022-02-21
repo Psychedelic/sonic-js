@@ -1,8 +1,17 @@
-[@psychedelic/sonic-js](README.md) / Exports
-
 # @psychedelic/sonic-js
 
 ## Table of contents
+
+### Classes
+
+- [ActorAdapter](classes/ActorAdapter.md)
+- [Assets](classes/Assets.md)
+- [Liquidity](classes/Liquidity.md)
+- [Price](classes/Price.md)
+- [Swap](classes/Swap.md)
+- [SwapCanisterController](classes/SwapCanisterController.md)
+- [SwapIDL](classes/SwapIDL.md)
+- [TokenIDL](classes/TokenIDL.md)
 
 ### Namespaces
 
@@ -19,27 +28,16 @@
 - [TokenIDL](modules/TokenIDL.md)
 - [Types](modules/Types.md)
 
-### Classes
-
-- [ActorAdapter](classes/ActorAdapter.md)
-- [Assets](classes/Assets.md)
-- [Liquidity](classes/Liquidity.md)
-- [Price](classes/Price.md)
-- [Swap](classes/Swap.md)
-- [SwapCanisterController](classes/SwapCanisterController.md)
-- [SwapIDL](classes/SwapIDL.md)
-- [TokenIDL](classes/TokenIDL.md)
-
-### Interfaces
-
-- [CreateSwapActorOptions](interfaces/CreateSwapActorOptions.md)
-- [CreateTokenActorOptions](interfaces/CreateTokenActorOptions.md)
-
 ### Type aliases
 
 - [CheckIfOptions](modules.md#checkifoptions)
 - [SwapActor](modules.md#swapactor)
 - [TokenActor](modules.md#tokenactor)
+
+### Interfaces
+
+- [CreateSwapActorOptions](interfaces/CreateSwapActorOptions.md)
+- [CreateTokenActorOptions](interfaces/CreateTokenActorOptions.md)
 
 ### Variables
 
@@ -76,10 +74,6 @@ Options for validation.
 | `isNotANumber?` | `boolean` |
 | `isZero?` | `boolean` |
 
-#### Defined in
-
-[utils/object.ts:6](https://github.com/Psychedelic/sonic-js/blob/1430250/src/utils/object.ts#L6)
-
 ___
 
 ### SwapActor
@@ -87,10 +81,6 @@ ___
 Ƭ **SwapActor**: [`Actor`](modules/ActorAdapter.md#actor)<[`Swap`](interfaces/SwapIDL.Swap.md)\>
 
 Type of SwapActor.
-
-#### Defined in
-
-[integrations/actor/factory.ts:17](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/actor/factory.ts#L17)
 
 ___
 
@@ -100,15 +90,11 @@ ___
 
 Type of TokenActor.
 
-#### Defined in
-
-[integrations/actor/factory.ts:45](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/actor/factory.ts#L45)
-
 ## Variables
 
 ### Default
 
-• `Const` **Default**: `Object`
+• **Default**: `Object`
 
 Default values used on Sonic-js library.
 
@@ -119,10 +105,6 @@ Default values used on Sonic-js library.
 | `IC_HOST` | `string` |
 | `SLIPPAGE` | `number` |
 | `SWAP_CANISTER_ID` | `string` |
-
-#### Defined in
-
-[declarations/default.ts:4](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/default.ts#L4)
 
 ## Functions
 
@@ -143,15 +125,11 @@ Checking if all values in object are valid
 
 `boolean`
 
-#### Defined in
-
-[utils/object.ts:17](https://github.com/Psychedelic/sonic-js/blob/1430250/src/utils/object.ts#L17)
-
 ___
 
 ### createSwapActor
 
-▸ **createSwapActor**(`options?`): `Promise`<[`SwapActor`](modules.md#swapactor)\>
+▸ `Const` **createSwapActor**(`options?`): `Promise`<[`SwapActor`](modules.md#swapactor)\>
 
 Creates a Swap canister actor.
 If no option is provided, the actor will be created using the default canister options.
@@ -168,15 +146,11 @@ If no option is provided, the actor will be created using the default canister o
 
 actor instance
 
-#### Defined in
-
-[integrations/actor/factory.ts:25](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/actor/factory.ts#L25)
-
 ___
 
 ### createTokenActor
 
-▸ **createTokenActor**(`options`): `Promise`<[`TokenActor`](modules.md#tokenactor)\>
+▸ `Const` **createTokenActor**(`options`): `Promise`<[`TokenActor`](modules.md#tokenactor)\>
 
 Creates a DIP20 Token canister actor.
 If no option is provided, the actor will be created using the default canister options.
@@ -193,15 +167,11 @@ If no option is provided, the actor will be created using the default canister o
 
 actor instance
 
-#### Defined in
-
-[integrations/actor/factory.ts:53](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/actor/factory.ts#L53)
-
 ___
 
 ### deserialize
 
-▸ **deserialize**<`T`\>(`jsonString`): `undefined` \| `T`
+▸ `Const` **deserialize**<`T`\>(`jsonString`): `undefined` \| `T`
 
 Parses a json string into an object.
 This is required for parsing objects that have BigInt values.
@@ -222,15 +192,11 @@ This is required for parsing objects that have BigInt values.
 
 `undefined` \| `T`
 
-#### Defined in
-
-[utils/serialization.ts:7](https://github.com/Psychedelic/sonic-js/blob/1430250/src/utils/serialization.ts#L7)
-
 ___
 
 ### findMaximalPaths
 
-▸ **findMaximalPaths**(`pairList`, `tokenList`, `source`, `initialAmount`, `dataKey?`): [`NodeList`](modules/MaximalPaths.md#nodelist)
+▸ `Const` **findMaximalPaths**(`pairList`, `tokenList`, `source`, `initialAmount`, `dataKey?`): [`NodeList`](modules/MaximalPaths.md#nodelist)
 
 Maximal paths graph solver.
 
@@ -248,15 +214,11 @@ Maximal paths graph solver.
 
 [`NodeList`](modules/MaximalPaths.md#nodelist)
 
-#### Defined in
-
-[utils/maximal-paths.ts:15](https://github.com/Psychedelic/sonic-js/blob/1430250/src/utils/maximal-paths.ts#L15)
-
 ___
 
 ### formatAmount
 
-▸ **formatAmount**(`amount`): `string`
+▸ `Const` **formatAmount**(`amount`): `string`
 
 Formats an amount to a small string with scientific notation
 
@@ -270,15 +232,11 @@ Formats an amount to a small string with scientific notation
 
 `string`
 
-#### Defined in
-
-[utils/format.ts:69](https://github.com/Psychedelic/sonic-js/blob/1430250/src/utils/format.ts#L69)
-
 ___
 
 ### getDeadline
 
-▸ **getDeadline**(): `bigint`
+▸ `Const` **getDeadline**(): `bigint`
 
 Get deadline for swap canister requests.
 
@@ -286,15 +244,11 @@ Get deadline for swap canister requests.
 
 `bigint`
 
-#### Defined in
-
-[integrations/swap-canister/utils.ts:56](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/utils.ts#L56)
-
 ___
 
 ### parseAllPairs
 
-▸ **parseAllPairs**(`response`): [`List`](modules/Pair.md#list)
+▸ `Const` **parseAllPairs**(`response`): [`List`](modules/Pair.md#list)
 
 Parses a list of pairs from swap canister request.
 
@@ -308,15 +262,11 @@ Parses a list of pairs from swap canister request.
 
 [`List`](modules/Pair.md#list)
 
-#### Defined in
-
-[integrations/swap-canister/utils.ts:24](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/utils.ts#L24)
-
 ___
 
 ### parseSupportedTokenList
 
-▸ **parseSupportedTokenList**(`response`): [`MetadataList`](modules/Token.md#metadatalist)
+▸ `Const` **parseSupportedTokenList**(`response`): [`MetadataList`](modules/Token.md#metadatalist)
 
 Parses a list of supported tokens from swap canister request.
 
@@ -330,15 +280,11 @@ Parses a list of supported tokens from swap canister request.
 
 [`MetadataList`](modules/Token.md#metadatalist)
 
-#### Defined in
-
-[integrations/swap-canister/utils.ts:8](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/utils.ts#L8)
-
 ___
 
 ### serialize
 
-▸ **serialize**<`T`\>(`data`): `string`
+▸ `Const` **serialize**<`T`\>(`data`): `string`
 
 Parses a json object into a string.
 This is required for parsing objects that have BigInt values.
@@ -359,15 +305,11 @@ This is required for parsing objects that have BigInt values.
 
 `string`
 
-#### Defined in
-
-[utils/serialization.ts:26](https://github.com/Psychedelic/sonic-js/blob/1430250/src/utils/serialization.ts#L26)
-
 ___
 
 ### toBigNumber
 
-▸ **toBigNumber**(`num?`, `options?`): `BigNumber`
+▸ `Const` **toBigNumber**(`num?`, `options?`): `BigNumber`
 
 Converts a value to a BigNumber.
 
@@ -382,15 +324,11 @@ Converts a value to a BigNumber.
 
 `BigNumber`
 
-#### Defined in
-
-[utils/format.ts:21](https://github.com/Psychedelic/sonic-js/blob/1430250/src/utils/format.ts#L21)
-
 ___
 
 ### toExponential
 
-▸ **toExponential**(`decimals`): `BigNumber`
+▸ `Const` **toExponential**(`decimals`): `BigNumber`
 
 Create an exponential notation by given decimals.
 
@@ -403,7 +341,3 @@ Create an exponential notation by given decimals.
 #### Returns
 
 `BigNumber`
-
-#### Defined in
-
-[utils/format.ts:56](https://github.com/Psychedelic/sonic-js/blob/1430250/src/utils/format.ts#L56)

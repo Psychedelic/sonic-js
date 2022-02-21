@@ -1,5 +1,3 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / Types
-
 # Namespace: Types
 
 ## Table of contents
@@ -18,10 +16,6 @@
 
 Numeric value with decimals applied
 
-#### Defined in
-
-[declarations/types.ts:12](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/types.ts#L12)
-
 ___
 
 ### Decimals
@@ -30,10 +24,6 @@ ___
 
 Decimals representation from Swap canister
 
-#### Defined in
-
-[declarations/types.ts:17](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/types.ts#L17)
-
 ___
 
 ### Number
@@ -41,7 +31,3 @@ ___
 Ƭ **Number**: `BigInt` \| `string` \| `number` \| `BigNumber`
 
 Numeric value without decimals applied
-
-#### Defined in
-
-[declarations/types.ts:7](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/types.ts#L7)

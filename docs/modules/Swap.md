@@ -1,21 +1,19 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / Swap
-
 # Namespace: Swap
 
 Type definition for the Swap.
 
 ## Table of contents
 
+### Type aliases
+
+- [DataKey](Swap.md#datakey)
+- [GetTokenPathsParams](Swap.md#gettokenpathsparams)
+
 ### Interfaces
 
 - [GetAmountMinParams](../interfaces/Swap.GetAmountMinParams.md)
 - [GetAmountParams](../interfaces/Swap.GetAmountParams.md)
 - [GetPriceImpactParams](../interfaces/Swap.GetPriceImpactParams.md)
-
-### Type aliases
-
-- [DataKey](Swap.md#datakey)
-- [GetTokenPathsParams](Swap.md#gettokenpathsparams)
 
 ## Type aliases
 
@@ -24,10 +22,6 @@ Type definition for the Swap.
 Ƭ **DataKey**: ``"from"`` \| ``"to"``
 
 Defines if function should be for "token from" or "token to".
-
-#### Defined in
-
-[math/swap.ts:151](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L151)
 
 ___
 
@@ -56,7 +50,3 @@ Type definition for getTokenPaths function params.
 | `pairList` | [`List`](Pair.md#list) |
 | `tokenId` | `string` |
 | `tokenList` | [`MetadataList`](Token.md#metadatalist) |
-
-#### Defined in
-
-[math/swap.ts:207](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/swap.ts#L207)

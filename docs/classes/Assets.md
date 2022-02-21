@@ -1,25 +1,17 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / Assets
-
 # Class: Assets
 
 Math calculations for Assets functions.
 
 ## Table of contents
 
-### Constructors
-
-- [constructor](Assets.md#constructor)
-
 ### Methods
 
 - [getDepositAmount](Assets.md#getdepositamount)
 - [getWithdrawAmount](Assets.md#getwithdrawamount)
 
-## Constructors
+### Constructors
 
-### constructor
-
-• **new Assets**()
+- [constructor](Assets.md#constructor)
 
 ## Methods
 
@@ -41,10 +33,6 @@ Fee paid for approval and fee paid for deposit.
 
 `BigNumber`
 
-#### Defined in
-
-[math/assets.ts:15](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/assets.ts#L15)
-
 ___
 
 ### getWithdrawAmount
@@ -64,6 +52,8 @@ The calculation applies the token fee.
 
 `BigNumber`
 
-#### Defined in
+## Constructors
 
-[math/assets.ts:33](https://github.com/Psychedelic/sonic-js/blob/1430250/src/math/assets.ts#L33)
+### constructor
+
+• **new Assets**()

@@ -1,5 +1,3 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / Assets
-
 # Namespace: Assets
 
 Type definition for the Assets.

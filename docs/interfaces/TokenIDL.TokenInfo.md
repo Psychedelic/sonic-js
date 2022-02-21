@@ -1,5 +1,3 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / [TokenIDL](../modules/TokenIDL.md) / TokenInfo
-
 # Interface: TokenInfo
 
 [TokenIDL](../modules/TokenIDL.md).TokenInfo
@@ -21,19 +19,11 @@
 
 • **cycles**: `bigint`
 
-#### Defined in
-
-[declarations/did/token.ts:95](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L95)
-
 ___
 
 ### deployTime
 
 • **deployTime**: `bigint`
-
-#### Defined in
-
-[declarations/did/token.ts:92](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L92)
 
 ___
 
@@ -41,19 +31,11 @@ ___
 
 • **feeTo**: `Principal`
 
-#### Defined in
-
-[declarations/did/token.ts:96](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L96)
-
 ___
 
 ### historySize
 
 • **historySize**: `bigint`
-
-#### Defined in
-
-[declarations/did/token.ts:94](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L94)
 
 ___
 
@@ -61,16 +43,8 @@ ___
 
 • **holderNumber**: `bigint`
 
-#### Defined in
-
-[declarations/did/token.ts:91](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L91)
-
 ___
 
 ### metadata
 
 • **metadata**: [`Metadata`](TokenIDL.Metadata.md)
-
-#### Defined in
-
-[declarations/did/token.ts:93](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/did/token.ts#L93)

@@ -1,5 +1,3 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / Pair
-
 # Namespace: Pair
 
 ## Table of contents
@@ -19,10 +17,6 @@
 
 Type definition for a pair Liquidity Position balance.
 
-#### Defined in
-
-[declarations/pair.ts:24](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/pair.ts#L24)
-
 ___
 
 ### Balances
@@ -36,10 +30,6 @@ It is represented using nested object in the structure of:
 #### Index signature
 
 ▪ [canisterId: `string`]: { `[canisterId: string]`: [`Balance`](Pair.md#balance);  }
-
-#### Defined in
-
-[declarations/pair.ts:31](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/pair.ts#L31)
 
 ___
 
@@ -55,10 +45,6 @@ It is represented using nested object in the structure of:
 
 ▪ [canisterId: `string`]: { `[canisterId: string]`: [`Metadata`](Pair.md#metadata);  }
 
-#### Defined in
-
-[declarations/pair.ts:15](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/pair.ts#L15)
-
 ___
 
 ### Metadata
@@ -66,7 +52,3 @@ ___
 Ƭ **Metadata**: [`PairInfoExt`](../interfaces/SwapIDL.PairInfoExt.md)
 
 Type definition for a pair.
-
-#### Defined in
-
-[declarations/pair.ts:8](https://github.com/Psychedelic/sonic-js/blob/1430250/src/declarations/pair.ts#L8)

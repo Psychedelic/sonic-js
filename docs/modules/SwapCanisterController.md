@@ -1,5 +1,3 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / SwapCanisterController
-
 # Namespace: SwapCanisterController
 
 Type definition for the SwapCanisterController.
@@ -33,10 +31,6 @@ Type definition for params of the approve function.
 | `amount` | [`Amount`](Types.md#amount) |
 | `tokenId` | `string` |
 
-#### Defined in
-
-[integrations/swap-canister/controller.ts:318](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/controller.ts#L318)
-
 ___
 
 ### DepositParams
@@ -56,10 +50,6 @@ Type definition for params of the deposit function.
 | `amount` | [`Amount`](Types.md#amount) |
 | `tokenId` | `string` |
 
-#### Defined in
-
-[integrations/swap-canister/controller.ts:328](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/controller.ts#L328)
-
 ___
 
 ### GetTokenBalanceParams
@@ -78,10 +68,6 @@ Type definition for params of the getTokenBalance function.
 | :------ | :------ |
 | `principalId` | `string` |
 | `tokenId` | `string` |
-
-#### Defined in
-
-[integrations/swap-canister/controller.ts:362](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/controller.ts#L362)
 
 ___
 
@@ -108,10 +94,6 @@ Type definition for params of the swap function.
 | `tokenIn` | `string` |
 | `tokenOut` | `string` |
 
-#### Defined in
-
-[integrations/swap-canister/controller.ts:350](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/controller.ts#L350)
-
 ___
 
 ### WithdrawParams
@@ -130,7 +112,3 @@ Type definition for params of the withdraw function.
 | :------ | :------ |
 | `amount` | [`Amount`](Types.md#amount) |
 | `tokenId` | `string` |
-
-#### Defined in
-
-[integrations/swap-canister/controller.ts:338](https://github.com/Psychedelic/sonic-js/blob/1430250/src/integrations/swap-canister/controller.ts#L338)
