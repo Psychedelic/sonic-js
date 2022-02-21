@@ -3,6 +3,9 @@ import BigNumber from 'bignumber.js';
 import { Price } from '.';
 import { checkIfObject, Pair, toBigNumber, Token, Types } from '..';
 
+/**
+ * Math calculations for Swap functions.
+ */
 export class Swap {
   /**
    * Default fee for swap (0.3%)
@@ -10,7 +13,8 @@ export class Swap {
   static readonly DEFAULT_FEE = 0.003;
 
   /**
-   * Calculate the resultant amount of a swap
+   * Calculate the resultant amount of a swap.
+   * @params params Swap.GetAmountParams
    * @returns BigNumber
    */
   static getAmount(params: Swap.GetAmountParams): BigNumber {
@@ -35,7 +39,7 @@ export class Swap {
   }
 
   /**
-   * Calculate minimal amount of a swap
+   * Calculate minimal amount of a swap.
    * @param params Swap.GetAmountMinParams
    * @returns BigNumber
    */
@@ -60,7 +64,8 @@ export class Swap {
   };
 
   /**
-   * Calculate the price impact based on given amounts and prices
+   * Calculate the price impact based on given amounts and prices.
+   * @param params Swap.GetPriceImpactParams
    * @returns BigNumber
    */
   static getPriceImpact(params: Swap.GetPriceImpactParams): BigNumber {
@@ -99,7 +104,9 @@ export class Swap {
   }
 
   /**
-   * Calculate the best token path to realize the swap and the output amount
+   * Calculate the best token path to realize the swap and the output amount.
+   * @param params Swap.GetPathsParams
+   * @returns MaximalPaths.PathList
    */
   static getTokenPaths({
     pairList,
@@ -107,7 +114,7 @@ export class Swap {
     tokenId,
     amount = '1',
     dataKey = 'from',
-  }: Swap.GetTokenPathsParams): Swap.GetTokenPathsResult {
+  }: Swap.GetTokenPathsParams): MaximalPaths.PathList {
     if (!pairList[tokenId]) return {};
 
     const graphNodes = findMaximalPaths(
@@ -134,9 +141,18 @@ export class Swap {
   }
 }
 
+/**
+ * Type definition for the Swap.
+ */
 export namespace Swap {
+  /**
+   * Defines if function should be for "token from" or "token to".
+   */
   export type DataKey = 'from' | 'to';
 
+  /**
+   * Type definition for getAmount function params.
+   */
   export interface GetAmountParams {
     amountIn: Types.Amount;
     decimalsIn: Types.Decimals;
@@ -147,12 +163,18 @@ export namespace Swap {
     dataKey?: DataKey;
   }
 
+  /**
+   * Type definition for getAmountMin function params.
+   */
   export interface GetAmountMinParams {
     amount: Types.Amount;
     slippage: Types.Number;
     decimals: Types.Decimals;
   }
 
+  /**
+   * Type definition for getPriceImpact function params.
+   */
   export interface GetPriceImpactParams {
     amountIn: Types.Amount;
     amountOut: Types.Amount;
@@ -160,6 +182,9 @@ export namespace Swap {
     priceOut: Types.Number;
   }
 
+  /**
+   * Type definition for getTokenPaths function params.
+   */
   export type GetTokenPathsParams = {
     pairList: Pair.List;
     tokenList: Token.MetadataList;
@@ -167,6 +192,4 @@ export namespace Swap {
     amount?: Types.Amount;
     dataKey?: DataKey;
   };
-
-  export type GetTokenPathsResult = MaximalPaths.PathList;
 }
