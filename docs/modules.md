@@ -94,7 +94,7 @@ Type of TokenActor.
 
 ### Default
 
-• `Const` **Default**: `Object`
+• **Default**: `Object`
 
 Default values used on Sonic-js library.
 
@@ -129,7 +129,7 @@ ___
 
 ### createSwapActor
 
-▸ **createSwapActor**(`options?`): `Promise`<[`SwapActor`](modules.md#swapactor)\>
+▸ `Const` **createSwapActor**(`options?`): `Promise`<[`SwapActor`](modules.md#swapactor)\>
 
 Creates a Swap canister actor.
 If no option is provided, the actor will be created using the default canister options.
@@ -150,7 +150,7 @@ ___
 
 ### createTokenActor
 
-▸ **createTokenActor**(`options`): `Promise`<[`TokenActor`](modules.md#tokenactor)\>
+▸ `Const` **createTokenActor**(`options`): `Promise`<[`TokenActor`](modules.md#tokenactor)\>
 
 Creates a DIP20 Token canister actor.
 If no option is provided, the actor will be created using the default canister options.
@@ -171,7 +171,7 @@ ___
 
 ### deserialize
 
-▸ **deserialize**<`T`\>(`jsonString`): `undefined` \| `T`
+▸ `Const` **deserialize**<`T`\>(`jsonString`): `undefined` \| `T`
 
 Parses a json string into an object.
 This is required for parsing objects that have BigInt values.
@@ -196,7 +196,7 @@ ___
 
 ### findMaximalPaths
 
-▸ **findMaximalPaths**(`pairList`, `tokenList`, `source`, `initialAmount`, `dataKey?`): [`NodeList`](modules/MaximalPaths.md#nodelist)
+▸ `Const` **findMaximalPaths**(`pairList`, `tokenList`, `source`, `initialAmount`, `dataKey?`): [`NodeList`](modules/MaximalPaths.md#nodelist)
 
 Maximal paths graph solver.
 
@@ -218,7 +218,7 @@ ___
 
 ### formatAmount
 
-▸ **formatAmount**(`amount`): `string`
+▸ `Const` **formatAmount**(`amount`): `string`
 
 Formats an amount to a small string with scientific notation
 
@@ -236,7 +236,7 @@ ___
 
 ### getDeadline
 
-▸ **getDeadline**(): `bigint`
+▸ `Const` **getDeadline**(): `bigint`
 
 Get deadline for swap canister requests.
 
@@ -248,7 +248,7 @@ ___
 
 ### parseAllPairs
 
-▸ **parseAllPairs**(`response`): [`List`](modules/Pair.md#list)
+▸ `Const` **parseAllPairs**(`response`): [`List`](modules/Pair.md#list)
 
 Parses a list of pairs from swap canister request.
 
@@ -266,7 +266,7 @@ ___
 
 ### parseSupportedTokenList
 
-▸ **parseSupportedTokenList**(`response`): [`MetadataList`](modules/Token.md#metadatalist)
+▸ `Const` **parseSupportedTokenList**(`response`): [`MetadataList`](modules/Token.md#metadatalist)
 
 Parses a list of supported tokens from swap canister request.
 
@@ -284,7 +284,7 @@ ___
 
 ### serialize
 
-▸ **serialize**<`T`\>(`data`): `string`
+▸ `Const` **serialize**<`T`\>(`data`): `string`
 
 Parses a json object into a string.
 This is required for parsing objects that have BigInt values.
@@ -309,7 +309,7 @@ ___
 
 ### toBigNumber
 
-▸ **toBigNumber**(`num?`, `options?`): `BigNumber`
+▸ `Const` **toBigNumber**(`num?`, `options?`): `BigNumber`
 
 Converts a value to a BigNumber.
 
@@ -328,7 +328,7 @@ ___
 
 ### toExponential
 
-▸ **toExponential**(`decimals`): `BigNumber`
+▸ `Const` **toExponential**(`decimals`): `BigNumber`
 
 Create an exponential notation by given decimals.
 
