@@ -1,4 +1,5 @@
 import { SwapIDL, Token } from '@/declarations';
+import { toBigNumber } from 'index';
 import { parseSupportedTokenList } from 'integrations';
 
 export const mockToken = ({
@@ -8,13 +9,13 @@ export const mockToken = ({
   name,
   symbol,
   totalSupply,
-}: Partial<SwapIDL.TokenInfoExt>): SwapIDL.TokenInfoExt => ({
-  decimals: decimals || 12,
-  fee: fee || BigInt('2000000000'),
-  id: id || 'aanaa-xaaaa-aaaah-aaeiq-cai',
-  name: name || 'Cycles',
-  symbol: symbol || 'XTC',
-  totalSupply: totalSupply || BigInt('568886793566866910'),
+}: Partial<SwapIDL.TokenInfoExt> = {}): SwapIDL.TokenInfoExt => ({
+  decimals: decimals ?? 12,
+  fee: fee ?? BigInt('2000000000'),
+  id: id ?? 'aanaa-xaaaa-aaaah-aaeiq-cai',
+  name: name ?? 'Cycles',
+  symbol: symbol ?? 'XTC',
+  totalSupply: totalSupply ?? BigInt('568886793566866910'),
 });
 
 export const mockSupportedTokenListResponse = (): SwapIDL.TokenInfoExt[] => [
@@ -128,3 +129,13 @@ export const mockTokenList = (): Token.MetadataList =>
   parseSupportedTokenList(mockSupportedTokenListResponse());
 
 export const mockTokenId = (): string => 'aanaa-xaaaa-aaaah-aaeiq-cai';
+
+export const mockBalance = ({
+  sonic,
+  token,
+  total,
+}: Partial<Token.Balance> = {}): Token.Balance => ({
+  token: token ?? toBigNumber(0),
+  sonic: sonic ?? toBigNumber(0),
+  total: total ?? toBigNumber(0),
+});

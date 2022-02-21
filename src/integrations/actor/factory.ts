@@ -1,13 +1,12 @@
 import { SwapIDL, Default, TokenIDL } from '@/declarations';
-import { ActorSubclass } from '@dfinity/agent';
-import { ActorAdapter } from '.';
+import { ActorAdapter } from './adapter';
 
 export interface CreateSwapActorOptions {
   canisterId?: string;
   actorAdapter?: ActorAdapter;
 }
 
-export type SwapActor = ActorSubclass<ActorSubclass<SwapIDL.Swap>>;
+export type SwapActor = ActorAdapter.Actor<SwapIDL.Swap>;
 
 /**
  * Creates a Swap canister actor.
@@ -25,7 +24,7 @@ export interface CreateTokenActorOptions {
   actorAdapter?: ActorAdapter;
 }
 
-export type TokenActor = ActorSubclass<TokenIDL.Token>;
+export type TokenActor = ActorAdapter.Actor<TokenIDL.Token>;
 
 /**
  * Creates a DIP20 Token canister actor.

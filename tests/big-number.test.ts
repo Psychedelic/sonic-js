@@ -11,6 +11,10 @@ describe('applyDecimals', () => {
       new BigNumber(0.00000123)
     );
   });
+
+  test('should apply 0 decimals', () => {
+    expect(new BigNumber(123).applyDecimals(0)).toEqual(new BigNumber(123));
+  });
 });
 
 describe('removeDecimals', () => {
@@ -22,6 +26,10 @@ describe('removeDecimals', () => {
     expect(new BigNumber(0.00000123).removeDecimals(8)).toEqual(
       new BigNumber(123)
     );
+  });
+
+  test('should remove 0 decimals', () => {
+    expect(new BigNumber(123).removeDecimals(0)).toEqual(new BigNumber(123));
   });
 });
 

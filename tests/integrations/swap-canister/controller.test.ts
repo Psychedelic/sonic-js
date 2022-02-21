@@ -35,6 +35,10 @@ describe('SwapCanisterController', () => {
     sut = new SwapCanisterController(swapActor);
   });
 
+  test('should instantiate without actor param', () => {
+    expect(() => new SwapCanisterController()).not.toThrow();
+  });
+
   describe('.getTokenList', () => {
     test('should return a parsed list of tokens', async () => {
       const response = await sut.getTokenList();
@@ -185,6 +189,21 @@ describe('SwapCanisterController', () => {
       (Actor.agentOf as jest.Mock).mockImplementationOnce(() => undefined);
       const promise = sut.getAgentPrincipal();
       await expect(promise).rejects.toThrow();
+    });
+
+    test('should throw if the principal is anonymous', async () => {
+      sut = new SwapCanisterController();
+
+      (Actor.agentOf as jest.Mock).mockImplementationOnce(() =>
+        mockAgent({
+          getPrincipal: () => Promise.resolve(Principal.anonymous()),
+        })
+      );
+      const promise = sut.getAgentPrincipal();
+
+      await expect(promise).rejects.toThrowError(
+        'Agent principal is anonymous'
+      );
     });
   });
 

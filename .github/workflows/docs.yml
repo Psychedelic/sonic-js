@@ -1,0 +1,32 @@
+name: Docs
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          registry-url: https://npm.pkg.github.com/
+          scope: '@psychedelic'
+      - name: Build Docs
+        run: | 
+          npm install
+          npm run prepare
+          npm run docs
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          branch: docs
+          add-paths: docs
+          commit-message: 'chore: update docs'
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          title: '[Bot] Update Docs'
