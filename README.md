@@ -36,7 +36,7 @@ The Sonic-js library is utilized to integrate UIs/FEs/Apps to Swap Canister to *
     - [Token](#token)
     - [Pair](#pair)
     - [Default](#default)
-- [Examples](#examples-)
+- [Examples](#examples)
 
 ## Getting Started
 
@@ -214,6 +214,6 @@ Default is an object that stores the default values used inside the library.
 
 [Find it here](docs/modules.md#default).
 
-## Examples 🖥️
+## Examples
 
 Take a dive on [sonic-js-example](https://github.com/Psychedelic/sonic-js-example), our first usage example.
