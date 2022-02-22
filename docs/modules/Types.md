@@ -1,5 +1,3 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / Types
-
 # Namespace: Types
 
 ## Table of contents
@@ -16,11 +14,7 @@
 
 Ƭ **Amount**: `string`
 
-Numeric value with decimals applied
-
-#### Defined in
-
-[declarations/types.ts:12](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/types.ts#L12)
+It is a string that represents the number that is shown on user interfaces. (e.g. token amount, money amount)
 
 ___
 
@@ -28,11 +22,7 @@ ___
 
 Ƭ **Decimals**: `number`
 
-Decimals representation from Swap canister
-
-#### Defined in
-
-[declarations/types.ts:17](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/types.ts#L17)
+It is always a integer that represents the decimals allowed on a DIP20 token.
 
 ___
 
@@ -40,8 +30,4 @@ ___
 
 Ƭ **Number**: `BigInt` \| `string` \| `number` \| `BigNumber`
 
-Numeric value without decimals applied
-
-#### Defined in
-
-[declarations/types.ts:7](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/types.ts#L7)
+It receives all possible representations of a number. (e.g. integer, float, percentage, bigint)

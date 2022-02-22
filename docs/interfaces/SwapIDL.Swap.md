@@ -1,5 +1,3 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / [SwapIDL](../modules/SwapIDL.md) / Swap
-
 # Interface: Swap
 
 [SwapIDL](../modules/SwapIDL.md).Swap
@@ -71,10 +69,6 @@
 
 `Promise`<`boolean`\>
 
-#### Defined in
-
-[declarations/did/swap.ts:222](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L222)
-
 ___
 
 ### addLiquidity
@@ -97,10 +91,6 @@ ___
 
 `Promise`<[`TxReceipt`](../modules/SwapIDL.md#txreceipt)\>
 
-#### Defined in
-
-[declarations/did/swap.ts:223](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L223)
-
 ___
 
 ### addToken
@@ -116,10 +106,6 @@ ___
 #### Returns
 
 `Promise`<[`Result`](../modules/SwapIDL.md#result)\>
-
-#### Defined in
-
-[declarations/did/swap.ts:232](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L232)
 
 ___
 
@@ -139,10 +125,6 @@ ___
 
 `Promise`<`bigint`\>
 
-#### Defined in
-
-[declarations/did/swap.ts:233](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L233)
-
 ___
 
 ### approve
@@ -161,10 +143,6 @@ ___
 
 `Promise`<`boolean`\>
 
-#### Defined in
-
-[declarations/did/swap.ts:238](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L238)
-
 ___
 
 ### balanceOf
@@ -182,10 +160,6 @@ ___
 
 `Promise`<`bigint`\>
 
-#### Defined in
-
-[declarations/did/swap.ts:243](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L243)
-
 ___
 
 ### checkTxCounter
@@ -195,10 +169,6 @@ ___
 #### Returns
 
 `Promise`<`boolean`\>
-
-#### Defined in
-
-[declarations/did/swap.ts:244](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L244)
 
 ___
 
@@ -217,10 +187,6 @@ ___
 
 `Promise`<[`TxReceipt`](../modules/SwapIDL.md#txreceipt)\>
 
-#### Defined in
-
-[declarations/did/swap.ts:245](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L245)
-
 ___
 
 ### decimals
@@ -236,10 +202,6 @@ ___
 #### Returns
 
 `Promise`<`number`\>
-
-#### Defined in
-
-[declarations/did/swap.ts:246](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L246)
 
 ___
 
@@ -257,10 +219,6 @@ ___
 #### Returns
 
 `Promise`<[`TxReceipt`](../modules/SwapIDL.md#txreceipt)\>
-
-#### Defined in
-
-[declarations/did/swap.ts:247](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L247)
 
 ___
 
@@ -280,10 +238,6 @@ ___
 
 `Promise`<[`TxReceipt`](../modules/SwapIDL.md#txreceipt)\>
 
-#### Defined in
-
-[declarations/did/swap.ts:248](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L248)
-
 ___
 
 ### getAllPairs
@@ -294,10 +248,6 @@ ___
 
 `Promise`<[`PairInfoExt`](SwapIDL.PairInfoExt.md)[]\>
 
-#### Defined in
-
-[declarations/did/swap.ts:253](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L253)
-
 ___
 
 ### getDSwapInfo
@@ -307,10 +257,6 @@ ___
 #### Returns
 
 `Promise`<[`DSwapInfo`](SwapIDL.DSwapInfo.md)\>
-
-#### Defined in
-
-[declarations/did/swap.ts:254](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L254)
 
 ___
 
@@ -329,10 +275,6 @@ ___
 
 `Promise`<`string`\>
 
-#### Defined in
-
-[declarations/did/swap.ts:255](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L255)
-
 ___
 
 ### getNumPairs
@@ -342,10 +284,6 @@ ___
 #### Returns
 
 `Promise`<`bigint`\>
-
-#### Defined in
-
-[declarations/did/swap.ts:256](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L256)
 
 ___
 
@@ -364,10 +302,6 @@ ___
 
 `Promise`<[] \| [[`PairInfoExt`](SwapIDL.PairInfoExt.md)]\>
 
-#### Defined in
-
-[declarations/did/swap.ts:257](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L257)
-
 ___
 
 ### getPairs
@@ -385,10 +319,6 @@ ___
 
 `Promise`<[[`PairInfoExt`](SwapIDL.PairInfoExt.md)[], `bigint`]\>
 
-#### Defined in
-
-[declarations/did/swap.ts:261](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L261)
-
 ___
 
 ### getSupportedTokenList
@@ -398,10 +328,6 @@ ___
 #### Returns
 
 `Promise`<[`TokenInfoExt`](SwapIDL.TokenInfoExt.md)[]\>
-
-#### Defined in
-
-[declarations/did/swap.ts:265](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L265)
 
 ___
 
@@ -421,10 +347,6 @@ ___
 
 `Promise`<[[`TokenInfoExt`](SwapIDL.TokenInfoExt.md)[], `bigint`]\>
 
-#### Defined in
-
-[declarations/did/swap.ts:266](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L266)
-
 ___
 
 ### getSupportedTokenListSome
@@ -442,10 +364,6 @@ ___
 
 `Promise`<[[`TokenInfoExt`](SwapIDL.TokenInfoExt.md)[], `bigint`]\>
 
-#### Defined in
-
-[declarations/did/swap.ts:271](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L271)
-
 ___
 
 ### getUserBalances
@@ -462,10 +380,6 @@ ___
 
 `Promise`<[`string`, `bigint`][]\>
 
-#### Defined in
-
-[declarations/did/swap.ts:275](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L275)
-
 ___
 
 ### getUserInfo
@@ -481,10 +395,6 @@ ___
 #### Returns
 
 `Promise`<[`UserInfo`](SwapIDL.UserInfo.md)\>
-
-#### Defined in
-
-[declarations/did/swap.ts:276](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L276)
 
 ___
 
@@ -503,10 +413,6 @@ ___
 #### Returns
 
 `Promise`<[`UserInfo`](SwapIDL.UserInfo.md)\>
-
-#### Defined in
-
-[declarations/did/swap.ts:277](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L277)
 
 ___
 
@@ -532,10 +438,6 @@ ___
 
 `Promise`<[`UserInfoPage`](SwapIDL.UserInfoPage.md)\>
 
-#### Defined in
-
-[declarations/did/swap.ts:282](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L282)
-
 ___
 
 ### getUserLPBalances
@@ -551,10 +453,6 @@ ___
 #### Returns
 
 `Promise`<[`string`, `bigint`][]\>
-
-#### Defined in
-
-[declarations/did/swap.ts:293](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L293)
 
 ___
 
@@ -572,10 +470,6 @@ ___
 #### Returns
 
 `Promise`<[`string`, `bigint`][]\>
-
-#### Defined in
-
-[declarations/did/swap.ts:294](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L294)
 
 ___
 
@@ -596,10 +490,6 @@ ___
 
 `Promise`<[`TxReceipt`](../modules/SwapIDL.md#txreceipt)\>
 
-#### Defined in
-
-[declarations/did/swap.ts:298](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L298)
-
 ___
 
 ### name
@@ -616,10 +506,6 @@ ___
 
 `Promise`<`string`\>
 
-#### Defined in
-
-[declarations/did/swap.ts:304](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L304)
-
 ___
 
 ### removeAuth
@@ -635,10 +521,6 @@ ___
 #### Returns
 
 `Promise`<`boolean`\>
-
-#### Defined in
-
-[declarations/did/swap.ts:305](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L305)
 
 ___
 
@@ -662,10 +544,6 @@ ___
 
 `Promise`<[`TxReceipt`](../modules/SwapIDL.md#txreceipt)\>
 
-#### Defined in
-
-[declarations/did/swap.ts:306](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L306)
-
 ___
 
 ### setAddTokenThresh
@@ -681,10 +559,6 @@ ___
 #### Returns
 
 `Promise`<`boolean`\>
-
-#### Defined in
-
-[declarations/did/swap.ts:315](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L315)
 
 ___
 
@@ -703,10 +577,6 @@ ___
 
 `Promise`<`boolean`\>
 
-#### Defined in
-
-[declarations/did/swap.ts:316](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L316)
-
 ___
 
 ### setFeeOn
@@ -722,10 +592,6 @@ ___
 #### Returns
 
 `Promise`<`boolean`\>
-
-#### Defined in
-
-[declarations/did/swap.ts:317](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L317)
 
 ___
 
@@ -743,10 +609,6 @@ ___
 
 `Promise`<`boolean`\>
 
-#### Defined in
-
-[declarations/did/swap.ts:318](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L318)
-
 ___
 
 ### setGlobalTokenFee
@@ -762,10 +624,6 @@ ___
 #### Returns
 
 `Promise`<`boolean`\>
-
-#### Defined in
-
-[declarations/did/swap.ts:319](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L319)
 
 ___
 
@@ -783,10 +641,6 @@ ___
 
 `Promise`<`boolean`\>
 
-#### Defined in
-
-[declarations/did/swap.ts:320](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L320)
-
 ___
 
 ### setOwner
@@ -803,10 +657,6 @@ ___
 
 `Promise`<`boolean`\>
 
-#### Defined in
-
-[declarations/did/swap.ts:321](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L321)
-
 ___
 
 ### setStorageCanisterId
@@ -822,10 +672,6 @@ ___
 #### Returns
 
 `Promise`<`boolean`\>
-
-#### Defined in
-
-[declarations/did/swap.ts:322](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L322)
 
 ___
 
@@ -847,10 +693,6 @@ ___
 
 `Promise`<[`TxReceipt`](../modules/SwapIDL.md#txreceipt)\>
 
-#### Defined in
-
-[declarations/did/swap.ts:323](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L323)
-
 ___
 
 ### swapTokensForExactTokens
@@ -871,10 +713,6 @@ ___
 
 `Promise`<[`TxReceipt`](../modules/SwapIDL.md#txreceipt)\>
 
-#### Defined in
-
-[declarations/did/swap.ts:330](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L330)
-
 ___
 
 ### symbol
@@ -891,10 +729,6 @@ ___
 
 `Promise`<`string`\>
 
-#### Defined in
-
-[declarations/did/swap.ts:337](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L337)
-
 ___
 
 ### totalSupply
@@ -910,10 +744,6 @@ ___
 #### Returns
 
 `Promise`<`bigint`\>
-
-#### Defined in
-
-[declarations/did/swap.ts:338](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L338)
 
 ___
 
@@ -932,10 +762,6 @@ ___
 #### Returns
 
 `Promise`<`boolean`\>
-
-#### Defined in
-
-[declarations/did/swap.ts:339](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L339)
 
 ___
 
@@ -956,10 +782,6 @@ ___
 
 `Promise`<`boolean`\>
 
-#### Defined in
-
-[declarations/did/swap.ts:344](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L344)
-
 ___
 
 ### withdraw
@@ -976,10 +798,6 @@ ___
 #### Returns
 
 `Promise`<[`TxReceipt`](../modules/SwapIDL.md#txreceipt)\>
-
-#### Defined in
-
-[declarations/did/swap.ts:350](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L350)
 
 ___
 
@@ -998,7 +816,3 @@ ___
 #### Returns
 
 `Promise`<[`TxReceipt`](../modules/SwapIDL.md#txreceipt)\>
-
-#### Defined in
-
-[declarations/did/swap.ts:351](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L351)

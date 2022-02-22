@@ -13,28 +13,36 @@ declare module 'bignumber.js' {
 }
 
 /**
- * Returns a bigint from a BigNumber
+ * Transforms BigNumber into bigint.
+ * @returns {bigint}
  */
 BigNumber.prototype.toBigInt = function (): bigint {
   return BigInt(this.toString());
 };
 
 /**
- * Apply decimals to a number
+ * Apply decimals to a number.
+ * @param {number} decimals Decimals to apply
+ * @returns {BigNumber}
  */
 BigNumber.prototype.applyDecimals = function (decimals: number): BigNumber {
   return this.dividedBy(toExponential(decimals)).dp(decimals);
 };
 
 /**
- * Removes decimals from a number
+ * Removes decimals from a number.
+ * @param {number} decimals Decimals to remove
+ * @returns {BigNumber}
  */
 BigNumber.prototype.removeDecimals = function (decimals: number): BigNumber {
   return this.dp(decimals).multipliedBy(toExponential(decimals));
 };
 
 /**
- * Returns the number for a given maximal/minimal tolerance
+ * Returns the number for a given maximal/minimal tolerance.
+ * @param {number} percentage Tolerance percentage
+ * @param {'min' | 'max'='max'} type Tolerance under or above
+ * @returns {BigNumber}
  */
 BigNumber.prototype.applyTolerance = function (
   percentage: number,

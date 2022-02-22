@@ -1,16 +1,18 @@
 import BigNumber from 'bignumber.js';
 import { toBigNumber, Token, Types } from '..';
 
+/**
+ * Math calculations for Assets functions.
+ */
 export class Assets {
   /**
    * Calculates the maximal amount of tokens that can be deposited from given token balance.
    * The calculation applies the token fee twice.
    * Fee paid for approval and fee paid for deposit.
-   *
-   * @param params Assets.GetMaxDepositAmountParams
-   * @returns BigNumber
+   * @param {Assets.GetDepositAmountParams} params
+   * @returns {BigNumber}
    */
-  static getDepositAmount(params: Assets.GetMaxDepositAmountParams): BigNumber {
+  static getDepositAmount(params: Assets.GetDepositAmountParams): BigNumber {
     const fee = toBigNumber(params.token.fee).applyDecimals(
       params.token.decimals
     );
@@ -25,9 +27,8 @@ export class Assets {
   /**
    * Calculates the resultant amount of tokens after sonic withdraw.
    * The calculation applies the token fee.
-   *
-   * @param params Assets.GetMaxWithdrawAmountParams
-   * @returns BigNumber
+   * @param {Assets.GetWithdrawAmountParams} params
+   * @returns {BigNumber}
    */
   static getWithdrawAmount(params: Assets.GetWithdrawAmountParams): BigNumber {
     const fee = toBigNumber(params.token.fee).applyDecimals(
@@ -42,12 +43,21 @@ export class Assets {
   }
 }
 
+/**
+ * Type definition for the Assets.
+ */
 export namespace Assets {
-  export interface GetMaxDepositAmountParams {
+  /**
+   * Type definition for getDepositAmount function params.
+   */
+  export interface GetDepositAmountParams {
     token: Token.Metadata;
     amount: Types.Amount;
   }
 
+  /**
+   * Type definition for getWithdrawAmount function params.
+   */
   export interface GetWithdrawAmountParams {
     token: Token.Metadata;
     amount: Types.Amount;

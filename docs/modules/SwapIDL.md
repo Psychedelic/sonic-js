@@ -1,5 +1,3 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / SwapIDL
-
 # Namespace: SwapIDL
 
 ## Table of contents
@@ -25,26 +23,14 @@
 
 Ƭ **Factory**: [`Swap`](../interfaces/SwapIDL.Swap.md)
 
-#### Defined in
-
-[declarations/did/swap.ts:374](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L374)
-
 ___
 
 ### Result
 
 Ƭ **Result**: { `ok`: `boolean`  } \| { `err`: `string`  }
 
-#### Defined in
-
-[declarations/did/swap.ts:220](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L220)
-
 ___
 
 ### TxReceipt
 
 Ƭ **TxReceipt**: { `ok`: `bigint`  } \| { `err`: `string`  }
-
-#### Defined in
-
-[declarations/did/swap.ts:365](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/declarations/did/swap.ts#L365)

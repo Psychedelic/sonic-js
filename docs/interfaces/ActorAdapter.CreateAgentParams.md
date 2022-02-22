@@ -1,8 +1,8 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / [ActorAdapter](../modules/ActorAdapter.md) / CreateAgentParams
-
 # Interface: CreateAgentParams
 
 [ActorAdapter](../modules/ActorAdapter.md).CreateAgentParams
+
+Parameters for creating an agent using the provider.
 
 ## Table of contents
 
@@ -17,16 +17,8 @@
 
 • `Optional` **host**: `string`
 
-#### Defined in
-
-[integrations/actor/adapter.ts:130](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L130)
-
 ___
 
 ### whitelist
 
 • `Optional` **whitelist**: `string`[]
-
-#### Defined in
-
-[integrations/actor/adapter.ts:129](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/adapter.ts#L129)

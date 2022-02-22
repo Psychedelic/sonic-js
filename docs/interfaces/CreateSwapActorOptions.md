@@ -1,6 +1,10 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / CreateSwapActorOptions
-
 # Interface: CreateSwapActorOptions
+
+Options for creating an SwapActor.
+
+**`param`** Swap canister ID, default is applied
+
+**`param`** ActorAdapter instance with or without a provider, default is applied
 
 ## Table of contents
 
@@ -15,16 +19,8 @@
 
 • `Optional` **actorAdapter**: [`ActorAdapter`](../classes/ActorAdapter.md)
 
-#### Defined in
-
-[integrations/actor/factory.ts:6](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/factory.ts#L6)
-
 ___
 
 ### canisterId
 
 • `Optional` **canisterId**: `string`
-
-#### Defined in
-
-[integrations/actor/factory.ts:5](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/integrations/actor/factory.ts#L5)

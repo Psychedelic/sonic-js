@@ -1,8 +1,20 @@
-[@psychedelic/sonic-js](../README.md) / [Exports](../modules.md) / [Liquidity](../modules/Liquidity.md) / GetTokenBalancesParams
-
 # Interface: GetTokenBalancesParams
 
 [Liquidity](../modules/Liquidity.md).GetTokenBalancesParams
+
+Type definition for getTokenBalances function params.
+
+**`param`** Decimals of token 0
+
+**`param`** Decimals of token 1
+
+**`param`** Amount of token 0 in swap canister reserve
+
+**`param`** Amount of token 1 in swap canister reserve
+
+**`param`** Total supply of the pair
+
+**`param`** Liquidity Position of user
 
 ## Table of contents
 
@@ -21,19 +33,11 @@
 
 • **decimals0**: `number`
 
-#### Defined in
-
-[math/liquidity.ts:240](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L240)
-
 ___
 
 ### decimals1
 
 • **decimals1**: `number`
-
-#### Defined in
-
-[math/liquidity.ts:241](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L241)
 
 ___
 
@@ -41,19 +45,11 @@ ___
 
 • **lpBalance**: [`Number`](../modules/Types.md#number)
 
-#### Defined in
-
-[math/liquidity.ts:245](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L245)
-
 ___
 
 ### reserve0
 
 • **reserve0**: [`Number`](../modules/Types.md#number)
-
-#### Defined in
-
-[math/liquidity.ts:242](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L242)
 
 ___
 
@@ -61,16 +57,8 @@ ___
 
 • **reserve1**: [`Number`](../modules/Types.md#number)
 
-#### Defined in
-
-[math/liquidity.ts:243](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L243)
-
 ___
 
 ### totalSupply
 
 • **totalSupply**: [`Number`](../modules/Types.md#number)
-
-#### Defined in
-
-[math/liquidity.ts:244](https://github.com/Psychedelic/sonic-js/blob/33e2dd1/src/math/liquidity.ts#L244)
