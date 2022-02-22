@@ -38,6 +38,7 @@
 
 - [CreateSwapActorOptions](interfaces/CreateSwapActorOptions.md)
 - [CreateTokenActorOptions](interfaces/CreateTokenActorOptions.md)
+- [ToBigNumberOptions](interfaces/ToBigNumberOptions.md)
 
 ### Variables
 
@@ -318,7 +319,7 @@ Converts a value to a BigNumber.
 | Name | Type |
 | :------ | :------ |
 | `num?` | [`Number`](modules/Types.md#number) |
-| `options?` | `ToBigNumberOptions` |
+| `options?` | [`ToBigNumberOptions`](interfaces/ToBigNumberOptions.md) |
 
 #### Returns
 
