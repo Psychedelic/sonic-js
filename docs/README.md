@@ -1,353 +1,343 @@
-<h1 align="center">Sonic-js</h1>
+# @psychedelic/sonic-js
 
-<h3 align="center">The client library for Sonic</h3>
+## Table of contents
 
-> A client library for the [Sonic](https://sonic.ooo/) Open Internet Service (OIS), implemented in JavaScript.
+### Classes
 
-The Sonic-js library is utilized to integrate UIs/FEs/Apps to Swap Canister to **transact** on Sonic.
+- [ActorAdapter](classes/ActorAdapter.md)
+- [Assets](classes/Assets.md)
+- [Liquidity](classes/Liquidity.md)
+- [Price](classes/Price.md)
+- [Swap](classes/Swap.md)
+- [SwapCanisterController](classes/SwapCanisterController.md)
+- [SwapIDL](classes/SwapIDL.md)
+- [TokenIDL](classes/TokenIDL.md)
 
-- Visit [our website](https://sonic.ooo/)
-- Read [Sonics's documentation](https://docs.sonic.ooo/)
-- Read [our blog](https://sonic-ooo.medium.com/)
+### Namespaces
 
-## Table of Contents
+- [ActorAdapter](modules/ActorAdapter.md)
+- [Assets](modules/Assets.md)
+- [Liquidity](modules/Liquidity.md)
+- [MaximalPaths](modules/MaximalPaths.md)
+- [Pair](modules/Pair.md)
+- [Price](modules/Price.md)
+- [Swap](modules/Swap.md)
+- [SwapCanisterController](modules/SwapCanisterController.md)
+- [SwapIDL](modules/SwapIDL.md)
+- [Token](modules/Token.md)
+- [TokenIDL](modules/TokenIDL.md)
+- [Types](modules/Types.md)
 
-- [Table of Contents](#table-of-contents)
-- [Getting Started](#getting-started)
-  - [Install](#install)
-  - [BigNumber](#bignumber)
-- [Usage](#usage)
-  - [Integration](#integration)
-    - [Agent and Actor](#agent-and-actor)
-      - [Actor Adapter](#actor-adapter)
-      - [Actor Factories](#actor-factories)
-      - [IDLs](#idls)
-    - [Swap Canister Controller](#swap-canister-controller)
-      - [Class Functions](#class-functions)
-  - [Math](#math)
-  - [Utils](#utils)
-  - [Declarations](#declarations)
-    - [Types](#types)
-    - [Token](#token)
-    - [Pair](#pair)
-    - [Default](#default)
+### Type aliases
 
-## Getting Started
+- [CheckIfOptions](README.md#checkifoptions)
+- [SwapActor](README.md#swapactor)
+- [TokenActor](README.md#tokenactor)
 
-### Install
+### Interfaces
 
-```bash
-yarn add @psychedelic/sonic-js
-```
+- [CreateSwapActorOptions](interfaces/CreateSwapActorOptions.md)
+- [CreateTokenActorOptions](interfaces/CreateTokenActorOptions.md)
 
-### BigNumber
+### Variables
 
-This library relies on [BigNumber.js](https://www.npmjs.com/package/big-number) to handle numbers and calculations. It is used because its ease of use and to avoid JavaScript limitations when dealing with really big numbers or with a lot of decimal places.
+- [Default](README.md#default)
 
-To better deal and present inside your application you can use the cast functions like `toString` and `toNumber`.
+### Functions
 
-Some functions were added to `BigNumber` class prototype because of the high number of utilization inside other of the functions inside the library:
+- [checkIfObject](README.md#checkifobject)
+- [createSwapActor](README.md#createswapactor)
+- [createTokenActor](README.md#createtokenactor)
+- [deserialize](README.md#deserialize)
+- [findMaximalPaths](README.md#findmaximalpaths)
+- [formatAmount](README.md#formatamount)
+- [getDeadline](README.md#getdeadline)
+- [parseAllPairs](README.md#parseallpairs)
+- [parseSupportedTokenList](README.md#parsesupportedtokenlist)
+- [serialize](README.md#serialize)
+- [toBigNumber](README.md#tobignumber)
+- [toExponential](README.md#toexponential)
 
-```ts
-toBigInt(): bigint;
-```
+## Type aliases
 
-Returns a bigint from a BigNumber
+### CheckIfOptions
 
-```ts
-applyDecimals(decimals: number): BigNumber;
-```
+Ƭ **CheckIfOptions**: `Object`
 
-Returns a bigint from a BigNumber
+Options for validation.
 
-```ts
-removeDecimals(decimals: number): BigNumber;
-```
+#### Type declaration
 
-Removes decimals from a number
+| Name | Type |
+| :------ | :------ |
+| `isNegative?` | `boolean` |
+| `isNotANumber?` | `boolean` |
+| `isZero?` | `boolean` |
 
-```ts
-applyTolerance(percentage: number, type?: 'min' | 'max'): BigNumber;
-```
+___
 
-Returns the number for a given maximal/minimal tolerance
+### SwapActor
 
-## Usage
+Ƭ **SwapActor**: [`Actor`](modules/ActorAdapter.md#actor)<[`Swap`](interfaces/SwapIDL.Swap.md)\>
 
-This library holds a set of functions and interfaces that helps in the development of applications that interacts with Sonic canisters.
+Type of SwapActor.
 
-The library is separated in modules to organize and have ease in use:
+___
 
-### Integration
+### TokenActor
 
-On integration module is provided functions that helps to interact with IC world.
+Ƭ **TokenActor**: [`Actor`](modules/ActorAdapter.md#actor)<[`Token`](interfaces/TokenIDL.Token.md)\>
 
-#### Agent and Actor
+Type of TokenActor.
 
-First of all to talk with IC we need to create `actors` that communicate with canisters. But to create the `actors` we need to first setup an `agent` that indicates who and how the communication is going to be realized. This library provides some functions that helps in this process to reach the communication with Swap Canister and DIP20 token canisters.
+## Variables
 
-##### Actor Adapter
+### Default
 
-The class `ActorAdapter` provides an abstraction of [@dfinity/agent](https://www.npmjs.com/package/@dfinity/agent) that helps to instantiate new actors and reuse them.
+• **Default**: `Object`
 
-The class constructor has params that turn able to configure how you want to use the adapter:
+Default values used on Sonic-js library.
 
-- `provider`: This param receives an object that is used to create `agent` and `actors`. The object needs to follow the interface `ActorAdapter.Provider`. Is high recommended if you want to instantiate actors linked with wallets to use [@psychedelic/plug-inpage-provider](https://github.com/Psychedelic/plug-inpage-provider/packages/884575):
+#### Type declaration
 
-```ts
-const adapter = new ActorAdapter(window.plug);
-```
+| Name | Type |
+| :------ | :------ |
+| `IC_HOST` | `string` |
+| `SLIPPAGE` | `number` |
+| `SWAP_CANISTER_ID` | `string` |
 
-- `options`: This param is used for selecting some settings of network host and whitelisting canister ids. It follows the interface `ActorAdapter.Options`:
+## Functions
 
-```ts
-const adapter = new ActorAdapter(window.plug, {
-  host: 'https://boundary.ic0.app/',
-  whitelist: ['3xwpq-ziaaa-aaaah-qcn4a-cai'],
-});
-```
+### checkIfObject
 
-You can also use default parameters and no provider:
+▸ **checkIfObject**(`object`, `options`): `boolean`
 
-```ts
-const adapter = new ActorAdapter();
-```
+Checking if all values in object are valid
 
-##### Actor Factories
+#### Parameters
 
-To make ease on use for actors, the library provides two functions that directly create actors for Swap and DIP20 canisters:
+| Name | Type |
+| :------ | :------ |
+| `object` | `Object` |
+| `options` | [`CheckIfOptions`](README.md#checkifoptions) |
 
-```ts
-createSwapActor(options?: CreateSwapActorOptions): Promise<SwapActor>
-```
+#### Returns
 
-This one can be called without options and a actor is going to be created using default options.
+`boolean`
 
-```ts
-createTokenActor(options: CreateTokenActorOptions): Promise<TokenActor>
-```
+___
 
-This one has the canister id required to be created.
+### createSwapActor
 
-Both functions can receive an `ActorAdapter` or they are going to use the default one.
+▸ `Const` **createSwapActor**(`options?`): `Promise`<[`SwapActor`](README.md#swapactor)\>
 
-##### IDLs
+Creates a Swap canister actor.
+If no option is provided, the actor will be created using the default canister options.
 
-All actors that communicate with IC needs to have an IDL to indicate which functions are callable on the canister. The library already provide this IDLs for Swap and DIP20 canisters and they can be found [here](src/declarations/did).
+#### Parameters
 
-#### Swap Canister Controller
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `options` | [`CreateSwapActorOptions`](interfaces/CreateSwapActorOptions.md) | Options for creating the SwapActor |
 
-The class `SwapCanisterController` provides functions that abstracts the main functionalities of Swap Canister. Instantiating it requires a Swap Actor mentioned above.
+#### Returns
 
-```ts
-const swapActor = await createSwapActor();
-const swapCanisterController = new SwapCanisterController(swapActor);
-```
+`Promise`<[`SwapActor`](README.md#swapactor)\>
 
-Some of the functions will keep the responses stored on class variables to optimize subsequent requests. The variables are:
+actor instance
 
-```ts
-tokenList: Token.MetadataList;
-pairList: Pair.List;
-balanceList: Token.BalanceList;
-```
+___
 
-##### Class Functions
+### createTokenActor
 
-```ts
-getTokenList(): Promise<Token.MetadataList>
-```
+▸ `Const` **createTokenActor**(`options`): `Promise`<[`TokenActor`](README.md#tokenactor)\>
 
-Get the list of supported tokens from swap canister
+Creates a DIP20 Token canister actor.
+If no option is provided, the actor will be created using the default canister options.
 
-```ts
-getPairList(): Promise<Pair.List>
-```
+#### Parameters
 
-Get the list of pairs present in swap canister
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `options` | [`CreateTokenActorOptions`](interfaces/CreateTokenActorOptions.md) | Options for creating the TokenActor |
 
-```ts
-getTokenBalances(principalId: string): Promise<Token.BalanceList>
-```
+#### Returns
 
-Get the balance of all supported tokens for a given principal id
+`Promise`<[`TokenActor`](README.md#tokenactor)\>
 
-This function get balances from token and swap canisters
+actor instance
 
-```ts
-getTokenBalance(params: SwapCanisterController.GetTokenBalanceParams): Promise<Token.Balance>
-```
+___
 
-Get one token balance for a given principal id
+### deserialize
 
-```ts
-getAgentPrincipal(): Promise<Principal>
-```
+▸ `Const` **deserialize**<`T`\>(`jsonString`): `undefined` \| `T`
 
-Get the principal of the agent
+Parses a json string into an object.
+This is required for parsing objects that have BigInt values.
 
-```ts
-approve(params: SwapCanisterController.ApproveParams): Promise<void>
-```
+#### Type parameters
 
-Approve transfers from token to swap canister
+| Name | Type |
+| :------ | :------ |
+| `T` | `any` |
 
-This function uses the actor agent identity
+#### Parameters
 
-```ts
-deposit(params: SwapCanisterController.DepositParams): Promise<void>
-```
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `jsonString` | `string` | JSON string to parse |
 
-Approve transfers from token to swap canister
+#### Returns
 
-```ts
-withdraw(params: SwapCanisterController.WithdrawParams): Promise<void>
-```
+`undefined` \| `T`
 
-Approve transfers from token to swap canister
+___
 
-```ts
-swap(params: SwapCanisterController.SwapParams): Promise<void>
-```
+### findMaximalPaths
 
-Swaps an amount of tokenIn for tokenOut allowing given slippage
+▸ `Const` **findMaximalPaths**(`pairList`, `tokenList`, `source`, `initialAmount`, `dataKey?`): [`NodeList`](modules/MaximalPaths.md#nodelist)
 
-### Math
+Maximal paths graph solver.
 
-The Math module holds the functions used in calculations to get correct values to be displayed or sent in requests.
+#### Parameters
 
-```ts
-Swap.getAmount(params: Swap.GetAmountOutParams): BigNumber
-```
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `pairList` | [`List`](modules/Pair.md#list) | `undefined` |
+| `tokenList` | [`MetadataList`](modules/Token.md#metadatalist) | `undefined` |
+| `source` | `string` | `undefined` |
+| `initialAmount` | `BigNumber` | `undefined` |
+| `dataKey` | [`DataKey`](modules/Swap.md#datakey) | `'from'` |
 
-Calculate the needed or resultant amount of a swap
+#### Returns
 
-```ts
-Swap.getPriceImpact(params: Swap.GetPriceImpactParams): BigNumber
-```
+[`NodeList`](modules/MaximalPaths.md#nodelist)
 
-Calculate the price impact based on given amounts and prices
+___
 
-```ts
-Swap.getTokenPaths(params: Swap.GetTokenPathsParams): Swap.GetTokenPathsResult
-```
+### formatAmount
 
-Calculate the best token path to realize the swap and the output amount
-
-```ts
-Liquidity.getPairDecimals(token0Decimals: Types.Decimals, token1Decimals: Types.Decimals): Types.Decimals
-```
-
-Calculate the pair decimals for given tokens decimals
-
-```ts
-Liquidity.getPosition(params: Liquidity.GetPositionParams): BigNumber
-```
-
-Calculate the Liquidity Position for given amounts of a pair of tokens that's going to be added
-
-```ts
-Liquidity.getShareOfPool(params: Liquidity.GetShareOfPoolParams): BigNumber
-```
-
-Calculate Share of a pool of the position based on total supply
-
-```ts
-Liquidity.getTokenBalances(params: Liquidity.GetTokenBalancesParams): Liquidity.GetTokenBalancesResult
-```
-
-Calculate the token balances for given pair Liquidity Position
-
-```ts
-Price.getByAmount(params: Price.GetPriceByAmountParams): BigNumber
-```
-
-Calculate the total amount price by a given amount
-
-### Utils
-
-The Utils module holds functions that have general propose usage. This functions are used inside other modules as well.
-
-```ts
-toBigNumber(num?: Types.Number): BigNumber
-```
-
-Converts a value to a BigNumber
-
-```ts
-toExponential(decimals: Types.Number): BigNumber
-```
-
-Create a toExponential notation by given decimals
-
-```ts
-formatAmount(amount: Types.Amount): string
-```
+▸ `Const` **formatAmount**(`amount`): `string`
 
 Formats an amount to a small string with scientific notation
 
-```ts
-deserialize<T = any>(jsonString: string): T | undefined
-```
+#### Parameters
 
-Parses a json string into an object
+| Name | Type |
+| :------ | :------ |
+| `amount` | `string` |
 
-This is required for parsing objects that have BigInt values
+#### Returns
 
-```ts
-serialize<T>(data: T): string
-```
+`string`
 
-Parses a json object into a string
+___
 
-This is required for parsing objects that have BigInt values
+### getDeadline
 
-### Declarations
+▸ `Const` **getDeadline**(): `bigint`
 
-The declarations module provides the default constants used and typescript interfaces to help consuming the library.
+Get deadline for swap canister requests.
 
-#### Types
+#### Returns
 
-There are some declared types that we use in overall of our application to keep standardization of our params:
+`bigint`
 
-- `Types.Number`: It receives all possible representations of a number. (e.g. integer, float, percentage, bigint)
+___
 
-- `Types.Amount`: It is a string that represents the number that is shown on user interfaces. (e.g. token amount, money amount)
+### parseAllPairs
 
-- `Types.Decimals`: It is always a integer that represents the decimals allowed on a DIP20 token.
+▸ `Const` **parseAllPairs**(`response`): [`List`](modules/Pair.md#list)
 
-#### Token
+Parses a list of pairs from swap canister request.
 
-There are some declared types that we use to represent tokens and it's related stuff:
+#### Parameters
 
-- `Token.Metadata`: It is an object containing information about a DIP20 token.
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `response` | [`PairInfoExt`](interfaces/SwapIDL.PairInfoExt.md)[] | Response from swap canister |
 
-- `Token.MetadataList`: It is key-object that maps a list of `Token.Metadata`.
+#### Returns
 
-- `Token.Data`: It is an object containing the metadata and an amount of a token. It is used for turn easier pass data on operations.
+[`List`](modules/Pair.md#list)
 
-- `Token.Balance`: It is an object that contains balances of certain token. The balances contained are `sonic`, `token` and `total` that represents balances from sonic, from wallet and the sum of both for a given principal id.
+___
 
-- `Token.BalanceList`: It is key-object that maps a list of `Token.Balance`.
+### parseSupportedTokenList
 
-#### Pair
+▸ `Const` **parseSupportedTokenList**(`response`): [`MetadataList`](modules/Token.md#metadatalist)
 
-There are some declared types that we use to represent Sonic swap pairs and it's related stuff.
+Parses a list of supported tokens from swap canister request.
 
-- `Pair.Model`: It is an object containing information about the pair.
+#### Parameters
 
-- `Pair.List`: It is key-object that maps a list of `Pair.Model`.
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `response` | [`TokenInfoExt`](interfaces/SwapIDL.TokenInfoExt.md)[] | Response from swap canister |
 
-- `Pair.Balance`: It is a `Types.Number` that represents the Liquidity Position for a pair.
+#### Returns
 
-- `Pair.Balances`: It is key-object that maps a list of `Pair.Balance`.
+[`MetadataList`](modules/Token.md#metadatalist)
 
-#### Default
+___
 
-Default is an object that stores the default values used inside the library.
+### serialize
 
-- `Default.IC_HOST`: The url to communicate with IC.
+▸ `Const` **serialize**<`T`\>(`data`): `string`
 
-- `Default.SWAP_CANISTER_ID`: The Swap Canister id.
+Parses a json object into a string.
+This is required for parsing objects that have BigInt values.
 
-- `SLIPPAGE`: The default value used for calculations that has slippage as param.
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `data` | `T` | object to parse |
+
+#### Returns
+
+`string`
+
+___
+
+### toBigNumber
+
+▸ `Const` **toBigNumber**(`num?`, `options?`): `BigNumber`
+
+Converts a value to a BigNumber.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `num?` | [`Number`](modules/Types.md#number) |
+| `options?` | `ToBigNumberOptions` |
+
+#### Returns
+
+`BigNumber`
+
+___
+
+### toExponential
+
+▸ `Const` **toExponential**(`decimals`): `BigNumber`
+
+Create an exponential notation by given decimals.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `decimals` | [`Number`](modules/Types.md#number) |
+
+#### Returns
+
+`BigNumber`

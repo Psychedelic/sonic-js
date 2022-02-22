@@ -1,48 +1,92 @@
+![Sonic Banner](https://storageapi.fleek.co/fleek-team-bucket/logos/sonic-log.png)
+
 <h1 align="center">Sonic-js</h1>
 
 <h3 align="center">The client library for Sonic</h3>
 
-> A client library for the [Sonic](https://sonic.ooo/) Open Internet Service (OIS), implemented in JavaScript.
+> ⚠️ The library is currently under a Beta version. It still a work in progress and can have braking changes through the new version releases.
 
-The Sonic-js library is utilized to integrate UIs/FEs/Apps to Swap Canister to **transact** on Sonic.
+> 💬 All feedback is accepted! [Set up an issue](https://github.com/Psychedelic/sonic-js/issues).
+
+A client library for the [Sonic](https://sonic.ooo/) Open Internet Service (OIS), implemented in JavaScript.
+
+The Sonic-js library is utilized to integrate UIs/FEs/Apps to **transact** with Sonic's Swap Canister on the Internet Computer blockchain.
 
 - Visit [our website](https://sonic.ooo/)
 - Read [Sonics's documentation](https://docs.sonic.ooo/)
 - Read [our blog](https://sonic-ooo.medium.com/)
 
+<br>
+
+## Examples 🔮
+
+Not sure where to start? Take a dive into our [sonic-js-example](https://github.com/Psychedelic/sonic-js-example) application to checkout what an implementation of Sonic-js looks like!
+
+<br>
+
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
 - [Getting Started](#getting-started)
-  - [Install](#install)
-  - [BigNumber](#bignumber)
-- [Usage](#usage)
-  - [Integration](#integration)
+  - [Install](#install-)
+  - [BigNumber](#bignumber-)
+- [Usage](#usage-)
+  - [Integration](#integration-)
     - [Agent and Actor](#agent-and-actor)
       - [Actor Adapter](#actor-adapter)
       - [Actor Factories](#actor-factories)
       - [IDLs](#idls)
     - [Swap Canister Controller](#swap-canister-controller)
-      - [Class Functions](#class-functions)
-  - [Math](#math)
-  - [Utils](#utils)
-  - [Declarations](#declarations)
+  - [Math](#math-)
+  - [Utils](#utils-)
+  - [Declarations](#declarations-)
     - [Types](#types)
     - [Token](#token)
     - [Pair](#pair)
     - [Default](#default)
 
+<br>
+
 ## Getting Started
 
-### Install
+### Install 🛠️
+
+First we need to setup the `.npmrc` file to fetch the right package on [Github Packages](https://github.com/features/packages).
+
+To do so, append the following line to your `.npmrc` file your project's root directory. If you don't have a `.npmrc` file, create a new one.
+
+```
+@psychedelic:registry=https://npm.pkg.github.com
+```
+
+Now we need to setup our authentication on Github Packages. This step is compulsory, even for public packages.
+
+To do so you're going to need a personal access token with the following configurations:
+
+- **repo**
+- **read:packages**
+
+Next, authenticate yourself via the `npm login` command using your Github email for the username and the personal access token as your password:
+
+```bash
+npm login --registry=https://npm.pkg.github.com --scope=@psychedelic
+```
+
+With an authentication set up, now we need to run:
 
 ```bash
 yarn add @psychedelic/sonic-js
 ```
 
-### BigNumber
+Done! We have installed the package successfully.
 
-This library relies on [BigNumber.js](https://www.npmjs.com/package/big-number) to handle numbers and calculations. It is used because its ease of use and to avoid JavaScript limitations when dealing with really big numbers or with a lot of decimal places.
+<br>
+
+## Dependencies
+
+### BigNumber 🔟
+
+This library relies on [BigNumber.js](https://www.npmjs.com/package/big-number) to handle numbers and calculations. It is used because its ease of use and to avoid JavaScript limitations when dealing with large numbers or numbers with many decimal places.
 
 To better deal and present inside your application you can use the cast functions like `toString` and `toNumber`.
 
@@ -72,27 +116,29 @@ applyTolerance(percentage: number, type?: 'min' | 'max'): BigNumber;
 
 Returns the number for a given maximal/minimal tolerance
 
-## Usage
+<br>
 
-This library holds a set of functions and interfaces that helps in the development of applications that interacts with Sonic canisters.
+## Usage 👷
 
-The library is separated in modules to organize and have ease in use:
+This library holds a set of functions and interfaces that helps in the development of applications that interacts with Sonic's canisters.
 
-### Integration
+The library is separated into modules:
 
-On integration module is provided functions that helps to interact with IC world.
+### Integration ⛓️
+
+The integration module provides functions that helps to interact with Sonic directly.
 
 #### Agent and Actor
 
-First of all to talk with IC we need to create `actors` that communicate with canisters. But to create the `actors` we need to first setup an `agent` that indicates who and how the communication is going to be realized. This library provides some functions that helps in this process to reach the communication with Swap Canister and DIP20 token canisters.
+To talk with Internet Computer we need to create `actors` that communicate with canisters. To create `actors` we need to first setup an `agent` that indicates who and how the communication to the Internet Computer netowkr is going to be realized. This library provides some functions that help to establish communication with Swap Canister and DIP20 token canisters by abstracting away `actors` creation.
 
 ##### Actor Adapter
 
 The class `ActorAdapter` provides an abstraction of [@dfinity/agent](https://www.npmjs.com/package/@dfinity/agent) that helps to instantiate new actors and reuse them.
 
-The class constructor has params that turn able to configure how you want to use the adapter:
+The class constructor has params to configure how you want to use the adapter:
 
-- `provider`: This param receives an object that is used to create `agent` and `actors`. The object needs to follow the interface `ActorAdapter.Provider`. Is high recommended if you want to instantiate actors linked with wallets to use [@psychedelic/plug-inpage-provider](https://github.com/Psychedelic/plug-inpage-provider/packages/884575):
+- `provider`: This param receives an object that is used to create `agent` and `actors`. The object needs to follow the interface `ActorAdapter.Provider`. We highly recommended using [@psychedelic/plug-inpage-provider](https://github.com/Psychedelic/plug-inpage-provider/packages/884575) if you want to instantiate actors linked to a user:
 
 ```ts
 const adapter = new ActorAdapter(window.plug);
@@ -113,241 +159,89 @@ You can also use default parameters and no provider:
 const adapter = new ActorAdapter();
 ```
 
-##### Actor Factories
-
-To make ease on use for actors, the library provides two functions that directly create actors for Swap and DIP20 canisters:
-
-```ts
-createSwapActor(options?: CreateSwapActorOptions): Promise<SwapActor>
-```
-
-This one can be called without options and a actor is going to be created using default options.
-
-```ts
-createTokenActor(options: CreateTokenActorOptions): Promise<TokenActor>
-```
-
-This one has the canister id required to be created.
-
-Both functions can receive an `ActorAdapter` or they are going to use the default one.
-
 ##### IDLs
 
 All actors that communicate with IC needs to have an IDL to indicate which functions are callable on the canister. The library already provide this IDLs for Swap and DIP20 canisters and they can be found [here](src/declarations/did).
 
+Our `Actor Factories` make use of these saved IDL's to generate actors for you.
+
+##### Actor Factories
+
+To make actor creation even easier, Sonic-js provides two functions that automatically create configurable actors for Sonic's Swap canister and any DIP20 canister:
+
+- [createSwapActor](docs/README.md#createswapactor)
+- [createTokenActor](docs/README.md#createtokenactor)
+
 #### Swap Canister Controller
 
-The class `SwapCanisterController` provides functions that abstracts the main functionalities of Swap Canister. Instantiating it requires a Swap Actor mentioned above.
+The class `SwapCanisterController` provides methods that give access to the main functionalities of Swap Canister. Instantiation of a non-anonymous controller uses a `Swap Actor`.
+
+You can create an anonymous controller (not linked to any user) by providing no params:
 
 ```ts
-const swapActor = await createSwapActor();
-const swapCanisterController = new SwapCanisterController(swapActor);
+const controller = new SwapCanisterController();
 ```
 
-Some of the functions will keep the responses stored on class variables to optimize subsequent requests. The variables are:
+Or adding a custom actor with your adapter:
 
 ```ts
-tokenList: Token.MetadataList;
-pairList: Pair.List;
-balanceList: Token.BalanceList;
+const swapActor = await createSwapActor({
+  actorAdapter: new ActorAdapter(window.plug),
+});
+const controller = new SwapCanisterController(swapActor);
 ```
 
-##### Class Functions
+For a list of the available `SwapCanisterController` methods, [click here](docs/classes/SwapCanisterController.md).
 
-```ts
-getTokenList(): Promise<Token.MetadataList>
-```
+<br>
 
-Get the list of supported tokens from swap canister
+### Math 🖩
 
-```ts
-getPairList(): Promise<Pair.List>
-```
+The Math module consists of functions used in calculations to be displayed to the user or sent in requests. The module has four available classes, here are links to descriptions of those classes and their available methods:
 
-Get the list of pairs present in swap canister
+- [Swap](docs/classes/Swap.md)
+- [Liquidity](docs/classes/Liquidity.md)
+- [Assets](docs/classes/Assets.md)
+- [Price](docs/classes/Price.md)
 
-```ts
-getTokenBalances(principalId: string): Promise<Token.BalanceList>
-```
+<br>
 
-Get the balance of all supported tokens for a given principal id
+### Utils 💼
 
-This function get balances from token and swap canisters
+The Utils module holds functions that have general propose usage. The available functions are:
 
-```ts
-getTokenBalance(params: SwapCanisterController.GetTokenBalanceParams): Promise<Token.Balance>
-```
+- [toBigNumber](docs/README.md#tobignumber)
+- [toExponential](docs/README.md#toexponential)
+- [formatAmount](docs/README.md#formatamount)
+- [deserialize](docs/README.md#deserialize)
+- [serialize](docs/README.md#serialize)
 
-Get one token balance for a given principal id
+<br>
 
-```ts
-getAgentPrincipal(): Promise<Principal>
-```
-
-Get the principal of the agent
-
-```ts
-approve(params: SwapCanisterController.ApproveParams): Promise<void>
-```
-
-Approve transfers from token to swap canister
-
-This function uses the actor agent identity
-
-```ts
-deposit(params: SwapCanisterController.DepositParams): Promise<void>
-```
-
-Approve transfers from token to swap canister
-
-```ts
-withdraw(params: SwapCanisterController.WithdrawParams): Promise<void>
-```
-
-Approve transfers from token to swap canister
-
-```ts
-swap(params: SwapCanisterController.SwapParams): Promise<void>
-```
-
-Swaps an amount of tokenIn for tokenOut allowing given slippage
-
-### Math
-
-The Math module holds the functions used in calculations to get correct values to be displayed or sent in requests.
-
-```ts
-Swap.getAmount(params: Swap.GetAmountOutParams): BigNumber
-```
-
-Calculate the needed or resultant amount of a swap
-
-```ts
-Swap.getPriceImpact(params: Swap.GetPriceImpactParams): BigNumber
-```
-
-Calculate the price impact based on given amounts and prices
-
-```ts
-Swap.getTokenPaths(params: Swap.GetTokenPathsParams): Swap.GetTokenPathsResult
-```
-
-Calculate the best token path to realize the swap and the output amount
-
-```ts
-Liquidity.getPairDecimals(token0Decimals: Types.Decimals, token1Decimals: Types.Decimals): Types.Decimals
-```
-
-Calculate the pair decimals for given tokens decimals
-
-```ts
-Liquidity.getPosition(params: Liquidity.GetPositionParams): BigNumber
-```
-
-Calculate the Liquidity Position for given amounts of a pair of tokens that's going to be added
-
-```ts
-Liquidity.getShareOfPool(params: Liquidity.GetShareOfPoolParams): BigNumber
-```
-
-Calculate Share of a pool of the position based on total supply
-
-```ts
-Liquidity.getTokenBalances(params: Liquidity.GetTokenBalancesParams): Liquidity.GetTokenBalancesResult
-```
-
-Calculate the token balances for given pair Liquidity Position
-
-```ts
-Price.getByAmount(params: Price.GetPriceByAmountParams): BigNumber
-```
-
-Calculate the total amount price by a given amount
-
-### Utils
-
-The Utils module holds functions that have general propose usage. This functions are used inside other modules as well.
-
-```ts
-toBigNumber(num?: Types.Number): BigNumber
-```
-
-Converts a value to a BigNumber
-
-```ts
-toExponential(decimals: Types.Number): BigNumber
-```
-
-Create a toExponential notation by given decimals
-
-```ts
-formatAmount(amount: Types.Amount): string
-```
-
-Formats an amount to a small string with scientific notation
-
-```ts
-deserialize<T = any>(jsonString: string): T | undefined
-```
-
-Parses a json string into an object
-
-This is required for parsing objects that have BigInt values
-
-```ts
-serialize<T>(data: T): string
-```
-
-Parses a json object into a string
-
-This is required for parsing objects that have BigInt values
-
-### Declarations
+### Declarations 📝
 
 The declarations module provides the default constants used and typescript interfaces to help consuming the library.
 
 #### Types
 
-There are some declared types that we use in overall of our application to keep standardization of our params:
+Declared types that are used in the overall application to standardize our params.
 
-- `Types.Number`: It receives all possible representations of a number. (e.g. integer, float, percentage, bigint)
-
-- `Types.Amount`: It is a string that represents the number that is shown on user interfaces. (e.g. token amount, money amount)
-
-- `Types.Decimals`: It is always a integer that represents the decimals allowed on a DIP20 token.
+[Find it here](docs/modules/Types.md).
 
 #### Token
 
-There are some declared types that we use to represent tokens and it's related stuff:
+Declared types that are used to represent tokens.
 
-- `Token.Metadata`: It is an object containing information about a DIP20 token.
-
-- `Token.MetadataList`: It is key-object that maps a list of `Token.Metadata`.
-
-- `Token.Data`: It is an object containing the metadata and an amount of a token. It is used for turn easier pass data on operations.
-
-- `Token.Balance`: It is an object that contains balances of certain token. The balances contained are `sonic`, `token` and `total` that represents balances from sonic, from wallet and the sum of both for a given principal id.
-
-- `Token.BalanceList`: It is key-object that maps a list of `Token.Balance`.
+[Find it here](docs/modules/Token.md).
 
 #### Pair
 
-There are some declared types that we use to represent Sonic swap pairs and it's related stuff.
+Declared types that are used to represent Sonic swap pairs.
 
-- `Pair.Model`: It is an object containing information about the pair.
-
-- `Pair.List`: It is key-object that maps a list of `Pair.Model`.
-
-- `Pair.Balance`: It is a `Types.Number` that represents the Liquidity Position for a pair.
-
-- `Pair.Balances`: It is key-object that maps a list of `Pair.Balance`.
+[Find it here](docs/modules/Pair.md).
 
 #### Default
 
-Default is an object that stores the default values used inside the library.
+An object that stores the default values used inside the library.
 
-- `Default.IC_HOST`: The url to communicate with IC.
-
-- `Default.SWAP_CANISTER_ID`: The Swap Canister id.
-
-- `SLIPPAGE`: The default value used for calculations that has slippage as param.
+[Find it here](docs/README.md#default).

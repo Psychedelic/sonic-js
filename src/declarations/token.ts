@@ -4,20 +4,20 @@ import { SwapIDL } from './did';
 
 export namespace Token {
   /**
-   * Type definition for a token.
+   * It is an object containing information about a DIP20 token.
    */
   export type Metadata = SwapIDL.TokenInfoExt;
 
   /**
-   * Type definition for a list of tokens.
+   * It is key-object that maps a list of `Token.Metadata`.
    */
   export type MetadataList = {
     [canisterId: string]: Metadata;
   };
 
   /**
-   * Type definition for a token data.
-   * It includes the amount for functions usage.
+   * It is an object containing the metadata and an amount of a token.
+   * It is used for turn easier pass data on operations.
    */
   export interface Data<M = Metadata> {
     metadata?: M;
@@ -37,7 +37,7 @@ export namespace Token {
   };
 
   /**
-   * Type definition for a token balance list.
+   * It is key-object that maps a list of `Token.Balance`
    */
   export type BalanceList = {
     [canisterId: string]: Balance;

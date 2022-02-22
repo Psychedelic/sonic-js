@@ -208,4 +208,4 @@ Some of the functions uses the actor agent identity to identify the user that is
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `swapActor` | [`SwapActor`](../modules.md#swapactor) | swap actor or an anonymous will be used |
+| `swapActor` | [`SwapActor`](../README.md#swapactor) | swap actor or an anonymous will be used |
