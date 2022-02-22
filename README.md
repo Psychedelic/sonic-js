@@ -54,6 +54,7 @@ Not sure where to start? Take a dive into our [sonic-js-example](https://github.
 First we need to setup the `.npmrc` file to fetch the right package on [Github Packages](https://github.com/features/packages).
 
 To do so, append the following line to your `.npmrc` file your project's root directory. If you don't have a `.npmrc` file, create a new one.
+
 ```
 @psychedelic:registry=https://npm.pkg.github.com
 ```
@@ -61,6 +62,7 @@ To do so, append the following line to your `.npmrc` file your project's root di
 Now we need to setup our authentication on Github Packages. This step is compulsory, even for public packages.
 
 To do so you're going to need a personal access token with the following configurations:
+
 - **repo**
 - **read:packages**
 
@@ -80,7 +82,7 @@ Done! We have installed the package successfully.
 
 <br>
 
-## Dependencies 
+## Dependencies
 
 ### BigNumber 🔟
 
@@ -156,9 +158,10 @@ You can also use default parameters and no provider:
 ```ts
 const adapter = new ActorAdapter();
 ```
+
 ##### IDLs
 
-All actors that communicate with IC needs to have an IDL to indicate which functions are callable on the canister. The library already provide this IDLs for Swap and DIP20 canisters and they can be found [here](src/declarations/did). 
+All actors that communicate with IC needs to have an IDL to indicate which functions are callable on the canister. The library already provide this IDLs for Swap and DIP20 canisters and they can be found [here](src/declarations/did).
 
 Our `Actor Factories` make use of these saved IDL's to generate actors for you.
 
@@ -166,9 +169,8 @@ Our `Actor Factories` make use of these saved IDL's to generate actors for you.
 
 To make actor creation even easier, Sonic-js provides two functions that automatically create configurable actors for Sonic's Swap canister and any DIP20 canister:
 
-- [createSwapActor](docs/modules.md#createswapactor)
-- [createTokenActor](docs/modules.md#createtokenactor)
-
+- [createSwapActor](docs/README.md#createswapactor)
+- [createTokenActor](docs/README.md#createtokenactor)
 
 #### Swap Canister Controller
 
@@ -188,6 +190,7 @@ const swapActor = await createSwapActor({
 });
 const controller = new SwapCanisterController(swapActor);
 ```
+
 For a list of the available `SwapCanisterController` methods, [click here](docs/classes/SwapCanisterController.md).
 
 <br>
@@ -207,11 +210,11 @@ The Math module consists of functions used in calculations to be displayed to th
 
 The Utils module holds functions that have general propose usage. The available functions are:
 
-- [toBigNumber](docs/modules.md#tobignumber)
-- [toExponential](docs/modules.md#toexponential)
-- [formatAmount](docs/modules.md#formatamount)
-- [deserialize](docs/modules.md#deserialize)
-- [serialize](docs/modules.md#serialize)
+- [toBigNumber](docs/README.md#tobignumber)
+- [toExponential](docs/README.md#toexponential)
+- [formatAmount](docs/README.md#formatamount)
+- [deserialize](docs/README.md#deserialize)
+- [serialize](docs/README.md#serialize)
 
 <br>
 
@@ -241,4 +244,4 @@ Declared types that are used to represent Sonic swap pairs.
 
 An object that stores the default values used inside the library.
 
-[Find it here](docs/modules.md#default).
+[Find it here](docs/README.md#default).
