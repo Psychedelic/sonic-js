@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js';
 /**
  * Type definition for options of toBigNumber function.
  */
-interface ToBigNumberOptions {
+export interface ToBigNumberOptions {
   validate?: {
     isNotANumber?: boolean;
     isEmpty?: boolean;
