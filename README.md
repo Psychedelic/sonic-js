@@ -10,11 +10,19 @@
 
 A client library for the [Sonic](https://sonic.ooo/) Open Internet Service (OIS), implemented in JavaScript.
 
-The Sonic-js library is utilized to integrate UIs/FEs/Apps to Swap Canister to **transact** on Sonic.
+The Sonic-js library is utilized to integrate UIs/FEs/Apps to **transact** with Sonic's Swap Canister on the Internet Computer blockchain.
 
 - Visit [our website](https://sonic.ooo/)
 - Read [Sonics's documentation](https://docs.sonic.ooo/)
 - Read [our blog](https://sonic-ooo.medium.com/)
+
+<br>
+
+## Examples 🔮
+
+Not sure where to start? Take a dive into our [sonic-js-example](https://github.com/Psychedelic/sonic-js-example) application to checkout what an implementation of Sonic-js looks like!
+
+<br>
 
 ## Table of Contents
 
@@ -36,7 +44,8 @@ The Sonic-js library is utilized to integrate UIs/FEs/Apps to Swap Canister to *
     - [Token](#token)
     - [Pair](#pair)
     - [Default](#default)
-- [Examples](#examples)
+
+<br>
 
 ## Getting Started
 
@@ -44,15 +53,22 @@ The Sonic-js library is utilized to integrate UIs/FEs/Apps to Swap Canister to *
 
 First we need to setup the `.npmrc` file to fetch the right package on [Github Packages](https://github.com/features/packages).
 
-If you don't have an `.npmrc` file on your project create one clean, if already have append the following line:
-
+To do so, append the following line to your `.npmrc` file your project's root directory. If you don't have a `.npmrc` file, create a new one.
 ```
 @psychedelic:registry=https://npm.pkg.github.com
 ```
 
-Now we need to setup our authentication on Github Packages. Everybody needs to setup it, even for public packages.
+Now we need to setup our authentication on Github Packages. This step is compulsory, even for public packages.
 
-There are some ways to reach that you can check how to do it properly looking [here](https://docs.github.com/pt/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token).
+To do so you're going to need a personal access token with the following configurations:
+- **repo**
+- **read:packages**
+
+Next, authenticate yourself via the `npm login` command using your Github email for the username and the personal access token as your password:
+
+```bash
+npm login --registry=https://npm.pkg.github.com --scope=@psychedelic
+```
 
 With an authentication set up, now we need to run:
 
@@ -62,9 +78,13 @@ yarn add @psychedelic/sonic-js
 
 Done! We have installed the package successfully.
 
+<br>
+
+## Dependencies 
+
 ### BigNumber 🔟
 
-This library relies on [BigNumber.js](https://www.npmjs.com/package/big-number) to handle numbers and calculations. It is used because its ease of use and to avoid JavaScript limitations when dealing with really big numbers or with a lot of decimal places.
+This library relies on [BigNumber.js](https://www.npmjs.com/package/big-number) to handle numbers and calculations. It is used because its ease of use and to avoid JavaScript limitations when dealing with large numbers or numbers with many decimal places.
 
 To better deal and present inside your application you can use the cast functions like `toString` and `toNumber`.
 
@@ -94,27 +114,29 @@ applyTolerance(percentage: number, type?: 'min' | 'max'): BigNumber;
 
 Returns the number for a given maximal/minimal tolerance
 
+<br>
+
 ## Usage 👷
 
-This library holds a set of functions and interfaces that helps in the development of applications that interacts with Sonic canisters.
+This library holds a set of functions and interfaces that helps in the development of applications that interacts with Sonic's canisters.
 
-The library is separated in modules to organize and have ease in use:
+The library is separated into modules:
 
 ### Integration ⛓️
 
-On integration module is provided functions that helps to interact with IC world.
+The integration module provides functions that helps to interact with Sonic directly.
 
 #### Agent and Actor
 
-First of all to talk with IC we need to create `actors` that communicate with canisters. But to create the `actors` we need to first setup an `agent` that indicates who and how the communication is going to be realized. This library provides some functions that helps in this process to reach the communication with Swap Canister and DIP20 token canisters.
+To talk with Internet Computer we need to create `actors` that communicate with canisters. To create `actors` we need to first setup an `agent` that indicates who and how the communication to the Internet Computer netowkr is going to be realized. This library provides some functions that help to establish communication with Swap Canister and DIP20 token canisters by abstracting away `actors` creation.
 
 ##### Actor Adapter
 
 The class `ActorAdapter` provides an abstraction of [@dfinity/agent](https://www.npmjs.com/package/@dfinity/agent) that helps to instantiate new actors and reuse them.
 
-The class constructor has params that turn able to configure how you want to use the adapter:
+The class constructor has params to configure how you want to use the adapter:
 
-- `provider`: This param receives an object that is used to create `agent` and `actors`. The object needs to follow the interface `ActorAdapter.Provider`. Is high recommended if you want to instantiate actors linked with wallets to use [@psychedelic/plug-inpage-provider](https://github.com/Psychedelic/plug-inpage-provider/packages/884575):
+- `provider`: This param receives an object that is used to create `agent` and `actors`. The object needs to follow the interface `ActorAdapter.Provider`. We highly recommended using [@psychedelic/plug-inpage-provider](https://github.com/Psychedelic/plug-inpage-provider/packages/884575) if you want to instantiate actors linked to a user:
 
 ```ts
 const adapter = new ActorAdapter(window.plug);
@@ -134,29 +156,31 @@ You can also use default parameters and no provider:
 ```ts
 const adapter = new ActorAdapter();
 ```
+##### IDLs
+
+All actors that communicate with IC needs to have an IDL to indicate which functions are callable on the canister. The library already provide this IDLs for Swap and DIP20 canisters and they can be found [here](src/declarations/did). 
+
+Our `Actor Factories` make use of these saved IDL's to generate actors for you.
 
 ##### Actor Factories
 
-To make ease on use for actors, the library provides two functions that directly create actors for Swap and DIP20 canisters:
+To make actor creation even easier, Sonic-js provides two functions that automatically create configurable actors for Sonic's Swap canister and any DIP20 canister:
 
 - [createSwapActor](docs/modules.md#createswapactor)
 - [createTokenActor](docs/modules.md#createtokenactor)
 
-##### IDLs
-
-All actors that communicate with IC needs to have an IDL to indicate which functions are callable on the canister. The library already provide this IDLs for Swap and DIP20 canisters and they can be found [here](src/declarations/did).
 
 #### Swap Canister Controller
 
-The class `SwapCanisterController` provides functions that abstracts the main functionalities of Swap Canister. Instantiating it requires a Swap Actor mentioned above.
+The class `SwapCanisterController` provides methods that give access to the main functionalities of Swap Canister. Instantiation of a non-anonymous controller uses a `Swap Actor`.
 
-You can create an anonymous controller by simple:
+You can create an anonymous controller (not linked to any user) by providing no params:
 
 ```ts
 const controller = new SwapCanisterController();
 ```
 
-Or adding a customer actor with your adapter:
+Or adding a custom actor with your adapter:
 
 ```ts
 const swapActor = await createSwapActor({
@@ -164,21 +188,24 @@ const swapActor = await createSwapActor({
 });
 const controller = new SwapCanisterController(swapActor);
 ```
+For a list of the available `SwapCanisterController` methods, [click here](docs/classes/SwapCanisterController.md).
 
-[Find more of the class description here](docs/classes/SwapCanisterController.md)
+<br>
 
 ### Math 🖩
 
-The Math module holds the functions used in calculations to get correct values to be displayed or sent in requests.
+The Math module consists of functions used in calculations to be displayed to the user or sent in requests. The module has four available classes, here are links to descriptions of those classes and their available methods:
 
 - [Swap](docs/classes/Swap.md)
 - [Liquidity](docs/classes/Liquidity.md)
 - [Assets](docs/classes/Assets.md)
 - [Price](docs/classes/Price.md)
 
+<br>
+
 ### Utils 💼
 
-The Utils module holds functions that have general propose usage. This functions are used inside other modules as well.
+The Utils module holds functions that have general propose usage. The available functions are:
 
 - [toBigNumber](docs/modules.md#tobignumber)
 - [toExponential](docs/modules.md#toexponential)
@@ -186,34 +213,32 @@ The Utils module holds functions that have general propose usage. This functions
 - [deserialize](docs/modules.md#deserialize)
 - [serialize](docs/modules.md#serialize)
 
+<br>
+
 ### Declarations 📝
 
 The declarations module provides the default constants used and typescript interfaces to help consuming the library.
 
 #### Types
 
-There are some declared types that we use in overall of our application to keep standardization of our params.
+Declared types that are used in the overall application to standardize our params.
 
 [Find it here](docs/modules/Types.md).
 
 #### Token
 
-There are some declared types that we use to represent tokens and it's related stuff.
+Declared types that are used to represent tokens.
 
 [Find it here](docs/modules/Token.md).
 
 #### Pair
 
-There are some declared types that we use to represent Sonic swap pairs and it's related stuff.
+Declared types that are used to represent Sonic swap pairs.
 
 [Find it here](docs/modules/Pair.md).
 
 #### Default
 
-Default is an object that stores the default values used inside the library.
+An object that stores the default values used inside the library.
 
 [Find it here](docs/modules.md#default).
-
-## Examples
-
-Take a dive on [sonic-js-example](https://github.com/Psychedelic/sonic-js-example), our first usage example.
