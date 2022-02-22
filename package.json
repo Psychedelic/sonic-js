@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "repository": "https://github.com/Psychedelic/sonic-js.git",
   "author": "Psychedelic Team",
-  "license": "MIT",
+  "license": "GLP-3.0",
   "devDependencies": {
     "@types/jest": "^27.4.0",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
