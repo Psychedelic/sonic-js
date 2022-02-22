@@ -62,22 +62,6 @@ describe('Liquidity', () => {
       expect(oppositeAmount).toEqual(new BigNumber('0'));
     });
   });
-  describe('.getPairDecimals', () => {
-    test.each`
-      input      | expected
-      ${[8, 12]} | ${10}
-      ${[5, 4]}  | ${4}
-      ${[4, 4]}  | ${4}
-      ${[5, 7]}  | ${6}
-    `(
-      'should be $expected for pair with $input decimals ',
-      ({ input: [token0Decimals, token1Decimals], expected }) => {
-        expect(
-          Liquidity.getPairDecimals(token0Decimals, token1Decimals)
-        ).toEqual(expected);
-      }
-    );
-  });
 
   describe('.getPosition', () => {
     test('should return the correct Liquidity Position amount', () => {
