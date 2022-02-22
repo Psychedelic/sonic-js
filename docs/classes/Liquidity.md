@@ -7,11 +7,11 @@ Math calculations for Liquidity functions.
 ### Properties
 
 - [MINIMUM\_LIQUIDITY](Liquidity.md#minimum_liquidity)
+- [PAIR\_DECIMALS](Liquidity.md#pair_decimals)
 
 ### Methods
 
 - [getOppositeAmount](Liquidity.md#getoppositeamount)
-- [getPairDecimals](Liquidity.md#getpairdecimals)
 - [getPosition](Liquidity.md#getposition)
 - [getShareOfPool](Liquidity.md#getshareofpool)
 - [getTokenBalances](Liquidity.md#gettokenbalances)
@@ -28,6 +28,12 @@ Math calculations for Liquidity functions.
 ▪ `Static` `Readonly` **MINIMUM\_LIQUIDITY**: `BigNumber`
 
 Constant from Swap Canister.
+
+___
+
+### PAIR\_DECIMALS
+
+▪ `Static` `Readonly` **PAIR\_DECIMALS**: ``8``
 
 ## Methods
 
@@ -46,25 +52,6 @@ Calculate the opposite token value for given pair in Liquidity Position.
 #### Returns
 
 `BigNumber`
-
-___
-
-### getPairDecimals
-
-▸ `Static` **getPairDecimals**(`token0Decimals`, `token1Decimals`): `number`
-
-Calculate the pair decimals for given tokens decimals.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `token0Decimals` | `number` |
-| `token1Decimals` | `number` |
-
-#### Returns
-
-`number`
 
 ___
 
