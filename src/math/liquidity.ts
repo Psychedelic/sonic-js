@@ -13,22 +13,7 @@ export class Liquidity {
    * Constant from Swap Canister.
    */
   static readonly MINIMUM_LIQUIDITY = toExponential(3);
-
-  /**
-   * Calculate the pair decimals for given tokens decimals.
-   * @param {Liquidity.GetPairDecimalsParams} params
-   * @returns {Types.Decimals}
-   */
-  static getPairDecimals(
-    token0Decimals: Types.Decimals,
-    token1Decimals: Types.Decimals
-  ): Types.Decimals {
-    return toBigNumber(token0Decimals)
-      .plus(token1Decimals)
-      .dividedBy(2)
-      .dp(0, BigNumber.ROUND_FLOOR)
-      .toNumber();
-  }
+  static readonly PAIR_DECIMALS = 8;
 
   /**
    * Calculate the opposite token value for given pair in Liquidity Position.
@@ -163,12 +148,7 @@ export class Liquidity {
     );
     const priceByLP = token0Price.plus(token1Price).dividedBy(totalShares);
 
-    const decimals = Liquidity.getPairDecimals(
-      params.decimals0,
-      params.decimals1
-    );
-
-    return userShares.multipliedBy(priceByLP).dp(decimals);
+    return userShares.multipliedBy(priceByLP).dp(this.PAIR_DECIMALS);
   }
 
   /**
