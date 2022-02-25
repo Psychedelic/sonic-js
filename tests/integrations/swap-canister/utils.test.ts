@@ -2,8 +2,13 @@ import {
   parseSupportedTokenList,
   parseAllPairs,
   getDeadline,
+  parseUserLPBalances,
 } from '@/integrations';
-import { mockAllPairsResponse } from '../../mocks/pair';
+import BigNumber from 'bignumber.js';
+import {
+  mockAllPairsResponse,
+  mockUserLPBalanceResponse,
+} from '../../mocks/pair';
 import { mockSupportedTokenListResponse } from '../../mocks/token';
 
 describe('parseSupportedTokenList', () => {
@@ -51,5 +56,15 @@ describe('getDeadline', () => {
 
     const deadline = getDeadline();
     expect(deadline).toEqual(BigInt(3000010000000));
+  });
+});
+
+describe('parseUserLPBalances', () => {
+  test('should parse the response of getUserLPBalances', () => {
+    expect(parseUserLPBalances(mockUserLPBalanceResponse())).toEqual({
+      'aanaa-xaaaa-aaaah-aaeiq-cai:utozz-siaaa-aaaam-qaaxq-cai': new BigNumber(
+        '3035420898'
+      ),
+    });
   });
 });

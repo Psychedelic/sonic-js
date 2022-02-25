@@ -3,7 +3,7 @@ import { Assets, Swap } from '@/math';
 import { toBigNumber } from '@/utils';
 import { Actor } from '@dfinity/agent';
 import { Principal } from '@dfinity/principal';
-import { getDeadline } from '.';
+import { getDeadline, parseUserLPBalances } from '.';
 import { ActorAdapter, createTokenActor, SwapActor } from '..';
 import { parseSupportedTokenList, parseAllPairs } from './utils';
 
@@ -130,6 +130,24 @@ export class SwapCanisterController {
       sonic: sonicBalance,
       total: tokenBalance.plus(sonicBalance),
     };
+  }
+
+  /**
+   * Get the Liquidity Positions balances.
+   * @param {string?} principalId The principal id of the user or the principal from agent will be used
+   * @returns {Promise<Pair.Balances>}
+   */
+  async getLPBalances(principalId?: string): Promise<Pair.Balances> {
+    const principal = principalId
+      ? Principal.fromText(principalId)
+      : await this.getAgentPrincipal();
+
+    const lpBalances = await this.swapActor.getUserLPBalancesAbove(
+      principal,
+      BigInt(0)
+    );
+
+    return parseUserLPBalances(lpBalances);
   }
 
   /**

@@ -193,5 +193,12 @@ export const mockAllPairsResponse = (): SwapIDL.PairInfoExt[] => [
   },
 ];
 
+export const mockUserLPBalanceResponse = (): [string, bigint][] => [
+  [
+    'aanaa-xaaaa-aaaah-aaeiq-cai:utozz-siaaa-aaaam-qaaxq-cai',
+    BigInt('3035420898'),
+  ],
+];
+
 export const mockPairList = (): Pair.List =>
   parseAllPairs(mockAllPairsResponse());

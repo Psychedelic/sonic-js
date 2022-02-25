@@ -1,4 +1,5 @@
 import { Pair, SwapIDL, Token } from '@/declarations';
+import { toBigNumber } from '@/index';
 
 /**
  * Parses a list of supported tokens from swap canister request.
@@ -47,6 +48,22 @@ export const parseAllPairs = (response: SwapIDL.PairInfoExt[]): Pair.List => {
       },
     };
   }, {} as Pair.List);
+};
+
+/**
+ * Parses a list of pairs LP balances from swap canister request.
+ * @param {[string, bigint][]} response Response from swap canister
+ * @returns {Pair.Balances}
+ */
+export const parseUserLPBalances = (
+  response: [string, bigint][]
+): Pair.Balances => {
+  return response.reduce((balances, [pairId, balance]) => {
+    return {
+      ...balances,
+      [pairId]: toBigNumber(balance),
+    };
+  }, {} as Pair.Balances);
 };
 
 /**
