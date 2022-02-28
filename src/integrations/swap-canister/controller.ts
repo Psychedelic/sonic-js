@@ -433,6 +433,12 @@ export class SwapCanisterController {
     return;
   }
 
+  /**
+   * Removes liquidity by a given Liquidity Position amount.
+   * This function uses the actor agent identity.
+   * @param {SwapCanisterController.RemoveLiquidityParams} params
+   * @returns {Promise<void>}
+   */
   async removeLiquidity({
     token0,
     token1,
