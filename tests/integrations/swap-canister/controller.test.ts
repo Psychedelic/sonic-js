@@ -530,4 +530,93 @@ describe('SwapCanisterController', () => {
       expect(pairSpy).not.toHaveBeenCalled();
     });
   });
+
+  describe('.addLiquidity', () => {
+    const params = {
+      amount0: '1.55920683167',
+      amount1: '0.1',
+      token0: 'aanaa-xaaaa-aaaah-aaeiq-cai',
+      token1: 'utozz-siaaa-aaaam-qaaxq-cai',
+    };
+
+    beforeAll(() => {
+      (createTokenActor as jest.Mock).mockImplementation(async () =>
+        mockTokenActor({ balanceOf: async () => BigInt('1500000000000') })
+      );
+    });
+
+    afterAll(() => {
+      (createTokenActor as jest.Mock).mockImplementation(async () =>
+        mockTokenActor()
+      );
+    });
+
+    test('should add liquidity', async () => {
+      await sut.addLiquidity(params);
+    });
+
+    test('should throw if there is not enough token balance', async () => {
+      (createTokenActor as jest.Mock).mockImplementationOnce(async () =>
+        mockTokenActor({ balanceOf: async () => BigInt('0') })
+      );
+
+      await expect(sut.addLiquidity(params)).rejects.toThrow();
+    });
+
+    test('should throw if amount0 is invalid', async () => {
+      const promise = sut.addLiquidity({ ...params, amount0: '3' });
+
+      await expect(promise).rejects.toThrow();
+    });
+
+    test('should throw if amount0 is invalid', async () => {
+      const promise = sut.addLiquidity({ ...params, amount1: '3' });
+
+      await expect(promise).rejects.toThrow();
+    });
+
+    test('should throw if the pair does not exist', async () => {
+      const promise = sut.addLiquidity({
+        ...params,
+        token0: 'aanaa-xaaaa-aaaah-aaeiq-cai',
+        token1: 'onuey-xaaaa-aaaah-qcf7a-cai',
+      });
+
+      await expect(promise).rejects.toThrow();
+    });
+
+    test('should throw for invalid token amounts', async () => {
+      const promise = sut.addLiquidity({
+        ...params,
+        amount0: '0',
+        amount1: '0',
+      });
+
+      await expect(promise).rejects.toThrowError('Invalid token amounts');
+    });
+
+    test('should call addLiquidity with right params', async () => {
+      jest.useFakeTimers();
+      jest.setSystemTime(1);
+      const spy = jest.spyOn(swapActor, 'addLiquidity');
+
+      await sut.addLiquidity({
+        amount0: '0.1',
+        amount1: '1.55920683167',
+        token0: 'utozz-siaaa-aaaam-qaaxq-cai',
+        token1: 'aanaa-xaaaa-aaaah-aaeiq-cai',
+        slippage: 10,
+      });
+
+      return expect(spy).toHaveBeenCalledWith(
+        Principal.fromText('aanaa-xaaaa-aaaah-aaeiq-cai'),
+        Principal.fromText('utozz-siaaa-aaaam-qaaxq-cai'),
+        BigInt('1559206831670'),
+        BigInt('10000000'),
+        BigInt('1403286148503'),
+        BigInt('9000000'),
+        BigInt(3000010000000)
+      );
+    });
+  });
 });

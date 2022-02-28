@@ -363,6 +363,8 @@ export class SwapCanisterController {
 
     const pair = this.pairList[token0][token1];
     if (pair) {
+      console.log('before', token0, token1, params.amount0, params.amount1);
+      console.log('id', pair.id);
       // Verify correct pair tokens order
       const [pairToken0, pairToken1] = pair.id.split(':');
 
@@ -373,7 +375,7 @@ export class SwapCanisterController {
 
         aux = params.amount0;
         params.amount0 = params.amount1;
-        params.amount1 = params.amount0;
+        params.amount1 = aux;
       }
     } else {
       throw new Error('Pair not created');
@@ -383,6 +385,7 @@ export class SwapCanisterController {
       .dividedBy(100)
       .toNumber();
 
+    console.log('after', token0, token1, params.amount0, params.amount1);
     // Verify token amounts and received position
     if (
       Liquidity.getPosition({
