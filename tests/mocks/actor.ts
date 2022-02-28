@@ -1,7 +1,7 @@
 import { SwapActor, TokenActor, ActorAdapter } from '@/integrations';
 import { Agent } from '@dfinity/agent';
 import { SwapIDL, TokenIDL } from 'declarations';
-import { mockAllPairsResponse } from './pair';
+import { mockAllPairsResponse, mockUserLPBalanceResponse } from './pair';
 import { mockPrincipal } from './principal';
 import { mockSupportedTokenListResponse } from './token';
 
@@ -27,6 +27,7 @@ export const mockSwapActor = (params: Partial<SwapIDL.Swap> = {}): SwapActor =>
       ['wjsrf-myaaa-aaaam-qaayq-cai', BigInt(100000000)],
     ],
     swapExactTokensForTokens: async () => ({ ok: BigInt(1) }),
+    getUserLPBalancesAbove: async () => mockUserLPBalanceResponse(),
     ...params,
   } as unknown as SwapActor);
 

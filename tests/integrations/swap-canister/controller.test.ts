@@ -6,7 +6,11 @@ import BigNumber from 'bignumber.js';
 import { Token } from 'declarations';
 import { serialize, toBigNumber } from 'utils';
 import { mockAgent, mockSwapActor, mockTokenActor } from '../../mocks/actor';
-import { mockAllPairsResponse, mockPairList } from '../../mocks/pair';
+import {
+  mockAllPairsResponse,
+  mockLPBalances,
+  mockPairList,
+} from '../../mocks/pair';
 import { mockPrincipal, mockPrincipalId } from '../../mocks/principal';
 import {
   mockSupportedTokenListResponse,
@@ -176,6 +180,30 @@ describe('SwapCanisterController', () => {
       await sut.getTokenBalances();
 
       expect(spy).toHaveBeenCalledWith(mockPrincipal());
+    });
+  });
+
+  describe('.getLPBalances', () => {
+    test('should fetch the agent principal LP balances', async () => {
+      const spy = jest.spyOn(swapActor, 'getUserLPBalancesAbove');
+      await sut.getLPBalances();
+
+      expect(spy).toHaveBeenCalledWith(mockPrincipal(), BigInt(0));
+    });
+
+    test('should fetch given principal LP balances', async () => {
+      const spy = jest.spyOn(swapActor, 'getUserLPBalancesAbove');
+      const principalMock = mockPrincipal();
+
+      await sut.getLPBalances(principalMock.toString());
+
+      expect(spy).toHaveBeenCalledWith(principalMock, BigInt(0));
+    });
+
+    test('should return the parsed response from LP balances', async () => {
+      const response = await sut.getLPBalances();
+
+      expect(response).toEqual(mockLPBalances());
     });
   });
 
