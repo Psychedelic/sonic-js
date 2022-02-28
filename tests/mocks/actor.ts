@@ -29,6 +29,7 @@ export const mockSwapActor = (params: Partial<SwapIDL.Swap> = {}): SwapActor =>
     swapExactTokensForTokens: async () => ({ ok: BigInt(1) }),
     getUserLPBalancesAbove: async () => mockUserLPBalanceResponse(),
     addLiquidity: async () => ({ ok: BigInt(1) }),
+    removeLiquidity: async () => ({ ok: BigInt(1) }),
     ...params,
   } as unknown as SwapActor);
 

@@ -363,8 +363,6 @@ export class SwapCanisterController {
 
     const pair = this.pairList[token0][token1];
     if (pair) {
-      console.log('before', token0, token1, params.amount0, params.amount1);
-      console.log('id', pair.id);
       // Verify correct pair tokens order
       const [pairToken0, pairToken1] = pair.id.split(':');
 
@@ -385,7 +383,6 @@ export class SwapCanisterController {
       .dividedBy(100)
       .toNumber();
 
-    console.log('after', token0, token1, params.amount0, params.amount1);
     // Verify token amounts and received position
     if (
       Liquidity.getPosition({
@@ -448,12 +445,13 @@ export class SwapCanisterController {
     if (!this.pairList || !this.tokenList) throw new Error();
 
     const pair = this.pairList[token0][token1];
-
     if (!pair) {
       throw new Error('Pair not created');
     }
 
-    const amount = toBigNumber(params.amount);
+    const amount = toBigNumber(params.amount).removeDecimals(
+      Liquidity.PAIR_DECIMALS
+    );
     const slippage = toBigNumber(params.slippage ?? Default.SLIPPAGE)
       .dividedBy(100)
       .toNumber();
@@ -467,7 +465,6 @@ export class SwapCanisterController {
       lpBalance: amount,
     });
 
-    const _amount = amount.removeDecimals(Liquidity.PAIR_DECIMALS).toBigInt();
     const amount0Min = balance0
       .applyTolerance(slippage, 'min')
       .removeDecimals(this.tokenList[token0].decimals)
@@ -480,7 +477,7 @@ export class SwapCanisterController {
     const result = await this.swapActor.removeLiquidity(
       Principal.fromText(token0),
       Principal.fromText(token1),
-      _amount,
+      amount.toBigInt(),
       amount0Min,
       amount1Min,
       principal,

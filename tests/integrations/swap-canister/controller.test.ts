@@ -615,7 +615,71 @@ describe('SwapCanisterController', () => {
         BigInt('10000000'),
         BigInt('1403286148503'),
         BigInt('9000000'),
-        BigInt(3000010000000)
+        BigInt('3000010000000')
+      );
+    });
+
+    test('should throw if there is an error on response', async () => {
+      jest
+        .spyOn(swapActor, 'addLiquidity')
+        .mockResolvedValueOnce({ err: 'error_message' });
+
+      const promise = sut.addLiquidity(params);
+
+      await expect(promise).rejects.toThrowError(
+        JSON.stringify('error_message')
+      );
+    });
+  });
+
+  describe('.removeLiquidity', () => {
+    const params = {
+      token0: 'aanaa-xaaaa-aaaah-aaeiq-cai',
+      token1: 'utozz-siaaa-aaaam-qaaxq-cai',
+      amount: '1.5',
+    };
+
+    test('should remove the liquidity', async () => {
+      await sut.removeLiquidity(params);
+    });
+
+    test('should call removeLiquidity with right params', async () => {
+      jest.useFakeTimers();
+      jest.setSystemTime(1);
+      const spy = jest.spyOn(swapActor, 'removeLiquidity');
+
+      await sut.removeLiquidity(params);
+
+      return expect(spy).toHaveBeenCalledWith(
+        Principal.fromText('aanaa-xaaaa-aaaah-aaeiq-cai'),
+        Principal.fromText('utozz-siaaa-aaaam-qaaxq-cai'),
+        BigInt('150000000'),
+        BigInt('60708094563'),
+        BigInt('389351'),
+        mockPrincipal(),
+        BigInt('3000010000000')
+      );
+    });
+
+    test('should throw if pair does not exist', async () => {
+      const promise = sut.removeLiquidity({
+        ...params,
+        token0: 'aanaa-xaaaa-aaaah-aaeiq-cai',
+        token1: 'onuey-xaaaa-aaaah-qcf7a-cai',
+      });
+
+      await expect(promise).rejects.toThrow();
+    });
+
+    test('should throw if the response has error', async () => {
+      jest
+        .spyOn(swapActor, 'removeLiquidity')
+        .mockResolvedValueOnce({ err: 'error_message' });
+
+      const promise = sut.removeLiquidity(params);
+
+      await expect(promise).rejects.toThrowError(
+        JSON.stringify('error_message')
       );
     });
   });
