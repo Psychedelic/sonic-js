@@ -422,7 +422,7 @@ export class SwapCanisterController {
       .removeDecimals(this.tokenList[token1].decimals)
       .toBigInt();
 
-    await this.swapActor.addLiquidity(
+    const result = await this.swapActor.addLiquidity(
       Principal.fromText(token0),
       Principal.fromText(token1),
       amount0Desired,
@@ -431,6 +431,64 @@ export class SwapCanisterController {
       amount1Min,
       getDeadline()
     );
+
+    if ('err' in result) throw new Error(JSON.stringify(result.err));
+    return;
+  }
+
+  async removeLiquidity({
+    token0,
+    token1,
+    ...params
+  }: SwapCanisterController.RemoveLiquidityParams): Promise<void> {
+    const principal = await this.getAgentPrincipal();
+
+    if (!this.tokenList) await this.getTokenList();
+    if (!this.pairList) await this.getPairList();
+    if (!this.pairList || !this.tokenList) throw new Error();
+
+    const pair = this.pairList[token0][token1];
+
+    if (!pair) {
+      throw new Error('Pair not created');
+    }
+
+    const amount = toBigNumber(params.amount);
+    const slippage = toBigNumber(params.slippage ?? Default.SLIPPAGE)
+      .dividedBy(100)
+      .toNumber();
+
+    const { balance0, balance1 } = Liquidity.getTokenBalances({
+      decimals0: this.tokenList[token0].decimals,
+      decimals1: this.tokenList[token1].decimals,
+      reserve0: pair.reserve0,
+      reserve1: pair.reserve1,
+      totalSupply: pair.totalSupply,
+      lpBalance: amount,
+    });
+
+    const _amount = amount.removeDecimals(Liquidity.PAIR_DECIMALS).toBigInt();
+    const amount0Min = balance0
+      .applyTolerance(slippage, 'min')
+      .removeDecimals(this.tokenList[token0].decimals)
+      .toBigInt();
+    const amount1Min = balance1
+      .applyTolerance(slippage, 'min')
+      .removeDecimals(this.tokenList[token1].decimals)
+      .toBigInt();
+
+    const result = await this.swapActor.removeLiquidity(
+      Principal.fromText(token0),
+      Principal.fromText(token1),
+      _amount,
+      amount0Min,
+      amount1Min,
+      principal,
+      getDeadline()
+    );
+
+    if ('err' in result) throw new Error(JSON.stringify(result.err));
+    return;
   }
 }
 
@@ -512,4 +570,18 @@ export namespace SwapCanisterController {
    * Type definition for params of the depositTokensNeededBalance function.
    */
   export type DepositTokensNeededBalanceParams = DepositParams[];
+
+  /**
+   * Type definition for params of the removeLiquidity function.
+   * @param {string} token0 Token id
+   * @param {string} token1 Token id
+   * @param {Types.Amount} amount Liquidity Position amount to remove
+   * @param {Types.Number} slippage Percentage of slippage allowed
+   */
+  export type RemoveLiquidityParams = {
+    token0: string;
+    token1: string;
+    amount: Types.Amount;
+    slippage?: Types.Number;
+  };
 }
