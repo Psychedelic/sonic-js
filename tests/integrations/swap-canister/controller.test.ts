@@ -458,7 +458,7 @@ describe('SwapCanisterController', () => {
       });
 
       return expect(promise).rejects.toThrowError(
-        'Not enough aanaa-xaaaa-aaaah-aaeiq-cai to swap'
+        'Not enough aanaa-xaaaa-aaaah-aaeiq-cai to deposit'
       );
     });
 

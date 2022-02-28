@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js';
 import { Pair } from '@/declarations/pair';
 
 import { toExponential, toBigNumber } from '../utils';
-import { Types, checkIfObject } from '../';
+import { Types, checkIfObject, Default } from '../';
 
 /**
  * Math calculations for Liquidity functions.
@@ -37,8 +37,8 @@ export class Liquidity {
     }
 
     return amountIn
-      .multipliedBy(reserveOut.dividedBy(toExponential(params.decimalsOut)))
-      .dividedBy(reserveIn.dividedBy(toExponential(params.decimalsIn)))
+      .multipliedBy(reserveOut.applyDecimals(params.decimalsOut))
+      .dividedBy(reserveIn.applyDecimals(params.decimalsIn))
       .dp(params.decimalsOut);
   }
 
@@ -48,12 +48,17 @@ export class Liquidity {
    * @returns {BigNumber}
    */
   static getPosition(params: Liquidity.GetPositionParams): BigNumber {
+    const slippage = toBigNumber(params.slippage ?? Default.SLIPPAGE)
+      .dividedBy(100)
+      .toNumber();
     const amount0Desired = toBigNumber(params.amount0).removeDecimals(
       params.decimals0
     );
     const amount1Desired = toBigNumber(params.amount1).removeDecimals(
       params.decimals1
     );
+    const amount0Min = amount0Desired.applyTolerance(slippage, 'min').dp(0);
+    const amount1Min = amount1Desired.applyTolerance(slippage, 'min').dp(0);
     const reserve0 = toBigNumber(params.reserve0);
     const reserve1 = toBigNumber(params.reserve1);
     const totalSupply = toBigNumber(params.totalSupply);
@@ -69,12 +74,21 @@ export class Liquidity {
         .multipliedBy(reserve1)
         .dividedBy(reserve0);
       if (amount1Desired.isGreaterThanOrEqualTo(amount1Optimal)) {
+        if (!amount1Optimal.isGreaterThanOrEqualTo(amount1Min)) {
+          throw new Error('Invalid amount0');
+        }
         amount0 = amount0Desired;
         amount1 = amount1Optimal;
       } else {
         const amount0Optimal = amount1Desired
           .multipliedBy(reserve0)
           .dividedBy(reserve1);
+        if (
+          !amount0Optimal.isLessThanOrEqualTo(amount0Desired) ||
+          !amount0Optimal.isGreaterThanOrEqualTo(amount0Min)
+        ) {
+          throw new Error('Invalid amount1');
+        }
         amount0 = amount0Optimal;
         amount1 = amount1Desired;
       }
@@ -227,6 +241,7 @@ export namespace Liquidity {
     reserve0: Types.Number;
     reserve1: Types.Number;
     totalSupply: Types.Number;
+    slippage?: Types.Number;
   }
 
   /**

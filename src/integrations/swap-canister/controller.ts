@@ -1,5 +1,5 @@
 import { Default, Pair, Token, Types, SwapIDL } from '@/declarations';
-import { Assets, Swap } from '@/math';
+import { Assets, Liquidity, Swap } from '@/math';
 import { toBigNumber } from '@/utils';
 import { Actor } from '@dfinity/agent';
 import { Principal } from '@dfinity/principal';
@@ -231,6 +231,39 @@ export class SwapCanisterController {
   }
 
   /**
+   * Check and deposit if is needed for a list of tokens.
+   * It is only going to deposit if the amount is not already deposited
+   * and if there is enough token balance to deposit.
+   * @param {SwapCanisterController.DepositTokensNeededBalanceParams} params
+   * returns {Promise<void>}
+   */
+  async depositTokensNeededBalance(
+    params: SwapCanisterController.DepositTokensNeededBalanceParams
+  ): Promise<void> {
+    if (!this.tokenList) await this.getTokenList();
+    const principalId = (await this.getAgentPrincipal()).toString();
+
+    for (const { amount, tokenId } of params) {
+      const balance = await this.getTokenBalance({
+        principalId,
+        tokenId,
+      });
+
+      if (balance.sonic.lt(amount)) {
+        const toDeposit = toBigNumber(amount).minus(balance.sonic);
+        const requiredDepositAmount = Assets.getDepositAmount({
+          token: (this.tokenList as Token.MetadataList)[tokenId],
+          amount: toDeposit.toString(),
+        });
+        if (requiredDepositAmount.gt(balance.token)) {
+          throw new Error(`Not enough ${tokenId} to deposit`);
+        }
+        await this.deposit({ tokenId, amount: toDeposit.toString() });
+      }
+    }
+  }
+
+  /**
    * Withdraw tokens from swap canister.
    * This function uses the actor agent identity.
    * @param {SwapCanisterController.WithdrawParams} params
@@ -258,6 +291,7 @@ export class SwapCanisterController {
 
   /**
    * Swaps an amount of tokenIn for tokenOut allowing given slippage.
+   * This function uses the actor agent identity.
    * @param {SwapCanisterController.SwapParams} params
    * @returns {Promise<void>}
    */
@@ -282,22 +316,9 @@ export class SwapCanisterController {
 
     if (!tokenPath) throw new Error('No token path to swap');
 
-    const balance = await this.getTokenBalance({
-      principalId: principal.toString(),
-      tokenId: tokenIn,
-    });
-
-    if (balance.sonic.lt(amountIn)) {
-      const toDeposit = toBigNumber(amountIn).minus(balance.sonic);
-      const requiredDepositAmount = Assets.getDepositAmount({
-        token: this.tokenList[tokenIn],
-        amount: toDeposit.toString(),
-      });
-      if (requiredDepositAmount.gt(balance.token)) {
-        throw new Error(`Not enough ${tokenIn} to swap`);
-      }
-      await this.deposit({ tokenId: tokenIn, amount: toDeposit.toString() });
-    }
+    await this.depositTokensNeededBalance([
+      { tokenId: tokenIn, amount: amountIn },
+    ]);
 
     const _amountIn = toBigNumber(amountIn)
       .removeDecimals(this.tokenList[tokenIn].decimals)
@@ -321,6 +342,92 @@ export class SwapCanisterController {
 
     if ('err' in swapResult) throw new Error(JSON.stringify(swapResult.err));
     return;
+  }
+
+  /**
+   * Add two amounts of tokens to add a pair Liquidity Position.
+   * This function uses the actor agent identity.
+   * @param {SwapCanisterController.AddLiquidityParams} params
+   * @returns {Promise<void>}
+   */
+  async addLiquidity({
+    token0,
+    token1,
+    ...params
+  }: SwapCanisterController.AddLiquidityParams): Promise<void> {
+    await this.getAgentPrincipal();
+
+    if (!this.tokenList) await this.getTokenList();
+    if (!this.pairList) await this.getPairList();
+    if (!this.pairList || !this.tokenList) throw new Error();
+
+    const pair = this.pairList[token0][token1];
+    if (pair) {
+      // Verify correct pair tokens order
+      const [pairToken0, pairToken1] = pair.id.split(':');
+
+      if (pairToken0 === token1 && pairToken1 === token0) {
+        let aux = token0;
+        token0 = token1;
+        token1 = aux;
+
+        aux = params.amount0;
+        params.amount0 = params.amount1;
+        params.amount1 = params.amount0;
+      }
+    } else {
+      throw new Error('Pair not created');
+    }
+
+    const slippage = toBigNumber(params.slippage ?? Default.SLIPPAGE)
+      .dividedBy(100)
+      .toNumber();
+
+    // Verify token amounts and received position
+    if (
+      Liquidity.getPosition({
+        amount0: params.amount0,
+        amount1: params.amount1,
+        decimals0: this.tokenList[token0].decimals,
+        decimals1: this.tokenList[token1].decimals,
+        reserve0: this.pairList[token0][token1].reserve0,
+        reserve1: this.pairList[token0][token1].reserve1,
+        totalSupply: this.pairList[token0][token1].totalSupply,
+        slippage,
+      }).isLessThanOrEqualTo(0)
+    ) {
+      throw new Error('Invalid token amounts');
+    }
+
+    await this.depositTokensNeededBalance([
+      { tokenId: token0, amount: params.amount0 },
+      { tokenId: token1, amount: params.amount1 },
+    ]);
+
+    const amount0Desired = toBigNumber(params.amount0)
+      .removeDecimals(this.tokenList[token0].decimals)
+      .toBigInt();
+    const amount1Desired = toBigNumber(params.amount1)
+      .removeDecimals(this.tokenList[token1].decimals)
+      .toBigInt();
+    const amount0Min = toBigNumber(params.amount0)
+      .applyTolerance(slippage, 'min')
+      .removeDecimals(this.tokenList[token0].decimals)
+      .toBigInt();
+    const amount1Min = toBigNumber(params.amount1)
+      .applyTolerance(slippage, 'min')
+      .removeDecimals(this.tokenList[token1].decimals)
+      .toBigInt();
+
+    await this.swapActor.addLiquidity(
+      Principal.fromText(token0),
+      Principal.fromText(token1),
+      amount0Desired,
+      amount1Desired,
+      amount0Min,
+      amount1Min,
+      getDeadline()
+    );
   }
 }
 
@@ -363,7 +470,7 @@ export namespace SwapCanisterController {
    * @param {Types.Amount} amountIn Amount of input token to swap
    * @param {string} tokenIn Input token id
    * @param {string} tokenOut Output token id
-   * @param {Types.Slippage} slippage Percentage of slippage allowed
+   * @param {Types.Number} slippage Percentage of slippage allowed
    */
   export type SwapParams = {
     tokenIn: string;
@@ -381,4 +488,25 @@ export namespace SwapCanisterController {
     tokenId: string;
     principalId: string;
   };
+
+  /**
+   * Type definition for params of the addLiquidity function.
+   * @param {string} token0 Token id
+   * @param {string} token1 Token id
+   * @param {Types.Amount} amount Amount of token0 to add
+   * @param {Types.Amount} amount1 Amount of token1 to add
+   * @param {Types.Number} slippage Percentage of slippage allowed
+   */
+  export type AddLiquidityParams = {
+    token0: string;
+    token1: string;
+    amount0: Types.Amount;
+    amount1: Types.Amount;
+    slippage?: Types.Number;
+  };
+
+  /**
+   * Type definition for params of the depositTokensNeededBalance function.
+   */
+  export type DepositTokensNeededBalanceParams = DepositParams[];
 }
