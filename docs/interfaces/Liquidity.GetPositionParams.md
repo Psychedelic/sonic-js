@@ -28,6 +28,7 @@ Type definition for getPosition function params.
 - [decimals1](Liquidity.GetPositionParams.md#decimals1)
 - [reserve0](Liquidity.GetPositionParams.md#reserve0)
 - [reserve1](Liquidity.GetPositionParams.md#reserve1)
+- [slippage](Liquidity.GetPositionParams.md#slippage)
 - [totalSupply](Liquidity.GetPositionParams.md#totalsupply)
 
 ## Properties
@@ -65,6 +66,12 @@ ___
 ### reserve1
 
 • **reserve1**: [`Number`](../modules/Types.md#number)
+
+___
+
+### slippage
+
+• `Optional` **slippage**: [`Number`](../modules/Types.md#number)
 
 ___
 

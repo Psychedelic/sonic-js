@@ -91,6 +91,36 @@ describe('Liquidity', () => {
 
       expect(result).toEqual(new BigNumber('62245'));
     });
+
+    test('should throw if the amount0 is invalid', () => {
+      expect(() =>
+        Liquidity.getPosition({
+          amount0: '1.79',
+          decimals0: 8,
+          amount1: '2',
+          decimals1: 8,
+          reserve0: '200000000',
+          reserve1: '200000000',
+          totalSupply: '200000000',
+          slippage: 10,
+        })
+      ).toThrowError('Invalid amount0');
+    });
+
+    test('should throw if the amount1 is invalid', () => {
+      expect(() =>
+        Liquidity.getPosition({
+          amount0: '2',
+          decimals0: 8,
+          amount1: '1.79',
+          decimals1: 8,
+          reserve0: '200000000',
+          reserve1: '200000000',
+          totalSupply: '200000000',
+          slippage: 10,
+        })
+      ).toThrowError('Invalid amount1');
+    });
   });
 
   describe('.getShareOfPool', () => {
@@ -116,7 +146,7 @@ describe('Liquidity', () => {
         decimals1: 8,
         reserve0: '200000000',
         reserve1: '200000000',
-        totalSupply: '62246',
+        totalSupply: '200000000',
       });
 
       expect(result).toEqual(new BigNumber('0.5'));

@@ -1,6 +1,6 @@
 import { Pair, SwapIDL } from '@/declarations';
 import { Principal } from '@dfinity/principal';
-import { parseAllPairs } from 'integrations';
+import { parseAllPairs, parseUserLPBalances } from 'integrations';
 
 export const mockPair = ({
   blockTimestampLast,
@@ -193,5 +193,15 @@ export const mockAllPairsResponse = (): SwapIDL.PairInfoExt[] => [
   },
 ];
 
+export const mockUserLPBalanceResponse = (): [string, bigint][] => [
+  [
+    'aanaa-xaaaa-aaaah-aaeiq-cai:utozz-siaaa-aaaam-qaaxq-cai',
+    BigInt('3035420898'),
+  ],
+];
+
 export const mockPairList = (): Pair.List =>
   parseAllPairs(mockAllPairsResponse());
+
+export const mockLPBalances = (): Pair.Balances =>
+  parseUserLPBalances(mockUserLPBalanceResponse());

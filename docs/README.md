@@ -55,6 +55,7 @@
 - [getDeadline](README.md#getdeadline)
 - [parseAllPairs](README.md#parseallpairs)
 - [parseSupportedTokenList](README.md#parsesupportedtokenlist)
+- [parseUserLPBalances](README.md#parseuserlpbalances)
 - [serialize](README.md#serialize)
 - [toBigNumber](README.md#tobignumber)
 - [toExponential](README.md#toexponential)
@@ -280,6 +281,24 @@ Parses a list of supported tokens from swap canister request.
 #### Returns
 
 [`MetadataList`](modules/Token.md#metadatalist)
+
+___
+
+### parseUserLPBalances
+
+▸ **parseUserLPBalances**(`response`): [`Balances`](modules/Pair.md#balances)
+
+Parses a list of pairs LP balances from swap canister request.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `response` | [`string`, `bigint`][] | Response from swap canister |
+
+#### Returns
+
+[`Balances`](modules/Pair.md#balances)
 
 ___
 
