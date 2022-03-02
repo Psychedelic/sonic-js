@@ -70,8 +70,13 @@ export class ActorAdapter {
    */
   private async createAgent(extraWhitelist: string[] = []): Promise<void> {
     if (this.provider) {
+      const whitelistSet = new Set([
+        ...this.options.whitelist,
+        ...extraWhitelist,
+        ...Object.keys(ActorAdapter.actors),
+      ]);
       await this.provider.createAgent({
-        whitelist: [...this.options.whitelist, ...extraWhitelist],
+        whitelist: Array.from(whitelistSet),
         host: this.options.host,
       });
     }
