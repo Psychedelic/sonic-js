@@ -23,13 +23,11 @@ ___
 
 Ƭ **Balances**: `Object`
 
-Type definition for a pair Liquidity Position balance.
-It is represented using nested object in the structure of:
-[canisterId][canisterId]: Balance
+Type definition for a list of pair Liquidity Position balances.
 
 #### Index signature
 
-▪ [canisterId: `string`]: { `[canisterId: string]`: [`Balance`](Pair.md#balance);  }
+▪ [pairId: `string`]: [`Balance`](Pair.md#balance)
 
 ___
 

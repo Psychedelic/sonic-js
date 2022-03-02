@@ -6,13 +6,44 @@ Type definition for the SwapCanisterController.
 
 ### Type aliases
 
+- [AddLiquidityParams](SwapCanisterController.md#addliquidityparams)
 - [ApproveParams](SwapCanisterController.md#approveparams)
 - [DepositParams](SwapCanisterController.md#depositparams)
+- [DepositTokensNeededBalanceParams](SwapCanisterController.md#deposittokensneededbalanceparams)
 - [GetTokenBalanceParams](SwapCanisterController.md#gettokenbalanceparams)
+- [RemoveLiquidityParams](SwapCanisterController.md#removeliquidityparams)
 - [SwapParams](SwapCanisterController.md#swapparams)
 - [WithdrawParams](SwapCanisterController.md#withdrawparams)
 
 ## Type aliases
+
+### AddLiquidityParams
+
+Ƭ **AddLiquidityParams**: `Object`
+
+Type definition for params of the addLiquidity function.
+
+**`param`** Token id
+
+**`param`** Token id
+
+**`param`** Amount of token0 to add
+
+**`param`** Amount of token1 to add
+
+**`param`** Percentage of slippage allowed
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `amount0` | [`Amount`](Types.md#amount) |
+| `amount1` | [`Amount`](Types.md#amount) |
+| `slippage?` | [`Number`](Types.md#number) |
+| `token0` | `string` |
+| `token1` | `string` |
+
+___
 
 ### ApproveParams
 
@@ -52,6 +83,14 @@ Type definition for params of the deposit function.
 
 ___
 
+### DepositTokensNeededBalanceParams
+
+Ƭ **DepositTokensNeededBalanceParams**: [`DepositParams`](SwapCanisterController.md#depositparams)[]
+
+Type definition for params of the depositTokensNeededBalance function.
+
+___
+
 ### GetTokenBalanceParams
 
 Ƭ **GetTokenBalanceParams**: `Object`
@@ -68,6 +107,31 @@ Type definition for params of the getTokenBalance function.
 | :------ | :------ |
 | `principalId` | `string` |
 | `tokenId` | `string` |
+
+___
+
+### RemoveLiquidityParams
+
+Ƭ **RemoveLiquidityParams**: `Object`
+
+Type definition for params of the removeLiquidity function.
+
+**`param`** Token id
+
+**`param`** Token id
+
+**`param`** Liquidity Position amount to remove
+
+**`param`** Percentage of slippage allowed
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `amount` | [`Amount`](Types.md#amount) |
+| `slippage?` | [`Number`](Types.md#number) |
+| `token0` | `string` |
+| `token1` | `string` |
 
 ___
 
