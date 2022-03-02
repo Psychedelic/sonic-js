@@ -6,7 +6,11 @@ import BigNumber from 'bignumber.js';
 import { Token } from 'declarations';
 import { serialize, toBigNumber } from 'utils';
 import { mockAgent, mockSwapActor, mockTokenActor } from '../../mocks/actor';
-import { mockAllPairsResponse, mockPairList } from '../../mocks/pair';
+import {
+  mockAllPairsResponse,
+  mockLPBalances,
+  mockPairList,
+} from '../../mocks/pair';
 import { mockPrincipal, mockPrincipalId } from '../../mocks/principal';
 import {
   mockSupportedTokenListResponse,
@@ -176,6 +180,30 @@ describe('SwapCanisterController', () => {
       await sut.getTokenBalances();
 
       expect(spy).toHaveBeenCalledWith(mockPrincipal());
+    });
+  });
+
+  describe('.getLPBalances', () => {
+    test('should fetch the agent principal LP balances', async () => {
+      const spy = jest.spyOn(swapActor, 'getUserLPBalancesAbove');
+      await sut.getLPBalances();
+
+      expect(spy).toHaveBeenCalledWith(mockPrincipal(), BigInt(0));
+    });
+
+    test('should fetch given principal LP balances', async () => {
+      const spy = jest.spyOn(swapActor, 'getUserLPBalancesAbove');
+      const principalMock = mockPrincipal();
+
+      await sut.getLPBalances(principalMock.toString());
+
+      expect(spy).toHaveBeenCalledWith(principalMock, BigInt(0));
+    });
+
+    test('should return the parsed response from LP balances', async () => {
+      const response = await sut.getLPBalances();
+
+      expect(response).toEqual(mockLPBalances());
     });
   });
 
@@ -430,7 +458,7 @@ describe('SwapCanisterController', () => {
       });
 
       return expect(promise).rejects.toThrowError(
-        'Not enough aanaa-xaaaa-aaaah-aaeiq-cai to swap'
+        'Not enough aanaa-xaaaa-aaaah-aaeiq-cai to deposit'
       );
     });
 
@@ -500,6 +528,159 @@ describe('SwapCanisterController', () => {
 
       expect(tokenSpy).not.toHaveBeenCalled();
       expect(pairSpy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('.addLiquidity', () => {
+    const params = {
+      amount0: '1.55920683167',
+      amount1: '0.1',
+      token0: 'aanaa-xaaaa-aaaah-aaeiq-cai',
+      token1: 'utozz-siaaa-aaaam-qaaxq-cai',
+    };
+
+    beforeAll(() => {
+      (createTokenActor as jest.Mock).mockImplementation(async () =>
+        mockTokenActor({ balanceOf: async () => BigInt('1500000000000') })
+      );
+    });
+
+    afterAll(() => {
+      (createTokenActor as jest.Mock).mockImplementation(async () =>
+        mockTokenActor()
+      );
+    });
+
+    test('should add liquidity', async () => {
+      await sut.addLiquidity(params);
+    });
+
+    test('should throw if there is not enough token balance', async () => {
+      (createTokenActor as jest.Mock).mockImplementationOnce(async () =>
+        mockTokenActor({ balanceOf: async () => BigInt('0') })
+      );
+
+      await expect(sut.addLiquidity(params)).rejects.toThrow();
+    });
+
+    test('should throw if amount0 is invalid', async () => {
+      const promise = sut.addLiquidity({ ...params, amount0: '3' });
+
+      await expect(promise).rejects.toThrow();
+    });
+
+    test('should throw if amount0 is invalid', async () => {
+      const promise = sut.addLiquidity({ ...params, amount1: '3' });
+
+      await expect(promise).rejects.toThrow();
+    });
+
+    test('should throw if the pair does not exist', async () => {
+      const promise = sut.addLiquidity({
+        ...params,
+        token0: 'aanaa-xaaaa-aaaah-aaeiq-cai',
+        token1: 'onuey-xaaaa-aaaah-qcf7a-cai',
+      });
+
+      await expect(promise).rejects.toThrow();
+    });
+
+    test('should throw for invalid token amounts', async () => {
+      const promise = sut.addLiquidity({
+        ...params,
+        amount0: '0',
+        amount1: '0',
+      });
+
+      await expect(promise).rejects.toThrowError('Invalid token amounts');
+    });
+
+    test('should call addLiquidity with right params', async () => {
+      jest.useFakeTimers();
+      jest.setSystemTime(1);
+      const spy = jest.spyOn(swapActor, 'addLiquidity');
+
+      await sut.addLiquidity({
+        amount0: '0.1',
+        amount1: '1.55920683167',
+        token0: 'utozz-siaaa-aaaam-qaaxq-cai',
+        token1: 'aanaa-xaaaa-aaaah-aaeiq-cai',
+        slippage: 10,
+      });
+
+      return expect(spy).toHaveBeenCalledWith(
+        Principal.fromText('aanaa-xaaaa-aaaah-aaeiq-cai'),
+        Principal.fromText('utozz-siaaa-aaaam-qaaxq-cai'),
+        BigInt('1559206831670'),
+        BigInt('10000000'),
+        BigInt('1403286148503'),
+        BigInt('9000000'),
+        BigInt('3000010000000')
+      );
+    });
+
+    test('should throw if there is an error on response', async () => {
+      jest
+        .spyOn(swapActor, 'addLiquidity')
+        .mockResolvedValueOnce({ err: 'error_message' });
+
+      const promise = sut.addLiquidity(params);
+
+      await expect(promise).rejects.toThrowError(
+        JSON.stringify('error_message')
+      );
+    });
+  });
+
+  describe('.removeLiquidity', () => {
+    const params = {
+      token0: 'aanaa-xaaaa-aaaah-aaeiq-cai',
+      token1: 'utozz-siaaa-aaaam-qaaxq-cai',
+      amount: '1.5',
+    };
+
+    test('should remove the liquidity', async () => {
+      await sut.removeLiquidity(params);
+    });
+
+    test('should call removeLiquidity with right params', async () => {
+      jest.useFakeTimers();
+      jest.setSystemTime(1);
+      const spy = jest.spyOn(swapActor, 'removeLiquidity');
+
+      await sut.removeLiquidity(params);
+
+      return expect(spy).toHaveBeenCalledWith(
+        Principal.fromText('aanaa-xaaaa-aaaah-aaeiq-cai'),
+        Principal.fromText('utozz-siaaa-aaaam-qaaxq-cai'),
+        BigInt('150000000'),
+        BigInt('60708094563'),
+        BigInt('389351'),
+        mockPrincipal(),
+        BigInt('3000010000000')
+      );
+    });
+
+    test('should throw if pair does not exist', async () => {
+      const promise = sut.removeLiquidity({
+        ...params,
+        token0: 'aanaa-xaaaa-aaaah-aaeiq-cai',
+        token1: 'onuey-xaaaa-aaaah-qcf7a-cai',
+      });
+
+      await expect(promise).rejects.toThrow();
+    });
+
+    test('should throw if the response has error', async () => {
+      jest
+        .spyOn(swapActor, 'removeLiquidity')
+        .mockResolvedValueOnce({ err: 'error_message' });
+
+      const promise = sut.removeLiquidity(params);
+
+      await expect(promise).rejects.toThrowError(
+        JSON.stringify('error_message')
+      );
     });
   });
 });
