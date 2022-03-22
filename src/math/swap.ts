@@ -117,8 +117,21 @@ export class Swap {
   }: Swap.GetTokenPathsParams): MaximalPaths.PathList {
     if (!pairList[tokenId]) return {};
 
+    const filledPairs: Pair.List = {};
+    Object.entries(pairList).forEach(([token0, paired]) => {
+      filledPairs[token0] = {};
+      Object.entries(paired).forEach(([token1, pair]) => {
+        if (
+          toBigNumber(pair.reserve0).gt(0) &&
+          toBigNumber(pair.reserve1).gt(0)
+        ) {
+          filledPairs[token0][token1] = pair;
+        }
+      });
+    });
+
     const graphNodes = findMaximalPaths(
-      pairList,
+      filledPairs,
       tokenList,
       tokenId,
       toBigNumber(amount),

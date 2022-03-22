@@ -111,10 +111,10 @@ export const mockAllPairsResponse = (): SwapIDL.PairInfoExt[] => [
     creator: Principal.fromText(
       'tqjnl-eteua-vbnza-3yuzm-a3pnk-mk7zw-ehhwr-eert4-dhlhu-aycmo-zae'
     ),
-    reserve0: BigInt('1351108753'),
-    reserve1: BigInt('2188009872'),
+    reserve0: BigInt('0'),
+    reserve1: BigInt('0'),
     lptoken: 'a7saq-3aaaa-aaaai-qbcdq-cai:cfoim-fqaaa-aaaai-qbcmq-cai',
-    totalSupply: BigInt('1700199266'),
+    totalSupply: BigInt('0'),
     token0: 'a7saq-3aaaa-aaaai-qbcdq-cai',
     token1: 'cfoim-fqaaa-aaaai-qbcmq-cai',
     price1CumulativeLast: BigInt(
