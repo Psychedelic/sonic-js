@@ -241,10 +241,6 @@ describe('Swap', () => {
           path: ['a7saq-3aaaa-aaaai-qbcdq-cai', 'wjsrf-myaaa-aaaam-qaayq-cai'],
           amountOut: new BigNumber('0.42662751'),
         },
-        'cfoim-fqaaa-aaaai-qbcmq-cai': {
-          path: ['a7saq-3aaaa-aaaai-qbcdq-cai', 'cfoim-fqaaa-aaaai-qbcmq-cai'],
-          amountOut: new BigNumber('1.50360675'),
-        },
       });
     });
 

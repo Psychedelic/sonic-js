@@ -1,7 +1,14 @@
 import { findMaximalPaths, MaximalPaths } from '@/utils/maximal-paths';
 import BigNumber from 'bignumber.js';
 import { Price } from '.';
-import { checkIfObject, Pair, toBigNumber, Token, Types } from '..';
+import {
+  checkIfObject,
+  Pair,
+  removeEmptyPairs,
+  toBigNumber,
+  Token,
+  Types,
+} from '..';
 
 /**
  * Math calculations for Swap functions.
@@ -117,8 +124,10 @@ export class Swap {
   }: Swap.GetTokenPathsParams): MaximalPaths.PathList {
     if (!pairList[tokenId]) return {};
 
+    const filledPairs = removeEmptyPairs(pairList);
+
     const graphNodes = findMaximalPaths(
-      pairList,
+      filledPairs,
       tokenList,
       tokenId,
       toBigNumber(amount),

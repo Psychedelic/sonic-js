@@ -34,7 +34,7 @@ jobs:
         run: yarn
 
       - name: Audit
-        run: yarn audit
+        run: yarn audit --groups dependencies
 
       - name: Run Tests
         run: yarn test:ci
