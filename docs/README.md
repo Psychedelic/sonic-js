@@ -56,6 +56,7 @@
 - [parseAllPairs](README.md#parseallpairs)
 - [parseSupportedTokenList](README.md#parsesupportedtokenlist)
 - [parseUserLPBalances](README.md#parseuserlpbalances)
+- [removeEmptyPairs](README.md#removeemptypairs)
 - [serialize](README.md#serialize)
 - [toBigNumber](README.md#tobignumber)
 - [toExponential](README.md#toexponential)
@@ -299,6 +300,24 @@ Parses a list of pairs LP balances from swap canister request.
 #### Returns
 
 [`Balances`](modules/Pair.md#balances)
+
+___
+
+### removeEmptyPairs
+
+▸ **removeEmptyPairs**(`pairList`): [`List`](modules/Pair.md#list)
+
+Remove pairs without reserves from Pair.List.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `pairList` | [`List`](modules/Pair.md#list) |
+
+#### Returns
+
+[`List`](modules/Pair.md#list)
 
 ___
 
