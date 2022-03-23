@@ -1,4 +1,8 @@
-import { findMaximalPaths, MaximalPaths } from '@/utils/maximal-paths';
+import {
+  findMaximalPaths,
+  MaximalPaths,
+  findReverseMaximalPaths,
+} from '@/utils/maximal-paths';
 import BigNumber from 'bignumber.js';
 import { Price } from '.';
 import {
@@ -21,28 +25,55 @@ export class Swap {
 
   /**
    * Calculate the resultant amount of a swap.
-   * @param {Swap.GetAmountParams} params
+   * @param {Swap.GetAmountOutParams} params
    * @returns {BigNumber}
    */
-  static getAmount(params: Swap.GetAmountParams): BigNumber {
+  static getAmountOut(params: Swap.GetAmountOutParams): BigNumber {
     const amountIn = toBigNumber(params.amountIn).removeDecimals(
       params.decimalsIn
     );
+    if (amountIn.isZero()) return toBigNumber(0);
+
     const reserveIn = toBigNumber(params.reserveIn);
     const reserveOut = toBigNumber(params.reserveOut);
     const fee = toBigNumber(params.fee || this.DEFAULT_FEE);
-    const dataKey = params.dataKey || 'from';
 
     if (amountIn.isZero()) return toBigNumber(0);
 
-    const feeCoefficient =
-      dataKey === 'from' ? toBigNumber(1).minus(fee) : toBigNumber(1).plus(fee);
+    const feeCoefficient = toBigNumber(1).minus(fee);
+
     const amountInWithFee = amountIn.multipliedBy(feeCoefficient);
 
     const numerator = amountInWithFee.multipliedBy(reserveOut);
     const denominator = reserveIn.plus(amountInWithFee);
 
     return numerator.dividedBy(denominator).applyDecimals(params.decimalsOut);
+  }
+
+  /**
+   * Calculate the needed amount to do a swap.
+   * @param {Swap.GetAmountInParams} params
+   * @returns {BigNumber}
+   */
+  static getAmountIn(params: Swap.GetAmountInParams): BigNumber {
+    const amountOut = toBigNumber(params.amountOut).removeDecimals(
+      params.decimalsOut
+    );
+    if (amountOut.isZero()) return toBigNumber(0);
+
+    const reserveIn = toBigNumber(params.reserveIn);
+    const reserveOut = toBigNumber(params.reserveOut);
+    const feeCoefficient = toBigNumber(params.fee || this.DEFAULT_FEE).plus(1);
+
+    const numerator = amountOut.multipliedBy(reserveIn);
+    const denominator = reserveOut.minus(amountOut);
+
+    const amountIn = numerator
+      .dividedBy(denominator)
+      .multipliedBy(feeCoefficient)
+      .applyDecimals(params.decimalsIn);
+
+    return amountIn;
   }
 
   /**
@@ -126,13 +157,15 @@ export class Swap {
 
     const filledPairs = removeEmptyPairs(pairList);
 
-    const graphNodes = findMaximalPaths(
-      filledPairs,
-      tokenList,
-      tokenId,
-      toBigNumber(amount),
-      dataKey
-    );
+    const graphNodes =
+      dataKey === 'from'
+        ? findMaximalPaths(filledPairs, tokenList, tokenId, toBigNumber(amount))
+        : findReverseMaximalPaths(
+            filledPairs,
+            tokenList,
+            tokenId,
+            toBigNumber(amount)
+          );
 
     return Object.values(graphNodes).reduce<MaximalPaths.PathList>(
       (acc, node) => {
@@ -160,7 +193,7 @@ export namespace Swap {
   export type DataKey = 'from' | 'to';
 
   /**
-   * Type definition for getAmount function params.
+   * Type definition for getAmountOut function params.
    * @param {Types.Amount} amountIn Amount of token in to swap
    * @param {Types.Decimals} decimalsIn Decimals of token in
    * @param {Types.Decimals} decimalsOut Decimals of token out
@@ -169,14 +202,32 @@ export namespace Swap {
    * @param {Types.Number} fee Amount of token out on swap canister reserve
    * @param {Types.Number} dataKey Calculate amount for "token from" or "token to"
    */
-  export interface GetAmountParams {
+  export interface GetAmountOutParams {
     amountIn: Types.Amount;
     decimalsIn: Types.Decimals;
     decimalsOut: Types.Decimals;
     reserveIn: Types.Number;
     reserveOut: Types.Number;
     fee?: Types.Number;
-    dataKey?: DataKey;
+  }
+
+  /**
+   * Type definition for getAmountIn function params.
+   * @param {Types.Amount} amountOut Amount of token out of swap
+   * @param {Types.Decimals} decimalsIn Decimals of token in
+   * @param {Types.Decimals} decimalsOut Decimals of token out
+   * @param {Types.Number} reserveIn Amount of token in on swap canister reserve
+   * @param {Types.Number} reserveOut Amount of token out on swap canister reserve
+   * @param {Types.Number} fee Amount of token out on swap canister reserve
+   * @param {Types.Number} dataKey Calculate amount for "token from" or "token to"
+   */
+  export interface GetAmountInParams {
+    amountOut: Types.Amount;
+    decimalsIn: Types.Decimals;
+    decimalsOut: Types.Decimals;
+    reserveIn: Types.Number;
+    reserveOut: Types.Number;
+    fee?: Types.Number;
   }
 
   /**
