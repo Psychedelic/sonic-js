@@ -11,8 +11,9 @@ Type definition for the Swap.
 
 ### Interfaces
 
+- [GetAmountInParams](../interfaces/Swap.GetAmountInParams.md)
 - [GetAmountMinParams](../interfaces/Swap.GetAmountMinParams.md)
-- [GetAmountParams](../interfaces/Swap.GetAmountParams.md)
+- [GetAmountOutParams](../interfaces/Swap.GetAmountOutParams.md)
 - [GetPriceImpactParams](../interfaces/Swap.GetPriceImpactParams.md)
 
 ## Type aliases

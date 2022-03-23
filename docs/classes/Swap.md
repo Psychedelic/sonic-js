@@ -10,8 +10,9 @@ Math calculations for Swap functions.
 
 ### Methods
 
-- [getAmount](Swap.md#getamount)
+- [getAmountIn](Swap.md#getamountin)
 - [getAmountMin](Swap.md#getamountmin)
+- [getAmountOut](Swap.md#getamountout)
 - [getPriceImpact](Swap.md#getpriceimpact)
 - [getTokenPaths](Swap.md#gettokenpaths)
 
@@ -29,17 +30,17 @@ Default fee for swap (0.3%)
 
 ## Methods
 
-### getAmount
+### getAmountIn
 
-▸ `Static` **getAmount**(`params`): `BigNumber`
+▸ `Static` **getAmountIn**(`params`): `BigNumber`
 
-Calculate the resultant amount of a swap.
+Calculate the needed amount to do a swap.
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `params` | [`GetAmountParams`](../interfaces/Swap.GetAmountParams.md) |
+| `params` | [`GetAmountInParams`](../interfaces/Swap.GetAmountInParams.md) |
 
 #### Returns
 
@@ -58,6 +59,24 @@ Calculate minimal amount of a swap.
 | Name | Type |
 | :------ | :------ |
 | `params` | [`GetAmountMinParams`](../interfaces/Swap.GetAmountMinParams.md) |
+
+#### Returns
+
+`BigNumber`
+
+___
+
+### getAmountOut
+
+▸ `Static` **getAmountOut**(`params`): `BigNumber`
+
+Calculate the resultant amount of a swap.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | [`GetAmountOutParams`](../interfaces/Swap.GetAmountOutParams.md) |
 
 #### Returns
 
