@@ -68,6 +68,10 @@ export class Swap {
     const numerator = amountOut.multipliedBy(reserveIn);
     const denominator = reserveOut.minus(amountOut);
 
+    if (denominator.lte(0)) {
+      return toBigNumber(0);
+    }
+
     const amountIn = numerator
       .dividedBy(denominator)
       .multipliedBy(feeCoefficient)

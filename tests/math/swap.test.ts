@@ -66,6 +66,17 @@ describe('Swap', () => {
         expect(result).toEqual(expected);
       }
     );
+
+    test('should return 0 if the amountOut is bigger than reserveOut', () => {
+      const result = Swap.getAmountIn({
+        amountOut: '100.1',
+        decimalsIn: 1,
+        decimalsOut: 1,
+        reserveIn: 2000,
+        reserveOut: 1000,
+      });
+      expect(result).toEqual(new BigNumber(0));
+    });
   });
 
   describe('.getAmountMin', () => {
