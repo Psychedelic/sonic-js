@@ -51,6 +51,7 @@
 - [createTokenActor](README.md#createtokenactor)
 - [deserialize](README.md#deserialize)
 - [findMaximalPaths](README.md#findmaximalpaths)
+- [findReverseMaximalPaths](README.md#findreversemaximalpaths)
 - [formatAmount](README.md#formatamount)
 - [getDeadline](README.md#getdeadline)
 - [parseAllPairs](README.md#parseallpairs)
@@ -199,19 +200,39 @@ ___
 
 ### findMaximalPaths
 
-▸ **findMaximalPaths**(`pairList`, `tokenList`, `source`, `initialAmount`, `dataKey?`): [`NodeList`](modules/MaximalPaths.md#nodelist)
+▸ **findMaximalPaths**(`pairList`, `tokenList`, `source`, `initialAmount`): [`NodeList`](modules/MaximalPaths.md#nodelist)
 
 Maximal paths graph solver.
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `pairList` | [`List`](modules/Pair.md#list) | `undefined` |
-| `tokenList` | [`MetadataList`](modules/Token.md#metadatalist) | `undefined` |
-| `source` | `string` | `undefined` |
-| `initialAmount` | `BigNumber` | `undefined` |
-| `dataKey` | [`DataKey`](modules/Swap.md#datakey) | `'from'` |
+| Name | Type |
+| :------ | :------ |
+| `pairList` | [`List`](modules/Pair.md#list) |
+| `tokenList` | [`MetadataList`](modules/Token.md#metadatalist) |
+| `source` | `string` |
+| `initialAmount` | `BigNumber` |
+
+#### Returns
+
+[`NodeList`](modules/MaximalPaths.md#nodelist)
+
+___
+
+### findReverseMaximalPaths
+
+▸ **findReverseMaximalPaths**(`pairList`, `tokenList`, `source`, `initialAmount`): [`NodeList`](modules/MaximalPaths.md#nodelist)
+
+Reverse maximal paths graph solver.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `pairList` | [`List`](modules/Pair.md#list) |
+| `tokenList` | [`MetadataList`](modules/Token.md#metadatalist) |
+| `source` | `string` |
+| `initialAmount` | `BigNumber` |
 
 #### Returns
 

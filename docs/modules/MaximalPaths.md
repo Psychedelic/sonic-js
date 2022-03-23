@@ -6,6 +6,7 @@ Type definition for the maximal paths graph solver.
 
 ### Type aliases
 
+- [GraphResolver](MaximalPaths.md#graphresolver)
 - [Node](MaximalPaths.md#node)
 - [NodeList](MaximalPaths.md#nodelist)
 - [Path](MaximalPaths.md#path)
@@ -13,6 +14,31 @@ Type definition for the maximal paths graph solver.
 - [WeightList](MaximalPaths.md#weightlist)
 
 ## Type aliases
+
+### GraphResolver
+
+Ƭ **GraphResolver**: (`pairList`: [`List`](Pair.md#list), `tokenList`: [`MetadataList`](Token.md#metadatalist), `source`: `string`, `initialAmount`: `BigNumber`) => [`NodeList`](MaximalPaths.md#nodelist)
+
+#### Type declaration
+
+▸ (`pairList`, `tokenList`, `source`, `initialAmount`): [`NodeList`](MaximalPaths.md#nodelist)
+
+Type definition for a GraphResolver function.
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `pairList` | [`List`](Pair.md#list) |
+| `tokenList` | [`MetadataList`](Token.md#metadatalist) |
+| `source` | `string` |
+| `initialAmount` | `BigNumber` |
+
+##### Returns
+
+[`NodeList`](MaximalPaths.md#nodelist)
+
+___
 
 ### Node
 
