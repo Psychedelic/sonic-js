@@ -4,79 +4,64 @@ import { mockPairList } from '../mocks/pair';
 import { mockTokenList } from '../mocks/token';
 
 describe('Swap', () => {
-  describe('.getAmount', () => {
-    test.each`
-      dataKey
-      ${'to'} | ${'from'} | ${undefined}
-    `(
-      'should return 0 to amountIn equal to 0 and dataKey "$dataKey"',
-      ({ dataKey }) => {
-        const result = Swap.getAmount({
-          amountIn: '0.0',
-          decimalsIn: 0,
-          decimalsOut: 0,
-          reserveIn: 0,
-          reserveOut: 0,
-          dataKey,
-        });
-        expect(result).toEqual(new BigNumber(0));
-      }
-    );
+  describe('.getAmountOut', () => {
+    test('should return 0 to amountIn equal to 0', () => {
+      const result = Swap.getAmountOut({
+        amountIn: '0.0',
+        decimalsIn: 0,
+        decimalsOut: 0,
+        reserveIn: 0,
+        reserveOut: 0,
+      });
+      expect(result).toEqual(new BigNumber(0));
+    });
 
     test.each`
-      dataKey      | expected
-      ${'to'}      | ${new BigNumber(0.06693259)}
-      ${'from'}    | ${new BigNumber(0.0665322)}
-      ${undefined} | ${new BigNumber(0.0665322)}
+      amountIn             | expected
+      ${'15.030580604662'} | ${new BigNumber(0.999991)}
+      ${'0.02'}            | ${new BigNumber(0.00133064)}
+      ${'0.00133065'}      | ${new BigNumber(0.00008853)}
     `(
-      'should return $expected for dataKey "$dataKey" (case 1)',
-      ({ dataKey, expected }) => {
-        const result = Swap.getAmount({
-          amountIn: '1',
-          decimalsIn: 12,
-          decimalsOut: 8,
-          reserveIn: BigInt('525174326144243508'),
-          reserveOut: BigInt('3504620966611'),
-          dataKey,
-        });
-        expect(result).toEqual(expected);
-      }
-    );
-
-    test.each`
-      dataKey      | expected
-      ${'to'}      | ${new BigNumber(0.00133865)}
-      ${'from'}    | ${new BigNumber(0.00133064)}
-      ${undefined} | ${new BigNumber(0.00133064)}
-    `(
-      'should return $expected for dataKey "$dataKey" (case 2)',
-      ({ dataKey, expected }) => {
-        const result = Swap.getAmount({
-          amountIn: '0.02',
+      'should return $expected for amountIn "$amountIn"',
+      ({ amountIn, expected }) => {
+        const result = Swap.getAmountOut({
+          amountIn: amountIn,
           decimalsIn: 12,
           decimalsOut: 8,
           reserveIn: BigInt('525189312838912653'),
           reserveOut: BigInt('3504720976611'),
-          dataKey,
         });
         expect(result).toEqual(expected);
       }
     );
+  });
+
+  describe('.getAmountIn', () => {
+    test('should return 0 to amountOut equal to 0', () => {
+      const result = Swap.getAmountIn({
+        amountOut: '0.0',
+        decimalsIn: 0,
+        decimalsOut: 0,
+        reserveIn: 0,
+        reserveOut: 0,
+      });
+      expect(result).toEqual(new BigNumber(0));
+    });
+
     test.each`
-      dataKey      | expected
-      ${'to'}      | ${new BigNumber(0.019999870648)}
-      ${'from'}    | ${new BigNumber(0.01988023035)}
-      ${undefined} | ${new BigNumber(0.01988023035)}
+      amountOut       | expected
+      ${'1'}          | ${new BigNumber(15.030580604662)}
+      ${'0.02'}       | ${new BigNumber(0.300603206301)}
+      ${'0.00133065'} | ${new BigNumber(0.019999872169)}
     `(
-      'should return $expected for dataKey "$dataKey" (case 3)',
-      ({ dataKey, expected }) => {
-        const result = Swap.getAmount({
-          amountIn: '0.00133065',
-          decimalsIn: 8,
-          decimalsOut: 12,
-          reserveIn: BigInt('3504720976611'),
-          reserveOut: BigInt('525189312838912653'),
-          dataKey,
+      'should return $expected for amountOut "$amountOut"',
+      ({ amountOut, expected }) => {
+        const result = Swap.getAmountIn({
+          amountOut: amountOut,
+          decimalsIn: 12,
+          decimalsOut: 8,
+          reserveIn: BigInt('525189312838912653'),
+          reserveOut: BigInt('3504720976611'),
         });
         expect(result).toEqual(expected);
       }
@@ -263,7 +248,7 @@ describe('Swap', () => {
       expect(paths).toEqual({
         'utozz-siaaa-aaaam-qaaxq-cai': {
           path: ['aanaa-xaaaa-aaaah-aaeiq-cai', 'utozz-siaaa-aaaam-qaaxq-cai'],
-          amountOut: new BigNumber('0.06432746'),
+          amountOut: new BigNumber('0.06432769'),
         },
       });
     });
