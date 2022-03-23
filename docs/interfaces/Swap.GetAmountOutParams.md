@@ -1,8 +1,8 @@
-# Interface: GetAmountParams
+# Interface: GetAmountOutParams
 
-[Swap](../modules/Swap.md).GetAmountParams
+[Swap](../modules/Swap.md).GetAmountOutParams
 
-Type definition for getAmount function params.
+Type definition for getAmountOut function params.
 
 **`param`** Amount of token in to swap
 
@@ -22,25 +22,18 @@ Type definition for getAmount function params.
 
 ### Properties
 
-- [amountIn](Swap.GetAmountParams.md#amountin)
-- [dataKey](Swap.GetAmountParams.md#datakey)
-- [decimalsIn](Swap.GetAmountParams.md#decimalsin)
-- [decimalsOut](Swap.GetAmountParams.md#decimalsout)
-- [fee](Swap.GetAmountParams.md#fee)
-- [reserveIn](Swap.GetAmountParams.md#reservein)
-- [reserveOut](Swap.GetAmountParams.md#reserveout)
+- [amountIn](Swap.GetAmountOutParams.md#amountin)
+- [decimalsIn](Swap.GetAmountOutParams.md#decimalsin)
+- [decimalsOut](Swap.GetAmountOutParams.md#decimalsout)
+- [fee](Swap.GetAmountOutParams.md#fee)
+- [reserveIn](Swap.GetAmountOutParams.md#reservein)
+- [reserveOut](Swap.GetAmountOutParams.md#reserveout)
 
 ## Properties
 
 ### amountIn
 
 • **amountIn**: `string`
-
-___
-
-### dataKey
-
-• `Optional` **dataKey**: [`DataKey`](../modules/Swap.md#datakey)
 
 ___
 
