@@ -147,7 +147,7 @@ export const findReverseMaximalPaths: MaximalPaths.GraphResolver = (
     const newPathDistance = previousId ? pathWeightList[node.id] : pathDistance;
     const newPath = new Set([...path, node.id]);
 
-    if (newPathDistance.lt(node.amountOut)) {
+    if (newPathDistance.lt(node.amountOut) && newPathDistance.gt(0)) {
       node.amountOut = newPathDistance;
       node.path = newPath;
     }
