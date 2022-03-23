@@ -157,15 +157,15 @@ export class Swap {
 
     const filledPairs = removeEmptyPairs(pairList);
 
-    const graphNodes =
-      dataKey === 'from'
-        ? findMaximalPaths(filledPairs, tokenList, tokenId, toBigNumber(amount))
-        : findReverseMaximalPaths(
-            filledPairs,
-            tokenList,
-            tokenId,
-            toBigNumber(amount)
-          );
+    const graphResolver =
+      dataKey === 'from' ? findMaximalPaths : findReverseMaximalPaths;
+
+    const graphNodes = graphResolver(
+      filledPairs,
+      tokenList,
+      tokenId,
+      toBigNumber(amount)
+    );
 
     return Object.values(graphNodes).reduce<MaximalPaths.PathList>(
       (acc, node) => {
