@@ -24,8 +24,12 @@ export class Liquidity {
     params: Liquidity.GetOppositeAmountParams
   ): BigNumber {
     const amountIn = toBigNumber(params.amountIn);
-    const reserveIn = toBigNumber(params.reserveIn);
-    const reserveOut = toBigNumber(params.reserveOut);
+    const reserveIn = toBigNumber(params.reserveIn).applyDecimals(
+      params.decimalsIn
+    );
+    const reserveOut = toBigNumber(params.reserveOut).applyDecimals(
+      params.decimalsOut
+    );
 
     if (
       checkIfObject(
@@ -36,10 +40,50 @@ export class Liquidity {
       return toBigNumber(0);
     }
 
-    return amountIn
-      .multipliedBy(reserveOut.applyDecimals(params.decimalsOut))
-      .dividedBy(reserveIn.applyDecimals(params.decimalsIn))
+    const minimalAmountIn = this.getMinimalAmountIn({
+      decimals: params.decimalsIn,
+      decimalsOpposite: params.decimalsOut,
+      reserve: params.reserveIn,
+      reserveOpposite: params.reserveOut,
+    });
+
+    if (amountIn.lt(minimalAmountIn)) {
+      throw new Error(`Minimal amountIn: ${minimalAmountIn.toString()}`);
+    }
+
+    const oppositeAmount = amountIn
+      .multipliedBy(reserveOut)
+      .dividedBy(reserveIn)
       .dp(params.decimalsOut);
+
+    return oppositeAmount;
+  }
+
+  /**
+   * Calculate the minimal amount to be input for a given token of a pair.
+   * @param {Liquidity.GetMinimalAmountInParams} params
+   * @returns {BigNumber}
+   */
+  static getMinimalAmountIn(
+    params: Liquidity.GetMinimalAmountInParams
+  ): BigNumber {
+    const reserve = toBigNumber(params.reserve).applyDecimals(params.decimals);
+    const reserveOpposite = toBigNumber(params.reserveOpposite).applyDecimals(
+      params.decimalsOpposite
+    );
+    const halfDecimals = (decimals: Types.Decimals): BigNumber =>
+      toBigNumber(1).applyDecimals(Math.floor(decimals / 2));
+
+    const minimalAmountInByToken = halfDecimals(params.decimals);
+
+    const minimalAmountInByOpposite = halfDecimals(params.decimalsOpposite)
+      .multipliedBy(reserve)
+      .dividedBy(reserveOpposite);
+
+    return BigNumber.max(minimalAmountInByToken, minimalAmountInByOpposite).dp(
+      params.decimals,
+      BigNumber.ROUND_CEIL
+    );
   }
 
   /**
@@ -221,6 +265,20 @@ export namespace Liquidity {
     reserveOut: Types.Number;
     decimalsIn: Types.Decimals;
     decimalsOut: Types.Decimals;
+  }
+
+  /**
+   * Type definition for getMinimalAmountIn function params.
+   * @param {Types.Number} reserve Amount of selected token on swap canister reserve
+   * @param {Types.Number} reserveOpposite Amount of opposite token on swap canister reserve
+   * @param {Types.Decimals} decimals Decimals of selected token
+   * @param {Types.Decimals} decimalsOpposite Decimals of opposite token
+   */
+  export interface GetMinimalAmountInParams {
+    reserve: Types.Number;
+    reserveOpposite: Types.Number;
+    decimals: Types.Decimals;
+    decimalsOpposite: Types.Decimals;
   }
 
   /**
