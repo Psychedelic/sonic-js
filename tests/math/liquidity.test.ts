@@ -61,6 +61,43 @@ describe('Liquidity', () => {
 
       expect(oppositeAmount).toEqual(new BigNumber('0'));
     });
+
+    test('should throw when the input is invalid', () => {
+      const getOppositeAmount = (): BigNumber =>
+        Liquidity.getOppositeAmount({
+          amountIn: '0.000000000444',
+          reserveIn: '866090525036542790',
+          reserveOut: '4736077088416',
+          decimalsIn: 12,
+          decimalsOut: 8,
+        });
+
+      expect(getOppositeAmount).toThrow();
+    });
+  });
+
+  describe('.getMinimalAmountIn', () => {
+    test('should return the correct minimal amount in', () => {
+      const result = Liquidity.getMinimalAmountIn({
+        reserve: '4736077088416',
+        reserveOpposite: '866090525036542790',
+        decimals: 8,
+        decimalsOpposite: 12,
+      });
+
+      expect(result).toEqual(new BigNumber('0.0001'));
+    });
+
+    test('should return the correct minimal amount in', () => {
+      const result = Liquidity.getMinimalAmountIn({
+        reserve: '866090525036542790',
+        reserveOpposite: '4736077088416',
+        decimals: 12,
+        decimalsOpposite: 8,
+      });
+
+      expect(result).toEqual(new BigNumber('0.001828708674'));
+    });
   });
 
   describe('.getPosition', () => {
