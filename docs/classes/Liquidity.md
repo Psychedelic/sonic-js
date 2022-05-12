@@ -11,6 +11,7 @@ Math calculations for Liquidity functions.
 
 ### Methods
 
+- [getMinimalAmountIn](Liquidity.md#getminimalamountin)
 - [getOppositeAmount](Liquidity.md#getoppositeamount)
 - [getPosition](Liquidity.md#getposition)
 - [getShareOfPool](Liquidity.md#getshareofpool)
@@ -36,6 +37,24 @@ ___
 ▪ `Static` `Readonly` **PAIR\_DECIMALS**: ``8``
 
 ## Methods
+
+### getMinimalAmountIn
+
+▸ `Static` **getMinimalAmountIn**(`params`): `BigNumber`
+
+Calculate the minimal amount to be input for a given token of a pair.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | [`GetMinimalAmountInParams`](../interfaces/Liquidity.GetMinimalAmountInParams.md) |
+
+#### Returns
+
+`BigNumber`
+
+___
 
 ### getOppositeAmount
 

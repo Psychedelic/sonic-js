@@ -6,6 +6,7 @@ Type definition for the Liquidity.
 
 ### Interfaces
 
+- [GetMinimalAmountInParams](../interfaces/Liquidity.GetMinimalAmountInParams.md)
 - [GetOppositeAmountParams](../interfaces/Liquidity.GetOppositeAmountParams.md)
 - [GetPositionParams](../interfaces/Liquidity.GetPositionParams.md)
 - [GetTokenBalancesParams](../interfaces/Liquidity.GetTokenBalancesParams.md)
