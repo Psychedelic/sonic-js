@@ -2,16 +2,6 @@
 
 [Liquidity](../modules/Liquidity.md).GetMinimalAmountInParams
 
-Type definition for getMinimalAmountIn function params.
-
-**`param`** Amount of selected token on swap canister reserve
-
-**`param`** Amount of opposite token on swap canister reserve
-
-**`param`** Decimals of selected token
-
-**`param`** Decimals of opposite token
-
 ## Table of contents
 
 ### Properties

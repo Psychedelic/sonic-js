@@ -1,24 +1,16 @@
 # Namespace: Price
 
-Type definition for the Price.
-
 ## Table of contents
 
-### Type aliases
+### Type Aliases
 
 - [GetByAmountParams](Price.md#getbyamountparams)
 
-## Type aliases
+## Type Aliases
 
 ### GetByAmountParams
 
 Ƭ **GetByAmountParams**: `Object`
-
-Type definition for getByAmount function params.
-
-**`param`** Amount of the token
-
-**`param`** Price of a single token
 
 #### Type declaration
 

@@ -1,7 +1,5 @@
 # Class: Price
 
-Math calculations for Price functions.
-
 ## Table of contents
 
 ### Methods
@@ -17,8 +15,6 @@ Math calculations for Price functions.
 ### getByAmount
 
 ▸ `Static` **getByAmount**(`params`): `BigNumber`
-
-Calculate the total amount price by a given amount
 
 #### Parameters
 

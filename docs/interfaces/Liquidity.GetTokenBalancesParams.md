@@ -2,20 +2,6 @@
 
 [Liquidity](../modules/Liquidity.md).GetTokenBalancesParams
 
-Type definition for getTokenBalances function params.
-
-**`param`** Decimals of token 0
-
-**`param`** Decimals of token 1
-
-**`param`** Amount of token 0 in swap canister reserve
-
-**`param`** Amount of token 1 in swap canister reserve
-
-**`param`** Total supply of the pair
-
-**`param`** Liquidity Position of user
-
 ## Table of contents
 
 ### Properties

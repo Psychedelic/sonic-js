@@ -1,13 +1,13 @@
 # Class: ActorAdapter
 
-Adapter responsible for creating actors.
-It can receive a provider to identify the actor like a wallet provider (e.g. Plug).
-
 ## Table of contents
 
 ### Properties
 
+- [DEFAULT\_HOST](ActorAdapter.md#default_host)
+- [DEFAULT\_WHITELIST](ActorAdapter.md#default_whitelist)
 - [actors](ActorAdapter.md#actors)
+- [options](ActorAdapter.md#options)
 
 ### Methods
 
@@ -22,9 +22,27 @@ It can receive a provider to identify the actor like a wallet provider (e.g. Plu
 
 ## Properties
 
+### DEFAULT\_HOST
+
+▪ `Static` **DEFAULT\_HOST**: `string` = `Default.IC_HOST`
+
+___
+
+### DEFAULT\_WHITELIST
+
+▪ `Static` **DEFAULT\_WHITELIST**: `string`[]
+
+___
+
 ### actors
 
 ▪ `Static` `Readonly` **actors**: [`Actors`](../modules/ActorAdapter.md#actors) = `{}`
+
+___
+
+### options
+
+• `Private` **options**: [`Options`](../modules/ActorAdapter.md#options)
 
 ## Methods
 
@@ -32,19 +50,15 @@ It can receive a provider to identify the actor like a wallet provider (e.g. Plu
 
 ▸ `Static` **adapterOf**(`actor`): `undefined` \| [`ActorAdapter`](ActorAdapter.md)
 
-Gets the adapter from an actor.
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `actor` | `Actor` | The actor |
+| `actor` | `Actor` |  |
 
 #### Returns
 
 `undefined` \| [`ActorAdapter`](ActorAdapter.md)
-
-The adapter or undefined if is not existent
 
 ___
 
@@ -52,8 +66,6 @@ ___
 
 ▸ `Static` **createAnonymousActor**<`T`\>(`canisterId`, `interfaceFactory`, `host?`): [`Actor`](../modules/ActorAdapter.md#actor)<`T`\>
 
-Create an anonymous actor.
-
 #### Type parameters
 
 | Name |
@@ -64,23 +76,19 @@ Create an anonymous actor.
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `canisterId` | `string` | `undefined` | The canister id of the actor |
-| `interfaceFactory` | `InterfaceFactory` | `undefined` | The interface factory of the actor |
-| `host` | `string` | `Default.IC_HOST` | The IC host to connect to |
+| `canisterId` | `string` | `undefined` |  |
+| `interfaceFactory` | `InterfaceFactory` | `undefined` |  |
+| `host` | `string` | `ActorAdapter.DEFAULT_HOST` |  |
 
 #### Returns
 
 [`Actor`](../modules/ActorAdapter.md#actor)<`T`\>
-
-The anonymous actor
 
 ___
 
 ### createActor
 
 ▸ **createActor**<`T`\>(`canisterId`, `interfaceFactory`): `Promise`<[`Actor`](../modules/ActorAdapter.md#actor)<`T`\>\>
-
-Creates a new actor or use from memory if is already created.
 
 #### Type parameters
 
@@ -92,14 +100,12 @@ Creates a new actor or use from memory if is already created.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `canisterId` | `string` | The canister id of the actor |
-| `interfaceFactory` | `InterfaceFactory` | The interface factory of the actor |
+| `canisterId` | `string` |  |
+| `interfaceFactory` | `InterfaceFactory` |  |
 
 #### Returns
 
 `Promise`<[`Actor`](../modules/ActorAdapter.md#actor)<`T`\>\>
-
-The actor
 
 ___
 
@@ -107,13 +113,11 @@ ___
 
 ▸ `Private` **createAgent**(`extraWhitelist?`): `Promise`<`void`\>
 
-Creates the agent from provider.
-
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `extraWhitelist` | `string`[] | `[]` | Extra whitelist to add to the default whitelist |
+| `extraWhitelist` | `string`[] | `[]` |  |
 
 #### Returns
 
@@ -130,4 +134,4 @@ Creates the agent from provider.
 | Name | Type |
 | :------ | :------ |
 | `provider?` | [`Provider`](../modules/ActorAdapter.md#provider) |
-| `options` | [`Options`](../modules/ActorAdapter.md#options) |
+| `options` | `Partial`<[`Options`](../modules/ActorAdapter.md#options)\> |

@@ -2,18 +2,6 @@
 
 [Liquidity](../modules/Liquidity.md).GetOppositeAmountParams
 
-Type definition for getOppositeAmount function params.
-
-**`param`** Amount of a token in a position
-
-**`param`** Amount of token in on swap canister reserve
-
-**`param`** Amount of token out on swap canister reserve
-
-**`param`** Decimals of token in
-
-**`param`** Decimals of token out
-
 ## Table of contents
 
 ### Properties

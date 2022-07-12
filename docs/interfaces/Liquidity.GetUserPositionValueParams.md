@@ -2,24 +2,6 @@
 
 [Liquidity](../modules/Liquidity.md).GetUserPositionValueParams
 
-Type definition for getUserPositionValue function params.
-
-**`param`** Price of token 0
-
-**`param`** Price of token 1
-
-**`param`** Decimals of token 0
-
-**`param`** Decimals of token 1
-
-**`param`** Amount of token 0 in swap canister reserve
-
-**`param`** Amount of token 1 in swap canister reserve
-
-**`param`** Total supply of the pair
-
-**`param`** Liquidity Position of user
-
 ## Table of contents
 
 ### Properties

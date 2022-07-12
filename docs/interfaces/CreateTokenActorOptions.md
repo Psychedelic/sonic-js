@@ -1,11 +1,5 @@
 # Interface: CreateTokenActorOptions
 
-Options for creating an TokenActor.
-
-**`param`** The canister id to create the actor for
-
-**`param`** ActorAdapter instance with or without a provider, default is applied
-
 ## Table of contents
 
 ### Properties

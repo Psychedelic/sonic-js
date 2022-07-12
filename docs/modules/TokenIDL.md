@@ -2,7 +2,7 @@
 
 ## Table of contents
 
-### Type aliases
+### Type Aliases
 
 - [Factory](TokenIDL.md#factory)
 - [Result](TokenIDL.md#result)
@@ -14,7 +14,7 @@
 - [Token](../interfaces/TokenIDL.Token.md)
 - [TokenInfo](../interfaces/TokenIDL.TokenInfo.md)
 
-## Type aliases
+## Type Aliases
 
 ### Factory
 

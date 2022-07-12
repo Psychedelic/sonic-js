@@ -2,22 +2,6 @@
 
 [Liquidity](../modules/Liquidity.md).GetPositionParams
 
-Type definition for getPosition function params.
-
-**`param`** Amount of token 0
-
-**`param`** Amount of token 1
-
-**`param`** Decimals of token 0
-
-**`param`** Decimals of token 1
-
-**`param`** Amount of token 0 in swap canister reserve
-
-**`param`** Amount of token 1 in swap canister reserve
-
-**`param`** Total supply of the pair
-
 ## Table of contents
 
 ### Properties

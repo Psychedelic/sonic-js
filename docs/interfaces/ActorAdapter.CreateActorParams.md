@@ -2,8 +2,6 @@
 
 [ActorAdapter](../modules/ActorAdapter.md).CreateActorParams
 
-Parameters for creating an actor using the provider.
-
 ## Type parameters
 
 | Name |

@@ -2,9 +2,6 @@
 
 [Token](../modules/Token.md).Data
 
-It is an object containing the metadata and an amount of a token.
-It is used for turn easier pass data on operations.
-
 ## Type parameters
 
 | Name | Type |
