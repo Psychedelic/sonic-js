@@ -2,12 +2,6 @@
 
 [Liquidity](../modules/Liquidity.md).GetTokenBalancesResult
 
-Type definition for getTokenBalances return.
-
-**`param`** Amount of token 0
-
-**`param`** Amount of token 1
-
 ## Table of contents
 
 ### Properties

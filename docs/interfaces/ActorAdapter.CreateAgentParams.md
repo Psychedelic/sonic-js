@@ -2,8 +2,6 @@
 
 [ActorAdapter](../modules/ActorAdapter.md).CreateAgentParams
 
-Parameters for creating an agent using the provider.
-
 ## Table of contents
 
 ### Properties

@@ -11,13 +11,13 @@
 - [UserInfo](../interfaces/SwapIDL.UserInfo.md)
 - [UserInfoPage](../interfaces/SwapIDL.UserInfoPage.md)
 
-### Type aliases
+### Type Aliases
 
 - [Factory](SwapIDL.md#factory)
 - [Result](SwapIDL.md#result)
 - [TxReceipt](SwapIDL.md#txreceipt)
 
-## Type aliases
+## Type Aliases
 
 ### Factory
 

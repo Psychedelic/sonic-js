@@ -2,8 +2,6 @@
 
 [Assets](../modules/Assets.md).GetDepositAmountParams
 
-Type definition for getDepositAmount function params.
-
 ## Table of contents
 
 ### Properties

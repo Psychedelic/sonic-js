@@ -1,7 +1,5 @@
 # Namespace: Liquidity
 
-Type definition for the Liquidity.
-
 ## Table of contents
 
 ### Interfaces
@@ -13,14 +11,12 @@ Type definition for the Liquidity.
 - [GetTokenBalancesResult](../interfaces/Liquidity.GetTokenBalancesResult.md)
 - [GetUserPositionValueParams](../interfaces/Liquidity.GetUserPositionValueParams.md)
 
-### Type aliases
+### Type Aliases
 
 - [GetShareOfPoolParams](Liquidity.md#getshareofpoolparams)
 
-## Type aliases
+## Type Aliases
 
 ### GetShareOfPoolParams
 
 Ƭ **GetShareOfPoolParams**: [`GetPositionParams`](../interfaces/Liquidity.GetPositionParams.md)
-
-Type definition for getShareOfPool function params.

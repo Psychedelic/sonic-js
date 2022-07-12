@@ -1,7 +1,5 @@
 # Interface: ToBigNumberOptions
 
-Type definition for options of toBigNumber function.
-
 ## Table of contents
 
 ### Properties

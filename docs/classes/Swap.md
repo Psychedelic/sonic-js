@@ -1,7 +1,5 @@
 # Class: Swap
 
-Math calculations for Swap functions.
-
 ## Table of contents
 
 ### Properties
@@ -26,15 +24,11 @@ Math calculations for Swap functions.
 
 ▪ `Static` `Readonly` **DEFAULT\_FEE**: ``0.003``
 
-Default fee for swap (0.3%)
-
 ## Methods
 
 ### getAmountIn
 
 ▸ `Static` **getAmountIn**(`params`): `BigNumber`
-
-Calculate the needed amount to do a swap.
 
 #### Parameters
 
@@ -52,8 +46,6 @@ ___
 
 ▸ `Static` **getAmountMin**(`params`): `BigNumber`
 
-Calculate minimal amount of a swap.
-
 #### Parameters
 
 | Name | Type |
@@ -69,8 +61,6 @@ ___
 ### getAmountOut
 
 ▸ `Static` **getAmountOut**(`params`): `BigNumber`
-
-Calculate the resultant amount of a swap.
 
 #### Parameters
 
@@ -88,8 +78,6 @@ ___
 
 ▸ `Static` **getPriceImpact**(`params`): `BigNumber`
 
-Calculate the price impact based on given amounts and prices.
-
 #### Parameters
 
 | Name | Type |
@@ -105,8 +93,6 @@ ___
 ### getTokenPaths
 
 ▸ `Static` **getTokenPaths**(`params`): [`PathList`](../modules/MaximalPaths.md#pathlist)
-
-Calculate the best token path to realize the swap and the output amount.
 
 #### Parameters
 

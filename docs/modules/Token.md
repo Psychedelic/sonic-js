@@ -2,7 +2,7 @@
 
 ## Table of contents
 
-### Type aliases
+### Type Aliases
 
 - [Balance](Token.md#balance)
 - [BalanceList](Token.md#balancelist)
@@ -13,19 +13,11 @@
 
 - [Data](../interfaces/Token.Data.md)
 
-## Type aliases
+## Type Aliases
 
 ### Balance
 
 Ƭ **Balance**: `Object`
-
-Type definition for a token balance.
-
-**`param`** represents the user's amount deposited on sonic
-
-**`param`** represents the user's amount from wallet
-
-**`param`** represents the sum of sonic and token
 
 #### Type declaration
 
@@ -41,8 +33,6 @@ ___
 
 Ƭ **BalanceList**: `Object`
 
-It is key-object that maps a list of `Token.Balance`
-
 #### Index signature
 
 ▪ [canisterId: `string`]: [`Balance`](Token.md#balance)
@@ -53,15 +43,11 @@ ___
 
 Ƭ **Metadata**: [`TokenInfoExt`](../interfaces/SwapIDL.TokenInfoExt.md)
 
-It is an object containing information about a DIP20 token.
-
 ___
 
 ### MetadataList
 
 Ƭ **MetadataList**: `Object`
-
-It is key-object that maps a list of `Token.Metadata`.
 
 #### Index signature
 

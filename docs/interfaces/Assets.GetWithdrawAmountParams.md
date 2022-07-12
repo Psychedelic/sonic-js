@@ -2,8 +2,6 @@
 
 [Assets](../modules/Assets.md).GetWithdrawAmountParams
 
-Type definition for getWithdrawAmount function params.
-
 ## Table of contents
 
 ### Properties

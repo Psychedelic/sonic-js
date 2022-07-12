@@ -28,7 +28,7 @@
 - [TokenIDL](modules/TokenIDL.md)
 - [Types](modules/Types.md)
 
-### Type aliases
+### Type Aliases
 
 - [CheckIfOptions](README.md#checkifoptions)
 - [SwapActor](README.md#swapactor)
@@ -62,13 +62,11 @@
 - [toBigNumber](README.md#tobignumber)
 - [toExponential](README.md#toexponential)
 
-## Type aliases
+## Type Aliases
 
 ### CheckIfOptions
 
 Ƭ **CheckIfOptions**: `Object`
-
-Options for validation.
 
 #### Type declaration
 
@@ -84,15 +82,11 @@ ___
 
 Ƭ **SwapActor**: [`Actor`](modules/ActorAdapter.md#actor)<[`Swap`](interfaces/SwapIDL.Swap.md)\>
 
-Type of SwapActor.
-
 ___
 
 ### TokenActor
 
 Ƭ **TokenActor**: [`Actor`](modules/ActorAdapter.md#actor)<[`Token`](interfaces/TokenIDL.Token.md)\>
-
-Type of TokenActor.
 
 ## Variables
 
@@ -100,12 +94,11 @@ Type of TokenActor.
 
 • `Const` **Default**: `Object`
 
-Default values used on Sonic-js library.
-
 #### Type declaration
 
 | Name | Type |
 | :------ | :------ |
+| `ENV` | `string` |
 | `IC_HOST` | `string` |
 | `SLIPPAGE` | `number` |
 | `SWAP_CANISTER_ID` | `string` |
@@ -116,14 +109,12 @@ Default values used on Sonic-js library.
 
 ▸ **checkIfObject**(`object`, `options`): `boolean`
 
-Checking if all values in object are valid
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `object` | `Object` |
-| `options` | [`CheckIfOptions`](README.md#checkifoptions) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `object` | `Object` | - |
+| `options` | [`CheckIfOptions`](README.md#checkifoptions) |  |
 
 #### Returns
 
@@ -135,20 +126,15 @@ ___
 
 ▸ **createSwapActor**(`options?`): `Promise`<[`SwapActor`](README.md#swapactor)\>
 
-Creates a Swap canister actor.
-If no option is provided, the actor will be created using the default canister options.
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | [`CreateSwapActorOptions`](interfaces/CreateSwapActorOptions.md) | Options for creating the SwapActor |
+| `options` | [`CreateSwapActorOptions`](interfaces/CreateSwapActorOptions.md) |  |
 
 #### Returns
 
 `Promise`<[`SwapActor`](README.md#swapactor)\>
-
-actor instance
 
 ___
 
@@ -156,29 +142,21 @@ ___
 
 ▸ **createTokenActor**(`options`): `Promise`<[`TokenActor`](README.md#tokenactor)\>
 
-Creates a DIP20 Token canister actor.
-If no option is provided, the actor will be created using the default canister options.
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | [`CreateTokenActorOptions`](interfaces/CreateTokenActorOptions.md) | Options for creating the TokenActor |
+| `options` | [`CreateTokenActorOptions`](interfaces/CreateTokenActorOptions.md) |  |
 
 #### Returns
 
 `Promise`<[`TokenActor`](README.md#tokenactor)\>
-
-actor instance
 
 ___
 
 ### deserialize
 
 ▸ **deserialize**<`T`\>(`jsonString`): `undefined` \| `T`
-
-Parses a json string into an object.
-This is required for parsing objects that have BigInt values.
 
 #### Type parameters
 
@@ -190,7 +168,7 @@ This is required for parsing objects that have BigInt values.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `jsonString` | `string` | JSON string to parse |
+| `jsonString` | `string` |  |
 
 #### Returns
 
@@ -201,8 +179,6 @@ ___
 ### findMaximalPaths
 
 ▸ **findMaximalPaths**(`pairList`, `tokenList`, `source`, `initialAmount`): [`NodeList`](modules/MaximalPaths.md#nodelist)
-
-Maximal paths graph solver.
 
 #### Parameters
 
@@ -223,8 +199,6 @@ ___
 
 ▸ **findReverseMaximalPaths**(`pairList`, `tokenList`, `source`, `initialAmount`): [`NodeList`](modules/MaximalPaths.md#nodelist)
 
-Reverse maximal paths graph solver.
-
 #### Parameters
 
 | Name | Type |
@@ -244,8 +218,6 @@ ___
 
 ▸ **formatAmount**(`amount`): `string`
 
-Formats an amount to a small string with scientific notation
-
 #### Parameters
 
 | Name | Type |
@@ -262,8 +234,6 @@ ___
 
 ▸ **getDeadline**(): `bigint`
 
-Get deadline for swap canister requests.
-
 #### Returns
 
 `bigint`
@@ -274,13 +244,11 @@ ___
 
 ▸ **parseAllPairs**(`response`): [`List`](modules/Pair.md#list)
 
-Parses a list of pairs from swap canister request.
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `response` | [`PairInfoExt`](interfaces/SwapIDL.PairInfoExt.md)[] | Response from swap canister |
+| `response` | [`PairInfoExt`](interfaces/SwapIDL.PairInfoExt.md)[] |  |
 
 #### Returns
 
@@ -292,13 +260,11 @@ ___
 
 ▸ **parseSupportedTokenList**(`response`): [`MetadataList`](modules/Token.md#metadatalist)
 
-Parses a list of supported tokens from swap canister request.
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `response` | [`TokenInfoExt`](interfaces/SwapIDL.TokenInfoExt.md)[] | Response from swap canister |
+| `response` | [`TokenInfoExt`](interfaces/SwapIDL.TokenInfoExt.md)[] |  |
 
 #### Returns
 
@@ -310,13 +276,11 @@ ___
 
 ▸ **parseUserLPBalances**(`response`): [`Balances`](modules/Pair.md#balances)
 
-Parses a list of pairs LP balances from swap canister request.
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `response` | [`string`, `bigint`][] | Response from swap canister |
+| `response` | [`string`, `bigint`][] |  |
 
 #### Returns
 
@@ -327,8 +291,6 @@ ___
 ### removeEmptyPairs
 
 ▸ **removeEmptyPairs**(`pairList`): [`List`](modules/Pair.md#list)
-
-Remove pairs without reserves from Pair.List.
 
 #### Parameters
 
@@ -346,9 +308,6 @@ ___
 
 ▸ **serialize**<`T`\>(`data`): `string`
 
-Parses a json object into a string.
-This is required for parsing objects that have BigInt values.
-
 #### Type parameters
 
 | Name |
@@ -359,7 +318,7 @@ This is required for parsing objects that have BigInt values.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `data` | `T` | object to parse |
+| `data` | `T` |  |
 
 #### Returns
 
@@ -370,8 +329,6 @@ ___
 ### toBigNumber
 
 ▸ **toBigNumber**(`num?`, `options?`): `BigNumber`
-
-Converts a value to a BigNumber.
 
 #### Parameters
 
@@ -389,8 +346,6 @@ ___
 ### toExponential
 
 ▸ **toExponential**(`decimals`): `BigNumber`
-
-Create an exponential notation by given decimals.
 
 #### Parameters
 
