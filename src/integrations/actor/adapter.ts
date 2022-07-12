@@ -8,15 +8,23 @@ import fetch from 'cross-fetch';
  * It can receive a provider to identify the actor like a wallet provider (e.g. Plug).
  */
 export class ActorAdapter {
+  static DEFAULT_WHITELIST: string[] = [Default.SWAP_CANISTER_ID];
+
+  static DEFAULT_HOST: string = Default.IC_HOST;
+
   static readonly actors: ActorAdapter.Actors = {};
+
+  private options: ActorAdapter.Options;
 
   constructor(
     private provider?: ActorAdapter.Provider,
-    private options: ActorAdapter.Options = {
-      host: Default.IC_HOST,
-      whitelist: [Default.SWAP_CANISTER_ID],
-    }
-  ) {}
+    options: Partial<ActorAdapter.Options> = {}
+  ) {
+    this.options = {
+      host: options.host ?? ActorAdapter.DEFAULT_HOST,
+      whitelist: options.whitelist ?? ActorAdapter.DEFAULT_WHITELIST,
+    };
+  }
 
   /**
    * Creates a new actor or use from memory if is already created.
@@ -75,10 +83,14 @@ export class ActorAdapter {
         ...extraWhitelist,
         ...Object.keys(ActorAdapter.actors),
       ]);
-      await this.provider.createAgent({
+      const agent = await this.provider.createAgent({
         whitelist: Array.from(whitelistSet),
         host: this.options.host,
       });
+
+      if (Default.ENV === 'development') {
+        await agent.fetchRootKey();
+      }
     }
   }
 
@@ -98,15 +110,19 @@ export class ActorAdapter {
    * Create an anonymous actor.
    * @param {string} canisterId The canister id of the actor
    * @param {IDL.InterfaceFactory} interfaceFactory The interface factory of the actor
-   * @param {string=Default.IC_HOST} host The IC host to connect to
+   * @param {string=ActorAdapter.DEFAULT_HOST} host The IC host to connect to
    * @returns {ActorAdapter.Actor<T>} The anonymous actor
    */
   static createAnonymousActor<T>(
     canisterId: string,
     interfaceFactory: IDL.InterfaceFactory,
-    host = Default.IC_HOST
+    host = ActorAdapter.DEFAULT_HOST
   ): ActorAdapter.Actor<T> {
     const agent = new HttpAgent({ host, fetch });
+
+    if (Default.ENV === 'development') {
+      agent.fetchRootKey();
+    }
 
     return Actor.createActor<T>(interfaceFactory, {
       agent,

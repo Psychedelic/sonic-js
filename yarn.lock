@@ -300,10 +300,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@dfinity/agent@^0.10.2":
-  version "0.10.4"
-  resolved "https://registry.yarnpkg.com/@dfinity/agent/-/agent-0.10.4.tgz#269406f1cb5524276c52ddf37e933abd75529063"
-  integrity sha512-/O1443GWkQ6GngrXos/ShAbnF9IgUlWclzaQn/qEsGJIey6S7tty+iOa5yZqOS1BtOTnDe+TYh8GeERZZn7vvg==
+"@dfinity/agent@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@dfinity/agent/-/agent-0.12.0.tgz#c1cf57c75c119d85c185f6f302d71bb706869a3b"
+  integrity sha512-dYOEwo4jl5yipuGTfTG/5hIZL6E7/oWLZ1d5gfq7p4cOBE3KeTp46JymAMiKYaGtgbKhKbDfhd4JveX3m//DJg==
   dependencies:
     base64-arraybuffer "^0.2.0"
     bignumber.js "^9.0.0"
@@ -311,15 +311,15 @@
     js-sha256 "0.9.0"
     simple-cbor "^0.4.1"
 
-"@dfinity/candid@^0.10.2":
-  version "0.10.4"
-  resolved "https://registry.yarnpkg.com/@dfinity/candid/-/candid-0.10.4.tgz#32f666f6a069d87b6f7007d7ad3c50ab307d8b76"
-  integrity sha512-Rd8uoo3jd4FLmGY9aBgTRdBCYVuG/Y7QmpDJB3eQvsU3WHhVZJWLMHcodnMIoy2bzqzCKeTdLkL565K7qx5H3Q==
+"@dfinity/candid@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@dfinity/candid/-/candid-0.12.0.tgz#825e4d33e0bd3117881c538ca107d213e3162089"
+  integrity sha512-TX9eL5D4F5EZPf+uKoxE0X3umg+mSA7RWrS+zTQxMRBe/1aBXVOFqChAiSupfKHI3wSWTvOImIxLRmCrAP+69w==
 
-"@dfinity/principal@^0.10.2":
-  version "0.10.4"
-  resolved "https://registry.yarnpkg.com/@dfinity/principal/-/principal-0.10.4.tgz#8f28f631929cc420a4238f75930090aba84d74b8"
-  integrity sha512-qwzpmq5wfyeKMBspRZmuYvTxu1dqN+IY0ThACHTRh6D58QjnVQNCD3Hq9d5eEDu0qyNcY22cJEWwzrzZaaoVmw==
+"@dfinity/principal@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@dfinity/principal/-/principal-0.12.0.tgz#87e8888c53abdd067c179e68d2e0af0558c3edf4"
+  integrity sha512-kah+gxPYKagvjrFLs8+WtQzpKPaFpUU5kG6cTiYXG8MKEX+Yls3ycdla693XwZo3neW5NRnG75Skq1ZNscQSaw==
 
 "@eslint/eslintrc@^1.2.1":
   version "1.2.1"

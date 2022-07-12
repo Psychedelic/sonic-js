@@ -10,4 +10,7 @@ export const Default = {
 
   // Slippage percentage applied in transactions (0.5%)
   SLIPPAGE: 0.5,
+
+  // Set to "development" to enable development features
+  ENV: process?.env?.NODE_ENV || 'production',
 };
