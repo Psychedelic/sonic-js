@@ -2,22 +2,6 @@
 
 [Swap](../modules/Swap.md).GetAmountOutParams
 
-Type definition for getAmountOut function params.
-
-**`param`** Amount of token in to swap
-
-**`param`** Decimals of token in
-
-**`param`** Decimals of token out
-
-**`param`** Amount of token in on swap canister reserve
-
-**`param`** Amount of token out on swap canister reserve
-
-**`param`** Amount of token out on swap canister reserve
-
-**`param`** Calculate amount for "token from" or "token to"
-
 ## Table of contents
 
 ### Properties

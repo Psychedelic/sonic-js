@@ -2,28 +2,24 @@
 
 ## Table of contents
 
-### Type aliases
+### Type Aliases
 
 - [Balance](Pair.md#balance)
 - [Balances](Pair.md#balances)
 - [List](Pair.md#list)
 - [Metadata](Pair.md#metadata)
 
-## Type aliases
+## Type Aliases
 
 ### Balance
 
 Ƭ **Balance**: [`Number`](Types.md#number)
-
-Type definition for a pair Liquidity Position balance.
 
 ___
 
 ### Balances
 
 Ƭ **Balances**: `Object`
-
-Type definition for a list of pair Liquidity Position balances.
 
 #### Index signature
 
@@ -35,10 +31,6 @@ ___
 
 Ƭ **List**: `Object`
 
-Type definition for a list of pairs.
-It is represented using nested object in the structure of:
-[canisterId][canisterId]: Metadata
-
 #### Index signature
 
 ▪ [canisterId: `string`]: { `[canisterId: string]`: [`Metadata`](Pair.md#metadata);  }
@@ -48,5 +40,3 @@ ___
 ### Metadata
 
 Ƭ **Metadata**: [`PairInfoExt`](../interfaces/SwapIDL.PairInfoExt.md)
-
-Type definition for a pair.

@@ -1,10 +1,8 @@
 # Namespace: ActorAdapter
 
-Type definition for the ActorAdapter.
-
 ## Table of contents
 
-### Type aliases
+### Type Aliases
 
 - [Actor](ActorAdapter.md#actor)
 - [ActorParams](ActorAdapter.md#actorparams)
@@ -17,13 +15,11 @@ Type definition for the ActorAdapter.
 - [CreateActorParams](../interfaces/ActorAdapter.CreateActorParams.md)
 - [CreateAgentParams](../interfaces/ActorAdapter.CreateAgentParams.md)
 
-## Type aliases
+## Type Aliases
 
 ### Actor
 
 Ƭ **Actor**<`T`\>: `ActorSubclass`<`T`\>
-
-Return for the createActor function of the ActorAdapter.
 
 #### Type parameters
 
@@ -36,8 +32,6 @@ ___
 ### ActorParams
 
 Ƭ **ActorParams**: `Object`
-
-Parameters for creating an actor using the ActorAdapter.
 
 #### Type declaration
 
@@ -52,15 +46,11 @@ ___
 
 Ƭ **Actors**: `Record`<`string`, { `actor`: `ActorSubclass`<`any`\> ; `adapter`: [`ActorAdapter`](../classes/ActorAdapter.md)  }\>
 
-Interface for static stored actors.
-
 ___
 
 ### Options
 
 Ƭ **Options**: `Object`
-
-Options for the ActorAdapter.
 
 #### Type declaration
 
@@ -74,8 +64,6 @@ ___
 ### Provider
 
 Ƭ **Provider**: `Object`
-
-Agent provider interface.
 
 #### Type declaration
 

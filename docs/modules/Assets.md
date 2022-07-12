@@ -1,7 +1,5 @@
 # Namespace: Assets
 
-Type definition for the Assets.
-
 ## Table of contents
 
 ### Interfaces

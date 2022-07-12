@@ -2,16 +2,6 @@
 
 [Swap](../modules/Swap.md).GetPriceImpactParams
 
-Type definition for getPriceImpact function params.
-
-**`param`** Amount of token in of swap
-
-**`param`** Amount of token out of swap
-
-**`param`** Price of single token in of swap
-
-**`param`** Price of single token out of swap
-
 ## Table of contents
 
 ### Properties

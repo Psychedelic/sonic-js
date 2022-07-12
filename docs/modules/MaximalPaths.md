@@ -1,10 +1,8 @@
 # Namespace: MaximalPaths
 
-Type definition for the maximal paths graph solver.
-
 ## Table of contents
 
-### Type aliases
+### Type Aliases
 
 - [GraphResolver](MaximalPaths.md#graphresolver)
 - [Node](MaximalPaths.md#node)
@@ -13,7 +11,7 @@ Type definition for the maximal paths graph solver.
 - [PathList](MaximalPaths.md#pathlist)
 - [WeightList](MaximalPaths.md#weightlist)
 
-## Type aliases
+## Type Aliases
 
 ### GraphResolver
 
@@ -22,8 +20,6 @@ Type definition for the maximal paths graph solver.
 #### Type declaration
 
 ▸ (`pairList`, `tokenList`, `source`, `initialAmount`): [`NodeList`](MaximalPaths.md#nodelist)
-
-Type definition for a GraphResolver function.
 
 ##### Parameters
 
@@ -44,8 +40,6 @@ ___
 
 Ƭ **Node**: `Object`
 
-Type definition for Node object.
-
 #### Type declaration
 
 | Name | Type |
@@ -60,8 +54,6 @@ ___
 
 Ƭ **NodeList**: `Object`
 
-Type definition for NodeList object.
-
 #### Index signature
 
 ▪ [tokenId: `string`]: [`Node`](MaximalPaths.md#node)
@@ -71,8 +63,6 @@ ___
 ### Path
 
 Ƭ **Path**: `Object`
-
-Type definition for Path object.
 
 #### Type declaration
 
@@ -87,8 +77,6 @@ ___
 
 Ƭ **PathList**: `Object`
 
-Type definition for PathList object.
-
 #### Index signature
 
 ▪ [tokenId: `string`]: [`Path`](MaximalPaths.md#path)
@@ -98,8 +86,6 @@ ___
 ### WeightList
 
 Ƭ **WeightList**: `Object`
-
-Weight list for graph nodes.
 
 #### Index signature
 

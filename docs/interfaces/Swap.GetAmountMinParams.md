@@ -2,14 +2,6 @@
 
 [Swap](../modules/Swap.md).GetAmountMinParams
 
-Type definition for getAmountMin function params.
-
-**`param`** Amount of token in to swap
-
-**`param`** Decimals of token in
-
-**`param`** Allowed slippage percentage
-
 ## Table of contents
 
 ### Properties

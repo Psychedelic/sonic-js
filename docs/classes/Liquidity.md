@@ -1,7 +1,5 @@
 # Class: Liquidity
 
-Math calculations for Liquidity functions.
-
 ## Table of contents
 
 ### Properties
@@ -26,9 +24,7 @@ Math calculations for Liquidity functions.
 
 ### MINIMUM\_LIQUIDITY
 
-▪ `Static` `Readonly` **MINIMUM\_LIQUIDITY**: `BigNumber`
-
-Constant from Swap Canister.
+▪ `Static` `Readonly` **MINIMUM\_LIQUIDITY**: ``1000``
 
 ___
 
@@ -41,8 +37,6 @@ ___
 ### getMinimalAmountIn
 
 ▸ `Static` **getMinimalAmountIn**(`params`): `BigNumber`
-
-Calculate the minimal amount to be input for a given token of a pair.
 
 #### Parameters
 
@@ -60,8 +54,6 @@ ___
 
 ▸ `Static` **getOppositeAmount**(`params`): `BigNumber`
 
-Calculate the opposite token value for given pair in Liquidity Position.
-
 #### Parameters
 
 | Name | Type |
@@ -77,8 +69,6 @@ ___
 ### getPosition
 
 ▸ `Static` **getPosition**(`params`): `BigNumber`
-
-Calculate the Liquidity Position for given amounts of a pair of tokens that is going to be added.
 
 #### Parameters
 
@@ -96,8 +86,6 @@ ___
 
 ▸ `Static` **getShareOfPool**(`params`): `BigNumber`
 
-Calculate Share of a pool of the position based on total supply.
-
 #### Parameters
 
 | Name | Type |
@@ -114,8 +102,6 @@ ___
 
 ▸ `Static` **getTokenBalances**(`params`): [`GetTokenBalancesResult`](../interfaces/Liquidity.GetTokenBalancesResult.md)
 
-Calculate the token balances for given pair Liquidity Position.
-
 #### Parameters
 
 | Name | Type |
@@ -131,8 +117,6 @@ ___
 ### getUserPositionValue
 
 ▸ `Static` **getUserPositionValue**(`params`): `BigNumber`
-
-Calculate the amount of a token in a position based on total supply.
 
 #### Parameters
 

@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js';
 
 import { Pair } from '@/declarations/pair';
 
-import { toExponential, toBigNumber } from '../utils';
+import { toBigNumber } from '../utils';
 import { Types, checkIfObject, Default } from '../';
 
 /**
@@ -12,7 +12,7 @@ export class Liquidity {
   /**
    * Constant from Swap Canister.
    */
-  static readonly MINIMUM_LIQUIDITY = toExponential(3);
+  static readonly MINIMUM_LIQUIDITY = 1000;
   static readonly PAIR_DECIMALS = 8;
 
   /**
