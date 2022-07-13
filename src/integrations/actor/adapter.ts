@@ -88,7 +88,7 @@ export class ActorAdapter {
         host: this.options.host,
       });
 
-      if (Default.ENV === 'development') {
+      if (Default.ENV === 'development' && agent.fetchRootKey) {
         await agent.fetchRootKey();
       }
     }
