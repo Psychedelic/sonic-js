@@ -64,7 +64,7 @@ ___
 
 ### createAnonymousActor
 
-▸ `Static` **createAnonymousActor**<`T`\>(`canisterId`, `interfaceFactory`, `host?`): [`Actor`](../modules/ActorAdapter.md#actor)<`T`\>
+▸ `Static` **createAnonymousActor**<`T`\>(`canisterId`, `interfaceFactory`, `host?`): `Promise`<[`Actor`](../modules/ActorAdapter.md#actor)<`T`\>\>
 
 #### Type parameters
 
@@ -82,7 +82,7 @@ ___
 
 #### Returns
 
-[`Actor`](../modules/ActorAdapter.md#actor)<`T`\>
+`Promise`<[`Actor`](../modules/ActorAdapter.md#actor)<`T`\>\>
 
 ___
 
