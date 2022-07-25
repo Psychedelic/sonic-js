@@ -54,7 +54,7 @@ export class ActorAdapter {
     let actor: ActorSubclass<T>;
 
     if (!this.provider) {
-      actor = ActorAdapter.createAnonymousActor(
+      actor = await ActorAdapter.createAnonymousActor(
         canisterId,
         interfaceFactory,
         this.options.host
@@ -113,15 +113,15 @@ export class ActorAdapter {
    * @param {string=ActorAdapter.DEFAULT_HOST} host The IC host to connect to
    * @returns {ActorAdapter.Actor<T>} The anonymous actor
    */
-  static createAnonymousActor<T>(
+  static async createAnonymousActor<T>(
     canisterId: string,
     interfaceFactory: IDL.InterfaceFactory,
     host = ActorAdapter.DEFAULT_HOST
-  ): ActorAdapter.Actor<T> {
+  ): Promise<ActorAdapter.Actor<T>> {
     const agent = new HttpAgent({ host, fetch });
 
     if (Default.ENV === 'development') {
-      agent.fetchRootKey();
+      await agent.fetchRootKey();
     }
 
     return Actor.createActor<T>(interfaceFactory, {

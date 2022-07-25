@@ -240,7 +240,7 @@ ___
 
 ### constructor
 
-• **new SwapCanisterController**(`swapActor?`)
+• **new SwapCanisterController**(`swapActor`)
 
 #### Parameters
 

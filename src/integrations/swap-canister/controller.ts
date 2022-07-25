@@ -1,4 +1,4 @@
-import { Default, Pair, Token, Types, SwapIDL } from '@/declarations';
+import { Default, Pair, Token, Types } from '@/declarations';
 import { Assets, Liquidity, Swap } from '@/math';
 import { toBigNumber } from '@/utils';
 import { Actor } from '@dfinity/agent';
@@ -19,14 +19,9 @@ export class SwapCanisterController {
   /**
    * Create an instance that communicates with swap canister.
    * Some of the functions uses the actor agent identity to identify the user that is interacting.
-   * @param {SwapActor} swapActor swap actor or an anonymous will be used
+   * @param {SwapActor} swapActor swap actor
    */
-  constructor(
-    private swapActor: SwapActor = ActorAdapter.createAnonymousActor<SwapIDL.Swap>(
-      Default.SWAP_CANISTER_ID,
-      SwapIDL.factory
-    )
-  ) {}
+  constructor(private swapActor: SwapActor) {}
 
   /**
    * Get the list of supported tokens from swap canister.

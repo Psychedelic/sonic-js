@@ -141,13 +141,13 @@ The class constructor has params to configure how you want to use the adapter:
 - `provider`: This param receives an object that is used to create `agent` and `actors`. The object needs to follow the interface `ActorAdapter.Provider`. We highly recommended using [@psychedelic/plug-inpage-provider](https://github.com/Psychedelic/plug-inpage-provider/packages/884575) if you want to instantiate actors linked to a user:
 
 ```ts
-const adapter = new ActorAdapter(window.plug);
+const adapter = new ActorAdapter(window.ic.plug);
 ```
 
 - `options`: This param is used for selecting some settings of network host and whitelisting canister ids. It follows the interface `ActorAdapter.Options`:
 
 ```ts
-const adapter = new ActorAdapter(window.plug, {
+const adapter = new ActorAdapter(window.ic.plug, {
   host: 'https://boundary.ic0.app/',
   whitelist: ['3xwpq-ziaaa-aaaah-qcn4a-cai'],
 });
@@ -176,17 +176,18 @@ To make actor creation even easier, Sonic-js provides two functions that automat
 
 The class `SwapCanisterController` provides methods that give access to the main functionalities of Swap Canister. Instantiation of a non-anonymous controller uses a `Swap Actor`.
 
-You can create an anonymous controller (not linked to any user) by providing no params:
+You can create an anonymous controller (not linked to any user):
 
 ```ts
-const controller = new SwapCanisterController();
+const swapActor = await createTokenActor();
+const controller = new SwapCanisterController(swapActor);
 ```
 
 Or adding a custom actor with your adapter:
 
 ```ts
 const swapActor = await createSwapActor({
-  actorAdapter: new ActorAdapter(window.plug),
+  actorAdapter: new ActorAdapter(window.ic.plug),
 });
 const controller = new SwapCanisterController(swapActor);
 ```
@@ -245,3 +246,4 @@ Declared types that are used to represent Sonic swap pairs.
 An object that stores the default values used inside the library.
 
 [Find it here](docs/README.md#default).
+
